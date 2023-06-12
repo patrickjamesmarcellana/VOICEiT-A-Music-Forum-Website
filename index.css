@@ -514,15 +514,15 @@ body {
 }
 
 .upvote-sprite {
-    background: url('images/spritesheet.png') no-repeat -164px -32px;
+	background: url('images/spritesheet.png') no-repeat -33px -62px;
 	width: 20px;
-	height: 19px;
+	height: 18px;
     border: none;
 }
 
 .upvote-sprite:hover {
-	background: url('images/spritesheet.png') no-repeat -224px -33px;
-	width: 21px;
+	background: url('images/spritesheet.png') no-repeat -33px -87px;
+	width: 20px;
 	height: 18px;
 }
 
@@ -531,16 +531,16 @@ body {
 }
 
 .downvote-sprite {
-    background: url('images/spritesheet.png') no-repeat -194px -34px;
-	width: 21px;
+	background: url('images/spritesheet.png') no-repeat -64px -63px;
+	width: 20px;
 	height: 18px;
     border: none;
 }
 
 .downvote-sprite:hover {
-	background: url('images/spritesheet.png') no-repeat -250px -34px;
+	background: url('images/spritesheet.png') no-repeat -64px -87px;
 	width: 20px;
-	height: 19px;
+	height: 18px;
 }
 
 .comment-sprite {
@@ -550,9 +550,9 @@ body {
 }
 
 .comment-sprite:hover {
-	background: url('images/spritesheet.png') no-repeat -30px -62px;
-	width: 20px;
-	height: 21px;
+	background: url('images/spritesheet.png') no-repeat -3px -87px;
+	width: 21px;
+	height: 20px;
 }
 
 .comment-count {
