@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sign up for VoiceIt</title>
-        <link rel="stylesheet" type="text/css" href="css/register-styles.css" />
+        <title>Log in to VoiceIt</title>
+        <link rel="stylesheet" type="text/css" href="css/login-styles.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script
-            type="text/javascript"
-            src="js/register-script.js"
-            defer
-        ></script>
+        <script type="text/javascript" src="js/login-script.js" defer></script>
     </head>
 
     <body>
         <div class="main">
             <div class="main-content-container">
-                <div class="main-header">Start Using VoiceIt</div>
+                <div class="main-header">Sign In to VoiceIt</div>
                 <div class="main-header-desc">
                     Join VoiceIt today to discuss anything music with friends
                     and fellow enthusiasts all over the world, for free!
@@ -50,10 +46,17 @@
                             />
                         </div>
 
-                        <div class="required-fields-text">
-                            <span class="red-text"
-                                >* These fields are required.</span
-                            >
+                        <div class="login-options">
+                            <span class="stay-logged-in-container">
+                                <input type="checkbox" />
+                                <label for="stay-logged-in"
+                                    >Stay logged in?</label
+                                >
+                            </span>
+
+                            <span class="required-fields-text">
+                                * These fields are required.
+                            </span>
                         </div>
 
                         <div class="submit-form-button-container">
@@ -61,7 +64,7 @@
                                 type="submit"
                                 class="submit-form-button"
                                 id="submit-button"
-                                value="Create Account"
+                                value="Log In"
                             />
                         </div>
                     </form>
@@ -69,16 +72,14 @@
 
                 <div class="horizontal-separator"><hr /></div>
 
-                <div class="already-have-account-text">
-                    Already have an account?
-                </div>
+                <div class="need-account-text">Need an account?</div>
 
-                <div class="login-button">
+                <div class="register-button">
                     <input
                         type="button"
-                        id="login-button"
-                        onclick="location.href='login.html';"
-                        value="Log In"
+                        id="register-button"
+                        onclick="location.href='register.html';"
+                        value="Sign Up"
                     />
                 </div>
             </div>
