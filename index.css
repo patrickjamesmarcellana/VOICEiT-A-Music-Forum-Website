@@ -1,0 +1,580 @@
+/*
+Optimizations:
+1. Search Bar: Selecting a previously searched item format of box
+2. Hovering on the Dropdown Menus should show the button when window is minimized.
+3. Scroll bar getting shrinked on side panel a when minimized
+*/
+
+:root {
+    font-size: 16px;
+    --logo-font: 'Gugi';
+    --main-font: 'Noir-Light';
+    --header-font: 'Noir-Bold';
+    --main-color: #edf6ff;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
+/* major containers */
+body {
+    margin: 0;
+    background-image: linear-gradient(#8182DA, #A18DDD, #D3A3DA, #E1B1E8);
+    /* background-image: linear-gradient(#270F36, #642B6B, #C86B98, #F09F9C, #FFC19F, #FD9D7F); */
+    background-attachment: fixed;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    height: 100%;   
+}
+
+/* navigation bar */
+.nav-bar {
+    padding: 2px 2vw 2px 2vw;
+    height: 45px;
+    position: sticky;
+    top: 0;
+    border-bottom: solid 1px var(--main-color);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 999;
+    background-image: linear-gradient(#31294C, #5756BB);
+    box-shadow: 0px 3px 6px 0px #31294C;
+}
+
+.title-panel {
+    align-items: center;
+    display: flex;
+}
+
+.logo {
+    height: 33px;
+    width: 33px;
+}
+
+.title-text {
+    font-family: Gugi;
+    color: var(--main-color);
+    font-size: 26px;
+    margin: 0px 0px 0px 8px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 0;
+}
+
+@media screen and (max-width: 756px) {
+    .title-text {
+        display: none;
+    }
+}
+
+.search-bar {
+    border: solid 1px #edf6ff;
+    border-radius: 50px;
+    height: 36px;
+    width: 65vw;
+    align-items: center;
+    display: flex;
+    margin: 0px 4vw 0px 87px;
+    min-width: 260px;
+}
+
+.search-sprite {
+    height: 30px;
+    width: 30px;
+    margin-left: 8px;
+}
+
+.search-inner-box {
+    width: 65vw;
+}
+
+.search-box {
+    width: 98%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    font-family: var(--main-font);
+    color: var(--main-color);
+}
+
+.search-box::placeholder {
+    color: var(--main-color);
+}
+
+.search-box::-webkit-search-cancel-button {
+    display: none;
+}
+
+.nav-buttons-panel {
+    width: 41.1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dropdown {
+    margin-left: auto;
+    width: 60px;
+    display: none;
+    position: relative;
+}
+
+.dropdown-button {
+    background-color: transparent;
+    border: solid 1px var(--main-color);
+    padding: 8px 0vw;
+    color: var(--main-color);
+    font-size: 16px;
+    font-family: var(--main-font);
+    width: 60px;
+    height: 38px;
+    align-items: center;
+    display: flex;
+}
+
+/* Reference for Dropdown Buttons: https://www.w3schools.com/howto/howto_css_dropdown.asp */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-image: linear-gradient(#31294C,#5756BB, #8182DA);
+    width: 240px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 1px;
+}
+
+.dropdown-content a:hover {
+    background-color: black;
+}
+
+.user-buttons div[class="dropdown-content options-panel"] {
+    height: auto;
+}
+
+.topics-button div[class="options-panel dropdown-content"] {
+    height: 40vh;
+}
+
+.side-panel-a > .options-panel {
+    height: 80.1vh;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.nav-icons {
+    margin: auto;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+}
+
+.arrow {
+    border: solid var(--main-color);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: auto;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+@media screen and (max-width: 1247px) {
+    .topics-button {
+        display: inline-block;
+    }
+
+    .search-bar {
+        margin-left: 4vw;
+    }
+
+    .side-panel-a {
+        display: none;
+    }
+}
+
+.nav-button {
+    text-decoration: none;
+    color: var(--main-color);
+    padding: 7px 0vw;
+    box-sizing: border-box;
+    width: 9vw;
+    text-align: center;
+    border-radius: 25px;
+    border: solid 1px var(--main-color);
+    background-image: linear-gradient( #5756BB, #8182DA, #A18DDD);
+    min-width: 80px;
+}
+
+.register-button {    
+    margin-left: auto;
+}
+
+.login-button {
+    margin-left: 1.2vw;
+}
+
+.user-buttons {
+    display: none;
+}
+
+@media screen and (max-width: 706px) {
+    .user-buttons {
+        display: inline-block;
+        margin-left: 2vw;
+    }
+
+    .user-buttons a {
+        color: var(--main-color);
+        padding: 12px 16px;
+        text-decoration: none;
+        margin-left: 7px;  
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .topics-button {
+        margin-left: auto;
+    }
+
+    /* .dropdown-content {
+        position: relative;
+        float: right;
+    } */
+}
+
+.nav-button:hover, .dropdown-button:hover {
+    background-color: black;
+    background-image: none;
+}
+
+.register-sprite {
+    background: url('images/spritesheet.png') no-repeat -1px -31px;
+	width: 21px;
+	height: 23px;
+}
+
+.login-sprite {
+    background: url('images/spritesheet.png') no-repeat -24px -35px;
+	width: 21px;
+	height: 13px;
+}
+
+/* content elements */
+
+.content {
+    display: flex;
+}
+
+/* topics panel (leftmost) */
+.side-panel-a {
+    width: 257px;
+    color: var(--main-color);
+    font-family: var(--header-font);
+    border-right: solid 1px var(--main-color);
+    font-size: 0.9rem;
+    height: 100vh;
+    position: fixed;
+    background-image: linear-gradient(#31294C,#5756BB, #8182DA);
+}
+
+.side-panel-text {
+    padding: 0px 24px;
+}
+
+.options-panel {
+    color: var(--main-color);
+    font-family: var(--header-font);
+    font-size: 0.9rem;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.options-panel::-webkit-scrollbar {
+    min-height: none;
+}
+
+.options-panel span {
+    margin-right: 10px;
+}
+
+.side-panel-a-buttons {
+    padding: 9.4px 24px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: white;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    align-items: center;
+    display: flex;
+}
+
+.side-panel-a-buttons:hover {
+    background-color: black;
+}
+
+/* side panel a sprites */
+
+.home-sprite {
+    background: url('images/spritesheet.png') no-repeat -24px -1px;
+	width: 20px;
+	height: 20px;
+}
+
+.popular-sprite {
+    background: url('images/spritesheet.png') no-repeat 0 0;
+	width: 21px;
+	height: 20px;
+}
+
+.alternative-sprite {
+	background: url('images/spritesheet.png') no-repeat -49px -3px;
+	width: 21px;
+	height: 15px;
+}
+
+.classical-sprite {
+	background: url('images/spritesheet.png') no-repeat -74px -2px;
+	width: 21px;
+	height: 22px;
+}
+
+.country-sprite {
+	background: url('images/spritesheet.png') no-repeat -96px -2px;
+	width: 21px;
+	height: 23px;
+}
+
+.jazz-sprite {
+	background: url('images/spritesheet.png') no-repeat -118px -1px;
+	width: 21px;
+	height: 25px
+}
+
+.kpop-sprite {
+	background: url('images/spritesheet.png') no-repeat -141px -1px;
+	width: 21px;
+	height: 35px;
+}
+
+.latin-sprite {
+	background: url('images/spritesheet.png') no-repeat -163px -1px;
+	width: 21px;
+	height: 26px;
+}
+
+.pop-sprite {
+	background: url('images/spritesheet.png') no-repeat -187px -2px;
+	width: 21px;
+	height: 21px;
+}
+
+.rnb-sprite {
+	background: url('images/spritesheet.png') no-repeat -210px -2px;
+	width: 21px;
+	height: 21px;
+}
+
+.rap-sprite {
+	background: url('images/spritesheet.png') no-repeat -233px -2px;
+	width: 21px;
+	height: 26px;
+}
+
+.rock-sprite {
+	background: url('images/spritesheet.png') no-repeat -257px -1px;
+	width: 21px;
+	height: 30px;
+}
+
+.side-panel-bottom {
+    padding: 20px 24px 30px 24px;
+    z-index: 999;
+    border-top: solid 1px var(--main-color);
+}
+
+/* posts' panel (middle) */
+.post-panel {
+    width: 56vw;
+    margin-left: 257px;
+    border-right: solid 1px var(--main-color);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.post-container {
+    border-radius: 5px;
+    margin: 30px auto 0px auto;
+    width: 80%;
+    background-image: linear-gradient(#31294C,#5756BB, #8182DA);
+    border: solid 1px var(--main-color);
+    color: var(--main-color);
+    box-shadow: 0px 3px 6px 0px #31294C;
+}
+
+.post-header {
+    border-bottom: solid 1px var(--main-color);
+    height: 45px;
+    align-items: center;
+    display: flex;
+    padding: 2px 20px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.post-profile-photo {
+    height: 28px;
+    width: 28px; 
+    margin-right: 8px;
+    border-radius: 50%;
+    border: solid 1px var(--main-color);
+}
+
+.post-profile {
+    text-decoration: none;
+    color: var(--main-color);
+    align-items: center;
+    display: flex;
+    font-family: var(--header-font);
+}
+
+.post-profile:hover, .post-subforum:hover {
+    /* reference for making text embossed: https://stackoverflow.com/questions/34500277/how-to-make-image-background-embossed-effect */
+    /* text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.3), 1px 1px 0px rgba(0, 0, 0, 0.8); */
+    /* color: white; */
+    color: #E1B1E8;
+}
+
+.post-subforum {
+    font-size: 0.8rem;
+    color: var(--main-color);
+}
+
+.post-options-button {
+    margin-left: auto;
+	background: url('images/spritesheet.png') no-repeat -85px -38px;
+	width: 19px;
+	height: 7px;
+    border: 0;
+}
+
+.post-options-button:hover {
+	background: url('images/spritesheet.png') no-repeat -109px -38px;
+	width: 19px;
+	height: 7px;
+}
+
+.post-content {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.post-title {
+    font-family: var(--header-font);
+    font-size: 1.1rem;
+}
+
+.post-body {
+    margin-top: 20px;
+}
+
+.post-buttons {
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    border-top: solid 1px var(--main-color);
+    box-sizing: border-box;
+    padding-top: 13px;
+}
+
+.upvote-sprite {
+    background: url('images/spritesheet.png') no-repeat -164px -32px;
+	width: 27px;
+	height: 24px;
+    border: none;
+}
+
+.upvote-sprite:hover {
+    background: url('images/spritesheet.png') no-repeat -232px -36px;
+	width: 27px;
+	height: 24px;
+}
+
+.upvote-count, .downvote-count, .comment-count {
+    margin: 0px 10px 0px 7px;
+}
+
+.downvote-sprite {
+    background: url('images/spritesheet.png') no-repeat -195px -34px;
+	width: 27px;
+	height: 24px;
+    border: none;
+}
+
+.downvote-sprite:hover {
+    background: url('images/spritesheet.png') no-repeat -263px -38px;
+	width: 27px;
+	height: 24px;
+}
+
+.comment-sprite {
+    background: url('images/spritesheet.png') no-repeat -3px -62px;
+	width: 27px;
+	height: 26px;
+}
+
+.comment-sprite:hover {
+	background: url('images/spritesheet.png') no-repeat -3px -93px;
+	width: 27px;
+	height: 26px;
+}
+
+.comment-count {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+.comment-count:hover {
+    color: #E1B1E8;
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 958px) {
+    .side-panel-b {
+        display: none;
+    }
+}
+
+/* side panel b (rightmost) */
+.side-panel-b {
+    width: 26vw;
+}
+
+
