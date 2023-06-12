@@ -1,8 +1,6 @@
 $(document).ready(function() {
     // for dynamic content sizing when adjusting window size
     var post_panel = $(".post-panel");
-    var post_container = $(".post-container");
-    
     var register_button = $(".register-button");
     var topics_button = $(".topics-button");
     
@@ -32,6 +30,9 @@ $(document).ready(function() {
     for(let i = 0; i < 14; i++) {
         post_panel.prepend("<div class=\"post-container\">" + sample_post_a + "<div>");
     }
+
+    // default timeline open: For You
+
 })
 
 
