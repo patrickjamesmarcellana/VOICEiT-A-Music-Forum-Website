@@ -30,7 +30,7 @@ $(document).ready(function() {
     // sample posts loop
     let sample_post_a = $(".post-container").html()
     for(let i = 0; i < 14; i++) {
-        post_panel.append("<div class=\"post-container\">" + sample_post_a + "<div>");
+        post_panel.prepend("<div class=\"post-container\">" + sample_post_a + "<div>");
     }
 })
 

@@ -565,11 +565,30 @@ body {
     text-decoration: underline;
 }
 
-
 @media screen and (max-width: 958px) {
     .side-panel-b {
         display: none;
     }
+}
+
+.see-more-panel {
+    margin: 30px auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border-top: solid 1px var(--main-color);
+    padding-top: 15px;
+    box-sizing: border-box;
+}
+
+.see-more-button {
+    text-decoration: none;
+    color: #31294C;
+    margin: auto;
+}
+
+.see-more-button:hover {
+    text-decoration: underline;
 }
 
 /* side panel b (rightmost) */
