@@ -3,9 +3,8 @@ const loginPassword = document.getElementById("login-password");
 
 loginUsername.addEventListener("keyup", (event) => {
     const invalidUsername = document.createElement("div");
+    invalidUsername.className = "invalid-field-message";
     invalidUsername.id = "invalid-username-message";
-    invalidUsername.style.color = "red";
-    invalidUsername.style.fontSize = "smaller";
     invalidUsername.innerHTML =
         "Username must be between 3 - 20 characters and \
     can contain the following: uppercase, lowercase, numbers, and underscores.";
@@ -38,9 +37,8 @@ loginUsername.addEventListener("keyup", (event) => {
 
 loginPassword.addEventListener("keyup", (event) => {
     const invalidPassword = document.createElement("div");
+    invalidPassword.className = "invalid-field-message";
     invalidPassword.id = "invalid-password-message";
-    invalidPassword.style.color = "red";
-    invalidPassword.style.fontSize = "smaller";
     invalidPassword.innerHTML =
         "Password must be between 8 - 32 characters long and contain the \
         following: uppercase, lowercase, numbers, and symbols.";

@@ -65,6 +65,11 @@
     margin-bottom: 4%;
 }
 
+.invalid-field-message {
+    color: red;
+    font-size: smaller;
+}
+
 .required-fields-text {
     font-size: 90%;
     text-align: right;
