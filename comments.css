@@ -20,6 +20,11 @@
     padding-left: 2em;
 }
 
+.comment-text-editor > textarea {
+    width: 100%;
+    resize: vertical;
+}
+
 .hidden {
     display: none;
 } 
