@@ -435,7 +435,7 @@ body {
 
 .post-container {
     border-radius: 5px;
-    margin: 30px auto 0px auto;
+    margin: 1rem auto 1.5rem auto;
     width: 80%;
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
     color: var(--main-color);
