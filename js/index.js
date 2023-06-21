@@ -33,4 +33,10 @@ $(document).ready(function() {
         post_panel.append("<div class=\"post-container\">" + sample_post_a + "</div>");
     }
     post_panel.append(see_more_panel);
+
+    // making post containers a clickable container to post.html
+    const post_container = $(".post-container");
+    post_container.click(function() {
+        window.location.href = "post.html";
+    })
 })
