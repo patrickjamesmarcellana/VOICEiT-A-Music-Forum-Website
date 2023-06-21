@@ -438,7 +438,6 @@ body {
     margin: 20px auto 0px auto;
     width: 80%;
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
-    border: solid 1px var(--main-color);
     color: var(--main-color);
 }
 
