@@ -64,11 +64,20 @@
 }
 
 .view-options-panel {
-    width: 100%;
-    border-top: 1px solid var(--main-color);
-    border-bottom: 1px solid var(--main-color);
     display: flex;
-    align-items: center;
+    justify-content: left;
     margin-top: 20px;
-    height: 45px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 0;
+}
+
+.profile-content-option {
+    font-family: var(--header-font);
+    color: var(--main-color);
+    margin-right: 5%;
+}
+
+.profile-content-option:hover {
+    color: #e1b1e8;
 }
