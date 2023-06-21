@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     // for dynamic content sizing when adjusting window size
     const post_panel = $(".post-panel");
     const register_button = $(".register-button");
@@ -25,6 +26,7 @@ $(document).ready(function() {
     window.onresize = adjust_window;
     window.onload = adjust_window;
 
+
     // sample posts loop
     const sample_post_a = $(".post-container").html();
     const see_more_panel = $(".see-more-panel");
@@ -34,9 +36,17 @@ $(document).ready(function() {
     }
     post_panel.append(see_more_panel);
 
+
     // making post containers a clickable container to post.html
     const post_container = $(".post-container");
     post_container.click(function() {
         window.location.href = "post.html";
     })
+
+
+    // changing nav bar button when logged in 
+    const logged_in = false; // default value of website: user is logged out
+    if(logged_in) {
+        
+    }
 })
