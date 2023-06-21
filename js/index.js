@@ -27,7 +27,10 @@ $(document).ready(function() {
 
     // sample posts loop
     const sample_post_a = $(".post-container").html();
+    const see_more_panel = $(".see-more-panel");
+    see_more_panel.remove();
     for(let i = 0; i < 14; i++) {
         post_panel.append("<div class=\"post-container\">" + sample_post_a + "</div>");
     }
+    post_panel.append(see_more_panel);
 })
