@@ -1,11 +1,10 @@
 $(document).ready(function() {
     // for dynamic content sizing when adjusting window size
-    var post_panel = $(".post-panel");
-    var register_button = $(".register-button");
-    var topics_button = $(".topics-button");
+    const post_panel = $(".post-panel");
+    const register_button = $(".register-button");
+    const topics_button = $(".topics-button");
     
     function adjust_window() {
-        console.log(window.innerWidth);
         if(window.innerWidth <= 958) {
             post_panel.css("width", "100vw");
             post_panel.css("margin-left", "0px");
@@ -24,16 +23,11 @@ $(document).ready(function() {
     }
     
     window.onresize = adjust_window;
+    window.onload = adjust_window;
 
     // sample posts loop
-    let sample_post_a = $(".post-container").html()
+    const sample_post_a = $(".post-container").html();
     for(let i = 0; i < 14; i++) {
-        post_panel.prepend("<div class=\"post-container\">" + sample_post_a + "<div>");
+        post_panel.append("<div class=\"post-container\">" + sample_post_a + "</div>");
     }
-
-    // default timeline open: For You
-
 })
-
-
-

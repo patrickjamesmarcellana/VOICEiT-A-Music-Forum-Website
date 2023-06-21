@@ -278,13 +278,13 @@ body {
 }
 
 .register-sprite {
-    background: url("images/spritesheet.png") no-repeat -1px -31px;
+    background: url("sprites/spritesheet.png") no-repeat -1px -31px;
     width: 21px;
     height: 23px;
 }
 
 .login-sprite {
-    background: url("images/spritesheet.png") no-repeat -24px -35px;
+    background: url("sprites/spritesheet.png") no-repeat -24px -35px;
     width: 21px;
     height: 13px;
 }
@@ -346,73 +346,73 @@ body {
 /* side panel a sprites */
 
 .home-sprite {
-    background: url("images/spritesheet.png") no-repeat -24px -1px;
+    background: url("sprites/spritesheet.png") no-repeat -24px -1px;
     width: 20px;
     height: 20px;
 }
 
 .popular-sprite {
-    background: url("images/spritesheet.png") no-repeat 0 0;
+    background: url("sprites/spritesheet.png") no-repeat 0 0;
     width: 21px;
     height: 20px;
 }
 
 .alternative-sprite {
-    background: url("images/spritesheet.png") no-repeat -49px -3px;
+    background: url("sprites/spritesheet.png") no-repeat -49px -3px;
     width: 21px;
     height: 15px;
 }
 
 .classical-sprite {
-    background: url("images/spritesheet.png") no-repeat -74px -2px;
+    background: url("sprites/spritesheet.png") no-repeat -74px -2px;
     width: 21px;
     height: 22px;
 }
 
 .country-sprite {
-    background: url("images/spritesheet.png") no-repeat -96px -2px;
+    background: url("sprites/spritesheet.png") no-repeat -96px -2px;
     width: 21px;
     height: 23px;
 }
 
 .jazz-sprite {
-    background: url("images/spritesheet.png") no-repeat -118px -1px;
+    background: url("sprites/spritesheet.png") no-repeat -118px -1px;
     width: 21px;
     height: 25px;
 }
 
 .kpop-sprite {
-    background: url("images/spritesheet.png") no-repeat -141px -1px;
+    background: url("sprites/spritesheet.png") no-repeat -141px -1px;
     width: 21px;
     height: 35px;
 }
 
 .latin-sprite {
-    background: url("images/spritesheet.png") no-repeat -163px -1px;
+    background: url("sprites/spritesheet.png") no-repeat -163px -1px;
     width: 21px;
     height: 26px;
 }
 
 .pop-sprite {
-    background: url("images/spritesheet.png") no-repeat -187px -2px;
+    background: url("sprites/spritesheet.png") no-repeat -187px -2px;
     width: 21px;
     height: 21px;
 }
 
 .rnb-sprite {
-    background: url("images/spritesheet.png") no-repeat -210px -2px;
+    background: url("sprites/spritesheet.png") no-repeat -210px -2px;
     width: 21px;
     height: 21px;
 }
 
 .rap-sprite {
-    background: url("images/spritesheet.png") no-repeat -233px -2px;
+    background: url("sprites/spritesheet.png") no-repeat -233px -2px;
     width: 21px;
     height: 26px;
 }
 
 .rock-sprite {
-    background: url("images/spritesheet.png") no-repeat -257px -1px;
+    background: url("sprites/spritesheet.png") no-repeat -257px -1px;
     width: 21px;
     height: 30px;
 }
@@ -435,7 +435,7 @@ body {
 
 .post-container {
     border-radius: 5px;
-    margin: 30px auto 0px auto;
+    margin: 20px auto 0px auto;
     width: 80%;
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
     border: solid 1px var(--main-color);
@@ -484,14 +484,14 @@ body {
 
 .post-options-button {
     margin-left: auto;
-    background: url("images/spritesheet.png") no-repeat -85px -38px;
+    background: url("sprites/spritesheet.png") no-repeat -85px -38px;
     width: 19px;
     height: 7px;
     border: 0;
 }
 
 .post-options-button:hover {
-    background: url("images/spritesheet.png") no-repeat -109px -38px;
+    background: url("sprites/spritesheet.png") no-repeat -109px -38px;
     width: 19px;
     height: 7px;
 }
@@ -520,14 +520,14 @@ body {
 }
 
 .upvote-sprite {
-    background: url("images/spritesheet.png") no-repeat -33px -62px;
+    background: url("sprites/spritesheet.png") no-repeat -33px -62px;
     width: 20px;
     height: 18px;
     border: none;
 }
 
 .upvote-sprite:hover {
-    background: url("images/spritesheet.png") no-repeat -33px -87px;
+    background: url("sprites/spritesheet.png") no-repeat -33px -87px;
     width: 20px;
     height: 18px;
 }
@@ -539,26 +539,26 @@ body {
 }
 
 .downvote-sprite {
-    background: url("images/spritesheet.png") no-repeat -64px -63px;
+    background: url("sprites/spritesheet.png") no-repeat -64px -63px;
     width: 20px;
     height: 18px;
     border: none;
 }
 
 .downvote-sprite:hover {
-    background: url("images/spritesheet.png") no-repeat -64px -87px;
+    background: url("sprites/spritesheet.png") no-repeat -64px -87px;
     width: 20px;
     height: 18px;
 }
 
 .comment-sprite {
-    background: url("images/spritesheet.png") no-repeat -3px -62px;
+    background: url("sprites/spritesheet.png") no-repeat -3px -62px;
     width: 21px;
     height: 20px;
 }
 
 .comment-sprite:hover {
-    background: url("images/spritesheet.png") no-repeat -3px -87px;
+    background: url("sprites/spritesheet.png") no-repeat -3px -87px;
     width: 21px;
     height: 20px;
 }
@@ -602,40 +602,7 @@ body {
 /* side panel b (rightmost) */
 .side-panel-b {
     margin: 0 auto;
-    width: 26vw;
+    width: 400px;
 }
 
-.profile-panel {
-    margin: 6.75% 8.5%;
-    padding: 5%;
-    color: var(--main-color);
-    position: sticky;
-    top: 70px;
-    border: 2px solid var(--main-color);
-    border-radius: 5px;
-    background-image: linear-gradient(#31294c, #5756bb, #8182da);
-    box-shadow: 0px 3px 6px 0px #31294c;
-}
 
-.profile-picture img {
-    width: 150px;
-    border-radius: 50%;
-    border: 2px solid var(--main-color);
-}
-
-.username-text {
-    font-weight: bold;
-    font-size: x-large;
-}
-
-.user-description {
-    font-size: medium;
-    text-align: justify;
-    border-bottom: 1px solid var(--main-color);
-    margin-bottom: 5%;
-}
-
-.user-statistics > div {
-    display: flex;
-    justify-content: space-between;
-}
