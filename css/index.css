@@ -376,6 +376,7 @@ body {
 
 .side-panel-a-buttons:hover {
     background-color: black;
+    cursor: pointer;
 }
 
 /* side panel a sprites */
