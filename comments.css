@@ -1,0 +1,30 @@
+.comment-container {
+    padding: 1em;
+}
+
+.comment-parent-container {
+    border: 1px solid white;
+}
+.comment-container button {
+    border: none;
+    outline: none;
+}
+.comment-upvote-button.toggled {
+    color: orange;
+}
+.comment-downvote-button.toggled {
+    color: cornflowerblue;
+}
+
+.comment-subcomments-container {
+    padding-left: 2em;
+}
+
+.comment-text-editor > textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.hidden {
+    display: none;
+} 

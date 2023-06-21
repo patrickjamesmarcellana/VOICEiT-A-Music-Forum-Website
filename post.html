@@ -4,9 +4,45 @@
     <head>
         <title>VOICEiT</title>
         <link rel="icon" type="image/png" href="images/logo2.png">
-        <link rel="stylesheet" type="text/css" media="all" href="css/index.css">
+        <link rel="stylesheet" type="text/css" media="all" href="index.css">
         <script src="js/index.js" defer></script>
         <script src="js/code.jquery.com_jquery-3.6.0.min.js"></script>
+
+        <!-- comments -->
+        <link rel="stylesheet" href="comments.css">
+        <script src="js/vote_logic.js" type="text/javascript"></script>
+        <script src="js/comments.js" type="text/javascript"></script>
+        <script src="js/hardcoded_comments.js" type="text/javascript"></script>
+
+        <!-- todo: not unicode--> 
+        <template id="comment-template"> 
+            <div class="comment-parent-container comment-container">
+                <div class="comment-header">
+                    <button class="comment-upvote-button">⬆</button>
+                    <span class="comment-vote-count"></span>
+                    <button class="comment-downvote-button">⬇</button>
+                    <span class="comment-author"></span>
+                    <span class="comment-edited-remark hidden">(edited)</span>
+                </div>
+                <p class="comment-content"></p>
+                <div class="comment-text-editor hidden">
+                    <textarea></textarea>
+                    <div>
+                        <button class="comment-text-editor-cancel-button">Cancel</button>
+                        <button class="comment-text-editor-submit-button">Submit</button>
+                    </div>
+                </div>
+                <div class="comment-footer">
+                    <button class="comment-reply-button" >Reply</a>
+                    <button class="comment-edit-button hidden" >Edit</a>
+                    <button class="comment-delete-button hidden" >Delete</a>
+                </div>
+                <div class="comment-subcomments-container comment-container">
+                    <a class="comment-subcomments-loadmore hidden" >Load more comments ($COUNT hidden)</a>
+                </div>
+            </div>
+            
+        </template>  
     </head>
 
     <body>
@@ -230,12 +266,21 @@
                         <a class="comment-count" href="post.html">10</a>
                     </div>
                 </div>
+
+                <div class="post-comment-section">
+                        <div class="comment-subcomments-indicator">
+                            Viewing a single comment's thread <a href="javascript:comment_panel_back()">Return to back</a>
+                        </div>
+                        <div id="comments-panel">
+                        </div>
+                        <div>
+                            <a class="comment-loadmore hidden" >Load more comments ($COUNT hidden)</a>
+                        </div>
+                </div>
                 
             </div>
 
-                <div class="post-comment-section">
-                    comment section here
-                </div>
+
             
         </div>
 
