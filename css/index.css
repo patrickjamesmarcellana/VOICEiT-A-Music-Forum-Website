@@ -266,6 +266,8 @@ body {
 
     .topics-button {
         margin-left: auto;
+        position: relative;
+        float: right;
     }
 
     /* .dropdown-content {
