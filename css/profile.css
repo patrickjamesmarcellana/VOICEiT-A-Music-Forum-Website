@@ -46,9 +46,29 @@
     border: 2px solid var(--main-color);
 }
 
+.username-and-edit-button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .username-text {
     font-weight: bold;
     font-size: x-large;
+}
+
+.edit-profile-button {
+    background: none;
+    color: var(--main-color);
+    text-transform: uppercase;
+    font-family: var(--header-font);
+    border: 1px solid var(--main-color);
+    border-radius: 50px;
+    padding: 0.4rem 0.75rem;
+    font-size: smaller;
+}
+
+.edit-profile-button:hover {
+    background-color: black;
 }
 
 .user-description {
