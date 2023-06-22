@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log in to VoiceIt</title>
+        <link rel="stylesheet" type="text/css" href="css/login-styles.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/login-script.js" defer></script>
+    </head>
+
+    <body>
+        <div class="main">
+            <div class="main-content-container">
+                <div class="main-header">Sign In to VoiceIt</div>
+                <div class="main-header-desc">
+                    Join VoiceIt today to discuss anything music with friends
+                    and fellow enthusiasts all over the world, for free!
+                </div>
+
+                <div class="main-divider">
+                    <hr />
+                </div>
+
+                <div class="user-form">
+                    <form id="login-form">
+                        <label for="login-username"
+                            >Username<span class="red-text">*</span></label
+                        >
+                        <div class="login-username">
+                            <input
+                                type="text"
+                                name="username"
+                                id="login-username"
+                                required
+                            />
+                        </div>
+
+                        <label for="login-password"
+                            >Password<span class="red-text">*</span></label
+                        >
+                        <div class="login-password">
+                            <input
+                                type="password"
+                                name="password"
+                                id="login-password"
+                                required
+                            />
+                        </div>
+
+                        <div class="login-options">
+                            <span class="stay-logged-in-container">
+                                <input type="checkbox" />
+                                <label for="stay-logged-in"
+                                    >Stay logged in?</label
+                                >
+                            </span>
+
+                            <span class="required-fields-text">
+                                <span class="red-text">* These fields are required.</span>
+                            </span>
+                        </div>
+
+                        <div class="submit-form-button-container">
+                            <input
+                                type="submit"
+                                class="submit-form-button"
+                                id="submit-button"
+                                value="Log In"
+                            />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="horizontal-separator"><hr /></div>
+
+                <div class="need-account-text">Need an account?</div>
+
+                <div class="register-button">
+                    <input
+                        type="button"
+                        id="register-button"
+                        onclick="location.href='register.html';"
+                        value="Sign Up"
+                    />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
