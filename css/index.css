@@ -527,6 +527,7 @@ body {
 .post-subforum {
     font-size: 0.8rem;
     color: var(--main-color);
+    text-decoration: underline;
 }
 
 .post-options-button {
