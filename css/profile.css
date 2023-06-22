@@ -58,6 +58,7 @@
 }
 
 .edit-profile-button {
+    display: none;
     background: none;
     color: var(--main-color);
     text-transform: uppercase;
