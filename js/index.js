@@ -4,7 +4,7 @@ $(document).ready(function() {
    const nav_button = $(".nav-button");
    const user_buttons = $(".user-buttons");
 
-   const logged_in = false; // default value of website: user is logged out
+   const logged_in = true; // default value of website: user is logged out
    const username = `mrdoggo`;
    const profile_photo = `images/empty-profile.png`;
    if(logged_in) {
@@ -248,7 +248,7 @@ $(document).ready(function() {
             Rock music is a diverse genre of popular music that began in the United States as "rock and roll". 
             Rock has centered on the electric guitar as an instrument, usually as part of a rock band with an 
             electric bass guitar, drums, and one or more singers.<br><br>
-            Interact with fellow users and share your thoughts about music!
+            Interact with fellow users and share your thoughts about rock music!
         `);
     });
 })
