@@ -8,7 +8,7 @@ $(document).ready(function() {
    const create_post_container = $(".create-post-container");
    const logout_button = $(".logout-button");
 
-   const logged_in = true; // default value of website: user is logged out
+   const logged_in = false; // default value of website: user is logged out
    const username = `melissa_spellman`;
    const profile_photo = `images/user1.jpg`;
    if(logged_in) {
