@@ -2,18 +2,33 @@
     padding: 1em;
 }
 
+.comment-footer {
+    align-items: center;
+    display: flex;
+}
+
+.comment-footer > * {
+    margin: 0px 5px 0px 5px;
+}
+
+.comment-reply-button,
+.comment-edit-button,
+.comment-delete-button {
+    cursor: pointer;
+}
+
+.comment-reply-button:hover,
+.comment-edit-button:hover,
+.comment-delete-button:hover {
+    text-decoration: underline;
+}
+
 .comment-parent-container {
     border: 1px solid white;
 }
 .comment-container button {
     border: none;
     outline: none;
-}
-.comment-upvote-button.toggled {
-    color: orange;
-}
-.comment-downvote-button.toggled {
-    color: cornflowerblue;
 }
 
 .comment-subcomments-container {
