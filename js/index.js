@@ -3,8 +3,9 @@ $(document).ready(function() {
    const nav_buttons_panel = $(".nav-buttons-panel");
    const nav_button = $(".nav-button");
    const user_buttons = $(".user-buttons");
+   const side_panel_bottom = $(".side-panel-bottom");
 
-   const logged_in = true; // default value of website: user is logged out
+   const logged_in = false; // default value of website: user is logged out
    const username = `mrdoggo`;
    const profile_photo = `images/empty-profile.png`;
    if(logged_in) {
@@ -39,7 +40,8 @@ $(document).ready(function() {
            <button class="logout-button">
                <span class="logout-sprite">
            </button>   
-       `)
+       `);
+       side_panel_bottom.remove();
    } else {
        nav_button.remove();
        user_buttons.remove();
@@ -66,6 +68,7 @@ $(document).ready(function() {
        <a class="register-button nav-button" href="register.html">Register</a>
        <a class="login-button nav-button" href="register.html">Log-in</a>
        `);
+       $(".side-panel-a").append(side_panel_bottom);
    }
 
 
@@ -251,4 +254,11 @@ $(document).ready(function() {
             Interact with fellow users and share your thoughts about rock music!
         `);
     });
+
+
+    // making the title panel (page title + logo) clickable to redirect to home page
+    $(".title-panel").click(function() {
+        window.location.href = "index.html";
+    });
+    
 })
