@@ -354,6 +354,10 @@ body {
     padding: 0px 24px;
 }
 
+.side-a-top-panel {
+    border-bottom: solid 1px var(--main-color);
+}
+
 .options-panel {
     color: var(--main-color);
     font-family: var(--header-font);
@@ -464,7 +468,6 @@ body {
 .side-panel-bottom {
     padding: 20px 24px 30px 24px;
     z-index: 999;
-    border-top: solid 1px var(--main-color);
 }
 
 /* posts' panel (middle) */
@@ -655,7 +658,7 @@ body {
 
 .forum-info-panel {
     margin: 10px auto 0px auto;
-    width: 80%;
+    width: 82%;
     padding: 5%;
     color: var(--main-color);
     position: sticky;

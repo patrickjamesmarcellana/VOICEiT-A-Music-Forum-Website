@@ -83,19 +83,16 @@ $(document).ready(function() {
     function adjust_window() {
         if(window.innerWidth <= 958) {
             post_panel.css("width", "100vw");
-            post_panel.css("margin-left", "0px");
             register_button.css("margin-left", "1.2vw");
             topics_button.css("margin-right", "0px"); 
             nav_profile.css("margin-left", "2vw")
         } else if(window.innerWidth <= 1247) {
             post_panel.css("width", "76vw");
-            post_panel.css("margin-left", "0px");
             register_button.css("margin-left", "1.2vw");
             topics_button.css("margin-right", "0px");
             nav_profile.css("margin-left", "2vw")
         } else {
             post_panel.css("width", "56vw");
-            post_panel.css("margin-left", "257px");
             register_button.css("margin-left", "auto");
             nav_profile.css("margin-left", "auto")
         }
