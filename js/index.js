@@ -4,14 +4,20 @@ $(document).ready(function() {
    const nav_button = $(".nav-button");
    const user_buttons = $(".user-buttons");
    const side_panel_bottom = $(".side-panel-bottom");
+   const logged_in_photo = $(".logged-in-photo");
+   const create_post_container = $(".create-post-container");
+   const logout_button = $(".logout-button");
 
    const logged_in = true; // default value of website: user is logged out
-   const username = `mrdoggo`;
-   const profile_photo = `images/empty-profile.png`;
+   const username = `melissa_spellman`;
+   const profile_photo = `images/user1.jpg`;
    if(logged_in) {
-       nav_button.remove();
-       user_buttons.remove();
-       nav_buttons_panel.append(`
+        // remove register and login buttons from nav-bar
+        nav_button.remove();
+        user_buttons.remove();
+
+        // add logout and profile button on nav-bar
+        logout_button.before(`
            <span class="user-buttons dropdown">
                <button class="dropdown-button">
                    <img class="icon nav-icons" src="images/user.png">
@@ -36,11 +42,13 @@ $(document).ready(function() {
            </a>
            <a class="post-profile nav-profile-name" href="profile.html">
                ${username}
-           </a>
-           <button class="logout-button">
-               <span class="logout-sprite">
-           </button>   
+           </a> 
        `);
+
+       // make logout button appear
+        logout_button.css("display", "flex");
+
+       // remove left side-panel's text ("Join the growing community...")
        side_panel_bottom.remove();
 
        // TODO: 3 scenarios for edit profile button
@@ -54,33 +62,50 @@ $(document).ready(function() {
        // is logged in, regardless of whether they are viewing their profile
        // or someone else's.
        $(".edit-profile-button").css("display", "block");
+
+       // Change logged in photo 
+       logged_in_photo.attr("src", profile_photo);
+
+       // make create-post container appear
+       create_post_container.css("display", "flex");
    } else {
-       nav_button.remove();
-       user_buttons.remove();
-       nav_buttons_panel.append(`
-       <span class="user-buttons dropdown">
-           <button class="dropdown-button">
-               <img class="icon nav-icons" src="images/user.png">
-               <i class="arrow down"></i>
-           </button>
+        // remove profile and logout buttons from nav-bar
+        nav_button.remove();
+        user_buttons.remove();
+
+        // add register and login buttons back to nav-bar
+        nav_buttons_panel.append(`
+        <span class="user-buttons dropdown">
+            <button class="dropdown-button">
+                <img class="icon nav-icons" src="images/user.png">
+                <i class="arrow down"></i>
+            </button>
            
-           <div class="dropdown-content options-panel">
-               <br>
-               <span class="side-panel-text">USER OPTIONS</span>
-               <a class="side-panel-a-buttons" href="register.html">
-                   <span class="register-sprite"></span>
-                   Register
-               </a>
-               <a class="side-panel-a-buttons" href="Register.html">
-                   <span class="login-sprite"></span>
-                   Login
-               </a>
-           </div>
-       </span>
-       <a class="register-button nav-button" href="register.html">Register</a>
-       <a class="login-button nav-button" href="register.html">Log-in</a>
+            <div class="dropdown-content options-panel">
+                <br>
+                <span class="side-panel-text">USER OPTIONS</span>
+                <a class="side-panel-a-buttons" href="register.html">
+                    <span class="register-sprite"></span>
+                    Register
+                </a>
+                <a class="side-panel-a-buttons" href="Register.html">
+                    <span class="login-sprite"></span>
+                    Login
+                </a>
+            </div>
+        </span>
+        <a class="register-button nav-button" href="register.html">Register</a>
+        <a class="login-button nav-button" href="register.html">Log-in</a>
        `);
+
+       // place back side-panel-a's bottom panel ("Join the...")
        $(".side-panel-a").append(side_panel_bottom);
+
+       // make create-post container disappear
+       create_post_container.css("display", "none");
+
+       // make logout button appear
+       logout_button.css("display", "none");
    }
 
 
@@ -90,7 +115,6 @@ $(document).ready(function() {
     const topics_button = $(".topics-button");
     const nav_profile = $(".nav-profile");
     const nav_profile_name = $(".nav-profile-name");
-    const logout_button = $(".logout-button");
     
     function adjust_window() {
         if(window.innerWidth <= 958) {
@@ -269,5 +293,24 @@ $(document).ready(function() {
     $(".title-panel").click(function() {
         window.location.href = "index.html";
     });
+
+
+    // making logged-in profiles clickable to redirect to profile page
+    $(".logged-in-photo").click(function() {
+        window.location.href = "profile.html";
+    });
+
+
+    // action listener for create post box to redirect to create-post.html
+    $(".create-post-box").click(function() {
+        window.location.href = "create-post.html";
+    });
+
+
+    // action listener for logout button
+    logout_button.click(function() {
+        logged_in = false;
+        location.reload();
+    })
     
 })
