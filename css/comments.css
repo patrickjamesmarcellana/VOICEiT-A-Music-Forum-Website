@@ -1,3 +1,7 @@
+a {
+    color: inherit;
+}
+
 .comment-container {
     padding: 1em;
 }
@@ -13,7 +17,8 @@
 
 .comment-reply-button,
 .comment-edit-button,
-.comment-delete-button {
+.comment-delete-button,
+.comment-loadmore-button {
     cursor: pointer;
 }
 

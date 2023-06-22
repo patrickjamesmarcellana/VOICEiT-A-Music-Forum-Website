@@ -125,19 +125,21 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
         old_comment.replaceWith(container)
     }
 
-    // find children and render them
-    if(depth < 4 /* depth limit */) {
-        comment_info.subcomments.forEach(function(x) {
-            renderComment(x, container.querySelector(".comment-subcomments-container"), depth + 1)
-        })
-    }
+    // are the subcomments
+    if(comment_info.subcomments.length > 0) {
+        container.querySelector(".comment-subcomments-container").classList.remove("hidden")
 
-    // there are children that shouldnt be rendered?
-    if(depth == 4 && comment_info.subcomments.length > 0) {
-        const loadmore = container.querySelector(".comment-subcomments-loadmore")
-        loadmore.classList.remove("hidden")
-        loadmore.textContent = loadmore.textContent.replace("$COUNT", comment_info.subcomments.length)
-        loadmore.href = `javascript:loadSingleComment(${comment_info.comment_id})`
+         // find children and render them
+        if(depth < 4 /* depth limit */) {
+            comment_info.subcomments.forEach(function(x) {
+                renderComment(x, container.querySelector(".comment-subcomments-container"), depth + 1)
+            })
+        } else { // depth limit exceeded?
+            const loadmore = container.querySelector(".comment-loadmore-button")
+            loadmore.classList.remove("hidden")
+            loadmore.textContent = loadmore.textContent.replace("$COUNT", comment_info.subcomments.length)
+            loadmore.href = `javascript:loadSingleComment(${comment_info.comment_id})`
+        }
     }
 } 
 
