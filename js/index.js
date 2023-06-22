@@ -5,7 +5,7 @@ $(document).ready(function() {
    const user_buttons = $(".user-buttons");
    const side_panel_bottom = $(".side-panel-bottom");
 
-   const logged_in = true; // default value of website: user is logged out
+   const logged_in = false; // default value of website: user is logged out
    const username = `mrdoggo`;
    const profile_photo = `images/empty-profile.png`;
    if(logged_in) {
