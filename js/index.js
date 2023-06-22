@@ -51,6 +51,18 @@ $(document).ready(function() {
        // remove left side-panel's text ("Join the growing community...")
        side_panel_bottom.remove();
 
+       // TODO: 3 scenarios for edit profile button
+       // 1. If user is not logged in, there is no edit profile button.
+       // 2. If user is logged in and they are not viewing their profile,
+       //    there is also no edit profile button.
+       // 3. Otherwise, when the user is logged and is viewing their profile,
+       //    there is an edit profile button.
+       // 
+       // This currently displays the edit profile button as long as the user
+       // is logged in, regardless of whether they are viewing their profile
+       // or someone else's.
+       $(".edit-profile-button").css("display", "block");
+
        // Change logged in photo 
        logged_in_photo.attr("src", profile_photo);
 
@@ -147,7 +159,7 @@ $(document).ready(function() {
 
 
     // making post containers a clickable container to post.html
-    const post_container = $(".post-container");
+    const post_container = $(".post-container-clickable");
     post_container.click(function() {
         window.location.href = "post.html";
     })
