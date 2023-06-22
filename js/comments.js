@@ -127,12 +127,13 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
 
     // are the subcomments
     if(comment_info.subcomments.length > 0) {
-        container.querySelector(".comment-subcomments-container").classList.remove("hidden")
+        container.querySelector(".comment-subcomments-panel").classList.remove("hidden")
+        container.classList.add("with-subcomments")
 
          // find children and render them
         if(depth < 4 /* depth limit */) {
             comment_info.subcomments.forEach(function(x) {
-                renderComment(x, container.querySelector(".comment-subcomments-container"), depth + 1)
+                renderComment(x, container.querySelector(".comment-subcomments-panel"), depth + 1)
             })
         } else { // depth limit exceeded?
             const loadmore = container.querySelector(".comment-loadmore-button")

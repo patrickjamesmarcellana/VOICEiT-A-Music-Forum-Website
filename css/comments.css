@@ -3,7 +3,27 @@ a {
 }
 
 .comment-container {
+    border: 1px solid white;
+    border-radius: 5px;
     padding: 1em;
+
+    margin-bottom: 1em;
+}
+
+/* bottom padding is redundant in this case because it is provided by subcomments' margin */
+.comment-container.with-subcomments {
+    padding-bottom: 0;
+}
+
+/* emulate subcomments' margin in this case */
+.comment-loadmore-button {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.comment-subcomments-panel {
+    margin-top: 1em; /* add spacing between parent comment and the panel */
+    padding-left: 2em;
 }
 
 .comment-footer {
@@ -28,18 +48,9 @@ a {
     text-decoration: underline;
 }
 
-.comment-parent-container {
-    border: 1px solid white;
-    border-radius: 5px;
-    margin-bottom: 1em;
-}
 .comment-container button {
     border: none;
     outline: none;
-}
-
-.comment-subcomments-container {
-    padding-left: 2em;
 }
 
 .comment-text-editor > textarea {
