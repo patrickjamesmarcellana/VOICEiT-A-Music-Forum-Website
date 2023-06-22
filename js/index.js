@@ -5,7 +5,7 @@ $(document).ready(function() {
    const user_buttons = $(".user-buttons");
    const side_panel_bottom = $(".side-panel-bottom");
 
-   const logged_in = false; // default value of website: user is logged out
+   const logged_in = true; // default value of website: user is logged out
    const username = `mrdoggo`;
    const profile_photo = `images/empty-profile.png`;
    if(logged_in) {
@@ -42,6 +42,18 @@ $(document).ready(function() {
            </button>   
        `);
        side_panel_bottom.remove();
+
+       // TODO: 3 scenarios for edit profile button
+       // 1. If user is not logged in, there is no edit profile button.
+       // 2. If user is logged in and they are not viewing their profile,
+       //    there is also no edit profile button.
+       // 3. Otherwise, when the user is logged and is viewing their profile,
+       //    there is an edit profile button.
+       // 
+       // This currently displays the edit profile button as long as the user
+       // is logged in, regardless of whether they are viewing their profile
+       // or someone else's.
+       $(".edit-profile-button").css("display", "block");
    } else {
        nav_button.remove();
        user_buttons.remove();
