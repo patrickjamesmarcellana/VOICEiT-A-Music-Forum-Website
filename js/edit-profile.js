@@ -1,5 +1,5 @@
 const modal = document.querySelector(".edit-profile-modal");
-const editProfileBtn = document.querySelector(".edit-profile-button");
+const editProfileBtns = document.querySelectorAll(".edit-profile-button");
 
 window.onclick = function (event) {
     if (event.target == modal) {
@@ -7,6 +7,8 @@ window.onclick = function (event) {
     }
 };
 
-editProfileBtn.addEventListener("click", (event) => {
-    modal.style.display = "block";
-});
+for (const editProfileBtn of editProfileBtns) {
+    editProfileBtn.addEventListener("click", (event) => {
+        modal.style.display = "block";
+    });
+}
