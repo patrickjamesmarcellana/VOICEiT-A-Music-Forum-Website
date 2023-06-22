@@ -123,7 +123,7 @@ $(document).ready(function() {
 
 
     // making post containers a clickable container to post.html
-    const post_container = $(".post-container");
+    const post_container = $(".post-container-clickable");
     post_container.click(function() {
         window.location.href = "post.html";
     })
