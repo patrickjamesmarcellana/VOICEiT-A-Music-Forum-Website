@@ -6,20 +6,61 @@ $(document).ready(function() {
    const side_panel_bottom = $(".side-panel-bottom");
    const logged_in_photo = $(".logged-in-photo");
    const create_post_container = $(".create-post-container");
-   const logout_button = $(".logout-button");
-   const logout_sprite = $(".logout-sprite");
 
-   var logged_in = false; // default value of website: user is logged out
+   // sessionStorage.setItem("log", "true");
    const username = `melissa_spellman`;
    const profile_photo = `images/user1.jpg`;
 
-   if(logged_in) {
+    // action listener for logout button (CURRENTLY NOT WORKING)
+    $(".logout-button").click(function() { 
+        sessionStorage.setItem("log", "false");
+        location.reload();
+
+         // remove profile and logout buttons from nav-bar
+         user_buttons.remove();
+
+         // add register and login buttons back to nav-bar
+         nav_buttons_panel.append(`
+         <span class="user-buttons dropdown">
+             <button class="dropdown-button">
+                 <img class="icon nav-icons" src="images/user.png">
+                 <i class="arrow down"></i>
+             </button>
+            
+             <div class="dropdown-content options-panel">
+                 <br>
+                 <span class="side-panel-text">USER OPTIONS</span>
+                 <a class="side-panel-a-buttons" href="register.html">
+                     <span class="register-sprite"></span>
+                     Register
+                 </a>
+                 <a class="side-panel-a-buttons" href="Register.html">
+                     <span class="login-sprite"></span>
+                     Login
+                 </a>
+             </div>
+         </span>
+        `);
+ 
+        // place back side-panel-a's bottom panel ("Join the...")
+        $(".side-panel-a").append(side_panel_bottom);
+ 
+        // make create-post container disappear
+        create_post_container.css("display", "none");
+ 
+        // make logout button disappear
+        $(".logout-button").remove();
+    });
+
+    console.log(sessionStorage.getItem("log"));
+
+   if(sessionStorage.getItem("log") === "true") {
         // remove register and login buttons from nav-bar
         nav_button.remove();
         user_buttons.remove();
 
         // add logout and profile button on nav-bar
-        logout_button.before(`
+        $(".logout-button").before(`
            <span class="user-buttons dropdown">
                <button class="dropdown-button">
                    <img class="icon nav-icons" src="images/user.png">
@@ -47,10 +88,6 @@ $(document).ready(function() {
            </a> 
        `);
 
-       // make logout button appear
-        logout_button.css("display", "flex");
-        logout_sprite.css("display", "flex");
-
        // remove left side-panel's text ("Join the growing community...")
        side_panel_bottom.remove();
 
@@ -73,7 +110,6 @@ $(document).ready(function() {
        create_post_container.css("display", "flex");
    } else {
         // remove profile and logout buttons from nav-bar
-        nav_button.remove();
         user_buttons.remove();
 
         // add register and login buttons back to nav-bar
@@ -97,8 +133,6 @@ $(document).ready(function() {
                 </a>
             </div>
         </span>
-        <a class="register-button nav-button" href="register.html">Register</a>
-        <a class="login-button nav-button" href="register.html">Log-in</a>
        `);
 
        // place back side-panel-a's bottom panel ("Join the...")
@@ -107,9 +141,8 @@ $(document).ready(function() {
        // make create-post container disappear
        create_post_container.css("display", "none");
 
-       // make logout button appear
-       logout_button.css("display", "none");
-       logout_sprite.css("display", "none");
+       // make logout button disappear
+       $(".logout-button").remove();
    }
 
 
@@ -140,11 +173,11 @@ $(document).ready(function() {
         if(window.innerWidth <= 706) {
             nav_profile.css("display", "none");
             nav_profile_name.css("display", "none");
-            logout_button.css("display", "none");
+            $(".logout-button").css("display", "none");
         } else {
             nav_profile.css("display", "flex");
             nav_profile_name.css("display", "flex");
-            logout_button.css("display", "flex")
+            $(".logout-button").css("display", "flex")
         }
     }
     
@@ -309,11 +342,4 @@ $(document).ready(function() {
     $(".create-post-box").click(function() {
         window.location.href = "create-post.html";
     });
-
-
-    // action listener for logout button (CURRENTLY NOT WORKING)
-        logout_button.click(function() { 
-            logged_in = false;
-            location.reload();
-        });
 })
