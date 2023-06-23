@@ -305,6 +305,7 @@ body {
 	background: url('sprites/spritesheet.png') no-repeat -135px -56px;
 	width: 26px;
 	height: 24px;
+    display: none;
 }
 
 .logout-button {
