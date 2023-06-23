@@ -32,10 +32,31 @@
 }
 
 .main-header {
+    display: grid;
+    grid-template-columns: auto auto 2.85cm;
+    justify-items: center;
+    margin-bottom: 3%;
+    align-items: center;
+}
+
+.header-text {
     font-size: 125%;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 3%;
+    grid-column-start: 2;
+}
+
+.exit-button {
+    margin-left: auto;
+    display: block;
+    background: url('sprites/spritesheet.png') no-repeat -3px -116px;
+	width: 37px;
+	height: 36px;
+}
+
+.exit-button:hover {
+    background: url('sprites/spritesheet.png') no-repeat -45px -116px;
+	width: 37px;
+	height: 36px;
 }
 
 .main-header-desc {
