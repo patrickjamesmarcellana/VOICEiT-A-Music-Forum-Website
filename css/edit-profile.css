@@ -11,7 +11,7 @@
     overflow: auto;
     background-color: rgb(0, 0, 0); /* fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(0.55mm);
 }
 
 .modal-content-container {
@@ -23,7 +23,7 @@
     box-sizing: border-box;
     width: 510px;
     color: #fafafa;
-    background: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(rgba(49, 41, 76, 0.7), rgba(87, 86, 187, 0.7));
     border-radius: 10px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
     font-size: medium;
