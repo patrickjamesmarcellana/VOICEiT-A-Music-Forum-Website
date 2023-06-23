@@ -9,9 +9,10 @@ $(document).ready(function() {
    const logout_button = $(".logout-button");
    const logout_sprite = $(".logout-sprite");
 
-   const logged_in = true; // default value of website: user is logged out
+   var logged_in = false; // default value of website: user is logged out
    const username = `melissa_spellman`;
    const profile_photo = `images/user1.jpg`;
+
    if(logged_in) {
         // remove register and login buttons from nav-bar
         nav_button.remove();
@@ -310,10 +311,9 @@ $(document).ready(function() {
     });
 
 
-    // action listener for logout button
-    logout_button.click(function() {
-        logged_in = false;
-        location.reload();
-    })
-    
+    // action listener for logout button (CURRENTLY NOT WORKING)
+        logout_button.click(function() { 
+            logged_in = false;
+            location.reload();
+        });
 })
