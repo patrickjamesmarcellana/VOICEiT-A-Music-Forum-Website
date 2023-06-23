@@ -1,0 +1,165 @@
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(#8182da, #a18ddd, #d3a3da, #e1b1e8);
+    background-attachment: fixed;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.red-text {
+    color: rgb(255, 174, 174);
+}
+
+.main {
+    width: 40vw;
+    min-width: 510px;
+    margin: auto;
+    color: #fafafa;
+    background-image: linear-gradient(#31294c, #5756bb, #8182da);
+    font-size: medium;
+    box-shadow: 0px 3px 6px 0px #31294c;
+    align-self: center;
+}
+
+.main-content-container {
+    padding: 30px;
+    margin: auto;
+}
+
+.main-header {
+    font-size: 150%;
+    font-family: var(--header-font);
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.main-header-desc {
+    font-size: 90%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.main-divider {
+    margin-bottom: 5%;
+}
+
+#login-username {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 100%;
+}
+
+#login-password {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 100%;
+}
+
+.login-username {
+    margin-bottom: 5%;
+}
+
+.login-password {
+    margin-bottom: 4%;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+}
+
+.stay-logged-in-container label {
+    vertical-align: 1px;
+}
+
+.invalid-field-message {
+    color: rgb(255, 174, 174);
+    font-size: 90%;
+}
+
+.required-fields-text {
+    font-size: 90%;
+    text-align: right;
+}
+
+.submit-form-button-container {
+    margin-bottom: 5%;
+}
+
+.submit-form-button {
+    padding: 1% 2%;
+    font-size: medium;
+    display: block;
+    margin: 0 auto;
+}
+
+.submit-form-button:hover {
+    background-color: lightgray;
+}
+
+.horizontal-separator {
+    margin-bottom: 5%;
+}
+
+.need-account-text {
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.already-have-account-text {
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+#register-button  {
+    padding: 1% 2%;
+    font-size: medium;
+    display: block;
+    margin: 0 auto;
+}
+
+#register-button:hover {
+    background-color: lightgray;
+}
+
+#login-button  {
+    padding: 1% 2%;
+    font-size: medium;
+    display: block;
+    margin: 0 auto;
+}
+
+#login-button:hover {
+    background-color: lightgray;
+}
