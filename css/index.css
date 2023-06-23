@@ -11,6 +11,7 @@ Optimizations:
     --main-font: "Noir-Light";
     --header-font: "Noir-Bold";
     --main-color: #edf6ff;
+    --navbar-height: 45px;
 }
 
 /* fonts */
@@ -47,7 +48,7 @@ body {
 /* navigation bar */
 .nav-bar {
     padding: 2px 2vw 2px 2vw;
-    height: 45px;
+    height: var(--navbar-height);
     position: sticky;
     top: 0;
     display: flex;
@@ -340,11 +341,11 @@ body {
     font-family: var(--header-font);
     box-shadow: 0px 3px 6px 0px #31294c;
     font-size: 0.9rem;
-    min-height: calc(100vh - 45px);
-    max-height: calc(100vh - 45px);
+    min-height: calc(100vh - var(--navbar-height));
+    max-height: calc(100vh - var(--navbar-height));
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
     position: sticky;
-    top: 45px; /* TODO: auto sync with navbar height */
+    top: var(--navbar-height);
     
     /* make side panel have the same size across pages */
     flex-shrink: 0;
