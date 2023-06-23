@@ -110,6 +110,10 @@ body {
     margin-bottom: 3%;
 }
 
+.stay-logged-in-container label {
+    vertical-align: 1px;
+}
+
 .invalid-field-message {
     color: red;
     font-size: smaller;
