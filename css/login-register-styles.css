@@ -74,12 +74,6 @@ body {
     margin-bottom: 5%;
 }
 
-#login-email {
-    padding-top: 2%;
-    padding-bottom: 2%;
-    width: 100%;
-}
-
 #login-username {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -90,10 +84,6 @@ body {
     padding-top: 2%;
     padding-bottom: 2%;
     width: 100%;
-}
-
-.login-email {
-    margin-bottom: 5%;
 }
 
 .login-username {
