@@ -5,8 +5,9 @@ $(document).ready(function() {
     const username = `melissa_spellman`;
     const profile_photo = `images/user1.jpg`;
 
-    // load the nav bar on all applicable pages
+    // load the nav bar and side panel a on all applicable pages
     load_navbar();
+    load_side_panel_a();
 
     // action listener for logout button
     $(".logout-button").click(function() { 
