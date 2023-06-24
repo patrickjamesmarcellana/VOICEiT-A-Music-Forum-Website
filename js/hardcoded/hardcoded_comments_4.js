@@ -8,7 +8,7 @@ hardcoded_comments[4] = () => {
         subcomments: [],
 
         flags: [],
-        author: USER1,
+        author: USER3,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "I honestly loved it. It’s the perfect post-breakup album, so it really spoke to me. I love her so much."
@@ -34,7 +34,7 @@ hardcoded_comments[4] = () => {
         subcomments: [],
 
         flags: [],
-        author: USER3,
+        author: USER4,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "I like it, but it’s definitely too long. CTRL > SOS. 7-8/10"

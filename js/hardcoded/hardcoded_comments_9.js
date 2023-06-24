@@ -48,7 +48,7 @@ hardcoded_comments[9] = () => {
         subcomments: [],
 
         flags: [],
-        author: USER4,
+        author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "You’ll never find a good country song on the radio. You actually have to actively seek them out. Listen to Colter Wall and Orville Peck on Spotify and you’ll see the difference."

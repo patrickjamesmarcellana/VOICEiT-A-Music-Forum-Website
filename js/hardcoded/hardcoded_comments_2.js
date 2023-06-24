@@ -8,7 +8,7 @@ hardcoded_comments[2] = () => {
         subcomments: [2],
 
         flags: [],
-        author: USER1,
+        author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "Relapse, hands down. Better production, flows, and lyrics. Recovery has its hooks and choruses literally catered to 14-year-old girls. Em hasn’t topped Relapse yet. Screw Recovery.        "
@@ -21,7 +21,7 @@ hardcoded_comments[2] = () => {
         subcomments: [],
 
         flags: [],
-        author: USER2,
+        author: USER1,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "L take"

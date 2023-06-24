@@ -150,13 +150,12 @@ $(document).ready(function() {
         if(window.innerWidth <= 706) {
             $(".nav-profile").css("display", "none");
             $(".nav-profile-name").css("display", "none");
-            $(".logout-button").css("display", "none");
         } else {
             $(".nav-profile").css("display", "flex");
             $(".nav-profile-name").css("display", "flex");
         }
 
-        if(sessionStorage.getItem("logged_in")) {
+        if(sessionStorage.getItem("logged_in") === "true") {
             if(window.innerWidth <= 706)
                 $(".logout-button").css("display", "none");
             else

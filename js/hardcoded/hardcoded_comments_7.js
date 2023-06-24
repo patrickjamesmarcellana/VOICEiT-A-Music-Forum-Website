@@ -8,7 +8,7 @@ hardcoded_comments[7] = () => {
         subcomments: [2],
 
         flags: [],
-        author: USER1,
+        author: USER2,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "Charles Mingus - Mingus Ah Um"
@@ -21,7 +21,7 @@ hardcoded_comments[7] = () => {
         subcomments: [],
 
         flags: [],
-        author: USER2,
+        author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: "good taste, was just about to comment the same thing"
