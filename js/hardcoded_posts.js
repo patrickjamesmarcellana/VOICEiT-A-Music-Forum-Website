@@ -8,7 +8,16 @@ posts = {
         <br>
         I’ve recorded a sample which I hope helps: https://vocaroo.com/12Y0LTxSjHCr
         `
+    },
+    2: {
+        subforum: "rap",
+        op: "insertuserhere",
+        title: "Eminem: Recovery or Relapse?",
+        text: `
+        Discuss.
+        `
     }
+    
 }
 
 // to be filled by hardcoded_comments_xx.js

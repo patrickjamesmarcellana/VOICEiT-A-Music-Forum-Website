@@ -1,12 +1,9 @@
-let top_level_comments_list = [1, 3, 5]
 
-const USER1 = "user1"
-const USER2 = "user2"
-const USER3 = "user3"
-const USER4 = "user4"
-const OP = "insertOPusernamehere"
 
 const hardcoded_comments_1 = () => {
+    const OP = "insertOPusernamehere"
+    top_level_comments_list = [1, 3, 5]
+    
     // 1
     comment = {
         comment_id: 1,

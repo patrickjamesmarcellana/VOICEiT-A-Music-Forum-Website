@@ -40,6 +40,7 @@ const loadSingleComment = function(comment_id) {
 
 }
 
+let top_level_comments_list = null
 const loadAllComment = () => {
     // wipe comments?
     document.querySelector("#comments-panel").innerHTML = ""
