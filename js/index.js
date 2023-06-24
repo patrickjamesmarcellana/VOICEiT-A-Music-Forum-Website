@@ -1,7 +1,7 @@
 $(document).ready(function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
-    sessionStorage.setItem("logged_in", "false"); 
+    sessionStorage.setItem("logged_in", "true"); 
     const username = `melissa_spellman`;
     const profile_photo = `images/user1.jpg`;
 
