@@ -17,6 +17,8 @@ const COMMENT_PREFIX = "comment-"
 // store comments here for future use
 const saved_comments = {}
 
+const is_logged_in = () => { return sessionStorage.getItem("logged_in") === "true" }
+
 const dumpComment = (comment_info) => {
     saved_comments[comment_info.comment_id] = comment_info;
 }
@@ -158,10 +160,16 @@ const onEditButtonPressed = (event) => {
 const onReplyButtonPressed = (event) => {
     const container = event.currentTarget.closest(".comment-container")
     const editor_container = container.querySelector(".comment-text-editor")
-    editor_container.classList.remove("hidden")
 
-    // wipe text are to be sure
-    editor_container.querySelector("textarea").textContent = ""
+    if(is_logged_in()) {
+        editor_container.classList.remove("hidden")
+
+        // wipe text are to be sure
+        editor_container.querySelector("textarea").textContent = ""
+    } else {
+        window.location.href = "login.html"
+    }
+
 }
 
 const onCancelButtonPressed = (event) => {
