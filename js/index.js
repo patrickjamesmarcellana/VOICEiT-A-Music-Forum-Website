@@ -1,7 +1,7 @@
 $(document).ready(function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
-    //sessionStorage.setItem("log", "true");
+    sessionStorage.setItem("logged_in", "false");
     const username = `melissa_spellman`;
     const profile_photo = `images/user1.jpg`;
 
@@ -11,59 +11,27 @@ $(document).ready(function() {
 
     // action listener for logout button
     $(".logout-button").click(function() { 
-         // remove profile and logout buttons from nav-bar
-        $(".user-buttons").remove();
-        $(".nav-profile").remove();
-        $(".nav-profile-name").remove();
-
-         // add register and login buttons back to nav-bar
-        $(".nav-buttons-panel").append(`
-            <span class="user-buttons dropdown">
-                <button class="dropdown-button">
-                   <img class="icon nav-icons" src="images/user.png">
-                   <i class="arrow down"></i>
-                </button>
-                
-                <div class="dropdown-content options-panel">
-                    <br>
-                    <span class="side-panel-text">USER OPTIONS</span>
-                    <a class="side-panel-a-buttons" href="register.html">
-                        <span class="register-sprite"></span>
-                        Register
-                    </a>
-                    <a class="side-panel-a-buttons" href="login.html">
-                        <span class="login-sprite"></span>
-                        Login
-                    </a>
-                </div>
-            </span>
-        `);
- 
-        // place back side-panel-a's bottom panel ("Join the...")
-        $(".side-panel-a").append(side_panel_bottom);
- 
-        // make create-post container disappear
-        $(".create-post-container").css("display", "none");
- 
-        // make logout button disappear
-        $(".logout-button").css("display", "none");
-
-        // location.reload();
+        sessionStorage.setItem("logged_in", "false");
+        location.reload();
     });
 
-    // action listener for Login and Register Button (MCO1 hardcoded profile)
+    // action listener for login and register Button (MCO1 hardcoded profile)
     $(".submit-form-button").click(function(e) {
         e.preventDefault();
+        sessionStorage.setItem("logged_in", "true");
+    });
 
+    // check if the user is logged in or not
+    if(sessionStorage.getItem("logged_in") === "true") {
         // redirect to index.html
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
 
-        console.log("Hi");
         // remove register and login buttons from nav-bar
         $(".nav-button").remove();
         $(".user-buttons").remove();
 
         // add logout and profile button on nav-bar
+        $(".logout-button").css("display", "flex");
         $(".logout-button").before(`
             <span class="user-buttons dropdown">
                 <button class="dropdown-button">
@@ -112,7 +80,48 @@ $(document).ready(function() {
 
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
-    });
+
+        sessionStorage.removeItem("logged_in");
+    } else if(sessionStorage.getItem("logged_in") === "false") {
+        // remove profile and logout buttons from nav-bar
+        $(".user-buttons").remove();
+        $(".nav-profile").remove();
+        $(".nav-profile-name").remove();
+
+         // add register and login buttons back to nav-bar
+        $(".nav-buttons-panel").append(`
+            <span class="user-buttons dropdown">
+                <button class="dropdown-button">
+                   <img class="icon nav-icons" src="images/user.png">
+                   <i class="arrow down"></i>
+                </button>
+                
+                <div class="dropdown-content options-panel">
+                    <br>
+                    <span class="side-panel-text">USER OPTIONS</span>
+                    <a class="side-panel-a-buttons" href="register.html">
+                        <span class="register-sprite"></span>
+                        Register
+                    </a>
+                    <a class="side-panel-a-buttons" href="login.html">
+                        <span class="login-sprite"></span>
+                        Login
+                    </a>
+                </div>
+            </span>
+        `);
+ 
+        // place back side-panel-a's bottom panel ("Join the...")
+        $(".side-panel-a").append(side_panel_bottom);
+ 
+        // make create-post container disappear
+        $(".create-post-container").css("display", "none");
+ 
+        // make logout button disappear
+        $(".logout-button").css("display", "none");
+
+        // location.reload();
+    }
 
     // for dynamic content sizing when adjusting window size
     function adjust_window() {
