@@ -56,6 +56,16 @@ body {
     margin: auto;
 }
 
+.website-logo {
+    margin-bottom: 2%;
+}
+
+.website-logo img {
+    width: 13%;
+    display: block;
+    margin: auto;
+}
+
 .main-header {
     font-size: 150%;
     font-family: var(--header-font);
@@ -141,7 +151,7 @@ body {
     margin-bottom: 1%;
 }
 
-#register-button  {
+#register-button {
     padding: 1% 2%;
     display: block;
     margin: 0 auto;
@@ -151,7 +161,7 @@ body {
     background-color: lightgray;
 }
 
-#login-button  {
+#login-button {
     padding: 1% 2%;
     display: block;
     margin: 0 auto;
