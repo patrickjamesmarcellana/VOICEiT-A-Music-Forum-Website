@@ -40,7 +40,7 @@
 }
 
 .header-text {
-    font-size: 125%;
+    font-size: 150%;
     font-weight: bold;
     grid-column-start: 2;
 }
@@ -51,6 +51,7 @@
     background: url('sprites/spritesheet.png') no-repeat -3px -116px;
 	width: 37px;
 	height: 36px;
+    transform: scale(0.7);
 }
 
 .exit-button:hover {
