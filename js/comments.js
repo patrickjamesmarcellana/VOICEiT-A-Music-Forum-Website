@@ -108,7 +108,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
     updateVoteUI(container, comment_info.vote_state, comment_info.votes)
 
     // should the edit/delete buttons be visible?
-    if(comment_info.author == LOGIN_USER) {
+    if(comment_info.author === LOGIN_USER) {
         container.querySelector(".comment-edit-button").classList.remove("hidden")
         container.querySelector(".comment-edit-button").addEventListener("click", onEditButtonPressed)
         container.querySelector(".comment-delete-button").classList.remove("hidden")
@@ -120,7 +120,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
 
     // overwrite existing comment
     const old_comment = document.getElementById(container.id)
-    if(old_comment == null) {
+    if(old_comment === null) {
         if(commentInjectionLocation != null) {
             commentInjectionLocation.appendChild(container)
         }
