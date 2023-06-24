@@ -9,7 +9,7 @@ $(document).ready(function() {
     load_navbar();
 
     // action listener for logout button
-    if(sessionStorage.getItem("log")) { 
+    $(".logout-button").click(function() { 
          // remove profile and logout buttons from nav-bar
         $(".user-buttons").remove();
         $(".nav-profile").remove();
@@ -48,7 +48,7 @@ $(document).ready(function() {
         $(".logout-button").css("display", "none");
 
         // location.reload();
-    };
+    });
 
     // action listener for Login and Register Button (MCO1 hardcoded profile)
     $(".submit-form-button").click(function(e) {
@@ -112,14 +112,6 @@ $(document).ready(function() {
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
     });
-
-
-   if(sessionStorage.getItem("log") === "true") {
-
-   } else if(sessionStorage.getItem("log") === "false") {
-       
-   }
-
 
     // for dynamic content sizing when adjusting window size
     function adjust_window() {
