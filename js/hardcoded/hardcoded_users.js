@@ -1,5 +1,5 @@
 const USER1 = "melissa_spellman"
 const USER2 = "draeznor_rock_lover"
-const USER3 = "jeniie_itgirl"
+const USER3 = "jennie_itgirl"
 const USER4 = "marithus_25"
 const USER5 = "aria_eagleheart" 
