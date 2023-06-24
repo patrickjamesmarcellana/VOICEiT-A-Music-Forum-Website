@@ -16,8 +16,27 @@ posts = {
         text: `
         Discuss.
         `
+    },
+    3: {
+        subforum: "rock",
+        op: "insertuserhere",
+        title: "Remember the time when Billboard announced the top 10 rock songs of the 2010s and none of the songs were rock?",
+        text: `
+        For context, the list is:<br>
+        1. Imagine Dragons - Believer<br>
+        2. Imagine Dragons - Thunder<br>
+        3. Imagine Dragons - Radioactive<br>
+        4. Panic! At The Disco - High Hopes<br>
+        5. The Lumineers - Ho Hey<br>
+        6. Twenty One Pilots - Heathens<br>
+        7. Walk The Moon - Shut Up And Dance<br>
+        8. Portugal. The Man - Feel It Still<br>
+        9. Twenty One Pilots - Ride<br>
+        10. Twenty One Pilots - Stressed Out<br><br>
+
+        What an absolute joke.<br>
+        `
     }
-    
 }
 
 // to be filled by hardcoded_comments_xx.js
