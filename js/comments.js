@@ -17,6 +17,8 @@ const COMMENT_PREFIX = "comment-"
 // store comments here for future use
 const saved_comments = {}
 
+const is_logged_in = () => { return sessionStorage.getItem("logged_in") === "true" }
+
 const dumpComment = (comment_info) => {
     saved_comments[comment_info.comment_id] = comment_info;
 }
@@ -38,6 +40,7 @@ const loadSingleComment = function(comment_id) {
 
 }
 
+let top_level_comments_list = null
 const loadAllComment = () => {
     // wipe comments?
     document.querySelector("#comments-panel").innerHTML = ""
@@ -45,7 +48,7 @@ const loadAllComment = () => {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
-    comments_list.forEach(function(x) {
+    top_level_comments_list.forEach(function(x) {
         renderComment(x, document.querySelector("#comments-panel"))
     })
 }
@@ -106,7 +109,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
     updateVoteUI(container, comment_info.vote_state, comment_info.votes)
 
     // should the edit/delete buttons be visible?
-    if(comment_info.author == LOGIN_USER) {
+    if(comment_info.author === LOGIN_USER) {
         container.querySelector(".comment-edit-button").classList.remove("hidden")
         container.querySelector(".comment-edit-button").addEventListener("click", onEditButtonPressed)
         container.querySelector(".comment-delete-button").classList.remove("hidden")
@@ -118,7 +121,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
 
     // overwrite existing comment
     const old_comment = document.getElementById(container.id)
-    if(old_comment == null) {
+    if(old_comment === null) {
         if(commentInjectionLocation != null) {
             commentInjectionLocation.appendChild(container)
         }
@@ -158,10 +161,16 @@ const onEditButtonPressed = (event) => {
 const onReplyButtonPressed = (event) => {
     const container = event.currentTarget.closest(".comment-container")
     const editor_container = container.querySelector(".comment-text-editor")
-    editor_container.classList.remove("hidden")
 
-    // wipe text are to be sure
-    editor_container.querySelector("textarea").textContent = ""
+    if(is_logged_in()) {
+        editor_container.classList.remove("hidden")
+
+        // wipe text are to be sure
+        editor_container.querySelector("textarea").textContent = ""
+    } else {
+        window.location.href = "login.html"
+    }
+
 }
 
 const onCancelButtonPressed = (event) => {

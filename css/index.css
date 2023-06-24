@@ -533,7 +533,7 @@ body {
     box-shadow: 0px 3px 6px 0px #31294c;
 }
 
-.post-container:hover {
+.post-container-clickable:hover {
     cursor: pointer;
     box-shadow: 0px 5px 10px 0px #31294c;
 }
