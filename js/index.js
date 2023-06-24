@@ -88,8 +88,6 @@ $(document).ready(function() {
 
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
-
-        sessionStorage.setItem("logged_in", "false");
     } else if(sessionStorage.getItem("logged_in") === "false") {
         // remove profile and logout buttons from nav-bar
         $(".user-buttons").remove();
