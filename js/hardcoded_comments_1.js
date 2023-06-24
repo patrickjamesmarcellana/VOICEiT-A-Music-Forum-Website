@@ -6,7 +6,7 @@ const USER3 = "user3"
 const USER4 = "user4"
 const OP = "insertOPusernamehere"
 
-const test = () => {
+const hardcoded_comments_1 = () => {
     // 1
     comment = {
         comment_id: 1,
@@ -88,5 +88,4 @@ const test = () => {
     loadAllComment()
 }
 
-
-addEventListener("load", test) 
+hardcoded_comments[1] = hardcoded_comments_1
