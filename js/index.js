@@ -10,7 +10,8 @@ $(document).ready(function() {
     const profile_photo = `images/user1.jpg`;
 
     // load the nav bar and side panel a on all applicable pages
-    // note: if function is not defined then do not load it
+    // note: if function is not defined then it is was intentionally not included for this page
+    //       there is no need to error out and stop the rest of this function from running
     if(typeof load_navbar !== "undefined")
         load_navbar();
     
