@@ -111,7 +111,7 @@ navbar_html = `
     </span>
 </div> 
 ` 
-$(document).ready(function() {
+function load_navbar() {
     // nav bar loader
-    $(".nav-bar").replaceWith(navbar_html)
-})
+    $(".nav-bar").replaceWith(navbar_html);
+}

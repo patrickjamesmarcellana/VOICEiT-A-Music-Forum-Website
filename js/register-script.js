@@ -68,4 +68,10 @@ loginPassword.addEventListener("keyup", (event) => {
     if (invalidPasswordMessage) {
         invalidPasswordMessage.remove();
     }
+    
+});
+
+$(".submit-form-button").click(function(e) {
+    e.preventDefault();
+    window.location.href = "index.html";
 });

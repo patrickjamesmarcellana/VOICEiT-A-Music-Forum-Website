@@ -1,19 +1,21 @@
 $(document).ready(function() {
-   // changing nav bar button when logged in 
-   const nav_buttons_panel = $(".nav-buttons-panel");
-   const nav_button = $(".nav-button");
-   const user_buttons = $(".user-buttons");
-   const side_panel_bottom = $(".side-panel-bottom");
-   const logged_in_photo = $(".logged-in-photo");
-   const create_post_container = $(".create-post-container");
+    // changing nav bar button when logged in 
+    const nav_buttons_panel = $(".nav-buttons-panel");
+    const nav_button = $(".nav-button");
+    const user_buttons = $(".user-buttons");
+    const side_panel_bottom = $(".side-panel-bottom");
+    const logged_in_photo = $(".logged-in-photo");
+    const create_post_container = $(".create-post-container");
 
-   // sessionStorage.setItem("log", "true");
-   const username = `melissa_spellman`;
-   const profile_photo = `images/user1.jpg`;
+    // sessionStorage.setItem("log", "true");
+    const username = `melissa_spellman`;
+    const profile_photo = `images/user1.jpg`;
 
-    // action listener for logout button (CURRENTLY NOT WORKING)
+    // load the nav bar on all applicable pages
+    load_navbar();
+
+    // action listener for logout button
     $(".logout-button").click(function() { 
-        sessionStorage.setItem("log", "false");
         location.reload();
 
          // remove profile and logout buttons from nav-bar
@@ -34,7 +36,7 @@ $(document).ready(function() {
                      <span class="register-sprite"></span>
                      Register
                  </a>
-                 <a class="side-panel-a-buttons" href="Register.html">
+                 <a class="side-panel-a-buttons" href="login.html">
                      <span class="login-sprite"></span>
                      Login
                  </a>
@@ -52,7 +54,68 @@ $(document).ready(function() {
         $(".logout-button").remove();
     });
 
-    console.log(sessionStorage.getItem("log"));
+    // action listener for Login and Register Button (MCO1 hardcoded profile)
+    $(".submit-form-button").click(function(e) {
+        e.preventDefault();
+
+        // redirect to index.html
+        window.location.href = "index.html";
+
+        // remove register and login buttons from nav-bar
+        nav_button.remove();
+        user_buttons.remove();
+
+        // add logout and profile button on nav-bar
+        $(".logout-button").before(`
+            <span class="user-buttons dropdown">
+                <button class="dropdown-button">
+                    <img class="icon nav-icons" src="images/user.png">
+                    <i class="arrow down"></i>
+                </button>
+                        
+                <div class="dropdown-content options-panel">
+                    <br>
+                    <span class="side-panel-text">USER OPTIONS</span>
+                    <a class="side-panel-a-buttons" href="profile.html">
+                        <span class="profile-sprite"></span>
+                        Profile
+                    </a>
+                    <a class="side-panel-a-buttons" href="index.html">
+                        <span class="logout-sprite"></span>
+                        Logout
+                    </a>
+                </div>
+            </span>
+            <a class="post-profile nav-profile" href="profile.html">
+                <img class="post-profile-photo" src="${profile_photo}">
+            </a>
+            <a class="post-profile nav-profile-name" href="profile.html">
+                ${username}
+            </a> 
+        `);
+
+        // remove left side-panel's text ("Join the growing community...")
+        side_panel_bottom.remove();
+
+        // TODO: 3 scenarios for edit profile button
+        // 1. If user is not logged in, there is no edit profile button.
+        // 2. If user is logged in and they are not viewing their profile,
+        //    there is also no edit profile button.
+        // 3. Otherwise, when the user is logged and is viewing their profile,
+        //    there is an edit profile button.
+        // 
+        // This currently displays the edit profile button as long as the user
+        // is logged in, regardless of whether they are viewing their profile
+        // or someone else's.
+        $(".edit-profile-button").css("display", "block");
+
+        // Change logged in photo 
+        logged_in_photo.attr("src", profile_photo);
+
+        // make create-post container appear
+        create_post_container.css("display", "flex");
+    });
+
 
    if(sessionStorage.getItem("log") === "true") {
         // remove register and login buttons from nav-bar
@@ -342,4 +405,4 @@ $(document).ready(function() {
     $(".create-post-box").click(function() {
         window.location.href = "create-post.html";
     });
-})
+});
