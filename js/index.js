@@ -155,6 +155,13 @@ $(document).ready(function() {
             $(".nav-profile").css("display", "flex");
             $(".nav-profile-name").css("display", "flex");
         }
+
+        if(sessionStorage.getItem("logged_in")) {
+            if(window.innerWidth <= 706)
+                $(".logout-button").css("display", "none");
+            else
+                $(".logout-button").css("display", "flex");
+        }
     }
     
     window.onresize = adjust_window;
