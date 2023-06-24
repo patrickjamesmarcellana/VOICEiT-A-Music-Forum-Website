@@ -171,7 +171,7 @@ $(document).ready(function() {
 
 
     // making post containers a clickable container to post.html
-    $(".post-container").click(function() {
+    $(".post-container-clickable").click(function() {
         window.location.href = "post.html";
     })
 
