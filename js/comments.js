@@ -45,7 +45,7 @@ const loadAllComment = () => {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
-    comments_list.forEach(function(x) {
+    top_level_comments_list.forEach(function(x) {
         renderComment(x, document.querySelector("#comments-panel"))
     })
 }
