@@ -1,7 +1,7 @@
 $(document).ready(function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
-    sessionStorage.setItem("logged_in", "false");
+    sessionStorage.setItem("logged_in", "false"); 
     const username = `melissa_spellman`;
     const profile_photo = `images/user1.jpg`;
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
 
-        sessionStorage.removeItem("logged_in");
+        sessionStorage.setItem("logged_in", "false");
     } else if(sessionStorage.getItem("logged_in") === "false") {
         // remove profile and logout buttons from nav-bar
         $(".user-buttons").remove();
