@@ -19,7 +19,7 @@
         <template id="comment-template"> 
             <div class="comment-parent-container comment-container">
                 <div class="comment-header">
-                    <span class="comment-author"></span>
+                    <a class="comment-author"></a>
                     <span class="comment-edited-remark hidden">(edited)</span>
                 </div>
                 <p class="comment-content"></p>
@@ -66,7 +66,7 @@
                     </a>
                     
                     <span> 
-                        <a class="post-subforum" href="subforum.html"> v/Alternative </a> by • <span class="post-date"> 5 months ago </span>  
+                        <a class="post-subforum" href="index.html?forum=alternative"> v/Alternative </a> by • <span class="post-date"> 5 months ago </span>  
 
                         <a class="post-profile" href="profile.html"> 
                             thegreatdisciple
@@ -103,6 +103,12 @@
                 </div>
 
                 <div class="post-comment-section">
+                        <div class="comment-text-editor">
+                            <textarea></textarea>
+                            <div>
+                                <button class="comment-text-editor-submit-button">Reply</button>
+                            </div>
+                        </div>
                         <div class="comment-subcomments-indicator hidden">
                             Viewing a single comment's thread <a href="javascript:comment_panel_back()">Return to back</a>
                         </div>

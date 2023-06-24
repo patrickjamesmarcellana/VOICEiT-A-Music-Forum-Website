@@ -84,6 +84,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
 
     // inject comment author
     container.querySelector(".comment-author").textContent = comment_info.author
+    container.querySelector(".comment-author").href = `profile.html?user=${comment_info.author}`
 
     // was the comment edited
     if(comment_info.flags.includes("edited")) {
