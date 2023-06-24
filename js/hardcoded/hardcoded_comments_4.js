@@ -1,17 +1,17 @@
-hardcoded_comments[2] = () => {
+hardcoded_comments[4] = () => {
     const OP = "insertOPusernamehere"
-    top_level_comments_list = [1, 3]
+    top_level_comments_list = [1, 2, 3]
 
     // 1
     comment = {
         comment_id: 1,
-        subcomments: [2],
+        subcomments: [],
 
         flags: [],
         author: USER1,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Relapse, hands down. Better production, flows, and lyrics. Recovery has its hooks and choruses literally catered to 14-year-old girls. Em hasn’t topped Relapse yet. Screw Recovery.        "
+        content: "I honestly loved it. It’s the perfect post-breakup album, so it really spoke to me. I love her so much."
     }
     dumpComment(comment)
 
@@ -24,35 +24,23 @@ hardcoded_comments[2] = () => {
         author: USER2,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "L take"
+        content: "Loved it. Even the ones I skipped on re-listens, I like them."
     }
     dumpComment(comment)
 
     // 3
     comment = {
         comment_id: 3,
-        subcomments: [4],
+        subcomments: [],
 
         flags: [],
         author: USER3,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Recovery gang"
-    }
-    dumpComment(comment)
-
-    // 4
-    comment = {
-        comment_id: 4,
-        subcomments: [],
-
-        flags: [],
-        author: USER4,
-        votes: 1,
-        vote_state: STATE_NOT_VOTED,
-        content: "frfr"
+        content: "I like it, but it’s definitely too long. CTRL > SOS. 7-8/10"
     }
     dumpComment(comment)
 
     loadAllComment()
 }
+ 

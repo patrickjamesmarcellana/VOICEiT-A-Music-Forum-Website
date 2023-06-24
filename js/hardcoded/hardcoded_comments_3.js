@@ -1,7 +1,7 @@
-const hardcoded_comments_3 = () => {
+hardcoded_comments[3] = () => {
     const OP = "insertOPusernamehere"
     top_level_comments_list = [1]
-    
+
     // 1
     comment = {
         comment_id: 1,
@@ -43,6 +43,4 @@ const hardcoded_comments_3 = () => {
 
     loadAllComment()
 }
-
-hardcoded_comments[3] = hardcoded_comments_3
  

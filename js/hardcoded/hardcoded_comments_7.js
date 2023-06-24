@@ -1,7 +1,7 @@
-hardcoded_comments[2] = () => {
+hardcoded_comments[7] = () => {
     const OP = "insertOPusernamehere"
     top_level_comments_list = [1, 3]
-
+    
     // 1
     comment = {
         comment_id: 1,
@@ -11,7 +11,7 @@ hardcoded_comments[2] = () => {
         author: USER1,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Relapse, hands down. Better production, flows, and lyrics. Recovery has its hooks and choruses literally catered to 14-year-old girls. Em hasn’t topped Relapse yet. Screw Recovery.        "
+        content: "Charles Mingus - Mingus Ah Um"
     }
     dumpComment(comment)
 
@@ -24,7 +24,7 @@ hardcoded_comments[2] = () => {
         author: USER2,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "L take"
+        content: "good taste, was just about to comment the same thing"
     }
     dumpComment(comment)
 
@@ -37,7 +37,7 @@ hardcoded_comments[2] = () => {
         author: USER3,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Recovery gang"
+        content: "Idle Moments by Grant Green, no doubt about it."
     }
     dumpComment(comment)
 
@@ -50,7 +50,7 @@ hardcoded_comments[2] = () => {
         author: USER4,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "frfr"
+        content: "Yes, fantastic album. Absolute classic."
     }
     dumpComment(comment)
 
