@@ -73,12 +73,10 @@ $(document).ready(function() {
     });
 });
 
-$(".submit-form-button").click(function logged_in (e) {
+$(".submit-form-button").click(function (e) {
     e.preventDefault();
     
     // redirect to index.html
     window.location.href = "index.html";
-
-    return true;
 });
 
