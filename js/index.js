@@ -301,7 +301,7 @@ $(document).ready(function() {
         const forum_id_copy = forum_id;
         $("." + forum_id).click(function() {
             changeForum(forum_id_copy);
-        })
+        });
     }
 
     function User(username, description) {
@@ -353,6 +353,11 @@ $(document).ready(function() {
     if(goto_user_id != null) {
         changeProfile(goto_user_id);
     }
+
+    $(".post-profile").click(function() {
+        changeProfile($(".post-profile").text());
+    })
+
 
     // making the title panel (page title + logo) clickable to redirect to home page
     $(".title-panel").click(function() {

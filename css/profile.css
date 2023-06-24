@@ -53,8 +53,10 @@
 }
 
 .username-text {
-    font-weight: bold;
-    font-size: x-large;
+    font-family: var(--header-font);
+    font-weight:bold;
+    font-size: 1.4rem;
+    margin-right: 10px;
 }
 
 .edit-profile-button {
@@ -75,9 +77,9 @@
 
 .user-description {
     font-size: medium;
-    text-align: justify;
     border-bottom: 1px solid var(--main-color);
     margin-bottom: 20px;
+    padding: 10px 0px;
 }
 
 .user-statistics > div {
@@ -91,7 +93,7 @@
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .profile-content-option {
