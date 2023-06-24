@@ -278,8 +278,13 @@ $(document).ready(function() {
     const forum_name = $(".forum-name");
 
     function changeForum(forum_id) {
-        forum_name.text(forums[forum_id].name);
-        forum_description.html(forums[forum_id].description);
+        // are we in index.html
+        if(window.location.pathname.split("/").pop() == "index.html") {
+            forum_name.text(forums[forum_id].name);
+            forum_description.html(forums[forum_id].description);
+        } else {
+            window.location.href = `index.html?forum=${forum_id}`
+        }
     }
 
     // should we change the forum
