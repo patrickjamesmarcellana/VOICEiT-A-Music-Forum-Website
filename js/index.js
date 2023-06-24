@@ -1,13 +1,7 @@
 $(document).ready(function() {
-    // changing nav bar button when logged in 
-    const nav_buttons_panel = $(".nav-buttons-panel");
-    const nav_button = $(".nav-button");
-    const user_buttons = $(".user-buttons");
+    /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
-    const logged_in_photo = $(".logged-in-photo");
-    const create_post_container = $(".create-post-container");
-
-    // sessionStorage.setItem("log", "true");
+    //sessionStorage.setItem("log", "true");
     const username = `melissa_spellman`;
     const profile_photo = `images/user1.jpg`;
 
@@ -15,44 +9,46 @@ $(document).ready(function() {
     load_navbar();
 
     // action listener for logout button
-    $(".logout-button").click(function() { 
-        location.reload();
-
+    if(sessionStorage.getItem("log")) { 
          // remove profile and logout buttons from nav-bar
-         user_buttons.remove();
+        $(".user-buttons").remove();
+        $(".nav-profile").remove();
+        $(".nav-profile-name").remove();
 
          // add register and login buttons back to nav-bar
-         nav_buttons_panel.append(`
-         <span class="user-buttons dropdown">
-             <button class="dropdown-button">
-                 <img class="icon nav-icons" src="images/user.png">
-                 <i class="arrow down"></i>
-             </button>
-            
-             <div class="dropdown-content options-panel">
-                 <br>
-                 <span class="side-panel-text">USER OPTIONS</span>
-                 <a class="side-panel-a-buttons" href="register.html">
-                     <span class="register-sprite"></span>
-                     Register
-                 </a>
-                 <a class="side-panel-a-buttons" href="login.html">
-                     <span class="login-sprite"></span>
-                     Login
-                 </a>
-             </div>
-         </span>
+        $(".nav-buttons-panel").append(`
+            <span class="user-buttons dropdown">
+                <button class="dropdown-button">
+                   <img class="icon nav-icons" src="images/user.png">
+                   <i class="arrow down"></i>
+                </button>
+                
+                <div class="dropdown-content options-panel">
+                    <br>
+                    <span class="side-panel-text">USER OPTIONS</span>
+                    <a class="side-panel-a-buttons" href="register.html">
+                        <span class="register-sprite"></span>
+                        Register
+                    </a>
+                    <a class="side-panel-a-buttons" href="login.html">
+                        <span class="login-sprite"></span>
+                        Login
+                    </a>
+                </div>
+            </span>
         `);
  
         // place back side-panel-a's bottom panel ("Join the...")
         $(".side-panel-a").append(side_panel_bottom);
  
         // make create-post container disappear
-        create_post_container.css("display", "none");
+        $(".create-post-container").css("display", "none");
  
         // make logout button disappear
-        $(".logout-button").remove();
-    });
+        $(".logout-button").css("display", "none");
+
+        // location.reload();
+    };
 
     // action listener for Login and Register Button (MCO1 hardcoded profile)
     $(".submit-form-button").click(function(e) {
@@ -61,9 +57,10 @@ $(document).ready(function() {
         // redirect to index.html
         window.location.href = "index.html";
 
+        console.log("Hi");
         // remove register and login buttons from nav-bar
-        nav_button.remove();
-        user_buttons.remove();
+        $(".nav-button").remove();
+        $(".user-buttons").remove();
 
         // add logout and profile button on nav-bar
         $(".logout-button").before(`
@@ -95,7 +92,7 @@ $(document).ready(function() {
         `);
 
         // remove left side-panel's text ("Join the growing community...")
-        side_panel_bottom.remove();
+        $(".side-panel-bottom").remove();
 
         // TODO: 3 scenarios for edit profile button
         // 1. If user is not logged in, there is no edit profile button.
@@ -110,137 +107,45 @@ $(document).ready(function() {
         $(".edit-profile-button").css("display", "block");
 
         // Change logged in photo 
-        logged_in_photo.attr("src", profile_photo);
+        $(".logged-in-photo").attr("src", profile_photo);
 
         // make create-post container appear
-        create_post_container.css("display", "flex");
+        $(".create-post-container").css("display", "flex");
     });
 
 
    if(sessionStorage.getItem("log") === "true") {
-        // remove register and login buttons from nav-bar
-        nav_button.remove();
-        user_buttons.remove();
 
-        // add logout and profile button on nav-bar
-        $(".logout-button").before(`
-           <span class="user-buttons dropdown">
-               <button class="dropdown-button">
-                   <img class="icon nav-icons" src="images/user.png">
-                   <i class="arrow down"></i>
-               </button>
-                       
-               <div class="dropdown-content options-panel">
-                   <br>
-                   <span class="side-panel-text">USER OPTIONS</span>
-                   <a class="side-panel-a-buttons" href="profile.html">
-                       <span class="profile-sprite"></span>
-                       Profile
-                   </a>
-                   <a class="side-panel-a-buttons" href="index.html">
-                       <span class="logout-sprite"></span>
-                       Logout
-                   </a>
-               </div>
-           </span>
-           <a class="post-profile nav-profile" href="profile.html">
-               <img class="post-profile-photo" src="${profile_photo}">
-           </a>
-           <a class="post-profile nav-profile-name" href="profile.html">
-               ${username}
-           </a> 
-       `);
-
-       // remove left side-panel's text ("Join the growing community...")
-       side_panel_bottom.remove();
-
-       // TODO: 3 scenarios for edit profile button
-       // 1. If user is not logged in, there is no edit profile button.
-       // 2. If user is logged in and they are not viewing their profile,
-       //    there is also no edit profile button.
-       // 3. Otherwise, when the user is logged and is viewing their profile,
-       //    there is an edit profile button.
-       // 
-       // This currently displays the edit profile button as long as the user
-       // is logged in, regardless of whether they are viewing their profile
-       // or someone else's.
-       $(".edit-profile-button").css("display", "block");
-
-       // Change logged in photo 
-       logged_in_photo.attr("src", profile_photo);
-
-       // make create-post container appear
-       create_post_container.css("display", "flex");
-   } else {
-        // remove profile and logout buttons from nav-bar
-        user_buttons.remove();
-
-        // add register and login buttons back to nav-bar
-        nav_buttons_panel.append(`
-        <span class="user-buttons dropdown">
-            <button class="dropdown-button">
-                <img class="icon nav-icons" src="images/user.png">
-                <i class="arrow down"></i>
-            </button>
-           
-            <div class="dropdown-content options-panel">
-                <br>
-                <span class="side-panel-text">USER OPTIONS</span>
-                <a class="side-panel-a-buttons" href="register.html">
-                    <span class="register-sprite"></span>
-                    Register
-                </a>
-                <a class="side-panel-a-buttons" href="Register.html">
-                    <span class="login-sprite"></span>
-                    Login
-                </a>
-            </div>
-        </span>
-       `);
-
-       // place back side-panel-a's bottom panel ("Join the...")
-       $(".side-panel-a").append(side_panel_bottom);
-
-       // make create-post container disappear
-       create_post_container.css("display", "none");
-
-       // make logout button disappear
-       $(".logout-button").remove();
+   } else if(sessionStorage.getItem("log") === "false") {
+       
    }
 
 
     // for dynamic content sizing when adjusting window size
-    const post_panel = $(".post-panel");
-    const register_button = $(".register-button");
-    const topics_button = $(".topics-button");
-    const nav_profile = $(".nav-profile");
-    const nav_profile_name = $(".nav-profile-name");
-    
     function adjust_window() {
         if(window.innerWidth <= 958) {
-            post_panel.css("width", "100vw");
-            register_button.css("margin-left", "1.2vw");
-            topics_button.css("margin-right", "0px"); 
-            nav_profile.css("margin-left", "2vw")
+            $(".post-panel").css("width", "100vw");
+            $(".register-button").css("margin-left", "1.2vw");
+            $(".topics-button").css("margin-right", "0px"); 
+            $(".nav-profile").css("margin-left", "2vw")
         } else if(window.innerWidth <= 1247) {
-            post_panel.css("width", "76vw");
-            register_button.css("margin-left", "1.2vw");
-            topics_button.css("margin-right", "0px");
-            nav_profile.css("margin-left", "2vw")
+            $(".post-panel").css("width", "76vw");
+            $(".register-button").css("margin-left", "1.2vw");
+            $(".topics-button").css("margin-right", "0px");
+            $(".nav-profile").css("margin-left", "2vw")
         } else {
-            post_panel.css("width", "56vw");
-            register_button.css("margin-left", "auto");
-            nav_profile.css("margin-left", "auto")
+            $(".post-panel").css("width", "56vw");
+            $(".register-button").css("margin-left", "auto");
+            $(".nav-profile").css("margin-left", "auto")
         }
 
         if(window.innerWidth <= 706) {
-            nav_profile.css("display", "none");
-            nav_profile_name.css("display", "none");
+            $(".nav-profile").css("display", "none");
+            $(".nav-profile-name").css("display", "none");
             $(".logout-button").css("display", "none");
         } else {
-            nav_profile.css("display", "flex");
-            nav_profile_name.css("display", "flex");
-            $(".logout-button").css("display", "flex")
+            $(".nav-profile").css("display", "flex");
+            $(".nav-profile-name").css("display", "flex");
         }
     }
     
@@ -249,18 +154,16 @@ $(document).ready(function() {
 
 
     // sample posts loop
-    const sample_post_a = $(".post-container").html();
     const see_more_panel = $(".see-more-panel");
-    see_more_panel.remove();
+    $(".see-more-panel").remove();
     for(let i = 0; i < 14; i++) {
-        post_panel.append("<div class=\"post-container post-container-clickable\">" + sample_post_a + "</div>");
+        $(".post-panel").append("<div class=\"post-container post-container-clickable\">" + $(".post-container").html() + "</div>");
     }
-    post_panel.append(see_more_panel);
+    $(".post-panel").append(see_more_panel);
 
 
     // making post containers a clickable container to post.html
-    const post_container = $(".post-container-clickable");
-    post_container.click(function() {
+    $(".post-container").click(function() {
         window.location.href = "post.html";
     })
 
