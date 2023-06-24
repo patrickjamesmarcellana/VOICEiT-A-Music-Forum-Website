@@ -2,20 +2,20 @@
 
 <html>
     <head>
-        <title>Create a Voice-Its</title>
+        <title>Create a Post</title>
         <link rel="icon" type="image/png" href="images/logo2.png">
         <link rel="stylesheet" type="text/css" media="all" href="css/index.css">
         <link rel="stylesheet" type="text/css" media="all" href="css/create-post.css">
         <script src="js/side_panel_a.js" defer></script>
         <script src="js/navbar.js" defer></script>
         <script src="js/index.js" defer></script>
+        <script src="js/create-post.js"></script>
         <script src="js/code.jquery.com_jquery-3.6.0.min.js"></script>
 
     </head>
 
     <body>
         <!-- Navigation Bar -->
-
         <div class="nav-bar"></div>
 
         <!-- Content of Webpage -->
@@ -23,8 +23,27 @@
         <div class="content" id="home">
             <!-- Topics and Feeds (Leftmost) -->
             <span class="side-panel-a"></span>
+            <span class="center-panel">
+                <div class="create-post-panel">
+                    <form>
+                        <div class="create-post-header">
+                            <textarea class="post-title-input" rows="1" placeholder="Title" name="post-title" id="post-title" required></textarea>
+                        </div>
+                    </form>
+                    
+                </div>
+            </span>
+            <span class="side-panel-b">
+                <div class="create-info-panel">
+                    <div class="create-title">Create a Post</div>
+                    <div class="create-description">
+                        To create a post, you need a post title and a post body. VOICEiT only allows making text posts for
+                        now, but keep an eye for posts with media elements in the future!
+                    </div>
+                </div>
+            </span>
         </div>
-
+        
 
         
     </body>

@@ -1,0 +1,101 @@
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
+.center-panel {
+    width: 56vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: solid 1px var(--main-color);
+}
+
+.create-post-panel {
+    border-radius: 5px;
+    margin: 2rem auto 1.5rem auto;
+    width: 80%;
+    background-image: linear-gradient(#31294c, #5756bb, #8182da);
+    color: var(--main-color);
+    /* box-shadow: 0px 3px 6px 0px #31294c; */
+    height: auto;
+}
+
+.create-post-header {
+    border-bottom: solid 1px var(--main-color);
+    height: auto;
+    align-items: center;
+    display: flex;
+    padding: 2px 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.post-title-input {
+    margin: auto;
+    width: 99%;
+    padding: 7px;
+    background-color: transparent;
+    color: var(--main-color);
+    border-radius: 7px;
+    border: solid 1px var(--main-color);
+    margin: 10px;
+    font-family: var(--header-font);
+    font-size: 1.1rem;
+}
+
+.post-title-input::placeholder {
+    color: var(--main-color);
+    font-family: var(--header-font);
+    font-size: 1.1rem;
+}
+
+.post-title-input:focus {
+    background-color:#5756bb
+}
+
+
+
+
+
+.create-info-panel {
+    margin: 10px auto 0px auto;
+    width: 82%;
+    padding: 5%;
+    color: var(--main-color);
+    position: sticky;
+    top: 83.2px;
+    border-radius: 5px;
+    background-image: linear-gradient(#31294c, #5756bb, #8182da);
+    box-shadow: 0px 3px 6px 0px #31294c;
+}
+
+.create-title {
+    font-family: var(--header-font);
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.create-description {
+    text-align: justify;
+}
