@@ -9,10 +9,14 @@ $(document).ready(function() {
     load_navbar();
     load_side_panel_a();
 
-    // action listener for logout button
-    $(".logout-button").click(function() { 
+    function logout() {
         sessionStorage.setItem("logged_in", "false");
         location.reload();
+    }
+
+    // action listener for logout button
+    $(".logout-button").click(function() { 
+        window.location.href = "javascript:logout()";
     });
 
     // action listener for login and register Button (MCO1 hardcoded profile)
@@ -46,7 +50,7 @@ $(document).ready(function() {
                         <span class="profile-sprite"></span>
                         Profile
                     </a>
-                    <a class="side-panel-a-buttons" href="index.html">
+                    <a class="side-panel-a-buttons" href="javascript:logout()">
                         <span class="logout-sprite"></span>
                         Logout
                     </a>
