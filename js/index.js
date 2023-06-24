@@ -10,8 +10,12 @@ $(document).ready(function() {
     const profile_photo = `images/user1.jpg`;
 
     // load the nav bar and side panel a on all applicable pages
-    load_navbar();
-    load_side_panel_a();
+    // note: if function is not defined then do not load it
+    if(typeof load_navbar !== "undefined")
+        load_navbar();
+    
+    if(typeof load_side_panel_a !== "undefined")
+        load_side_panel_a();
 
     // action listener for logout button
     $(".logout-button").click(function() { 
