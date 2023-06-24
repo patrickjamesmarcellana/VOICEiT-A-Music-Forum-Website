@@ -533,7 +533,7 @@ body {
     box-shadow: 0px 3px 6px 0px #31294c;
 }
 
-.post-container-clickable:hover {
+.post-container:hover {
     cursor: pointer;
     box-shadow: 0px 5px 10px 0px #31294c;
 }
@@ -714,7 +714,8 @@ body {
 /* side panel b (rightmost) */
 .side-panel-b {
     margin: 0 auto;
-    width: 400px;
+    min-width: 400px;
+    width: 20vw;
 }
 
 .forum-info-panel {
