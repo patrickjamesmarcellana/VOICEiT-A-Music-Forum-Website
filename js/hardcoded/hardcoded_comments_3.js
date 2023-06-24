@@ -1,5 +1,5 @@
 hardcoded_comments[3] = () => {
-    const OP = "insertOPusernamehere"
+    const OP = USER2,
     top_level_comments_list = [1]
 
     // 1

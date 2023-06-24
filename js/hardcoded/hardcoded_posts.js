@@ -1,7 +1,7 @@
 posts = {
     1: {
         subforum: "pop",
-        op: "insertuserhere",
+        op: USER5,
         title: "Help me ID this pop song that goes “ay oh ay oh ay oh”",
         text: `
         This has been stuck in my head for the past several hours and it’s been infuriating. In some part of the song, the male singer sings “ay oh ay oh ay oh”. I heard it from the mall today so it must be a pop song. It also sounds slightly like EDM. It sounds like it was released around 2012-2015-ish. I’ve been searching all over Google, Reddit, and YouTube for the past 6 hours and I haven’t gotten any close. It is driving me crazy. I will literally give one of my kidneys if any one of you could identify this song. Please help me
@@ -11,7 +11,7 @@ posts = {
     },
     2: {
         subforum: "rap",
-        op: "insertuserhere",
+        op: USER2,
         title: "Eminem: Recovery or Relapse?",
         text: `
         Discuss.
@@ -19,7 +19,7 @@ posts = {
     },
     3: {
         subforum: "rock",
-        op: "insertuserhere",
+        op: USER2,
         title: "Remember the time when Billboard announced the top 10 rock songs of the 2010s and none of the songs were rock?",
         text: `
         For context, the list is:<br>
@@ -39,7 +39,7 @@ posts = {
     },
     4: {
         subforum: "rnb",
-        op: "insertuserhere",
+        op: USER1,
         title: "Thoughts on SZA - SOS?",
         text: `
         I thought it was pretty good. How about you guys?
@@ -47,7 +47,7 @@ posts = {
     },
     5: {
         subforum: "kpop",
-        op: "insertuserhere",
+        op: USER3,
         title: "Fifty Fifty becomes longest-charting K-pop girl group on Billboard Hot 100",
         text: `
         Cupid just broke BLACKPINK and Dua Lipa - Kiss and Make Up’s 12-week record on the Billboard Hot 100.
@@ -57,7 +57,7 @@ posts = {
     },
     6: {
         subforum: "latin",
-        op: "insertuserhere",
+        op: USER4,
         title: "How did Bad Bunny blow up?",
         text: `
         I can’t stand this guy. His voice and singing are both bad, and his rapping and songwriting skills are absolutely terrible. I’d be lying if I said he didn’t have any good song instrumentals, but apart from that, that’s really it. I don’t really see anything else of value that would make me like this guy. So can anyone please explain to me why this guy is so big? It really is baffling.
@@ -65,7 +65,7 @@ posts = {
     },
     7: {
         subforum: "jazz",
-        op: "insertuserhere",
+        op: USER1,
         title: "What album do you think is perfect?",
         text: `
         For me, Kind of Blue by Miles Davis. Overplayed, sure. Doesn’t change a thing, though.
@@ -73,7 +73,7 @@ posts = {
     },
     8: {
         subforum: "classical",
-        op: "insertuserhere",
+        op: USER1,
         title: "How to start listening to classical music?",
         text: `
         I want to start listening to classical music. Where should one start? Any recommendations would be much appreciated. Thank you!
@@ -81,7 +81,7 @@ posts = {
     },
     9: {
         subforum: "country",
-        op: "insertuserhere",
+        op: USER4,
         title: "Why don’t most people don’t like country music?",
         text: `
         I am completely aware that there are some (really) bad country songs out there, but to be fair, all genres have THE bad songs that people laugh at or don’t want to talk about. But I really do feel like a lot of people hate country music, more so than any other genre. I sincerely hope that isn’t just me thinking that. But anyway, to both country music fans, non-fans, and haters, what do you think puts people off when it comes to country music?
@@ -89,7 +89,7 @@ posts = {
     },
     10: {
         subforum: "alternative",
-        op: "insertuserhere",
+        op: USER5,
         title: "The future of alternative music",
         text: `
         I find it pretty sad that among my friends, I am the only one who listens to alternative and indie rock. They all just listen to your typical, generic pop and rap. While I respect the fact that people have different tastes, which is quite evident, it makes me feel lonely, like I can’t even talk to them about the music I love. Instead, I have to consult strangers on the internet I’ve never seen or met before. I’m just worried that someday, alternative music will just completely fade into obscurity never to be seen again, and I feel like I will really struggle in relating to other people’s tastes in music. Thoughts?
