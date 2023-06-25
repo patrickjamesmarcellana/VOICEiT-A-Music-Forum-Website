@@ -125,6 +125,8 @@ $(document).ready(function() {
     Object.keys(posts).forEach((key) => {
         hardcoded_comments[key]()
     })
+
+    const LOGIN_USER = "melissa_spellman"
     const search_params = new URLSearchParams(window.location.search)
     post_id = search_params.get("post")
 
@@ -138,6 +140,14 @@ $(document).ready(function() {
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
         $(".comment-count").text(comment_count(post.top_level_comments_list))
+
+        if(is_logged_in() && post.op === LOGIN_USER) {
+            $(".post-edit-button").css("display", "inline")
+            $(".post-delete-button").css("display", "inline")
+        } else {
+            $(".post-edit-button").css("display", "none")
+            $(".post-delete-button").css("display", "none")
+        }
         
     
         // render comments
