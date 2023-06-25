@@ -347,9 +347,10 @@ $(document).ready(function() {
         }
     }
 
+    const search_params = new URLSearchParams(window.location.search);
+    
     // should we change the forum
     if(window.location.pathname.split("/").pop() == "index.html") { // dirty hack
-        const search_params = new URLSearchParams(window.location.search);
         const goto_forum_id = search_params.get(URL_FORUM_KEY);
         if(goto_forum_id != null) {
             changeForum(goto_forum_id);
