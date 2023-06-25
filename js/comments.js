@@ -6,7 +6,7 @@ shortcomings list:
 // important note: querySelector only returns the first element (which is fine for comments that only have 1 of each element like comment body, upvote button, etc)
 
 
-const LOGIN_USER = "Replier1"
+const LOGIN_USER = "melissa_spellman"
 
 // LIFO stack that stores the currently viewing comments by depth
 // to allow browsing very deep subcomments
@@ -119,7 +119,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
     updateVoteUI(container, comment_info.vote_state, comment_info.votes)
 
     // should the edit/delete buttons be visible?
-    if(comment_info.author === LOGIN_USER) {
+    if(is_logged_in() && comment_info.author === LOGIN_USER) {
         container.querySelector(".comment-edit-button").classList.remove("hidden")
         container.querySelector(".comment-edit-button").addEventListener("click", onEditButtonPressed)
         container.querySelector(".comment-delete-button").classList.remove("hidden")
