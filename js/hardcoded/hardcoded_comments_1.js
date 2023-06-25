@@ -3,6 +3,7 @@ hardcoded_comments[1] = () => {
 
     // 1
     comment = {
+        post_id: 1,
         comment_id: 101,
         subcomments: [102],
 
@@ -16,6 +17,7 @@ hardcoded_comments[1] = () => {
 
     // 2
     comment = {
+        post_id: 1,
         comment_id: 102,
         subcomments: [],
 
@@ -29,6 +31,7 @@ hardcoded_comments[1] = () => {
 
     // 3
     comment = {
+        post_id: 1,
         comment_id: 103,
         subcomments: [104],
 
@@ -42,6 +45,7 @@ hardcoded_comments[1] = () => {
 
     // 4
     comment = {
+        post_id: 1,
         comment_id: 104,
         subcomments: [],
 
@@ -55,6 +59,7 @@ hardcoded_comments[1] = () => {
 
     // 5
     comment = {
+        post_id: 1,
         comment_id: 105,
         subcomments: [106],
 
@@ -68,6 +73,7 @@ hardcoded_comments[1] = () => {
 
     // 6
     comment = {
+        post_id: 1,
         comment_id: 106,
         subcomments: [],
 

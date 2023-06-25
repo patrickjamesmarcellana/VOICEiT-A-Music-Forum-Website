@@ -3,6 +3,7 @@ hardcoded_comments[3] = () => {
 
     // 1
     comment = {
+        post_id: 3,
         comment_id: 301,
         subcomments: [302],
 
@@ -16,6 +17,7 @@ hardcoded_comments[3] = () => {
 
     // 2
     comment = {
+        post_id: 3,
         comment_id: 302,
         subcomments: [303],
 
@@ -29,6 +31,7 @@ hardcoded_comments[3] = () => {
 
     // 3
     comment = {
+        post_id: 3,
         comment_id: 303,
         subcomments: [],
 

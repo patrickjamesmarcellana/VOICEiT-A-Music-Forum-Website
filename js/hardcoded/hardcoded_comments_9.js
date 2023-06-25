@@ -3,6 +3,7 @@ hardcoded_comments[9] = () => {
     
     // 1
     comment = {
+        post_id: 9,
         comment_id: 901,
         subcomments: [902],
 
@@ -16,6 +17,7 @@ hardcoded_comments[9] = () => {
 
     // 2
     comment = {
+        post_id: 9,
         comment_id: 902,
         subcomments: [],
 
@@ -29,6 +31,7 @@ hardcoded_comments[9] = () => {
 
     // 3
     comment = {
+        post_id: 9,
         comment_id: 903,
         subcomments: [],
 
@@ -43,6 +46,7 @@ hardcoded_comments[9] = () => {
 
     // 4
     comment = {
+        post_id: 9,
         comment_id: 904,
         subcomments: [],
 
