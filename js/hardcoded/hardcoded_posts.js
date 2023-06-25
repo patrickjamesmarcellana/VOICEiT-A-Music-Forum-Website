@@ -130,6 +130,7 @@ $(document).ready(function() {
         $(".post-subforum").text("v/" + post.subforum)
         $(".post-profile-text").attr("href", "profile.html?user=" + post.op)
         $(".post-profile-text").text(post.op)
+        $(".post-profile-photo").attr("src", `images/${post.op}.jpg`)
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
         hardcoded_comments[post_id]()

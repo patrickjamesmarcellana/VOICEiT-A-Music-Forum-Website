@@ -7,7 +7,7 @@ $(document).ready(function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
     const username = `melissa_spellman`;
-    const profile_photo = `images/user1.jpg`;
+    const profile_photo = `images/${username}.jpg`;
 
     // load the nav bar and side panel a on all applicable pages
     // note: if function is not defined then it is was intentionally not included for this page
@@ -305,7 +305,7 @@ $(document).ready(function() {
                 <div class="post-container post-container-clickable" post-id="${key}">
                     <div class="post-header"> 
                         <a class="post-profile">
-                            <img class="post-profile-photo" src="images/empty-profile.png">
+                            <img class="post-profile-photo" src="images/${val.op}.jpg">
                         </a>
 
                         <a class="post-profile">
@@ -348,7 +348,7 @@ $(document).ready(function() {
     }
 
     const search_params = new URLSearchParams(window.location.search);
-    
+
     // should we change the forum
     if(window.location.pathname.split("/").pop() == "index.html") { // dirty hack
         const goto_forum_id = search_params.get(URL_FORUM_KEY);
@@ -399,6 +399,7 @@ $(document).ready(function() {
 
     const URL_USER_KEY = "user";
     const profile_username = $(".profile-username");
+    const profile_picture  = $(".profile-picture > img");
     const user_description = $(".user-description");
 
     function changeProfile(user_id) {
@@ -406,7 +407,9 @@ $(document).ready(function() {
         if(window.location.pathname.split("/").pop() == "profile.html") {
             //window.location.href = `index.html?user=${username}`;
             profile_username.text(users[user_id].username);
+            profile_picture.attr("src", `images/${users[user_id].username}.jpg`)
             user_description.text(users[user_id].description);
+
         } else {
             window.location.href = `index.html?user=${user_id}`
         }
