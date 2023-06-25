@@ -1,11 +1,11 @@
 hardcoded_comments[2] = () => {
     const OP = USER2
-    top_level_comments_list = [1, 3]
+    top_level_comments_list = [201, 203]
 
     // 1
     comment = {
-        comment_id: 1,
-        subcomments: [2],
+        comment_id: 201,
+        subcomments: [202],
 
         flags: [],
         author: USER5,
@@ -17,7 +17,7 @@ hardcoded_comments[2] = () => {
 
     // 2
     comment = {
-        comment_id: 2,
+        comment_id: 202,
         subcomments: [],
 
         flags: [],
@@ -30,8 +30,8 @@ hardcoded_comments[2] = () => {
 
     // 3
     comment = {
-        comment_id: 3,
-        subcomments: [4],
+        comment_id: 203,
+        subcomments: [204],
 
         flags: [],
         author: USER3,
@@ -43,7 +43,7 @@ hardcoded_comments[2] = () => {
 
     // 4
     comment = {
-        comment_id: 4,
+        comment_id: 204,
         subcomments: [],
 
         flags: [],

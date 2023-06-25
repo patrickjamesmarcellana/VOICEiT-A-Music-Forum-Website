@@ -1,10 +1,10 @@
 hardcoded_comments[8] = () => {
     const OP = USER1
-    top_level_comments_list = [1, 2, 3]
+    top_level_comments_list = [801, 802, 803]
 
     // 1
     comment = {
-        comment_id: 1,
+        comment_id: 801,
         subcomments: [],
 
         flags: [],
@@ -17,7 +17,7 @@ hardcoded_comments[8] = () => {
 
     // 2
     comment = {
-        comment_id: 2,
+        comment_id: 802,
         subcomments: [],
 
         flags: [],
@@ -25,8 +25,8 @@ hardcoded_comments[8] = () => {
         votes: 1,
         vote_state: STATE_NOT_VOTED,
         content: `Bach: Goldberg Variations \n
-        Mozart: Symphonies 25, 40, and 41\n
-        Beethoven: Symphonies 3, 5, 7, and 9\n
+        Mozart: Symphonies 25, 8040, and 41\n
+        Beethoven: Symphonies 3, 805, 807, and 9\n
         Chopin: …everything.\n
         Tchaikovsky: Symphony No. 4\n
         Debussy: Clair De Lune\n
@@ -36,7 +36,7 @@ hardcoded_comments[8] = () => {
 
     // 3
     comment = {
-        comment_id: 3,
+        comment_id: 803,
         subcomments: [],
 
         flags: [],
