@@ -168,18 +168,18 @@ $(document).ready(function() {
 
 
     // sample posts loop
-    const see_more_panel = $(".see-more-panel");
+    /*const see_more_panel = $(".see-more-panel");
     $(".see-more-panel").remove();
     for(let i = 0; i < 14; i++) {
         $(".post-panel").append("<div class=\"post-container post-container-clickable\">" + $(".post-container").html() + "</div>");
     }
-    $(".post-panel").append(see_more_panel);
+    $(".post-panel").append(see_more_panel);*/
 
 
     // making post containers a clickable container to post.html
-    $(".post-container-clickable").click(function() {
-        window.location.href = "post.html";
-    })
+    /*$(".post-container-clickable").click(function(e) {
+        window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+    })*/
 
     
     // changing subforums
@@ -282,16 +282,81 @@ $(document).ready(function() {
             //window.location.href = `index.html?forum=${forum_id}`;
             forum_name.text(forums[forum_id].name);
             forum_description.html(forums[forum_id].description);
+
+            // load the posts of the forum
+            let posts_list = []
+            if(forum_id !== "home" && forum_id !== "popular") {
+                posts_list = Object.entries(posts).filter((kvpair) => (kvpair[1].subforum === forum_id));
+            } else {
+                posts_list = Object.entries(posts);
+            }
+            
+            const see_more_panel = $(".see-more-panel");
+            
+            // erase
+            $(".see-more-panel").remove();
+            $(".post-container").remove();
+
+            
+            for(let i = 0; i < Math.min(20, posts_list.length); i++) {
+                const key = posts_list[i][0];
+                const val = posts_list[i][1];
+                console.log(posts_list[i])
+                $(".post-panel").append(`
+                <div class="post-container post-container-clickable" post-id="${key}">
+                    <div class="post-header"> 
+                        <a class="post-profile">
+                            <img class="post-profile-photo" src="images/empty-profile.png">
+                        </a>
+
+                        <a class="post-profile">
+                            ${val.op}
+                        </a>
+                    </div>
+                
+                    <div class="post-content" >
+                        <div class="post-title">
+                            ${val.title}
+                        </div>
+
+                        <a class="post-subforum ${val.subforum}"> ${forums[val.subforum].name} </a>
+
+                        <div class="post-body">
+                            ${val.text}
+                        </div>
+
+                        <div class="post-buttons">
+                            <button class="upvote-sprite"></button>
+                            <span class="upvote-count">5</span>
+                            <button class="downvote-sprite"></button>
+                            <span class="downvote-count">5</span>
+                            <a class="comment-sprite" href="post.html"></a>
+                            <a class="comment-count" href="post.html">10</a>
+                        </div>
+                    </div>
+                </div>
+                `);
+            }
+            
+            $(".post-panel").append(see_more_panel);
+            // making post containers a clickable container to post.html
+            $(".post-container-clickable").click(function(e) {
+                window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+            })
         } else {
             window.location.href = `index.html?forum=${forum_id}`
         }
     }
 
     // should we change the forum
-    const search_params = new URLSearchParams(window.location.search);
-    const goto_forum_id = search_params.get(URL_FORUM_KEY);
-    if(goto_forum_id != null) {
-        changeForum(goto_forum_id);
+    if(window.location.pathname.split("/").pop() == "index.html") { // dirty hack
+        const search_params = new URLSearchParams(window.location.search);
+        const goto_forum_id = search_params.get(URL_FORUM_KEY);
+        if(goto_forum_id != null) {
+            changeForum(goto_forum_id);
+        } else {
+            changeForum("home");
+        }
     }
 
     // event listeners for side panel a buttons (changing the forum info on side panel b)

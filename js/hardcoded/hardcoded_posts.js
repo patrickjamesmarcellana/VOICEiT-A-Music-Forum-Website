@@ -1,4 +1,4 @@
-posts = {
+const posts = {
     1: {
         subforum: "pop",
         op: USER5,
@@ -124,15 +124,18 @@ $(document).ready(function() {
     const search_params = new URLSearchParams(window.location.search)
     post_id = search_params.get("post")
 
-    post = posts[post_id]
-    $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)
-    $(".post-subforum").text("v/" + post.subforum)
-    $(".post-profile-text").attr("href", "profile.html?user=" + post.op)
-    $(".post-profile-text").text(post.op)
-    $(".post-title").text(post.title)
-    $(".post-body").html(post.text)
-    hardcoded_comments[post_id]()
+    if(post_id !== null) {
+        post = posts[post_id]
+        $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)
+        $(".post-subforum").text("v/" + post.subforum)
+        $(".post-profile-text").attr("href", "profile.html?user=" + post.op)
+        $(".post-profile-text").text(post.op)
+        $(".post-title").text(post.title)
+        $(".post-body").html(post.text)
+        hardcoded_comments[post_id]()
+    
+        // render comments
+        loadAllComment(post.top_level_comments_list)
+    }
 
-    // render comments
-    loadAllComment(post.top_level_comments_list)
 })
