@@ -137,6 +137,7 @@ $(document).ready(function() {
         $(".post-profile-photo").attr("src", `images/${post.op}.jpg`)
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
+        $(".comment-count").text(comment_count(post.top_level_comments_list))
         
     
         // render comments
