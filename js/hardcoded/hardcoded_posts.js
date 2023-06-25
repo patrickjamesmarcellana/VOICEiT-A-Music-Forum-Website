@@ -121,6 +121,10 @@ const posts = {
 const hardcoded_comments = new Array(11).fill(null)
 
 $(document).ready(function() {
+    // register all comments
+    Object.keys(posts).forEach((key) => {
+        hardcoded_comments[key]()
+    })
     const search_params = new URLSearchParams(window.location.search)
     post_id = search_params.get("post")
 
@@ -133,7 +137,7 @@ $(document).ready(function() {
         $(".post-profile-photo").attr("src", `images/${post.op}.jpg`)
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
-        hardcoded_comments[post_id]()
+        
     
         // render comments
         loadAllComment(post.top_level_comments_list)
