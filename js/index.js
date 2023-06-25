@@ -301,7 +301,6 @@ $(document).ready(function() {
             for(let i = 0; i < Math.min(20, posts_list.length); i++) {
                 const key = posts_list[i][0];
                 const val = posts_list[i][1];
-                console.log(posts_list[i])
                 $(".post-panel").append(`
                 <div class="post-container post-container-clickable" post-id="${key}">
                     <div class="post-header"> 
