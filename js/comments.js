@@ -17,8 +17,6 @@ const COMMENT_PREFIX = "comment-"
 // store comments here for future use
 const saved_comments = {}
 
-const is_logged_in = () => { return sessionStorage.getItem("logged_in") === "true" }
-
 // performs a DFS to count comments
 const comment_count = (comments_list) => {
     if (comments_list.length == 0) {

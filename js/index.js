@@ -3,6 +3,10 @@ function logout() {
     location.reload();
 }
 
+function is_logged_in() {
+    return sessionStorage.getItem("logged_in") === "true";
+}
+
 $(document).ready(function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
@@ -30,7 +34,7 @@ $(document).ready(function() {
     });
 
     // check if the user is logged in or not
-    if(sessionStorage.getItem("logged_in") === "true") {
+    if(is_logged_in()) {
         // redirect to index.html
         // window.location.href = "index.html";
 
@@ -88,7 +92,7 @@ $(document).ready(function() {
 
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
-    } else if(sessionStorage.getItem("logged_in") === "false") {
+    } else {
         // remove profile and logout buttons from nav-bar
         $(".user-buttons").remove();
         $(".nav-profile").remove();
@@ -155,7 +159,7 @@ $(document).ready(function() {
             $(".nav-profile-name").css("display", "flex");
         }
 
-        if(sessionStorage.getItem("logged_in") === "true") {
+        if(is_logged_in()) {
             if(window.innerWidth <= 706)
                 $(".logout-button").css("display", "none");
             else
