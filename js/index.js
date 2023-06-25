@@ -329,8 +329,8 @@ $(document).ready(function() {
                             <span class="upvote-count">5</span>
                             <button class="downvote-sprite"></button>
                             <span class="downvote-count">5</span>
-                            <a class="comment-sprite" href="post.html"></a>
-                            <a class="comment-count" href="post.html">${comment_count(val.top_level_comments_list)}</a>
+                            <a class="comment-sprite" href="post.html?post=${key}"></a>
+                            <a class="comment-count" href="post.html?post=${key}">${comment_count(val.top_level_comments_list)}</a>
                         </div>
                     </div>
                 </div>
