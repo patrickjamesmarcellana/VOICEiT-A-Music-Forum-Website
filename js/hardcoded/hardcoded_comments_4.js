@@ -1,6 +1,5 @@
 hardcoded_comments[4] = () => {
     const OP = USER1
-    top_level_comments_list = [401, 402, 403]
 
     // 1
     comment = {
@@ -40,7 +39,5 @@ hardcoded_comments[4] = () => {
         content: "I like it, but it’s definitely too long. CTRL > SOS. 7-8/10"
     }
     dumpComment(comment)
-
-    loadAllComment()
 }
  

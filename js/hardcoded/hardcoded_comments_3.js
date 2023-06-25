@@ -1,6 +1,5 @@
 hardcoded_comments[3] = () => {
-    const OP = USER2,
-    top_level_comments_list = [301]
+    const OP = USER2
 
     // 1
     comment = {
@@ -40,7 +39,5 @@ hardcoded_comments[3] = () => {
         content: "Nah, pop-rock is Blink 182, early One Republic, Fall Out Boy, and Coldplay, not that garbage"
     }
     dumpComment(comment)
-
-    loadAllComment()
 }
  

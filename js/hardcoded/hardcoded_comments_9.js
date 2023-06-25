@@ -1,6 +1,5 @@
 hardcoded_comments[9] = () => {
     const OP = USER4
-    top_level_comments_list = [901, 903, 904]
     
     // 1
     comment = {
@@ -54,6 +53,4 @@ hardcoded_comments[9] = () => {
         content: "You’ll never find a good country song on the radio. You actually have to actively seek them out. Listen to Colter Wall and Orville Peck on Spotify and you’ll see the difference."
     }
     dumpComment(comment)
-
-    loadAllComment()
 }

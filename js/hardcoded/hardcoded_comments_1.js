@@ -1,6 +1,5 @@
 hardcoded_comments[1] = () => {
     const OP = USER5
-    top_level_comments_list = [101, 103, 105]
 
     // 1
     comment = {
@@ -79,6 +78,4 @@ hardcoded_comments[1] = () => {
         content: "I don’t think it’s too EDM-y like that one"
     }
     dumpComment(comment)
-
-    loadAllComment()
 }

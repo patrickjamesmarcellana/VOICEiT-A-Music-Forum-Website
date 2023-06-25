@@ -1,6 +1,5 @@
 hardcoded_comments[10] = () => {
     const OP = USER5
-    top_level_comments_list = [1001, 1002]
     
     // 1
     comment = {
@@ -53,6 +52,4 @@ hardcoded_comments[10] = () => {
         content: "yeah, it’s such a broad term that it lost its original meaning"
     }
     dumpComment(comment)
-
-    loadAllComment()
 }

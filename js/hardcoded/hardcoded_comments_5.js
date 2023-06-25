@@ -1,6 +1,5 @@
 hardcoded_comments[5] = () => {
     const OP = USER3
-    top_level_comments_list = [501, 503]
     
     // 1
     comment = {
@@ -53,6 +52,4 @@ hardcoded_comments[5] = () => {
         content: "They already signed with Warner Records, so I think they’ll do fine"
     }
     dumpComment(comment)
-
-    loadAllComment()
 }

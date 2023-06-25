@@ -1,6 +1,5 @@
 hardcoded_comments[6] = () => {
     const OP = USER4
-    top_level_comments_list = [601, 604]
     
     // 1
     comment = {
@@ -53,7 +52,5 @@ hardcoded_comments[6] = () => {
         content: "I remember him performing during Royal Rumble 2022. What an absolute waste of time and money. It’s just like Maroon 5 and Travis Scott during the Super Bowl LIII halftime show. Unbelievable."
     }
     dumpComment(comment)
-
-    loadAllComment()
 }
  
