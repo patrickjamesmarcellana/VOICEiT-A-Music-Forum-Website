@@ -300,11 +300,11 @@ $(document).ready(function() {
                 $(".post-panel").append(`
                 <div class="post-container post-container-clickable" post-id="${key}">
                     <div class="post-header"> 
-                        <a class="post-profile">
+                        <a href="profile.html?user=${val.op}" class="post-profile">
                             <img class="post-profile-photo" src="images/${val.op}.jpg">
                         </a>
 
-                        <a class="post-profile">
+                        <a href="profile.html?user=${val.op}" class="post-profile">
                             ${val.op}
                         </a>
                         &nbsp;•&nbsp; <span class="post-date"> ${val.date} </span>  

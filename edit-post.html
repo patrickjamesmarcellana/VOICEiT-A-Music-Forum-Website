@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Edit a Voice-Its</title>
+        <link rel="icon" type="image/png" href="images/logo2.png">
+        <link rel="stylesheet" type="text/css" media="all" href="css/index.css">
+        <link rel="stylesheet" type="text/css" media="all" href="css/create-post.css">
+        <script src="js/side_panel_a.js" defer></script>
+        <script src="js/navbar.js" defer></script>
+        <script src="js/index.js" defer></script>
+        <script src="js/code.jquery.com_jquery-3.6.0.min.js"></script>
+
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+
+        <div class="nav-bar"></div>
+
+        <!-- Content of Webpage -->
+
+        <div class="content" id="home">
+            <!-- Topics and Feeds (Leftmost) -->
+            <span class="side-panel-a"></span>
+
+             <!-- Create a Post -->
+            <div class="create-post-panel">
+                <div class="create-post">
+                    <span class="cp-title"> 
+                        Edit Post 
+                    </span>
+                    <form method="GET">
+                        <div class="create-post-forms">
+
+                            <label class="post-intro-text"> Voice what's on your mind!</label>
+                            <input class="post-title-input" type="text" id="post-title" name="post-title" placeholder="Title">
+                            <textarea class="post-content-input" id="post-content" name="post-content" placeholder="VoiceIt!"></textarea><br>
+
+                            <input class="create-post-submit-button" type="submit" value="POST" id="post-button">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>
