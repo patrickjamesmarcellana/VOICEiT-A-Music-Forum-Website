@@ -99,7 +99,7 @@ function is_logged_in() {
 }
 
 function insert_post(post_id, post) {
-    const appended = $(".post-panel").append(`
+    const appended = $(`
                 <div class="post-container post-container-clickable" post-id="${post_id}">
                     <div class="post-header"> 
                         <a href="profile.html?user=${post.op}" class="post-profile">
@@ -147,6 +147,7 @@ function insert_post(post_id, post) {
                     </div>
                 </div>
                 `);
+    $(".post-panel").append(appended)
     return appended
 }
 $(document).ready(function() {
@@ -354,6 +355,7 @@ $(document).ready(function() {
 
                 // hiding it
                 if(!is_logged_in() || val.op !== "melissa_spellman") {
+                    console.log(inserted_post)
                     inserted_post.find(".post-options-button").css("display", "none")
                 }
             }
