@@ -361,7 +361,14 @@ $(document).ready(function() {
             $(".post-panel").append(see_more_panel);
             // making post containers a clickable container to post.html
             $(".post-container-clickable").click(function(e) {
-                window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+                // e.currentTarget - element where listener is registered (in this case element with class post-container-clickable)
+                // e.target - exact element (can be e.currentTarget or its descendant)
+                const exact_element_pressed = e.target;
+                if(exact_element_pressed.classList.contains("edit-post-button")) {
+                    window.location.href = "edit-post.html?post=" + e.currentTarget.getAttribute("post-id");
+                } else {
+                    window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+                }
             })
         } else {
             window.location.href = `index.html?forum=${forum_id}`
