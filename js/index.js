@@ -101,7 +101,7 @@ function is_logged_in() {
 function insert_post(post_id, post_insertion_location=".post-panel") {
     const post = posts[post_id]
     const inserted_post = $(`
-                <div class="post-container post-container-clickable" id="${post_id}" post-id="${post_id}">
+                <div class="post-container post-container-clickable" post-id="${post_id}">
                     <div class="post-header"> 
                         <a href="profile.html?user=${post.op}" class="post-profile">
                             <img class="post-profile-photo" src="images/${post.op}.jpg">
