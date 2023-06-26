@@ -3,7 +3,7 @@ function compare_date(d1, d2) {
 }
 
 function compare_comment_count(c1, c2) {
-    return comment_count(c1.top_level_comments_list) < comment_count(c2.top_level_comments_list);
+    return comment_count(c2[1].top_level_comments_list) - comment_count(c1[1].top_level_comments_list);
 }
 
 function Forum(name, description) {
@@ -375,7 +375,7 @@ $(document).ready(function() {
                 if(forum_id === "home")
                     posts_list = posts_list.sort(compare_date);
                 else if(forum_id === "popular")
-                    posts_list = posts_list.sort(compare_date);
+                    posts_list = posts_list.sort(compare_comment_count);
             }
             
             const see_more_panel = $(".see-more-panel");
