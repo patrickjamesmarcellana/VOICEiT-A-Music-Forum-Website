@@ -92,6 +92,9 @@ $(document).ready(function() {
 
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
+
+        // remove see-more-panel
+        $(".see-more-panel").css("display", "none");
     } else {
         // remove profile and logout buttons from nav-bar
         $(".user-buttons").remove();
@@ -130,7 +133,8 @@ $(document).ready(function() {
         // make logout button disappear
         $(".logout-button").css("display", "none");
 
-        // location.reload();
+        // add see-more-panel
+        $(".see-more-panel").css("display", "flex");
     }
 
     // for dynamic content sizing when adjusting window size
