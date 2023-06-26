@@ -98,7 +98,7 @@ function is_logged_in() {
     return sessionStorage.getItem("logged_in") === "true";
 }
 
-function insert_post(post_id, post) {
+function insert_post(post_id, post, post_insertion_location=".post-panel") {
     const inserted_post = $(`
                 <div class="post-container post-container-clickable" post-id="${post_id}">
                     <div class="post-header"> 
@@ -147,7 +147,7 @@ function insert_post(post_id, post) {
                     </div>
                 </div>
                 `);
-    $(".post-panel").append(inserted_post)
+    $(post_insertion_location).append(inserted_post)
 
     // hiding it
     if(!is_logged_in() || post.op !== "melissa_spellman") {
