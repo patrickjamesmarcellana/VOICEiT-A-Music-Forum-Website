@@ -1,6 +1,6 @@
 function logout() {
     sessionStorage.setItem("logged_in", "false");
-    location.reload();
+    window.location.href = "index.html";
 }
 
 function is_logged_in() {
