@@ -75,18 +75,6 @@ $(document).ready(function() {
         // remove left side-panel's text ("Join the growing community...")
         $(".side-panel-bottom").remove();
 
-        // TODO: 3 scenarios for edit profile button
-        // 1. If user is not logged in, there is no edit profile button.
-        // 2. If user is logged in and they are not viewing their profile,
-        //    there is also no edit profile button.
-        // 3. Otherwise, when the user is logged and is viewing their profile,
-        //    there is an edit profile button.
-        // 
-        // This currently displays the edit profile button as long as the user
-        // is logged in, regardless of whether they are viewing their profile
-        // or someone else's.
-        $(".edit-profile-button").css("display", "block");
-
         // Change logged in photo 
         $(".logged-in-photo").attr("src", profile_photo);
 
@@ -418,6 +406,18 @@ $(document).ready(function() {
             profile_picture.attr("src", `images/${users[user_id].username}.jpg`)
             user_description.text(users[user_id].description);
 
+            // TODO: change this once sessions are implemented
+            // Since only one user can log in for now, the edit profile
+            // button is only displayed when the user is logged in and is
+            // viewing that one user's profile
+            let displayMode = "none";
+            if (is_logged_in() && user_id === `melissa_spellman`) {
+                displayMode = "block";
+            }
+            const editProfileBtns = $(".edit-profile-button");
+            for (const editProfileBtn of editProfileBtns) {
+                editProfileBtn.style.display = displayMode;
+            }
         } else {
             window.location.href = `index.html?user=${user_id}`
         }
