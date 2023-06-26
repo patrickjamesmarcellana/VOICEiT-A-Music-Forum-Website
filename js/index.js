@@ -307,7 +307,7 @@ $(document).ready(function() {
                         <a class="post-profile">
                             ${val.op}
                         </a>
-                        &nbsp;•&nbsp; <span class="post-date"> 5 months ago </span>  
+                        &nbsp;•&nbsp; <span class="post-date"> ${val.date} </span>  
 
                         <span class="post-options-button">
                             <div class="options-dropdown">
