@@ -22,7 +22,6 @@ const comment_count = (comments_list) => {
     if (comments_list.length == 0) {
         return 0;
     } else {
-        console.log(comments_list)
         let count = comments_list.length
         comments_list.forEach((x) => (count += comment_count(getComment(x).subcomments)))
         return count
