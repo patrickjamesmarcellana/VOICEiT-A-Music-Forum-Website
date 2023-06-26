@@ -406,20 +406,24 @@ $(document).ready(function() {
             profile_picture.attr("src", `images/${users[user_id].username}.jpg`)
             user_description.text(users[user_id].description);
 
-            // TODO: change this once sessions are implemented
-            // Since only one user can log in for now, the edit profile
-            // button is only displayed when the user is logged in and is
-            // viewing that one user's profile
-            let displayMode = "none";
-            if (is_logged_in() && user_id === `melissa_spellman`) {
-                displayMode = "block";
-            }
-            const editProfileBtns = $(".edit-profile-button");
-            for (const editProfileBtn of editProfileBtns) {
-                editProfileBtn.style.display = displayMode;
-            }
+            setEditProfileBtnVisibility(user_id);
         } else {
             window.location.href = `index.html?user=${user_id}`
+        }
+    }
+
+    function setEditProfileBtnVisibility(user_id) {
+        // TODO: change this once sessions are implemented
+        // Since only one user can log in for now, the edit profile
+        // button is only displayed when the user is logged in and is
+        // viewing that one user's profile
+        let displayMode = "none";
+        if (is_logged_in() && user_id === `melissa_spellman`) {
+            displayMode = "block";
+        }
+        const editProfileBtns = $(".edit-profile-button");
+        for (const editProfileBtn of editProfileBtns) {
+            editProfileBtn.style.display = displayMode;
         }
     }
 
