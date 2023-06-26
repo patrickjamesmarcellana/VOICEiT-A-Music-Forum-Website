@@ -38,6 +38,10 @@ console.log(extract_query("search"))
 $(".search-box").val(extract_query("search"))
 
 // fill search results
-for(i = 0; i < 5; i++)
-$(".search-container").after(data)
+const posts_list = Object.entries(posts);
+for(let i = 0; i < Math.min(20, posts_list.length); i++) {
+    const key = posts_list[i][0];
+    const val = posts_list[i][1];
+    const inserted_post = insert_post(key, val);
+}
 }) 
