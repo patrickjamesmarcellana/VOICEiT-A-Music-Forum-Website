@@ -5,6 +5,7 @@ $(document).ready(function() {
     
     if(post_id !== null) {
         post = posts[post_id]
+        $(".post-container").attr("post-id", post_id)
         $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)
         $(".post-subforum").text("v/" + post.subforum)
         $(".post-profile").attr("href", "profile.html?user=" + post.op)
