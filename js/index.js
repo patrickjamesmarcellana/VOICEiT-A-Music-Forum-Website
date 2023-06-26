@@ -54,7 +54,7 @@ $(document).ready(function() {
                 <div class="dropdown-content options-panel">
                     <br>
                     <span class="side-panel-text">USER OPTIONS</span>
-                    <a class="side-panel-a-buttons" href="profile.html">
+                    <a class="side-panel-a-buttons" href="profile.html?user=${username}">
                         <span class="profile-sprite"></span>
                         Profile
                     </a>
@@ -64,10 +64,10 @@ $(document).ready(function() {
                     </a>
                 </div>
             </span>
-            <a class="post-profile nav-profile" href="profile.html">
+            <a class="post-profile nav-profile" href="profile.html?user=${username}">
                 <img class="post-profile-photo" src="${profile_photo}">
             </a>
-            <a class="post-profile nav-profile-name" href="profile.html">
+            <a class="post-profile nav-profile-name" href="profile.html?user=${username}">
                 ${username}
             </a> 
         `);
@@ -446,7 +446,10 @@ $(document).ready(function() {
 
     // making logged-in profiles clickable to redirect to profile page
     $(".logged-in-photo").click(function() {
-        window.location.href = "profile.html";
+        // window.location.href = "profile.html";
+
+        // TODO: change this once sessions are implemented
+        window.location.href = "profile.html?user=melissa_spellman"
     });
 
 
