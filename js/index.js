@@ -164,7 +164,12 @@ function insert_post(post_id, post_insertion_location=".post-panel") {
         if(exact_element_pressed.classList.contains("edit-post-button")) {
             window.location.href = "edit-post.html?post=" + e.currentTarget.getAttribute("post-id");
         } else {
-            window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+            // do not go if we pressed <a> or <button> or an element declared with suffix -button
+            if(!(["a", "button"].includes(exact_element_pressed.tagName.toLowerCase()) ||
+                 [...exact_element_pressed.classList].some(class_name => class_name.endsWith("-button"))
+               )) {
+                window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+            }
         }
     })
     return inserted_post
