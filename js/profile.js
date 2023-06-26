@@ -8,10 +8,10 @@ $(document).ready(function() {
     const posts_list = Object.entries(posts).filter((kvpair) => (kvpair[1].op === target_user));
     const comments_list = Object.entries(saved_comments).filter((kvpair) => (kvpair[1].author === target_user));
     for (let [post_id, post] of posts_list) {
-        console.log(post_id, post.title, post.content)
+        insert_post(post_id, post)
     }
     
     for (let [comment_id, comment] of comments_list) {
-        console.log(comment_id, comment.post_id, comment.content)
+        renderComment(comment_id, document.querySelector(".post-panel"))
     }
 })
