@@ -144,6 +144,7 @@ $(document).ready(function() {
         post = posts[post_id]
         $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)
         $(".post-subforum").text("v/" + post.subforum)
+        $(".post-profile").attr("href", "profile.html?user=" + post.op)
         $(".post-profile-text").attr("href", "profile.html?user=" + post.op)
         $(".post-profile-text").text(post.op)
         $(".post-profile-photo").attr("src", `images/${post.op}.jpg`)
