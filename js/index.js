@@ -110,7 +110,7 @@ function insert_post(post_id, post_insertion_location=".post-panel") {
                         <a href="profile.html?user=${post.op}" class="post-profile">
                             ${post.op}
                         </a>
-                        &nbsp;•&nbsp; <span class="post-date"> ${post.date.toLocaleDateString('en-CA')}  (${post.date.toLocaleTimeString('en-CA')}) </span>  
+                        &nbsp;•&nbsp; <span class="post-date"> ${post.date.toDateString('en-CA')} | ${post.date.toLocaleTimeString()} </span>  
 
                         <span class="post-options-button">
                             <div class="options-dropdown">

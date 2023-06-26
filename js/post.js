@@ -14,7 +14,7 @@ $(document).ready(function() {
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
         $(".comment-count").text(comment_count(post.top_level_comments_list))
-        $(".post-date").html(post.date)
+        $(".post-date").html(`${post.date.toDateString('en-CA')} | ${post.date.toLocaleTimeString()}`)
     
         if(is_logged_in() && post.op === LOGIN_USER) {
             $(".post-options-button").css("display", "inline-block")
