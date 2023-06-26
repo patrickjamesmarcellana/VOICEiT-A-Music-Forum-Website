@@ -152,6 +152,21 @@ $(document).ready(function() {
         $(".comment-count").text(comment_count(post.top_level_comments_list))
         $(".post-date").html(post.date)
 
+        $(".post-header").append(`
+            <span class="post-options-button">
+                <div class="options-dropdown">
+                    <button class="edit-post-button">
+                        <span class="edit-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        &nbsp;&nbsp;Edit
+                    </button> <br>
+                    <button class="delete-post-button">
+                        <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        &nbsp;&nbsp;Delete
+                    </button>
+                </div>
+            </span>
+        `);
+
         if(is_logged_in() && post.op === LOGIN_USER) {
             $(".post-options-button").css("display", "inline-block")
         } else {

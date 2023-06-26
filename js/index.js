@@ -307,19 +307,20 @@ $(document).ready(function() {
                         <a class="post-profile">
                             ${val.op}
                         </a>
+                        &nbsp;•&nbsp; <span class="post-date"> 5 months ago </span>  
 
                         <span class="post-options-button">
-                        <div class="options-dropdown">
-                            <button class="edit-post-button">
-                                <span class="edit-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                &nbsp;&nbsp;Edit
-                            </button> <br>
-                            <button class="delete-post-button">
-                                <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                &nbsp;&nbsp;Delete
-                            </button>
-                        </div>
-                    </span>
+                            <div class="options-dropdown">
+                                <button class="edit-post-button">
+                                    <span class="edit-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    &nbsp;&nbsp;Edit
+                                </button> <br>
+                                <button class="delete-post-button">
+                                    <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    &nbsp;&nbsp;Delete
+                                </button>
+                            </div>
+                        </span>
                     </div>
                 
                     <div class="post-content" >
