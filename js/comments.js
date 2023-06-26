@@ -74,11 +74,11 @@ const comment_panel_back = () => {
     location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
 
-const renderComment = function(comment_id, commentInjectionLocation, depth=0){
+const renderComment = function(comment_id, commentInjectionLocation, depth=0, flags=[]){
     // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
     const container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
-
+    console.log(depth, flags)
     const comment_info = getComment(comment_id)
     if(comment_info == null) {
         console.warn(`Comment ${comment_id} not found. Aborting`)
@@ -137,14 +137,14 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0){
     }
 
     // are the subcomments
-    if(comment_info.subcomments.length > 0) {
+    if(!flags.includes("dont-render-subcomments") && comment_info.subcomments.length > 0) {
         container.querySelector(".comment-subcomments-panel").classList.remove("hidden")
         container.classList.add("with-subcomments")
 
          // find children and render them
         if(depth < 4 /* depth limit */) {
             comment_info.subcomments.forEach(function(x) {
-                renderComment(x, container.querySelector(".comment-subcomments-panel"), depth + 1)
+                renderComment(x, container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
             })
         } else { // depth limit exceeded?
             const loadmore = container.querySelector(".comment-loadmore-button")
