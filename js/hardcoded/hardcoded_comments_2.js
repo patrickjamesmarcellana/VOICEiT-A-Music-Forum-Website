@@ -11,7 +11,7 @@ hardcoded_comments[2] = () => {
         author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Relapse, hands down. Better production, flows, and lyrics. Recovery has its hooks and choruses literally catered to 14-year-old girls. Em hasn’t topped Relapse yet. Screw Recovery.        "
+        content: "Relapse, hands down. Better production, flows, and lyrics. Recovery has its hooks and choruses literally catered to 14-year-old girls. Em hasn't topped Relapse yet. Screw Recovery.        "
     }
     dumpComment(comment)
 

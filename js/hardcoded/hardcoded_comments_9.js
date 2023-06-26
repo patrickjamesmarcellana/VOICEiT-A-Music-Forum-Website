@@ -11,7 +11,7 @@ hardcoded_comments[9] = () => {
         author: USER1,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "I don’t know about you but I hear this one guitar tone in literally every country song known to mankind. If there’s anything that would put someone off, it’s definitely one of the reasons."
+        content: "I don't know about you but I hear this one guitar tone in literally every country song known to mankind. If there's anything that would put someone off, it's definitely one of the reasons."
     }
     dumpComment(comment)
 
@@ -25,7 +25,7 @@ hardcoded_comments[9] = () => {
         author: USER2,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "I highly agree on this. It’s just the same song copy and pasted without any innovation. It’s become like hip-hop imo"
+        content: "I highly agree on this. It's just the same song copy and pasted without any innovation. It's become like hip-hop imo"
     }
     dumpComment(comment)
 
@@ -54,7 +54,7 @@ hardcoded_comments[9] = () => {
         author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "You’ll never find a good country song on the radio. You actually have to actively seek them out. Listen to Colter Wall and Orville Peck on Spotify and you’ll see the difference."
+        content: "You'll never find a good country song on the radio. You actually have to actively seek them out. Listen to Colter Wall and Orville Peck on Spotify and you'll see the difference."
     }
     dumpComment(comment)
 }
