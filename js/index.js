@@ -98,7 +98,8 @@ function is_logged_in() {
     return sessionStorage.getItem("logged_in") === "true";
 }
 
-function insert_post(post_id, post, post_insertion_location=".post-panel") {
+function insert_post(post_id, post_insertion_location=".post-panel") {
+    const post = posts[post_id]
     const inserted_post = $(`
                 <div class="post-container post-container-clickable" post-id="${post_id}">
                     <div class="post-header"> 
@@ -368,8 +369,7 @@ $(document).ready(function() {
             
             for(let i = 0; i < Math.min(20, posts_list.length); i++) {
                 const key = posts_list[i][0];
-                const val = posts_list[i][1];
-                const inserted_post = insert_post(key, val)
+                insert_post(key)
             }
             
             $(".post-panel").append(see_more_panel);

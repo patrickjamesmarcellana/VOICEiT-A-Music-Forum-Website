@@ -42,6 +42,6 @@ const posts_list = Object.entries(posts);
 for(let i = 0; i < Math.min(20, posts_list.length); i++) {
     const key = posts_list[i][0];
     const val = posts_list[i][1];
-    const inserted_post = insert_post(key, val);
+    insert_post(key);
 }
 }) 
