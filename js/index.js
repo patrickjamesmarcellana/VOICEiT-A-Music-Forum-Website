@@ -406,7 +406,6 @@ $(document).ready(function() {
             // Since only one user can log in for now, the edit profile
             // button is only displayed when the user is logged in and is
             // viewing that one user's profile
-            const edit_profile_buttons = $(".edit-profile-button");
             let displayMode = "none";
             if (is_logged_in() && user_id === `melissa_spellman`) {
                 displayMode = "block";
