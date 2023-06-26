@@ -2,6 +2,10 @@ function compare_date(d1, d2) {
     return new Date(d2[1].date) - new Date(d1[1].date);
 }
 
+function compare_comment_count(c1, c2) {
+    return comment_count(c1.top_level_comments_list) < comment_count(c2.top_level_comments_list);
+}
+
 function Forum(name, description) {
     this.name = name;
     this.description = description;
@@ -367,6 +371,11 @@ $(document).ready(function() {
                 posts_list = Object.entries(posts).filter((kvpair) => (kvpair[1].subforum === forum_id));
             } else {
                 posts_list = Object.entries(posts);
+                
+                if(forum_id === "home")
+                    posts_list = posts_list.sort(compare_date);
+                else if(forum_id === "popular")
+                    posts_list = posts_list.sort(compare_date);
             }
             
             const see_more_panel = $(".see-more-panel");
@@ -375,9 +384,8 @@ $(document).ready(function() {
             $(".see-more-panel").remove();
             $(".post-container").remove();
 
-            const sorted_list = posts_list.sort(compare_date);
             for(let i = 0; i < Math.min(20, posts_list.length); i++) {
-                const key = sorted_list[i][0];
+                const key = posts_list[i][0];
                 insert_post(key)
             }
             
