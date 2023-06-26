@@ -142,11 +142,9 @@ $(document).ready(function() {
         $(".comment-count").text(comment_count(post.top_level_comments_list))
 
         if(is_logged_in() && post.op === LOGIN_USER) {
-            $(".post-edit-button").css("display", "inline")
-            $(".post-delete-button").css("display", "inline")
+            $(".post-options-button").css("display", "inline-block")
         } else {
-            $(".post-edit-button").css("display", "none")
-            $(".post-delete-button").css("display", "none")
+            $(".post-options-button").css("display", "none")
         }
         
     
