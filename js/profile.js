@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     // find post the comment belongs to
     for (let [comment_id, comment] of comments_list) {
-        if(comment.post_id != null && !post_id_list.includes(comment.post_id)) { // todo: optimize
+        if(comment.post_id != null && !post_id_list.includes(comment.post_id.toString())) { // todo: optimize
             post_id_list.push(comment.post_id);
         }
     }
