@@ -9,7 +9,7 @@ const posts = {
         <br>
         I’ve recorded a sample which I hope helps: https://vocaroo.com/12Y0LTxSjHCr
         `,
-        date: "5 hours ago",
+        date: new Date("2023-06-21T05:20:30"),
         top_level_comments_list: [101, 103, 105]
     },
     2: {
@@ -20,7 +20,7 @@ const posts = {
         text: `
         Discuss.
         `,
-        date: "5 days ago",
+        date: new Date("2023-06-20T23:18:30"),
         top_level_comments_list: [201, 203]
     },
     3: {
@@ -43,7 +43,7 @@ const posts = {
 
         What an absolute joke.<br>
         `,
-        date: "Last Edited: 3 hours ago",
+        date: new Date("2023-01-17T04:16:30"),
         top_level_comments_list: [301]
     },
     4: {
@@ -54,7 +54,7 @@ const posts = {
         text: `
         I thought it was pretty good. How about you guys?
         `,
-        date: "4 months ago",
+        date: new Date("2023-02-01T11:15:30"),
         top_level_comments_list: [401, 402, 403]
     },
     5: {
@@ -67,7 +67,7 @@ const posts = {
         <br>
         Link: https://en.yna.co.kr/view/AEN20230622002200315
         `,
-        date: "Last Edited: 2 minutes ago",
+        date: new Date("2023-06-26T23:59:59"),
         top_level_comments_list: [501, 503]
     },
     6: {
@@ -78,7 +78,7 @@ const posts = {
         text: `
         I can’t stand this guy. His voice and singing are both bad, and his rapping and songwriting skills are absolutely terrible. I’d be lying if I said he didn’t have any good song instrumentals, but apart from that, that’s really it. I don’t really see anything else of value that would make me like this guy. So can anyone please explain to me why this guy is so big? It really is baffling.
         `,
-        date: "Last Edited: 9 hours ago",
+        date: new Date("2023-06-26T10:02:30"),
         top_level_comments_list: [601, 604]
     },
     7: {
@@ -89,7 +89,7 @@ const posts = {
         text: `
         For me, Kind of Blue by Miles Davis. Overplayed, sure. Doesn’t change a thing, though.
         `,
-        date: "6 days ago",
+        date: new Date("2023-06-14T03:33:30"),
         top_level_comments_list: [701, 703]
     },
     8: {
@@ -100,7 +100,7 @@ const posts = {
         text: `
         I want to start listening to classical music. Where should one start? Any recommendations would be much appreciated. Thank you!
         `,
-        date: "1 year ago",
+        date: new Date("2022-06-26T05:20:30"),
         top_level_comments_list: [801, 802, 803]
     },
     9: {
@@ -111,7 +111,7 @@ const posts = {
         text: `
         I am completely aware that there are some (really) bad country songs out there, but to be fair, all genres have THE bad songs that people laugh at or don’t want to talk about. But I really do feel like a lot of people hate country music, more so than any other genre. I sincerely hope that isn’t just me thinking that. But anyway, to both country music fans, non-fans, and haters, what do you think puts people off when it comes to country music?
         `,
-        date: "7 months ago",
+        date: new Date("2022-12-31T03:16:30"),
         top_level_comments_list: [901, 903, 904]
     },
     10: {
@@ -122,7 +122,7 @@ const posts = {
         text: `
         I find it pretty sad that among my friends, I am the only one who listens to alternative and indie rock. They all just listen to your typical, generic pop and rap. While I respect the fact that people have different tastes, which is quite evident, it makes me feel lonely, like I can’t even talk to them about the music I love. Instead, I have to consult strangers on the internet I’ve never seen or met before. I’m just worried that someday, alternative music will just completely fade into obscurity never to be seen again, and I feel like I will really struggle in relating to other people’s tastes in music. Thoughts?
         `,
-        date: "Last Edited: 2 days ago",
+        date: new Date("2023-06-24T17:18:30"),
         top_level_comments_list: [1001, 1002]
     },
 }

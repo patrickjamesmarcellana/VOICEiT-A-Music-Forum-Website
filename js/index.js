@@ -99,6 +99,7 @@ function is_logged_in() {
 }
 
 function insert_post(post_id, post) {
+    const post_date_since = Date.now() - post.date;
     const appended = $(".post-panel").append(`
                 <div class="post-container post-container-clickable" post-id="${post_id}">
                     <div class="post-header"> 
@@ -109,7 +110,7 @@ function insert_post(post_id, post) {
                         <a href="profile.html?user=${post.op}" class="post-profile">
                             ${post.op}
                         </a>
-                        &nbsp;•&nbsp; <span class="post-date"> ${post.date} </span>  
+                        &nbsp;•&nbsp; <span class="post-date"> ${post.date.toLocaleDateString('en-CA')}  (${post.date.toLocaleTimeString('en-CA')}) </span>  
 
                         <span class="post-options-button">
                             <div class="options-dropdown">
