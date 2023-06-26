@@ -1,3 +1,7 @@
+function compare_date(d1, d2) {
+    return new Date(d2[1].date) - new Date(d1[1].date);
+}
+
 function Forum(name, description) {
     this.name = name;
     this.description = description;
@@ -371,9 +375,9 @@ $(document).ready(function() {
             $(".see-more-panel").remove();
             $(".post-container").remove();
 
-            
+            const sorted_list = posts_list.sort(compare_date);
             for(let i = 0; i < Math.min(20, posts_list.length); i++) {
-                const key = posts_list[i][0];
+                const key = sorted_list[i][0];
                 insert_post(key)
             }
             
