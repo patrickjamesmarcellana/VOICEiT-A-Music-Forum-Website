@@ -27,13 +27,12 @@
     width: 85vw;
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
-#cp-title{
-    margin-left: 7rem;
-    margin-bottom: 1rem;
+.cp-title{
+    margin-left: 40px;
     font-size: 1.5rem;
     font-family: var(--header-font);
     color: white;
@@ -46,9 +45,11 @@
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
     color: var(--main-color);
     box-shadow: 0px 3px 6px 0px #31294c;
+    padding-top: 30px;
+    box-sizing: border-box;
 }
 
-#subforum{
+.subforum-options {
     background-color: transparent;
     border: solid 1px var(--main-color);
     color: var(--main-color);
@@ -59,21 +60,22 @@
     align-items: center;
 }
 
-#subforum *{
+.subforum-options *{
     background-color: #5756bb;
 }
 
 .create-post-forms{
-    margin: 30px 40px;
+    padding: 15px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
 }
 
-#text{
-    font-family: var(--main-font);
-    margin-left: 275px;
+.post-intro-text {
     font-size: 18px;
+    margin: 0px auto;
 }
 
-#post-title{
+.post-title-input {
     width: 98%;
     height: 20px;
     border: 2px solid black;
@@ -83,7 +85,7 @@
     font-size: 16px;
 }
 
-#post-content{
+.post-content-input {
     width: 98%;
     height: 300px;
     border: 2px solid black;
@@ -94,7 +96,14 @@
     resize: vertical;
 }
 
-#post-button{
+.create-post-submit-button:hover{
+    background: rgba(39, 37, 37, 0.87);
+    color: white;
+}
+
+.create-post-submit-button {
+    margin-left: auto;
+    margin-right: 11px;
     width: 90px;
     height: 40px;
     font-size: 18px;
@@ -103,13 +112,12 @@
     border: 1px solid white;
     color: white;
     letter-spacing: 4px;
-    margin-left: 690px;
     box-shadow: 0px 2px 5px 0px #31294c;
-    
 }
 
-#post-button:hover{
-    background: rgba(39, 37, 37, 0.87);
-    color: white;
+@media screen and (max-width: 1247px) {
+    .create-post-panel {
+        width: 100vw;
+        margin-top: 30px;
+    }
 }
-
