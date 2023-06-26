@@ -99,7 +99,7 @@ function is_logged_in() {
 }
 
 function insert_post(post_id, post) {
-    const appended = $(`
+    const inserted_post = $(`
                 <div class="post-container post-container-clickable" post-id="${post_id}">
                     <div class="post-header"> 
                         <a href="profile.html?user=${post.op}" class="post-profile">
@@ -147,8 +147,26 @@ function insert_post(post_id, post) {
                     </div>
                 </div>
                 `);
-    $(".post-panel").append(appended)
-    return appended
+    $(".post-panel").append(inserted_post)
+
+    // hiding it
+    if(!is_logged_in() || post.op !== "melissa_spellman") {
+        console.log(inserted_post)
+        inserted_post.find(".post-options-button").css("display", "none")
+    }
+
+    // making post containers a clickable container to post.html
+    inserted_post.click(function(e) {
+        // e.currentTarget - element where listener is registered (in this case element with class post-container-clickable)
+        // e.target - exact element (can be e.currentTarget or its descendant)
+        const exact_element_pressed = e.target;
+        if(exact_element_pressed.classList.contains("edit-post-button")) {
+            window.location.href = "edit-post.html?post=" + e.currentTarget.getAttribute("post-id");
+        } else {
+            window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
+        }
+    })
+    return inserted_post
 }
 $(document).ready(function() {
     /* changing nav-bar and side-panel-a's views when logging in */
@@ -352,26 +370,9 @@ $(document).ready(function() {
                 const key = posts_list[i][0];
                 const val = posts_list[i][1];
                 const inserted_post = insert_post(key, val)
-
-                // hiding it
-                if(!is_logged_in() || val.op !== "melissa_spellman") {
-                    console.log(inserted_post)
-                    inserted_post.find(".post-options-button").css("display", "none")
-                }
             }
             
             $(".post-panel").append(see_more_panel);
-            // making post containers a clickable container to post.html
-            $(".post-container-clickable").click(function(e) {
-                // e.currentTarget - element where listener is registered (in this case element with class post-container-clickable)
-                // e.target - exact element (can be e.currentTarget or its descendant)
-                const exact_element_pressed = e.target;
-                if(exact_element_pressed.classList.contains("edit-post-button")) {
-                    window.location.href = "edit-post.html?post=" + e.currentTarget.getAttribute("post-id");
-                } else {
-                    window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
-                }
-            })
         } else {
             window.location.href = `index.html?forum=${forum_id}`
         }
