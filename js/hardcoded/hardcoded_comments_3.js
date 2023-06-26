@@ -25,7 +25,7 @@ hardcoded_comments[3] = () => {
         author: USER4,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "They’re usually considered pop-rock, but they’re just stylish pop imo"
+        content: "They're usually considered pop-rock, but they're just stylish pop imo"
     }
     dumpComment(comment)
 

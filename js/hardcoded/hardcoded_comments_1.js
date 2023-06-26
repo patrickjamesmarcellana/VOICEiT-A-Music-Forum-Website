@@ -11,7 +11,7 @@ hardcoded_comments[1] = () => {
         author: USER1,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "You sure it’s not Bastille - Pompeii?"
+        content: "You sure it's not Bastille - Pompeii?"
     }
     dumpComment(comment)
 
@@ -25,7 +25,7 @@ hardcoded_comments[1] = () => {
         author: USER2,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "lmao I seriously can’t tell if you’re being sarcastic or not, but I just woke up my kids from laughing so hard"
+        content: "lmao I seriously can't tell if you're being sarcastic or not, but I just woke up my kids from laughing so hard"
     }
     dumpComment(comment)
 
@@ -53,7 +53,7 @@ hardcoded_comments[1] = () => {
         author: OP,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Sorry, it’s not it"
+        content: "Sorry, it's not it"
     }
     dumpComment(comment)
 
@@ -81,7 +81,7 @@ hardcoded_comments[1] = () => {
         author: OP,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "I don’t think it’s too EDM-y like that one"
+        content: "I don't think it's too EDM-y like that one"
     }
     dumpComment(comment)
 }

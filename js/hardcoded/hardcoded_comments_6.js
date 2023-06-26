@@ -53,7 +53,7 @@ hardcoded_comments[6] = () => {
         author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "I remember him performing during Royal Rumble 2022. What an absolute waste of time and money. It’s just like Maroon 5 and Travis Scott during the Super Bowl LIII halftime show. Unbelievable."
+        content: "I remember him performing during Royal Rumble 2022. What an absolute waste of time and money. It's just like Maroon 5 and Travis Scott during the Super Bowl LIII halftime show. Unbelievable."
     }
     dumpComment(comment)
 }

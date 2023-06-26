@@ -53,7 +53,7 @@ hardcoded_comments[5] = () => {
         author: USER5,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "They already signed with Warner Records, so I think they’ll do fine"
+        content: "They already signed with Warner Records, so I think they'll do fine"
     }
     dumpComment(comment)
 }
