@@ -168,11 +168,11 @@ body {
     background-color: black;
 }
 
-.user-buttons div[class="dropdown-content options-panel"] {
+.user-buttons div[class="user-content dropdown-content options-panel"] {
     height: auto;
 }
 
-.topics-button div[class="options-panel dropdown-content"] {
+.topics-button div[class="topics-content options-panel dropdown-content"] {
     height: 40vh;
 }
 
@@ -251,7 +251,7 @@ body {
 
 @media screen and (max-width: 706px) {
     .user-buttons {
-        display: inline-block;
+        display: block;
         margin-left: 2vw;
     }
 
@@ -272,10 +272,19 @@ body {
         float: right;
     }
 
-    /* .dropdown-content {
+    .dropdown-content {
         position: relative;
         float: right;
-    } */
+        margin-top: 79px;
+    }
+
+    .topics-content {
+        margin-top: 102px;
+    }
+
+    .user-content {
+        margin-top: 1000px;
+    }
 }
 
 .nav-button:hover,

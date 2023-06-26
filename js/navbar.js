@@ -28,7 +28,7 @@ navbar_html = `
                 <i class="arrow down"></i>
             </button>
 
-            <div class="options-panel dropdown-content">
+            <div class="topics-content options-panel dropdown-content">
                 <br>
                 <span class="side-panel-text">TIMELINE</span>
                 <a class="side-panel-a-buttons home"> 
@@ -90,7 +90,7 @@ navbar_html = `
                 <i class="arrow down"></i>
             </button>
             
-            <div class="dropdown-content options-panel">
+            <div class="user-content dropdown-content options-panel">
                 <br>
                 <span class="side-panel-text">USER OPTIONS</span>
                 <a class="side-panel-a-buttons" href="register.html">
