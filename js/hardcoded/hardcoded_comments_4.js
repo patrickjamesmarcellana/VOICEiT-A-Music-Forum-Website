@@ -11,7 +11,7 @@ hardcoded_comments[4] = () => {
         author: USER3,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "I honestly loved it. It’s the perfect post-breakup album, so it really spoke to me. I love her so much."
+        content: "I honestly loved it. It's the perfect post-breakup album, so it really spoke to me. I love her so much."
     }
     dumpComment(comment)
 
@@ -39,7 +39,7 @@ hardcoded_comments[4] = () => {
         author: USER4,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "I like it, but it’s definitely too long. CTRL > SOS. 7-8/10"
+        content: "I like it, but it's definitely too long. CTRL > SOS. 7-8/10"
     }
     dumpComment(comment)
 }

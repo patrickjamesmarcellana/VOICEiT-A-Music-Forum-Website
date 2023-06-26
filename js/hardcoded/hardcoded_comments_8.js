@@ -11,7 +11,7 @@ hardcoded_comments[8] = () => {
         author: USER2,
         votes: 1,
         vote_state: STATE_NOT_VOTED,
-        content: "Most definitely start with Bach and Mozart so you can get a good feel of the genre and know what to expect from that point. People might say try Tchaikovsky but I feel like his music is just flashy and is unsuited for a beginner. Maybe when you’ve grown accustomed to the entire thing."
+        content: "Most definitely start with Bach and Mozart so you can get a good feel of the genre and know what to expect from that point. People might say try Tchaikovsky but I feel like his music is just flashy and is unsuited for a beginner. Maybe when you've grown accustomed to the entire thing."
     }
     dumpComment(comment)
 
