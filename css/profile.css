@@ -99,6 +99,7 @@
     font-family: var(--header-font);
     color: var(--main-color);
     margin-right: 5%;
+    cursor: pointer;
 }
 
 .profile-content-option:hover {
