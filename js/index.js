@@ -344,6 +344,11 @@ $(document).ready(function() {
                     </div>
                 </div>
                 `);
+
+                // HACK?: since the just-inserted element is the last, yes we are hiding it
+                if(!is_logged_in() || val.op !== "melissa_spellman") {
+                    $(".post-panel > .post-container .post-options-button").last().css("display", "none")
+                }
             }
             
             $(".post-panel").append(see_more_panel);
