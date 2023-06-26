@@ -360,7 +360,9 @@ $(document).ready(function() {
 
     function changeForum(forum_id) {
         // are we in index.html
-        if(window.location.pathname.split("/").pop() == "index.html") {
+        // TODO: GET RID OF THIS
+        const cur_page = window.location.pathname.split("/").pop();
+        if(cur_page === "index.html" || cur_page === "") {
             //window.location.href = `index.html?forum=${forum_id}`;
             forum_name.text(forums[forum_id].name);
             forum_description.html(forums[forum_id].description);
@@ -398,7 +400,8 @@ $(document).ready(function() {
     const search_params = new URLSearchParams(window.location.search);
 
     // should we change the forum
-    if(window.location.pathname.split("/").pop() == "index.html") { // dirty hack
+    const cur_page = window.location.pathname.split("/").pop();
+    if(cur_page === "index.html" || cur_page === "") { // dirty hack TODO: GET RID OF THIS
         const goto_forum_id = search_params.get(URL_FORUM_KEY);
         if(goto_forum_id != null) {
             changeForum(goto_forum_id);
