@@ -151,7 +151,7 @@ const onEditButtonPressed = async (event) => {
     const container = event.currentTarget.closest(".comment-container")
     const editor_container = container.querySelector(".comment-text-editor")
     editor_container.classList.remove("hidden")
-    editor_container.querySelector("textarea").textContent = await getComment(container.getAttribute("backend_id")).content
+    editor_container.querySelector("textarea").textContent = (await getComment(container.getAttribute("backend_id"))).content
 }
 
 const onReplyButtonPressed = (event) => {
