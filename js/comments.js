@@ -30,7 +30,7 @@ const loadSingleComment = async function(comment_id) {
     document.querySelector(".comment-subcomments-indicator").classList.remove("hidden")
 
     const comment = await getComment(comment_id)
-    renderComment(comment, document.querySelector("#comments-panel"))
+    await renderComment(comment, document.querySelector("#comments-panel"))
 
     comment_view_stack.push(comment_id)
 
@@ -43,10 +43,10 @@ const loadAllComment = async (top_level_comments_list) => {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
-    top_level_comments_list.forEach(async function(comment_id) {
-        const x = await getComment(comment_id)
-        await renderComment(x, document.querySelector("#comments-panel"))
-    })
+    for(const comment_id of top_level_comments_list) {
+        const comment = await getComment(comment_id)
+        await renderComment(comment, document.querySelector("#comments-panel"))
+    }
 }
 
 const comment_panel_back = () => {
@@ -63,7 +63,7 @@ const comment_panel_back = () => {
     location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
 
-const renderComment = function(comment_info, commentInjectionLocation, depth=0, flags=[]){
+const renderComment = async function(comment_info, commentInjectionLocation, depth=0, flags=[]){
     // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
     const container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
@@ -132,9 +132,9 @@ const renderComment = function(comment_info, commentInjectionLocation, depth=0, 
 
          // find children and render them
         if(depth < 4 /* depth limit */) {
-            comment_info.subcomments.forEach(async function(x) {
-                renderComment(await getComment(x), container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
-            })
+            for(const subcomment_id of comment_info.subcomments) {
+                renderComment(await getComment(subcomment_id), container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
+            }
         } else { // depth limit exceeded?
             const loadmore = container.querySelector(".comment-loadmore-button")
             loadmore.classList.remove("hidden")

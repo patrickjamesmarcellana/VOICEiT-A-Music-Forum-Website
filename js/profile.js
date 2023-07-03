@@ -12,7 +12,7 @@ ProfileMode = {
 }
 
 
-function render_profile(mode) {
+async function render_profile(mode) {
     // note: .op is for post, .author is for comment (fix this)
     // note 2: post is a global variable containing all the posts for some reason
     // note 3: same for saved_comments
@@ -45,22 +45,22 @@ function render_profile(mode) {
     }
     
     for (let [comment_id, comment] of comments_list) {
-        renderComment(comment_id, document.querySelector(`div[post-id="${comment.post_id}"]`), undefined, ["dont-render-subcomments"])
+        await renderComment(comment_id, document.querySelector(`div[post-id="${comment.post_id}"]`), undefined, ["dont-render-subcomments"])
     }
 }
 
-$(document).ready(function() {
+$(document).ready(async function() {
     const search_params = new URLSearchParams(window.location.search)
     target_user = search_params.get("user")
 
-    $("#profile-overview-button").click(function() {
-        render_profile(ProfileMode.MODE_OVERVIEW)
+    $("#profile-overview-button").click(async function() {
+        await render_profile(ProfileMode.MODE_OVERVIEW)
     })
-    $("#profile-posts-button").click(function() {
-        render_profile(ProfileMode.MODE_POSTS)
+    $("#profile-posts-button").click(async function() {
+        await render_profile(ProfileMode.MODE_POSTS)
     })
-    $("#profile-comments-button").click(function() {
-        render_profile(ProfileMode.MODE_COMMENTS)
+    $("#profile-comments-button").click(async function() {
+        await render_profile(ProfileMode.MODE_COMMENTS)
     })
 
     render_profile(ProfileMode.MODE_OVERVIEW)
