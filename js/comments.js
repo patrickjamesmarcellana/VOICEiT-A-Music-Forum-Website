@@ -42,7 +42,7 @@ const loadSingleComment = function(comment_id) {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.remove("hidden")
 
-    renderComment(comment_id, document.querySelector("#comments-panel"))
+    renderComment(getComment(comment_id), document.querySelector("#comments-panel"))
 
     comment_view_stack.push(comment_id)
 
@@ -56,7 +56,7 @@ const loadAllComment = (top_level_comments_list) => {
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
     top_level_comments_list.forEach(function(x) {
-        renderComment(x, document.querySelector("#comments-panel"))
+        renderComment(getComment(x), document.querySelector("#comments-panel"))
     })
 }
 
@@ -74,12 +74,12 @@ const comment_panel_back = () => {
     location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
 
-const renderComment = function(comment_id, commentInjectionLocation, depth=0, flags=[]){
+const renderComment = function(comment_info, commentInjectionLocation, depth=0, flags=[]){
     // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
     const container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
     console.log(depth, flags)
-    const comment_info = getComment(comment_id)
+
     if(comment_info == null) {
         console.warn(`Comment ${comment_id} not found. Aborting`)
         return
@@ -144,7 +144,7 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0, fl
          // find children and render them
         if(depth < 4 /* depth limit */) {
             comment_info.subcomments.forEach(function(x) {
-                renderComment(x, container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
+                renderComment(getComment(x), container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
             })
         } else { // depth limit exceeded?
             const loadmore = container.querySelector(".comment-loadmore-button")

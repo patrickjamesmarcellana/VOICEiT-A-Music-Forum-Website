@@ -45,7 +45,7 @@ function render_profile(mode) {
     }
     
     for (let [comment_id, comment] of comments_list) {
-        renderComment(comment_id, document.querySelector(`div[post-id="${comment.post_id}"]`), undefined, ["dont-render-subcomments"])
+        renderComment(getComment(comment_id), document.querySelector(`div[post-id="${comment.post_id}"]`), undefined, ["dont-render-subcomments"])
     }
 }
 
