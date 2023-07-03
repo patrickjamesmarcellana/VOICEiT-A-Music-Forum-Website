@@ -35,6 +35,11 @@ const getComment = (comment_id) => {
     return saved_comments[comment_id]
 }
 
+const loadSubcomments = function(comment) {
+    comment_info.subcomments.forEach(function(x) {
+        renderComment(getComment(x), container.querySelector(`#${COMMENT_PREFIX + comment_info.comment_id}.comment-subcomments-panel`), depth + 1, flags)
+    })
+}
 const loadSingleComment = function(comment_id) {
     // wipe comments?
     document.querySelector("#comments-panel").innerHTML = ""
@@ -42,7 +47,7 @@ const loadSingleComment = function(comment_id) {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.remove("hidden")
 
-    renderComment(getComment(comment_id), document.querySelector("#comments-panel"))
+    loadCommentToView(comment_id, document.querySelector("#comments-panel"), 0)
 
     comment_view_stack.push(comment_id)
 
@@ -55,11 +60,41 @@ const loadAllComment = (top_level_comments_list) => {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
-    top_level_comments_list.forEach(function(x) {
-        renderComment(getComment(x), document.querySelector("#comments-panel"))
+    top_level_comments_list.forEach(function(comment_id) {
+        loadCommentToView(comment_id, document.querySelector("#comments-panel"), 0)
+
     })
 }
 
+function enableSubcommentsPanel(comment_container) {
+    comment_container.querySelector(":scope > .comment-subcomments-panel").classList.remove("hidden")
+    comment_container.classList.add("with-subcomments")
+}
+
+function enableLoadMoreSubcomments(comment_container, subcomment_amount) {
+    const loadmore = comment_container.querySelector(":scope > .comment-subcomments-panel > .comment-loadmore-button")
+
+    const comment_id = comment_container.getAttribute("comment-id")
+    loadmore.classList.remove("hidden")
+    loadmore.textContent = loadmore.textContent.replace("$COUNT", subcomment_amount)
+    loadmore.href = `javascript:loadSingleComment(${comment_id})`
+}
+// calls view
+const loadCommentToView = (comment_id, comment_panel, depth) => {
+    const comment = getComment(comment_id)
+    const comment_view = renderComment(comment, comment_panel)
+
+    if(comment.subcomments.length > 0) {
+        enableSubcommentsPanel(comment_view)
+        if(depth < 4) {
+            for(const subcomment_id of comment.subcomments) {
+                loadCommentToView(subcomment_id, comment_view.querySelector(":scope > .comment-subcomments-panel"), depth + 1)
+            }
+        } else { // depth limit exceeded?
+            enableLoadMoreSubcomments(comment_panel, comment.subcomments.length)
+        }
+    }
+}
 const comment_panel_back = () => {
     const current_comment = comment_view_stack.pop()
 
@@ -74,11 +109,12 @@ const comment_panel_back = () => {
     location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
 
-const renderComment = function(comment_info, commentInjectionLocation, depth=0, flags=[]){
+// comment_info - comment
+// returns: container containing the comment
+const renderComment = function(comment_info, commentInjectionLocation, depth, render_subcomment_ui){
     // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
     const container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
-    console.log(depth, flags)
 
     if(comment_info == null) {
         console.warn(`Comment ${comment_id} not found. Aborting`)
@@ -136,23 +172,7 @@ const renderComment = function(comment_info, commentInjectionLocation, depth=0, 
         old_comment.replaceWith(container)
     }
 
-    // are the subcomments
-    if(!flags.includes("dont-render-subcomments") && comment_info.subcomments.length > 0) {
-        container.querySelector(".comment-subcomments-panel").classList.remove("hidden")
-        container.classList.add("with-subcomments")
-
-         // find children and render them
-        if(depth < 4 /* depth limit */) {
-            comment_info.subcomments.forEach(function(x) {
-                renderComment(getComment(x), container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
-            })
-        } else { // depth limit exceeded?
-            const loadmore = container.querySelector(".comment-loadmore-button")
-            loadmore.classList.remove("hidden")
-            loadmore.textContent = loadmore.textContent.replace("$COUNT", comment_info.subcomments.length)
-            loadmore.href = `javascript:loadSingleComment(${comment_info.comment_id})`
-        }
-    }
+    return container
 } 
 
 const getIdFromDomId = (dom_id) => {
