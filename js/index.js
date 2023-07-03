@@ -1,11 +1,3 @@
-function compare_date(d1, d2) {
-    return new Date(d2[1].date) - new Date(d1[1].date);
-}
-
-function compare_comment_count(c1, c2) {
-    return comment_count(c2[1].top_level_comments_list) - comment_count(c1[1].top_level_comments_list);
-}
-
 function Forum(name, description) {
     this.name = name;
     this.description = description;
@@ -106,10 +98,10 @@ function is_logged_in() {
     return sessionStorage.getItem("logged_in") === "true";
 }
 
-function insert_post(post_id, post_insertion_location=".post-panel") {
-    const post = posts[post_id]
+function insert_post(post, post_insertion_location=".post-panel") {
+    console.log(post.top_level_comments_list)
     const inserted_post = $(`
-                <div class="post-container post-container-clickable" post-id="${post_id}">
+                <div class="post-container post-container-clickable" post-id="${post.post_id}">
                     <div class="post-header"> 
                         <a href="profile.html?user=${post.op}" class="post-profile">
                             <img class="post-profile-photo" src="images/${post.op}.jpg">
@@ -118,7 +110,7 @@ function insert_post(post_id, post_insertion_location=".post-panel") {
                         <a href="profile.html?user=${post.op}" class="post-profile">
                             ${post.op}
                         </a>
-                        &nbsp;•&nbsp; <span class="post-date"> ${post.date.toDateString('en-CA')} | ${post.date.toLocaleTimeString()} </span>  
+                        &nbsp;•&nbsp; <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
 
                         <span class="post-options-button">
                             <div class="options-dropdown">
@@ -150,8 +142,8 @@ function insert_post(post_id, post_insertion_location=".post-panel") {
                             <span class="upvote-count">5</span>
                             <button class="downvote-sprite"></button>
                             <span class="downvote-count">5</span>
-                            <a class="comment-sprite" href="post.html?post=${post_id}"></a>
-                            <a class="comment-count" href="post.html?post=${post_id}">${comment_count(post.top_level_comments_list)}</a>
+                            <a class="comment-sprite" href="post.html?post=${post.post_id}"></a>
+                            <a class="comment-count" href="post.html?post=${post.post_id}">${post.comment_count}</a>
                         </div>
                     </div>
                 </div>
@@ -182,7 +174,8 @@ function insert_post(post_id, post_insertion_location=".post-panel") {
     })
     return inserted_post
 }
-$(document).ready(function() {
+
+$(document).ready(async function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
     const username = `melissa_spellman`;
@@ -358,7 +351,7 @@ $(document).ready(function() {
     const forum_description = $(".forum-description");
     const forum_name = $(".forum-name");
 
-    function changeForum(forum_id) {
+    async function changeForum(forum_id) {
         // are we in index.html
         // TODO: GET RID OF THIS
         const cur_page = window.location.pathname.split("/").pop();
@@ -368,18 +361,9 @@ $(document).ready(function() {
             forum_description.html(forums[forum_id].description);
 
             // load the posts of the forum
-            let posts_list = []
-            if(forum_id !== "home" && forum_id !== "popular") {
-                posts_list = Object.entries(posts).filter((kvpair) => (kvpair[1].subforum === forum_id));
-            } else {
-                posts_list = Object.entries(posts);
-                
-                if(forum_id === "home")
-                    posts_list = posts_list.sort(compare_date);
-                else if(forum_id === "popular")
-                    posts_list = posts_list.sort(compare_comment_count);
-            }
-            
+            const subforum_posts_response = await fetch("api/posts/subforum/" + forum_id)
+            const posts_list = await subforum_posts_response.json()
+            console.log(posts_list)
             const see_more_panel = $(".see-more-panel");
             
             // erase
@@ -387,8 +371,7 @@ $(document).ready(function() {
             $(".post-container").remove();
 
             for(let i = 0; i < Math.min(20, posts_list.length); i++) {
-                const key = posts_list[i][0];
-                insert_post(key)
+                insert_post(posts_list[i])
             }
             
             $(".post-panel").append(see_more_panel);
@@ -404,9 +387,9 @@ $(document).ready(function() {
     if(cur_page === "index.html" || cur_page === "") { // dirty hack TODO: GET RID OF THIS
         const goto_forum_id = search_params.get(URL_FORUM_KEY);
         if(goto_forum_id != null) {
-            changeForum(goto_forum_id);
+            await changeForum(goto_forum_id);
         } else {
-            changeForum("home");
+            await changeForum("home");
         }
     }
 
@@ -414,8 +397,8 @@ $(document).ready(function() {
     for (let forum_id in forums) {
         // copy the forum_id to a constant for the event listener
         const forum_id_copy = forum_id;
-        $("." + forum_id).click(function() {
-            changeForum(forum_id_copy);
+        $("." + forum_id).click(async function() {
+            await changeForum(forum_id_copy);
         });
     }
 

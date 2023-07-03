@@ -17,46 +17,35 @@ const COMMENT_PREFIX = "comment-"
 // store comments here for future use
 const saved_comments = {}
 
-// performs a DFS to count comments
-const comment_count = (comments_list) => {
-    if (comments_list.length == 0) {
-        return 0;
-    } else {
-        let count = comments_list.length
-        comments_list.forEach((x) => (count += comment_count(getComment(x).subcomments)))
-        return count
-    }
-}
-const dumpComment = (comment_info) => {
-    saved_comments[comment_info.comment_id] = comment_info;
+const getComment = async (comment_id) => {
+    const comment_from_api = await fetch("api/comments/id/" + comment_id)
+    return await comment_from_api.json()
 }
 
-const getComment = (comment_id) => {
-    return saved_comments[comment_id]
-}
-
-const loadSingleComment = function(comment_id) {
+const loadSingleComment = async function(comment_id) {
     // wipe comments?
     document.querySelector("#comments-panel").innerHTML = ""
 
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.remove("hidden")
 
-    renderComment(comment_id, document.querySelector("#comments-panel"))
+    const comment = await getComment(comment_id)
+    renderComment(comment, document.querySelector("#comments-panel"))
 
     comment_view_stack.push(comment_id)
 
 }
 
-const loadAllComment = (top_level_comments_list) => {
+const loadAllComment = async (top_level_comments_list) => {
     // wipe comments?
     document.querySelector("#comments-panel").innerHTML = ""
 
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
-    top_level_comments_list.forEach(function(x) {
-        renderComment(x, document.querySelector("#comments-panel"))
+    top_level_comments_list.forEach(async function(comment_id) {
+        const x = await getComment(comment_id)
+        await renderComment(x, document.querySelector("#comments-panel"))
     })
 }
 
@@ -74,12 +63,12 @@ const comment_panel_back = () => {
     location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
 
-const renderComment = function(comment_id, commentInjectionLocation, depth=0, flags=[]){
+const renderComment = function(comment_info, commentInjectionLocation, depth=0, flags=[]){
     // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
     const container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
-    console.log(depth, flags)
-    const comment_info = getComment(comment_id)
+    console.log(comment_info, comment_info.flags)
+
     if(comment_info == null) {
         console.warn(`Comment ${comment_id} not found. Aborting`)
         return
@@ -143,8 +132,8 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0, fl
 
          // find children and render them
         if(depth < 4 /* depth limit */) {
-            comment_info.subcomments.forEach(function(x) {
-                renderComment(x, container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
+            comment_info.subcomments.forEach(async function(x) {
+                renderComment(await getComment(x), container.querySelector(".comment-subcomments-panel"), depth + 1, flags)
             })
         } else { // depth limit exceeded?
             const loadmore = container.querySelector(".comment-loadmore-button")
@@ -158,11 +147,11 @@ const renderComment = function(comment_id, commentInjectionLocation, depth=0, fl
 const getIdFromDomId = (dom_id) => {
     return parseInt(dom_id.replace(`comment-`, ""))
 }
-const onEditButtonPressed = (event) => {
+const onEditButtonPressed = async (event) => {
     const container = event.currentTarget.closest(".comment-container")
     const editor_container = container.querySelector(".comment-text-editor")
     editor_container.classList.remove("hidden")
-    editor_container.querySelector("textarea").textContent = getComment(container.getAttribute("backend_id")).content
+    editor_container.querySelector("textarea").textContent = await getComment(container.getAttribute("backend_id")).content
 }
 
 const onReplyButtonPressed = (event) => {
