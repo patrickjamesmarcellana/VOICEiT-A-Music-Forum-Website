@@ -1,5 +1,5 @@
 // important note: querySelector only returns the first element (which is fine for comments that only have 1 of each element like comment body, upvote button, etc)
-
+const LOGIN_USER = "melissa_spellman"
 const COMMENT_PREFIX = "comment-"
 const commentViewManager = function(commentActionListener) {
     // Displays the comment
@@ -62,7 +62,12 @@ const commentViewManager = function(commentActionListener) {
         // should the edit/delete buttons be visible?
         if(is_logged_in() && comment.author === LOGIN_USER) {
             container.querySelector(".comment-edit-button").classList.remove("hidden")
-            container.querySelector(".comment-edit-button").addEventListener("click", onEditButtonPressed)
+            container.querySelector(".comment-edit-button").addEventListener("click", (event) => {
+                const container = event.currentTarget.closest(".comment-container")
+                const editor_container = container.querySelector(".comment-text-editor")
+                editor_container.classList.remove("hidden")
+                editor_container.querySelector("textarea").textContent = comment.content
+            })
             container.querySelector(".comment-delete-button").classList.remove("hidden")
         }
         container.querySelector(".comment-reply-button").addEventListener("click", onReplyButtonPressed)
@@ -87,13 +92,6 @@ const commentViewManager = function(commentActionListener) {
 
         return container
     } 
-
-    const onEditButtonPressed = (event) => {
-        const container = event.currentTarget.closest(".comment-container")
-        const editor_container = container.querySelector(".comment-text-editor")
-        editor_container.classList.remove("hidden")
-        editor_container.querySelector("textarea").textContent = getComment(container.getAttribute("backend_id")).content
-    }
 
     const onReplyButtonPressed = (event) => {
         const container = event.currentTarget.closest(".comment-container")
