@@ -44,11 +44,11 @@ async function render_profile(mode) {
 
     // 3. render both
     for (const post of post_list) {
-        insert_post(post, ".profile-user-posts")
+        postViewManager.insert_post(post, ".profile-user-posts")
     }
     
     for (const comment of comments_list) {
-        (new commentViewManager(null)).insert_comment(comment, document.querySelector(`div[post-id="${comment.post_id}"]`))
+        commentViewManager.insert_comment(comment, document.querySelector(`div[post-id="${comment.post_id}"]`))
     }
 }
 

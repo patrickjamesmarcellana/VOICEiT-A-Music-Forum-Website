@@ -39,7 +39,7 @@ const loadAllComment = async (top_level_comments_list) => {
 // TODO: download all the comments in parallel (since we have the power of asynchronous js now)
 const loadCommentTreeToView = async (comment_id, comment_panel, depth) => {
     const comment = await commentManager.getComment(comment_id)
-    const comment_container = (new commentViewManager(null)).insert_comment(comment, comment_panel)
+    const comment_container = commentViewManager.insert_comment(comment, comment_panel)
 
     if(comment.subcomments.length > 0) {
         comment_container.enableSubcommentsPanel()

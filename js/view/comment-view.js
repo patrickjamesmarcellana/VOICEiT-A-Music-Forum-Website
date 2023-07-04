@@ -1,14 +1,15 @@
+// TODO: split onVoteButtonPressed between controller and view
 // important note: querySelector only returns the first element (which is fine for comments that only have 1 of each element like comment body, upvote button, etc)
 const LOGIN_USER = "melissa_spellman"
 const COMMENT_PREFIX = "comment-"
-const commentViewManager = function(commentActionListener) {
+const commentViewManager = {
     // Displays the comment
     // if the comment exists, it replaces the content
 
     // comment - comment object containing details
     // commentInjectionLocation - location to insert the comment into, ignored if the comment already exists
     // returns: container containing the displayed comment
-    this.insert_comment = function(comment, commentInjectionLocation){
+    insert_comment: function(comment, commentInjectionLocation){
         if(comment == null) {
             console.warn(`Comment ${comment_id} not found. Aborting`)
             return
@@ -70,6 +71,29 @@ const commentViewManager = function(commentActionListener) {
             })
             container.querySelector(".comment-delete-button").classList.remove("hidden")
         }
+
+        // listeners
+        const onReplyButtonPressed = (event) => {
+            const container = event.currentTarget.closest(".comment-container")
+            const editor_container = container.querySelector(".comment-text-editor")
+    
+            if(is_logged_in()) {
+                editor_container.classList.remove("hidden")
+    
+                // wipe text are to be sure
+                editor_container.querySelector("textarea").textContent = ""
+            } else {
+                window.location.href = "login.html"
+            }
+    
+        }
+    
+        const onCancelButtonPressed = (event) => {
+            const container = event.currentTarget.closest(".comment-container")
+            const editor_container = container.querySelector(".comment-text-editor")
+            editor_container.classList.add("hidden")
+        }
+
         container.querySelector(".comment-reply-button").addEventListener("click", onReplyButtonPressed)
         
         // mini text editor's buttons
@@ -92,29 +116,5 @@ const commentViewManager = function(commentActionListener) {
 
         return container
     } 
-
-    const onReplyButtonPressed = (event) => {
-        const container = event.currentTarget.closest(".comment-container")
-        const editor_container = container.querySelector(".comment-text-editor")
-
-        if(is_logged_in()) {
-            editor_container.classList.remove("hidden")
-
-            // wipe text are to be sure
-            editor_container.querySelector("textarea").textContent = ""
-        } else {
-            window.location.href = "login.html"
-        }
-
-    }
-
-    const onCancelButtonPressed = (event) => {
-        const container = event.currentTarget.closest(".comment-container")
-        const editor_container = container.querySelector(".comment-text-editor")
-        editor_container.classList.add("hidden")
-    }
-
-    
-    
 }
 
