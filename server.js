@@ -2,8 +2,15 @@ const express = require("express")
 const app = express()
 const port = 8080
 
+mongoose = require("mongoose")
+User = require("./models/User")
+
 const hardcoded_posts = require("./hardcoded/hardcoded_posts")()
 const hardcoded_comments = require("./hardcoded/hardcoded_comments")()
+async function init() {
+    await mongoose.connect("mongodb://localhost/voiceit")
+}
+init()
 
 app.use(express.static('../VOICEiT-A-Music-Forum-Website'))
 
@@ -89,6 +96,21 @@ app.get("/api/comments/user/:user", (req, res) => {
     let json = Object.values(hardcoded_comments).filter((comment) => (comment.author === req.params.user));
 
     if(json !== undefined) {
+        res.send(json)
+    } else {
+        res.sendStatus(404)
+    }
+})
+
+app.get("/api/users/:user", async (req, res) => {
+    console.log("Request for user ", req.params.user)
+    const user_results = await User.find({username: req.params.user})
+    if(user_results.length > 0) {
+        const json = {
+            username: user_results[0].username,
+            description: user_results[0].description,
+            photoUrl: user_results[0].photoUrl
+        }
         res.send(json)
     } else {
         res.sendStatus(404)
