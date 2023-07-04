@@ -1,0 +1,4 @@
+[submodule "frontend-public"]
+	path = frontend-public
+	url = https://github.com/patrickjamesmarcellana/VOICEiT-A-Music-Forum-Website
+	branch = backend-experiment1
