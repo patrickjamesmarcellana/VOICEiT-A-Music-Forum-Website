@@ -324,47 +324,21 @@ $(document).ready(async function() {
         });
     }
 
-    function User(username, description) {
-        this.username = username;
-        this.description = description;
-    }
-
-    // hardcoded user profiles 
-    const users = {
-        melissa_spellman: new User(`melissa_spellman`, `
-            Hi! I'm a neuroscientist student from Johns Hopkins University, and I'm highly invested in how music transcends
-            generations. Currently, my favorite genres of music are classical, jazz, and R&B. Hit me up on my personal email
-            if you'd like to discuss music on your leisure time!
-
-            Email: melissa_spellman@yahoo.com
-        `),
-        draeznor_rock_lover: new User(`draeznor_rock_lover`, `
-            I've been an avid fan of rock and hiphop music since the 1990s. Red Hot Chili Peppers (a rock band) made me
-            become a fan of their music, oh I love them! Eventually, I became a fan of the genre itself.
-        `),
-        jennie_itgirl: new User(`jennie_itgirl`, `
-            An honest kpop fan. Jennie Ruby Jane my idol <3. Posts about kpop and Blackpink in general, but I also love
-            posting about other music genres.
-        `),
-        marithus_25: new User(`marithus_25`, `
-            Country music is such an underrated genre. Here to spread country music to fellow music listeners! I have also 
-            been exploring latin music, and Bad Bunny is such an amazing artist.
-        `),
-        aria_eagleheart: new User(`aria_eagleheart`, ``)
-    };
-
     const URL_USER_KEY = "user";
     const profile_username = $(".profile-username");
     const profile_picture  = $(".profile-picture > img");
     const user_description = $(".user-description");
 
-    function changeProfile(user_id) {
+    async function changeProfile(user_id) {
+        const response = await fetch("api/users/" + user_id)
+        const user = await response.json()
+
         // are we in profile.html
         if(window.location.pathname.split("/").pop() == "profile.html") {
             //window.location.href = `index.html?user=${username}`;
-            profile_username.text(users[user_id].username);
-            profile_picture.attr("src", `images/${users[user_id].username}.jpg`)
-            user_description.text(users[user_id].description);
+            profile_username.text(user.username);
+            profile_picture.attr("src", `images/${user.username}.jpg`)
+            user_description.text(user.description);
 
             setEditProfileBtnVisibility(user_id);
         } else {
@@ -390,11 +364,11 @@ $(document).ready(async function() {
     // should we change the profile
     const goto_user_id = search_params.get(URL_USER_KEY);
     if(goto_user_id != null) {
-        changeProfile(goto_user_id);
+        await changeProfile(goto_user_id);
     }
 
-    $(".post-profile").click(function() {
-        changeProfile($(".post-profile").text());
+    $(".post-profile").click(async function() {
+        await changeProfile($(".post-profile").text());
     })
 
 
