@@ -35,11 +35,6 @@ const getComment = (comment_id) => {
     return saved_comments[comment_id]
 }
 
-const loadSubcomments = function(comment) {
-    comment_info.subcomments.forEach(function(x) {
-        renderComment(getComment(x), container.querySelector(`#${COMMENT_PREFIX + comment_info.comment_id}.comment-subcomments-panel`), depth + 1, flags)
-    })
-}
 const loadSingleComment = function(comment_id) {
     // wipe comments?
     document.querySelector("#comments-panel").innerHTML = ""
@@ -47,7 +42,7 @@ const loadSingleComment = function(comment_id) {
     // set indicator
     document.querySelector(".comment-subcomments-indicator").classList.remove("hidden")
 
-    loadCommentToView(comment_id, document.querySelector("#comments-panel"), 0)
+    loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
 
     comment_view_stack.push(comment_id)
 
@@ -61,8 +56,7 @@ const loadAllComment = (top_level_comments_list) => {
     document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
 
     top_level_comments_list.forEach(function(comment_id) {
-        loadCommentToView(comment_id, document.querySelector("#comments-panel"), 0)
-
+        loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
     })
 }
 
@@ -80,9 +74,9 @@ function enableLoadMoreSubcomments(comment_container, subcomment_amount) {
     loadmore.href = `javascript:loadSingleComment(${comment_id})`
 }
 // calls view
-const loadCommentToView = (comment_id, comment_panel, depth) => {
+const loadCommentTreeToView = (comment_id, comment_panel, depth) => {
     const comment = getComment(comment_id)
-    const comment_view = renderComment(comment, comment_panel)
+    const comment_view = insert_comment(comment, comment_panel)
 
     if(comment.subcomments.length > 0) {
         enableSubcommentsPanel(comment_view)
@@ -111,18 +105,29 @@ const comment_panel_back = () => {
 
 // comment_info - comment
 // returns: container containing the comment
-const renderComment = function(comment_info, commentInjectionLocation, depth, render_subcomment_ui){
-    // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
-    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
-    const container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
-
+const insert_comment = function(comment_info, commentInjectionLocation, depth, render_subcomment_ui){
     if(comment_info == null) {
         console.warn(`Comment ${comment_id} not found. Aborting`)
         return
     }
 
+    // overwrite existing comment?
+    const container_id = COMMENT_PREFIX + comment_info.comment_id
+    const old_comment = document.getElementById(container_id)
+    let container = undefined
+    if(old_comment === null) {
+        // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
+        container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
+        if(commentInjectionLocation != null) {
+            commentInjectionLocation.appendChild(container)
+        }
+    } else {
+        container = old_comment
+    }
+    
     // comment prefix is important so we dont have to worry about posts and comments with the same id
-    container.id = COMMENT_PREFIX + comment_info.comment_id
+    container.id = container_id
     container.setAttribute("backend_id", comment_info.comment_id)
 
     // store vote count on dict
@@ -162,22 +167,9 @@ const renderComment = function(comment_info, commentInjectionLocation, depth, re
     // mini text editor's buttons
     container.querySelector(".comment-text-editor-cancel-button").addEventListener("click", onCancelButtonPressed)
 
-    // overwrite existing comment
-    const old_comment = document.getElementById(container.id)
-    if(old_comment === null) {
-        if(commentInjectionLocation != null) {
-            commentInjectionLocation.appendChild(container)
-        }
-    } else {
-        old_comment.replaceWith(container)
-    }
-
     return container
 } 
 
-const getIdFromDomId = (dom_id) => {
-    return parseInt(dom_id.replace(`comment-`, ""))
-}
 const onEditButtonPressed = (event) => {
     const container = event.currentTarget.closest(".comment-container")
     const editor_container = container.querySelector(".comment-text-editor")
