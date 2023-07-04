@@ -18,7 +18,7 @@ async function test() {
     await mongoose.connect("mongodb://localhost/voiceit")
     console.log("Connected to DB")
 
-    mongoose.connection.db.dropDatabase()
+    await mongoose.connection.db.dropDatabase()
     console.log("Erased DB")
 
     await (new User({
@@ -52,7 +52,7 @@ async function test() {
     })).save()
     console.log("Populated \"users\" table")
 
-    mongoose.connection.close()
+    await mongoose.connection.close()
 }
 
 test();
