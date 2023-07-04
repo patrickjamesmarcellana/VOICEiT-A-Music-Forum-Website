@@ -1,5 +1,6 @@
 // important note: querySelector only returns the first element (which is fine for comments that only have 1 of each element like comment body, upvote button, etc)
 
+const COMMENT_PREFIX = "comment-"
 const commentViewManager = function(commentActionListener) {
     // Displays the comment
     // if the comment exists, it replaces the content
@@ -115,18 +116,7 @@ const commentViewManager = function(commentActionListener) {
         editor_container.classList.add("hidden")
     }
 
-    const onSubcommentBackButtonPressed = () => {
-        const current_comment = comment_view_stack.pop()
     
-        console.log(comment_view_stack)
-        if(comment_view_stack.length > 0) {
-            loadSingleComment(comment_view_stack.pop())
-        } else {
-            loadAllComment()
-        }
-    
-        // change anchor
-        location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
-    }
     
 }
+

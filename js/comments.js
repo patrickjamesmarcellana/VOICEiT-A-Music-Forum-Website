@@ -3,14 +3,11 @@ shortcomings list:
 1. dont hardcode user
 2. change vote state type to an enum
 */
-
 const LOGIN_USER = "melissa_spellman"
 
 // LIFO stack that stores the currently viewing comments by depth
 // to allow browsing very deep subcomments
 const comment_view_stack = []
-
-const COMMENT_PREFIX = "comment-"
 
 // store comments here for future use
 const saved_comments = {}
@@ -74,5 +71,18 @@ const loadCommentTreeToView = (comment_id, comment_panel, depth) => {
             comment_container.showLoadMoreSubcommentsButton(comment.subcomments.length)
         }
     }
+}
+const comment_panel_back = () => {
+    const current_comment = comment_view_stack.pop()
+
+    console.log(comment_view_stack)
+    if(comment_view_stack.length > 0) {
+        loadSingleComment(comment_view_stack.pop())
+    } else {
+        loadAllComment()
+    }
+
+    // change anchor
+    location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
 
