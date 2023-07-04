@@ -82,7 +82,7 @@ const loadCommentTreeToView = (comment_id, comment_panel, depth) => {
         enableSubcommentsPanel(comment_view)
         if(depth < 4) {
             for(const subcomment_id of comment.subcomments) {
-                loadCommentToView(subcomment_id, comment_view.querySelector(":scope > .comment-subcomments-panel"), depth + 1)
+                loadCommentTreeToView(subcomment_id, comment_view.querySelector(":scope > .comment-subcomments-panel"), depth + 1)
             }
         } else { // depth limit exceeded?
             enableLoadMoreSubcomments(comment_panel, comment.subcomments.length)
