@@ -337,7 +337,7 @@ $(document).ready(async function() {
         if(window.location.pathname.split("/").pop() == "profile.html") {
             //window.location.href = `index.html?user=${username}`;
             profile_username.text(user.username);
-            profile_picture.attr("src", `images/${user.username}.jpg`)
+            profile_picture.attr("src", user.photoUrl)
             user_description.text(user.description);
 
             setEditProfileBtnVisibility(user_id);
