@@ -6,7 +6,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         immutable: true,
-        index: true
+        unique: true
     },
     description: {
         type: String,
