@@ -5,7 +5,7 @@ const port = 8080
 mongoose = require("mongoose")
 User = require("./models/User")
 
-app.use(express.static('../VOICEiT-A-Music-Forum-Website'))
+app.use(express.static('../front-end'))
 
 const posts_router = require("./routes/posts")
 app.use("/api/posts", posts_router)
