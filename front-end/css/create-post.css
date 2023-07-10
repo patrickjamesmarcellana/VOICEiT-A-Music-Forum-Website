@@ -1,0 +1,123 @@
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
+.create-post-panel{
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.cp-title{
+    margin-left: 40px;
+    font-size: 1.5rem;
+    font-family: var(--header-font);
+    color: white;
+}
+
+.create-post{
+    border-radius: 5px;
+    margin: 0.2rem auto 1.5rem auto;
+    width: 80%;
+    background-image: linear-gradient(#31294c, #5756bb, #8182da);
+    color: var(--main-color);
+    box-shadow: 0px 3px 6px 0px #31294c;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+
+.subforum-options {
+    background-color: transparent;
+    border: solid 1px var(--main-color);
+    color: var(--main-color);
+    font-size: 16px;
+    font-family: var(--main-font);
+    width: 150px;
+    height: 30px;
+    align-items: center;
+}
+
+.subforum-options *{
+    background-color: #5756bb;
+}
+
+.create-post-forms{
+    padding: 15px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-intro-text {
+    font-size: 18px;
+    margin: 0px auto;
+}
+
+.post-title-input {
+    width: 98%;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-family: var(--main-font);
+    font-size: 16px;
+}
+
+.post-content-input {
+    width: 98%;
+    height: 300px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-family: var(--main-font);
+    font-size: 16px;
+    resize: vertical;
+}
+
+.create-post-submit-button:hover{
+    background: rgba(39, 37, 37, 0.87);
+    color: white;
+}
+
+.create-post-submit-button {
+    margin-left: auto;
+    margin-right: 11px;
+    width: 90px;
+    height: 40px;
+    font-size: 18px;
+    font-family: var(--header-font);
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    letter-spacing: 4px;
+    box-shadow: 0px 2px 5px 0px #31294c;
+}
+
+@media screen and (max-width: 1247px) {
+    .create-post-panel {
+        width: 100vw;
+        margin-top: 30px;
+    }
+}

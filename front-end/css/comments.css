@@ -1,0 +1,63 @@
+a {
+    color: inherit;
+}
+
+.comment-container {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 1em;
+
+    margin-bottom: 1em;
+}
+
+/* bottom padding is redundant in this case because it is provided by subcomments' margin */
+.comment-container.with-subcomments {
+    padding-bottom: 0;
+}
+
+/* emulate subcomments' margin in this case */
+.comment-loadmore-button {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.comment-subcomments-panel {
+    margin-top: 1em; /* add spacing between parent comment and the panel */
+    padding-left: 2em;
+}
+
+.comment-footer {
+    align-items: center;
+    display: flex;
+}
+
+.comment-footer > * {
+    margin: 0px 5px 0px 5px;
+}
+
+.comment-reply-button,
+.comment-edit-button,
+.comment-delete-button,
+.comment-loadmore-button {
+    cursor: pointer;
+}
+
+.comment-reply-button:hover,
+.comment-edit-button:hover,
+.comment-delete-button:hover {
+    text-decoration: underline;
+}
+
+.comment-container button {
+    border: none;
+    outline: none;
+}
+
+.comment-text-editor > textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.hidden {
+    display: none;
+} 
