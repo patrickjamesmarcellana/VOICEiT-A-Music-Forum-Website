@@ -15,7 +15,7 @@ So, if you don't explicitly specify the collection name when creating the model,
 tldr: User -> users
 */
 async function test() {
-    await mongoose.connect("mongodb://localhost/voiceit")
+    await mongoose.connect("mongodb://127.0.0.1/voiceit")
     console.log("Connected to DB")
 
     await mongoose.connection.db.dropDatabase()
