@@ -16,7 +16,7 @@ app.use("/api/comments", comments_router)
 const users_router = require("./routes/users")
 app.use("/api/users", users_router)
 
-mongoose.connect("mongodb://localhost/voiceit").then(() => {
+mongoose.connect("mongodb://127.0.0.1/voiceit").then(() => {
     console.log(`Mongoose connected to DB`)
 })
 app.listen(port, () => {
