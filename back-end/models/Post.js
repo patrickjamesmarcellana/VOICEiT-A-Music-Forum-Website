@@ -11,6 +11,11 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+    date: {
+        type: Date,
+        required: true,
+        default: new Date() 
+    },
     body: {
         type: String,
         required: true
@@ -18,11 +23,6 @@ const postSchema = new Schema({
     subforum: {
         type: String,
         required: true
-    },
-    date: {
-        type: Date,
-        required: true,
-        default: new Date() 
     },
     upvoteCnt: {
         type: Number,
