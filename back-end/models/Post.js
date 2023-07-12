@@ -1,16 +1,11 @@
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
+const User = require("./User")
 
 const postSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        immutable: true,
-        unique: true
-    },
-    photoUrl: {
-        type: String,
-        default: "empty-profile.png"
+    user: {
+        type: Schema.Types.ObjectId, 
+        ref: "User",
     },
     title: {
         type: String,
