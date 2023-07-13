@@ -62,7 +62,7 @@ async function test() {
     console.log("Populated \"users\" table")
 
     // POPULATE POSTS COLLECTION
-    await (new Post({
+    const hardcoded_post1 = await (new Post({
         user: hardcoded_user5._id,
         title: "Help me ID this pop song that goes \"ay oh ay oh ay oh\"",
         date: new Date("2023-06-21T05:20:30"),
@@ -77,7 +77,7 @@ async function test() {
         commentCnt: 6
     })).save()
 
-    await (new Post({
+    const hardcoded_post2 = await (new Post({
         user: hardcoded_user2._id,
         title: "Eminem: Recovery or Relapse?",
         date: new Date("2023-06-20T23:18:30"),
@@ -90,7 +90,7 @@ async function test() {
         commentCnt: 4
     })).save()
 
-    await (new Post({
+    const hardcoded_post3 = await (new Post({
         user: hardcoded_user2._id,
         title: "Remember the time when Billboard announced the top 10 rock songs of the 2010s and none of the songs were rock?",
         date: new Date("2023-01-17T04:16:30"),
@@ -115,7 +115,7 @@ async function test() {
         commentCnt: 3
     })).save()
 
-    await (new Post({
+    const hardcoded_post4 = await (new Post({
         user: hardcoded_user1._id,
         title: "Thoughts on SZA - SOS?",
         date: new Date("2023-02-01T11:15:30"),
@@ -128,7 +128,7 @@ async function test() {
         commentCnt: 3
     })).save()
 
-    await (new Post({
+    const hardcoded_post5 = await (new Post({
         user: hardcoded_user3._id,
         title: "Fifty Fifty becomes longest-charting K-pop girl group on Billboard Hot 100",
         date: new Date("2023-06-26T23:59:59"),
@@ -143,7 +143,7 @@ async function test() {
         commentCnt: 4
     })).save()
 
-    await (new Post({
+    const hardcoded_post6 = await (new Post({
         user: hardcoded_user4._id,
         title: "How did Bad Bunny blow up?",
         date: new Date("2023-06-26T10:02:30"),
@@ -156,7 +156,7 @@ async function test() {
         commentCnt: 4
     })).save()
 
-    await (new Post({
+    const hardcoded_post7 = await (new Post({
         user: hardcoded_user1._id,
         title: "What album do you think is perfect?",
         date: new Date("2023-06-14T03:33:30"),
@@ -169,7 +169,7 @@ async function test() {
         commentCnt: 4
     })).save()
 
-    await (new Post({
+    const hardcoded_post8 = await (new Post({
         user: hardcoded_user1._id,
         title: "How to start listening to classical music?",
         date: new Date("2022-06-26T05:20:30"),
@@ -182,7 +182,7 @@ async function test() {
         commentCnt: 3
     })).save()
 
-    await (new Post({
+    const hardcoded_post9 = await (new Post({
         user: hardcoded_user4._id,
         title: "Why don't most people don't like country music?",
         date: new Date("2022-12-31T03:16:30"),
@@ -195,7 +195,7 @@ async function test() {
         commentCnt: 4
     })).save()
 
-    await (new Post({
+    const hardcoded_post10 = await (new Post({
         user: hardcoded_user5._id,
         title: "The future of alternative music",
         date: new Date("2023-06-24T17:18:30"),
@@ -209,7 +209,7 @@ async function test() {
     })).save()
 
     // populate "user" fields of posts
-    await Post.findOne({
+    /*await Post.findOne({
         user: hardcoded_user5._id,
         title: "Help me ID this pop song that goes \"ay oh ay oh ay oh\"",
         date: new Date("2023-06-21T05:20:30")
@@ -267,7 +267,7 @@ async function test() {
         user: hardcoded_user5._id,
         title: "The future of alternative music",
         date: new Date("2023-06-24T17:18:30")
-    }).populate("user").exec()
+    }).populate("user").exec()*/
 
     console.log("Populated \"posts\" table")
 
