@@ -21,6 +21,16 @@ const documentToJson = (document) => {
         content: document.body
     }
 }
+
+const documentsToJson = (documents) => {
+    const json = []
+    
+    for(let i = 0; i < documents.length; i++) {
+        json.push(documentToJson(documents[i]))
+    }
+    return json
+}
+
 router.get('/id/:id', async (req, res) => {
     console.log("Request for comment by id", req.params.id)
     try {
@@ -37,14 +47,20 @@ router.get('/id/:id', async (req, res) => {
     }
 })
 
-router.get("/user/:user", (req, res) => {
+router.get("/user/:user", async (req, res) => {
     console.log("Request for comments by user", req.params.user)
-    const json = [];
+    try {
+        const user_id = await User.findOne({username: req.params.user})
+        const query = await Comment.find({user: user_id}).populate("user")
+        const json = documentsToJson(query);
 
-    if(json !== undefined) {
-        res.send(json)
-    } else {
-        res.sendStatus(404)
+        if(json !== undefined) {
+            res.send(json)
+        } else {
+            res.sendStatus(404)
+        }
+    } catch(e) {
+        console.log(e)
     }
 })
 
