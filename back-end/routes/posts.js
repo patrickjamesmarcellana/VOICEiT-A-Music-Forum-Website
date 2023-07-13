@@ -75,19 +75,19 @@ router.get("/subforum/:subforum", async (req, res) => {
     }
 
     try {
-        let query = await Post.find().populate("user")
-        let json = await documentsToJson(query)
+        let query
+        
         
         //hardcoded_posts_list.forEach(post => post.comment_count = comment_count(post.top_level_comments_list))
         if(req.params.subforum === "home") {
-            //json = hardcoded_posts_list.sort(compare_date)
+            query = await Post.find().populate("user")
         } else if(req.params.subforum === "popular"){
-            //json = hardcoded_posts_list.sort(compare_comment_count)
+            query = await Post.find().populate("user")
         } else {
-            //json = hardcoded_posts_list.filter(post => post.subforum === req.params.subforum)
+            query = await Post.find({subforum: req.params.subforum}).populate("user")
         }
         
-    
+        const json = await documentsToJson(query)
         if(json !== undefined) {
             res.send(json)
         } else {
