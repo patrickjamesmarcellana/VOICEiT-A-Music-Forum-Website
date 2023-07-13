@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 const User = require("./User")
+const { required } = require('nodemon/lib/config')
 
 const postSchema = new Schema({
     user: {
@@ -38,6 +39,11 @@ const postSchema = new Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    top_level_comments_list: {
+        type: [String], // technically an ObjectID but we do not need to populate it
+        required: true,
+        default: []
     }
 })
 
