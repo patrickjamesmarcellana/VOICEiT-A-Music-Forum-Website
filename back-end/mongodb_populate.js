@@ -1,7 +1,6 @@
 const Comment = require("./models/Comment")
 const Post = require("./models/Post")
 const User = require("./models/User")
-const hardcoded_users = require("./hardcoded/hardcoded_users")
 mongoose = require("mongoose")
 
 
@@ -28,37 +27,47 @@ async function test() {
     // POPULATE USERS COLLECTION
     const hardcoded_user1 = await (new User({
         _id: new mongoose.Types.ObjectId(),
-        username: hardcoded_users.USER1,
+        username: "melissa_spellman",
         description: "Hi! I'm a neuroscientist student from Johns Hopkins University, and I'm highly invested in how music transcends generations. Currently, my favorite genres of music are classical, jazz, and R&B. Hit me up on my personal email if you'd like to discuss music on your leisure time!\n\nEmail: melissa_spellman@yahoo.com",
-        photoUrl: "images/melissa_spellman.jpg"
+        photoUrl: "images/melissa_spellman.jpg",
+        lastLogin: new Date(),
+        registerDate: new Date("2023-06-21T00:00:00")
     })).save()
     
     const hardcoded_user2 = await (new User({
         _id: new mongoose.Types.ObjectId(),
-        username:  hardcoded_users.USER2,
+        username: "draeznor_rock_lover",
         description: "I've been an avid fan of rock and hiphop music since the 1990s. Red Hot Chili Peppers (a rock band) made me become a fan of their music, oh I love them! Eventually, I became a fan of the genre itself.",
-        photoUrl: "images/draeznor_rock_lover.jpg"
+        photoUrl: "images/draeznor_rock_lover.jpg",
+        lastLogin: new Date(),
+        registerDate: new Date("2023-06-22T00:00:00")
     })).save()
 
     const hardcoded_user3 = await (new User({
         _id: new mongoose.Types.ObjectId(),
-        username:  hardcoded_users.USER3,
+        username: "jennie_itgirl",
         description: "An honest kpop fan. Jennie Ruby Jane my idol <3. Posts about kpop and Blackpink in general, but I also love posting about other music genres.",
-        photoUrl: "images/jennie_itgirl.jpg"
+        photoUrl: "images/jennie_itgirl.jpg",
+        lastLogin: new Date(),
+        registerDate: new Date("2023-06-23T00:00:00")
     })).save()
 
     const hardcoded_user4 = await (new User({
         _id: new mongoose.Types.ObjectId(),
-        username:  hardcoded_users.USER4,
+        username: "marithus_25",
         description: "Country music is such an underrated genre. Here to spread country music to fellow music listeners! I have also been exploring latin music, and Bad Bunny is such an amazing artist.",
-        photoUrl: "images/marithus_25.jpg"
+        photoUrl: "images/marithus_25.jpg",
+        lastLogin: new Date(),
+        registerDate: new Date("2023-06-24T00:00:00")
     })).save()
 
     const hardcoded_user5 = await (new User({
         _id: new mongoose.Types.ObjectId(),
-        username:  hardcoded_users.USER5,
+        username: "aria_eagleheart",
         description: "",
-        photoUrl: "images/aria_eagleheart.jpg"
+        photoUrl: "images/aria_eagleheart.jpg",
+        lastLogin: new Date(),
+        registerDate: new Date("2023-06-25T00:00:00")
     })).save()
     console.log("Populated \"users\" table")
 
