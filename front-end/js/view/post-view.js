@@ -18,10 +18,14 @@ const postViewManager = {
                                     <button class="edit-post-button">
                                         <span class="edit-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         &nbsp;&nbsp;Edit
-                                    </button> <br>
+                                    </button>
                                     <button class="delete-post-button">
                                         <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         &nbsp;&nbsp;Delete
+                                    </button>
+                                    <button class="view-analytics-button">
+                                        <span class="analytics-sprite"> &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        &nbsp;&nbsp;Analytics
                                     </button>
                                 </div>
                             </span>
@@ -54,7 +58,8 @@ const postViewManager = {
         // hiding it
         if(!is_logged_in() || post.op !== "melissa_spellman") {
             console.log(inserted_post)
-            inserted_post.find(".post-options-button").css("display", "none")
+            inserted_post.find(".edit-post-button").css("display", "none")
+            inserted_post.find(".delete-post-button").css("display", "none")
         }
     
         // making post containers a clickable container to post.html
