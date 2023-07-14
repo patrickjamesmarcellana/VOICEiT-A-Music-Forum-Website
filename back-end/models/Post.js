@@ -40,6 +40,10 @@ const postSchema = new Schema({
         required: true,
         default: 0
     },
+    views: { // popularity is based on the number of clicks on the post
+        type: Number,
+        default: 0,
+    },
     top_level_comments_list: {
         type: [String], // technically an ObjectID but we do not need to populate it
         required: true,

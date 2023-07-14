@@ -33,7 +33,8 @@ const documentsToJson = async (documents) => {
 router.get("/id/:id", async (req, res) => {
     console.log("Request for post by id", req.params.id)
     try{
-        let query = await Post.findById(req.params.id).populate("user")
+        let query = await Post.findById(req.params.id).populate("user").exec()
+        await Post.updateOne({_id: req.params.id}, {$inc: {views: 1}})
         console.log(query)
         const json = [await documentToJson(query)]
     
@@ -80,11 +81,11 @@ router.get("/subforum/:subforum", async (req, res) => {
         
         //hardcoded_posts_list.forEach(post => post.comment_count = comment_count(post.top_level_comments_list))
         if(req.params.subforum === "home") {
-            query = await Post.find().populate("user")
+            query = await Post.find().sort({date: -1}).populate("user").exec()
         } else if(req.params.subforum === "popular"){
-            query = await Post.find().populate("user")
+            query = await Post.find().sort({views: -1}).populate("user").exec()
         } else {
-            query = await Post.find({subforum: req.params.subforum}).populate("user")
+            query = await Post.find({subforum: req.params.subforum}).populate("user").exec()
         }
         
         const json = await documentsToJson(query)
