@@ -7,7 +7,9 @@ router.get("/:user", async (req, res) => {
         const json = {
             username: user_results[0].username,
             description: user_results[0].description,
-            photoUrl: user_results[0].photoUrl
+            photoUrl: user_results[0].photoUrl,
+            lastLogin: user_results[0].lastLogin,
+            registerDate: user_results[0].registerDate
         }
         res.send(json)
     } else {

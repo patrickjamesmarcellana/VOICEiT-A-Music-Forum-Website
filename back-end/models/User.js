@@ -18,6 +18,15 @@ const userSchema = new Schema({
     photoUrl: {
         type: String,
         default: "empty-profile.png"
+    },
+    lastLogin: {
+        type: Date,
+        default: new Date()
+    },
+    registerDate: {
+        type: Date,
+        immutable: true,
+        default: new Date()
     }
 });
 

@@ -3,6 +3,14 @@ function Forum(name, description) {
     this.description = description;
 }
 
+function formatDate(date) {
+    if(typeof date === "string") {
+        date = new Date(date);
+    }
+    console.log(typeof date)
+
+    return `${date.toDateString('en-CA')} | ${date.toLocaleTimeString(/* locale */ undefined, /* options */ {hour: '2-digit', minute:'2-digit'})}`;
+}
 // forums list
 const forums = {
     home: new Forum("Recent", `
@@ -328,6 +336,8 @@ $(document).ready(async function() {
     const profile_username = $(".profile-username");
     const profile_picture  = $(".profile-picture > img");
     const user_description = $(".user-description");
+    const user_last_login = $(".user-last-login > span:nth-child(2)");
+    const user_register_date = $(".user-register-date > span:nth-child(2)")
 
     async function changeProfile(user_id) {
         const response = await fetch("api/users/" + user_id)
@@ -339,6 +349,8 @@ $(document).ready(async function() {
             profile_username.text(user.username);
             profile_picture.attr("src", user.photoUrl)
             user_description.text(user.description);
+            user_last_login.text(formatDate(user.lastLogin));
+            user_register_date.text(formatDate(user.registerDate));
 
             setEditProfileBtnVisibility(user_id);
         } else {
