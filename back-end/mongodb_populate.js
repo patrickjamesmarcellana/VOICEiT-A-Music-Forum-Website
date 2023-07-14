@@ -334,6 +334,8 @@ async function test() {
     await Post.findOneAndUpdate({_id: hardcoded_post9._id}, {top_level_comments_list: [hardcoded_comment901.id, hardcoded_comment903.id, hardcoded_comment904.id]})
     await Post.findOneAndUpdate({_id: hardcoded_post10._id}, {top_level_comments_list: [hardcoded_comment1001.id, hardcoded_comment1002.id]})
     console.log("Set top-level comments of posts")
+
+    process.exit(0)
 }
 
 test();
