@@ -1,5 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
 
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
 .edit-profile-modal {
     display: none;
     position: fixed;
@@ -27,7 +52,7 @@
     border-radius: 10px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
     font-size: medium;
-    font-family: "Sen", sans-serif;
+    font-family: var(--main-font);
     padding: 25px 30px 25px 30px;
 }
 
@@ -43,6 +68,11 @@
     font-size: 150%;
     font-weight: bold;
     grid-column-start: 2;
+    font-family: var(--header-font)
+}
+
+.header-font {
+    font-family: var(--header-font)
 }
 
 .exit-button {
@@ -79,7 +109,7 @@
 }
 
 #description::placeholder {
-    font-family: "Sen", sans-serif;
+    font-family: var(--main-font);
 }
 
 .profile-picture {
@@ -97,7 +127,7 @@
 .submit-form-button {
     padding: 1% 2%;
     font-size: medium;
-    font-family: "Sen", sans-serif;
+    font-family: var(--main-font);
     display: block;
     margin: 0 auto;
 }
