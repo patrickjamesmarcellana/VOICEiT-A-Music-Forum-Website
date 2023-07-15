@@ -293,7 +293,7 @@ $(document).ready(async function() {
             forum_description.html(forums[forum_id].description);
 
             // load the posts of the forum
-            const posts_list = await postManager.getSubforumPosts(forum_id)
+            const posts_list = await postManager.getSubforumPosts(forum_id) // get first 5 posts for now
             const see_more_panel = $(".see-more-panel");
             
             // erase
@@ -404,15 +404,17 @@ $(document).ready(async function() {
         window.location.href = "create-post.html";
     });
 
-    await $(".view-analytics-button").click(function() {
-        $(".analytics-container").css("display", "block")
-    })
+    // action listeners for analytics container
+    // await $(".view-analytics-button").click(function() {
+    //     $(".analytics-container").css("display", "block")
+    // })
     
-    await $(".exit-button").click(function() {
-        $(".analytics-container").css("display", "none")
-    })
+    // await $(".exit-button").click(function() {
+    //     $(".analytics-container").css("display", "none")
+    // })
 
-    await $(".analytics-container").click(function() {
-        $(".analytics-container").css("display", "none")
-    })
+    // await $(".analytics-container").click(function() {
+    //     $(".analytics-container").css("display", "none")
+    // })
+
 });
