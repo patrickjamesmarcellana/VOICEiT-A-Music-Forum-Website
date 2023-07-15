@@ -98,7 +98,6 @@ const forums = {
 }
 
 function is_logged_in() {
-    console.log(Cookies.get("logged_in_as"))
     return Cookies.get("logged_in_as");
 }
 
