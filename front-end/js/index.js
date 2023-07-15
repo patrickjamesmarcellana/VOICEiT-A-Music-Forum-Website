@@ -105,9 +105,14 @@ function is_logged_in() {
 $(document).ready(async function() {
     await $.getScript("/js/js.cookie-3.0.5.min.js");
 
+    // set global variable indicating logged in
+    if(is_logged_in) {
+        document.loggedInAs = Cookies.get("logged_in_as");
+    }
+
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
-    const username = `melissa_spellman`;
+    const username = Cookies.get("logged_in_as");
     const profile_photo = `images/${username}.jpg`;
 
     // load the nav bar and side panel a on all applicable pages
@@ -356,7 +361,7 @@ $(document).ready(async function() {
         // button is only displayed when the user is logged in and is
         // viewing that one user's profile
         let displayMode = "none";
-        if (is_logged_in() && user_id === `melissa_spellman`) {
+        if (is_logged_in() && user_id === document.loggedInAs) {
             displayMode = "block";
         }
         const editProfileBtns = $(".edit-profile-button");
@@ -386,8 +391,7 @@ $(document).ready(async function() {
     $(".logged-in-photo").click(function() {
         // window.location.href = "profile.html";
 
-        // TODO: change this once sessions are implemented
-        window.location.href = "profile.html?user=melissa_spellman"
+        window.location.href = "profile.html?user=" + document.loggedInAs
     });
 
 

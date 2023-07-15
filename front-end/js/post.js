@@ -1,6 +1,6 @@
 // TODO: move to template because theres a small delay between page load and post content load
 $(document).ready(async function() {
-    const LOGIN_USER = "melissa_spellman"
+    const LOGIN_USER = document.loggedInAs
     const search_params = new URLSearchParams(window.location.search)
     post_id = search_params.get("post")
     

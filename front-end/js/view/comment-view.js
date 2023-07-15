@@ -1,6 +1,6 @@
 // TODO: split onVoteButtonPressed between controller and view
 // important note: querySelector only returns the first element (which is fine for comments that only have 1 of each element like comment body, upvote button, etc)
-const LOGIN_USER = "melissa_spellman"
+const LOGIN_USER = document.loggedInAs
 const COMMENT_PREFIX = "comment-"
 const commentViewManager = {
     // Displays the comment
