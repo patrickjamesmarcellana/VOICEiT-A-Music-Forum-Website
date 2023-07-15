@@ -23,10 +23,6 @@ const postViewManager = {
                                         <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         &nbsp;&nbsp;Delete
                                     </button>
-                                    <button class="view-analytics-button">
-                                        <span class="analytics-sprite"> &nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                        &nbsp;&nbsp;Analytics
-                                    </button>
                                 </div>
                             </span>
                         </div>
@@ -44,11 +40,14 @@ const postViewManager = {
     
                             <div class="post-buttons">
                                 <button title="Upvote" class="upvote-sprite"></button>
-                                <span class="upvote-count">5</span>
+                                <span class="upvote-count" title="Upvote Count">5</span>
                                 <button title="Downvote" class="downvote-sprite"></button>
-                                <span class="downvote-count">5</span>
+                                <span class="downvote-count" title="Downvote Count">5</span>
                                 <a class="comment-sprite" title="Comment" href="post.html?post=${post_id}"></a>
-                                <a class="comment-count" href="post.html?post=${post_id}">${post.comment_count}</a>
+                                <a class="comment-count" title="Comment Count" href="post.html?post=${post_id}">${post.comment_count}</a>
+                                <span class="analytics-icon analytics-sprite view-analytics-button" title="Post Views"></span>
+                                <span class="view-count" title="Post Views">${post.views}</span>
+
                             </div>
                         </div>
                     </div>
@@ -58,8 +57,9 @@ const postViewManager = {
         // hiding it
         if(!is_logged_in() || post.op !== "melissa_spellman") {
             console.log(inserted_post)
-            inserted_post.find(".edit-post-button").css("display", "none")
-            inserted_post.find(".delete-post-button").css("display", "none")
+            // inserted_post.find(".edit-post-button").css("display", "none")
+            // inserted_post.find(".delete-post-button").css("display", "none")
+            inserted_post.find(".post-options-button").css("display", "none")
         }
     
         // making post containers a clickable container to post.html
