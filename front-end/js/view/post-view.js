@@ -18,7 +18,7 @@ const postViewManager = {
                                     <button class="edit-post-button">
                                         <span class="edit-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         &nbsp;&nbsp;Edit
-                                    </button> <br>
+                                    </button>
                                     <button class="delete-post-button">
                                         <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         &nbsp;&nbsp;Delete
@@ -39,12 +39,15 @@ const postViewManager = {
                             </div>
     
                             <div class="post-buttons">
-                                <button class="upvote-sprite"></button>
-                                <span class="upvote-count">5</span>
-                                <button class="downvote-sprite"></button>
-                                <span class="downvote-count">5</span>
-                                <a class="comment-sprite" href="post.html?post=${post_id}"></a>
-                                <a class="comment-count" href="post.html?post=${post_id}">${post.comment_count}</a>
+                                <button title="Upvote" class="upvote-sprite"></button>
+                                <span class="upvote-count" title="Upvote Count">5</span>
+                                <button title="Downvote" class="downvote-sprite"></button>
+                                <span class="downvote-count" title="Downvote Count">5</span>
+                                <a class="comment-sprite" title="Comment" href="post.html?post=${post_id}"></a>
+                                <a class="comment-count" title="Comment Count" href="post.html?post=${post_id}">${post.comment_count}</a>
+                                <span class="analytics-icon analytics-sprite view-analytics-button" title="Post Views"></span>
+                                <span class="view-count" title="Post Views">${post.views}</span>
+
                             </div>
                         </div>
                     </div>
@@ -54,6 +57,8 @@ const postViewManager = {
         // hiding it
         if(!is_logged_in() || post.op !== "melissa_spellman") {
             console.log(inserted_post)
+            // inserted_post.find(".edit-post-button").css("display", "none")
+            // inserted_post.find(".delete-post-button").css("display", "none")
             inserted_post.find(".post-options-button").css("display", "none")
         }
     

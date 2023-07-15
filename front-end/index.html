@@ -4,14 +4,14 @@
     <head>
         <title>VOICEiT</title>
         <link rel="icon" type="image/png" href="images/logo2.png">
-        <link rel="stylesheet" type="text/css" media="all" href="css/index.css">
+        <link rel="stylesheet" type="text/css" media="all" href="css/index.css"> 
         <script src="js/model/post-manager.js" defer></script>       
         <script src="js/view/post-view.js" defer></script>       
         <script src="js/side_panel_a.js" defer></script>
         <script src="js/navbar.js" defer></script>
         <script src="js/vote_logic.js" defer></script>       
         <script src="js/comments.js" defer></script> 
-        <script src="js/index.js" defer></script>       
+        <script src="js/index.js" defer></script>
         <script src="js/code.jquery.com_jquery-3.6.0.min.js"></script>
     </head>
 
@@ -52,10 +52,14 @@
                                 <button class="edit-post-button">
                                     <span class="edit-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     &nbsp;&nbsp;Edit
-                                </button> <br>
+                                </button>
                                 <button class="delete-post-button">
                                     <span class="delete-sprite">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     &nbsp;&nbsp;Delete
+                                </button>
+                                <button class="view-analytics-button">
+                                    <span class="analytics-sprite"> &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    &nbsp;&nbsp;Analytics
                                 </button>
                             </div>
                         </span>
@@ -80,12 +84,16 @@
                         </div>
 
                         <div class="post-buttons">
-                            <button class="upvote-sprite"></button>
+                            <button title="Upvote" class="upvote-sprite"></button>
                             <span class="upvote-count">5</span>
                             <button class="downvote-sprite"></button>
                             <span class="downvote-count">5</span>
                             <a class="comment-sprite" href="post.html"></a>
                             <a class="comment-count" href="post.html">10</a>
+                            <button class="view-analytics-button">
+                                <span class="analytics-sprite"> &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                &nbsp;&nbsp;Analytics
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -108,6 +116,23 @@
             </div>
             
         </div>
+
+        <!-- <div class="analytics-container">
+            <div class="analytics-content-container">
+                <div class="main-header">
+                    <span class="header-text">Post Analytics</span>
+                    <span class="exit-button"></span>
+                </div>
+                <hr>
+                <div class="analytics-content">
+                    <div class="bold">
+                        Post Clicks: <span class="post-clicks">10</span><br>
+                        Post Engagements: <span class="post-engagements">5</span><br>
+                        Popularity Score: <span class="popularity-score">15</span>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
     </body>
 
 </html>

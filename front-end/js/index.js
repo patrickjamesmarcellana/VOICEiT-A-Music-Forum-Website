@@ -403,4 +403,18 @@ $(document).ready(async function() {
     $(".create-post-box").click(function() {
         window.location.href = "create-post.html";
     });
+
+    await $(".view-analytics-button").click(function() {
+        $(".analytics-container").css("display", "block")
+    })
+    
+    await $(".exit-button").click(function() {
+        $(".analytics-container").css("display", "none")
+    })
+
+    await $(".analytics-container").click(function() {
+        $(".analytics-container").css("display", "none")
+    })
+
+    
 });
