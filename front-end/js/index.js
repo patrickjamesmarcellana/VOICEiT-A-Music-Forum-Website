@@ -161,10 +161,10 @@ $(document).ready(async function() {
                     </a>
                 </div>
             </span>
-            <a class="post-profile nav-profile" href="profile.html?user=${username}">
-                <img class="post-profile-photo" src="${profile_photo}">
+            <a class="nav-profile" href="profile.html?user=${username}">
+                <img class="nav-profile-photo" src="${profile_photo}">
             </a>
-            <a class="post-profile nav-profile-name" href="profile.html?user=${username}">
+            <a class="nav-profile-name" href="profile.html?user=${username}">
                 ${username}
             </a> 
         `);
@@ -376,8 +376,8 @@ $(document).ready(async function() {
         await changeProfile(goto_user_id);
     }
 
-    $(".post-profile").click(async function() {
-        await changeProfile($(".post-profile").text());
+    $(".post-profile, .nav-profile").click(async function() {
+        await changeProfile($(".post-profile, .nav-profile").text());
     })
 
 
