@@ -107,11 +107,9 @@ async function logout() {
 }
 
 $(document).ready(async function() {
-    await $.getScript("/js/js.cookie-3.0.5.min.js");
-
-    // set global variable indicating logged in
-    if(is_logged_in) {
-        document.loggedInAs = Cookies.get("logged_in_as");
+    if(typeof Cookies === "undefined") {
+        console.log("Downloading js-cookie");
+        await $.getScript("/js/js.cookie-3.0.5.min.js");
     }
 
     /* changing nav-bar and side-panel-a's views when logging in */
@@ -362,7 +360,7 @@ $(document).ready(async function() {
         // button is only displayed when the user is logged in and is
         // viewing that one user's profile
         let displayMode = "none";
-        if (is_logged_in() && user_id === document.loggedInAs) {
+        if (is_logged_in() && user_id === Cookies.get("logged_in_as")) {
             displayMode = "block";
         }
         const editProfileBtns = $(".edit-profile-button");
@@ -392,7 +390,7 @@ $(document).ready(async function() {
     $(".logged-in-photo").click(function() {
         // window.location.href = "profile.html";
 
-        window.location.href = "profile.html?user=" + document.loggedInAs
+        window.location.href = "profile.html?user=" + Cookies.get("logged_in_as")
     });
 
 
