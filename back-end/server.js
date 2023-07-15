@@ -20,7 +20,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     //cookie: { secure: true }
-  }));
+    store: new session.MemoryStore()
+}));
+
+
 
 // extract user authentication from the session
 // this applies to all succeeding requests

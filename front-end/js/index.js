@@ -290,20 +290,20 @@ $(document).ready(async function() {
             forum_name.text(forums[forum_id].name);
             forum_description.html(forums[forum_id].description);
 
-            // load the posts of the forum
-            const posts_list = await postManager.getSubforumPosts(forum_id) // get first 5 posts for now
+            let posts_list = await postManager.getSubforumPosts(forum_id) // get first 5 posts for now
             const see_more_panel = $(".see-more-panel");
 
             let loading= false;
-            $(window).scroll(function() {
+            $(window).scroll(async function() {
                 if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
                     loading= true;
-
+                    
+                    posts_list = await postManager.getSubforumPosts(forum_id)
                     // your content loading call goes here.
+                    
 
                 loading = false; // reset value of loading once content loaded
-            }   
-});
+            }});
             
             // erase
             $(".see-more-panel").remove();
