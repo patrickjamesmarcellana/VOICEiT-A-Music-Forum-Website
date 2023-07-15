@@ -97,17 +97,15 @@ const forums = {
         `),
 }
 
-function logout() {
-    sessionStorage.setItem("logged_in", "false");
-    window.location.href = "index.html";
-}
-
 function is_logged_in() {
-    return sessionStorage.getItem("logged_in") === "true";
+    console.log(Cookies.get("logged_in_as"))
+    return Cookies.get("logged_in_as");
 }
 
 
 $(document).ready(async function() {
+    $.getScript("/js/js.cookie-3.0.5.min.js");
+
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
     const username = `melissa_spellman`;
@@ -123,14 +121,9 @@ $(document).ready(async function() {
         load_side_panel_a();
 
     // action listener for logout button
-    $(".logout-button").click(function() { 
-        window.location.href = "javascript:logout()";
-    });
-
-    // action listener for login and register Button (MCO1 hardcoded profile)
-    $(".submit-form-button").click(function(e) {
-        e.preventDefault();
-        sessionStorage.setItem("logged_in", "true");
+    $(".logout-button").click(async function() { 
+        await fetch("/api/auth/logout", {method: "POST"});
+        window.location.reload();
     });
 
     // check if the user is logged in or not
