@@ -556,7 +556,7 @@ body {
     font-size: 0.9rem;
 }
 
-.post-profile-photo {
+.nav-profile-photo, .post-profile-photo {
     height: 28px;
     width: 28px;
     margin-right: 8px;
@@ -564,7 +564,7 @@ body {
     border: solid 1px var(--main-color);
 }
 
-.post-profile {
+.nav-profile, .nav-profile-name, .post-profile {
     text-decoration: none;
     color: var(--main-color);
     align-items: center;

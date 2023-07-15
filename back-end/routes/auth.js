@@ -24,9 +24,20 @@ router.post("/register",  async (req, res) => {
 
 })
 
-router.post("/login", passport.authenticate("Local", {
-    successRedirect: "/",
-    failureRedirect: "login.html",
-}))
+router.post("/login", 
+    passport.authenticate("local", {}), 
+    (req, res) => { res.sendStatus(200) })
 
+router.post("/logout", (req, res) => {
+    req.logout((err) => {
+        if(!err) {
+            // delete the client's logged_in_as cookie
+            res.cookie("logged_in_as", "", {httpOnly: false})
+            res.sendStatus(200);
+        } else {
+            console.log("Error while logging out")
+            console.log(err)
+        }
+    })
+})
 module.exports = router

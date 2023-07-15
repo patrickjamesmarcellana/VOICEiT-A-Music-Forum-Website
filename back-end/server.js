@@ -9,6 +9,11 @@ const port = 8080
 mongoose = require("mongoose")
 User = require("./models/User")
 
+// body parser is needed to decode POST requests (such as login)
+const bodyparser = require('body-parser');
+app.use(bodyparser.json()) // decode JSON requests (from JS front end code usually)
+app.use(bodyparser.urlencoded({ extended: true })) // decode form data (from HTML forms usually)
+
 // session management
 app.use(session({
     secret: 'do not hardcode this',
@@ -21,6 +26,13 @@ app.use(session({
 // this applies to all succeeding requests
 app.use(passport.authenticate('session'));
 
+// tell client that it is logged in
+app.use((req, res, next) => {
+    if(req.user) {
+        res.cookie("logged_in_as", req.user.username, {httpOnly: false /* make cookie visible to client JS */})
+    }
+    next()
+})
 app.use(express.static('./front-end'))
 
 const auth_router = require("./routes/auth")

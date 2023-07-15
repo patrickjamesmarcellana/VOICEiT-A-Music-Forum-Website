@@ -3,10 +3,11 @@ const LocalStrategy = require("passport-local");
 
 const Password = require("./models/Password")
 const Session = require("./models/Session")
-const User = require("./models/Session")
+const User = require("./models/User")
+
 
 passport.use(new LocalStrategy(async function(username, password, cb) {
-    const user_info = await User.findOne({username: req.params.user}).exec()
+    const user_info = await User.findOne({username: username}).exec()
     if(user_info != null) {
         // send entire user object
         cb(null, user_info)

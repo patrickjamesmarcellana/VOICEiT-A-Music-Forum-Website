@@ -97,20 +97,26 @@ const forums = {
         `),
 }
 
-function logout() {
-    sessionStorage.setItem("logged_in", "false");
-    window.location.href = "index.html";
-}
-
 function is_logged_in() {
-    return sessionStorage.getItem("logged_in") === "true";
+    return Cookies.get("logged_in_as");
 }
 
+async function logout() {
+    await fetch("/api/auth/logout", {method: "POST"});
+    window.location.reload();
+}
 
 $(document).ready(async function() {
+    await $.getScript("/js/js.cookie-3.0.5.min.js");
+
+    // set global variable indicating logged in
+    if(is_logged_in) {
+        document.loggedInAs = Cookies.get("logged_in_as");
+    }
+
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
-    const username = `melissa_spellman`;
+    const username = Cookies.get("logged_in_as");
     const profile_photo = `images/${username}.jpg`;
 
     // load the nav bar and side panel a on all applicable pages
@@ -123,15 +129,7 @@ $(document).ready(async function() {
         load_side_panel_a();
 
     // action listener for logout button
-    $(".logout-button").click(function() { 
-        window.location.href = "javascript:logout()";
-    });
-
-    // action listener for login and register Button (MCO1 hardcoded profile)
-    $(".submit-form-button").click(function(e) {
-        e.preventDefault();
-        sessionStorage.setItem("logged_in", "true");
-    });
+    $(".logout-button").click(logout);
 
     // check if the user is logged in or not
     if(is_logged_in()) {
@@ -164,10 +162,10 @@ $(document).ready(async function() {
                     </a>
                 </div>
             </span>
-            <a class="post-profile nav-profile" href="profile.html?user=${username}">
-                <img class="post-profile-photo" src="${profile_photo}">
+            <a class="nav-profile" href="profile.html?user=${username}">
+                <img class="nav-profile-photo" src="${profile_photo}">
             </a>
-            <a class="post-profile nav-profile-name" href="profile.html?user=${username}">
+            <a class="nav-profile-name" href="profile.html?user=${username}">
                 ${username}
             </a> 
         `);
@@ -375,7 +373,7 @@ $(document).ready(async function() {
         // button is only displayed when the user is logged in and is
         // viewing that one user's profile
         let displayMode = "none";
-        if (is_logged_in() && user_id === `melissa_spellman`) {
+        if (is_logged_in() && user_id === document.loggedInAs) {
             displayMode = "block";
         }
         const editProfileBtns = $(".edit-profile-button");
@@ -390,8 +388,8 @@ $(document).ready(async function() {
         await changeProfile(goto_user_id);
     }
 
-    $(".post-profile").click(async function() {
-        await changeProfile($(".post-profile").text());
+    $(".post-profile, .nav-profile").click(async function() {
+        await changeProfile($(".post-profile, .nav-profile").text());
     })
 
 
@@ -405,8 +403,7 @@ $(document).ready(async function() {
     $(".logged-in-photo").click(function() {
         // window.location.href = "profile.html";
 
-        // TODO: change this once sessions are implemented
-        window.location.href = "profile.html?user=melissa_spellman"
+        window.location.href = "profile.html?user=" + document.loggedInAs
     });
 
 
