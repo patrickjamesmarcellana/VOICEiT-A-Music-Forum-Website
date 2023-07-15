@@ -101,6 +101,10 @@ function is_logged_in() {
     return Cookies.get("logged_in_as");
 }
 
+async function logout() {
+    await fetch("/api/auth/logout", {method: "POST"});
+    window.location.reload();
+}
 
 $(document).ready(async function() {
     await $.getScript("/js/js.cookie-3.0.5.min.js");
@@ -125,10 +129,7 @@ $(document).ready(async function() {
         load_side_panel_a();
 
     // action listener for logout button
-    $(".logout-button").click(async function() { 
-        await fetch("/api/auth/logout", {method: "POST"});
-        window.location.reload();
-    });
+    $(".logout-button").click(logout);
 
     // check if the user is logged in or not
     if(is_logged_in()) {
