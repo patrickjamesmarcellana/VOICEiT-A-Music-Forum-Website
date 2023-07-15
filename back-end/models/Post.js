@@ -44,6 +44,10 @@ const postSchema = new Schema({
         type: Number,
         default: 0,
     },
+    isEdited: {
+        type: Boolean,
+        default: false
+    },
     top_level_comments_list: {
         type: [String], // technically an ObjectID but we do not need to populate it
         required: true,
