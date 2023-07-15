@@ -33,6 +33,9 @@ app.use(passport.authenticate('session'));
 app.use((req, res, next) => {
     if(req.user) {
         res.cookie("logged_in_as", req.user.username, {httpOnly: false /* make cookie visible to client JS */})
+    } else {
+        // client might have a leftover logged in cookie (session expired, forcibly logged out, etc), empty it
+        res.cookie("logged_in_as", "", {httpOnly: false})
     }
     next()
 })
