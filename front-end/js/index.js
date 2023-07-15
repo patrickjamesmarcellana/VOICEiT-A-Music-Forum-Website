@@ -103,7 +103,7 @@ function is_logged_in() {
 
 
 $(document).ready(async function() {
-    $.getScript("/js/js.cookie-3.0.5.min.js");
+    await $.getScript("/js/js.cookie-3.0.5.min.js");
 
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
