@@ -40,13 +40,13 @@ const postViewManager = {
     
                             <div class="post-buttons">
                                 <button title="Upvote" class="upvote-sprite"></button>
-                                <span class="upvote-count" title="Upvote Count">5</span>
+                                <span class="upvote-count" title="Upvote Count">${post.upvote_count}</span>
                                 <button title="Downvote" class="downvote-sprite"></button>
-                                <span class="downvote-count" title="Downvote Count">5</span>
+                                <span class="downvote-count" title="Downvote Count">${post.downvote_count}</span>
                                 <a class="comment-sprite" title="Comment" href="post.html?post=${post_id}"></a>
                                 <a class="comment-count" title="Comment Count" href="post.html?post=${post_id}">${post.comment_count}</a>
-                                <span class="analytics-icon analytics-sprite view-analytics-button" title="Post Views"></span>
-                                <span class="view-count" title="Post Views">${post.views}</span>
+                                <span class="analytics-icon analytics-sprite view-analytics-button" title="Post Views/Clicks"></span>
+                                <span class="view-count" title="Post Views/Clicks">${post.views}</span>
 
                             </div>
                         </div>

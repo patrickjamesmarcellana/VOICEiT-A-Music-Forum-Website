@@ -415,6 +415,4 @@ $(document).ready(async function() {
     await $(".analytics-container").click(function() {
         $(".analytics-container").css("display", "none")
     })
-
-    
 });
