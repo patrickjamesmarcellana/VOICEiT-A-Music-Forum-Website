@@ -82,8 +82,8 @@ async function test() {
         I've recorded a sample which I hope helps: https://vocaroo.com/12Y0LTxSjHCr
         `,
         subforum: "pop",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 2,
+        downvoteCnt: 0,
         commentCnt: 6
     })).save()
 
@@ -95,8 +95,8 @@ async function test() {
         Discuss.
         `,
         subforum: "rap",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 3,
+        downvoteCnt: 1,
         commentCnt: 4
     })).save()
 
@@ -120,7 +120,7 @@ async function test() {
         What an absolute joke.<br>
         `,
         subforum: "rock",
-        upvoteCnt: 5,
+        upvoteCnt: 1,
         downvoteCnt: 5,
         commentCnt: 3
     })).save()
@@ -133,8 +133,8 @@ async function test() {
         I thought it was pretty good. How about you guys?
         `,
         subforum: "rnb",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 12,
+        downvoteCnt: 2,
         commentCnt: 3
     })).save()
 
@@ -148,8 +148,8 @@ async function test() {
         Link: https://en.yna.co.kr/view/AEN20230622002200315
         `,
         subforum: "kpop",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 6,
+        downvoteCnt: 1,
         commentCnt: 4
     })).save()
 
@@ -161,8 +161,8 @@ async function test() {
         I can't stand this guy. His voice and singing are both bad, and his rapping and songwriting skills are absolutely terrible. I'd be lying if I said he didn't have any good song instrumentals, but apart from that, that's really it. I don't really see anything else of value that would make me like this guy. So can anyone please explain to me why this guy is so big? It really is baffling.
         `,
         subforum: "latin",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 4,
+        downvoteCnt: 11,
         commentCnt: 4
     })).save()
 
@@ -174,8 +174,8 @@ async function test() {
         For me, Kind of Blue by Miles Davis. Overplayed, sure. Doesn't change a thing, though.
         `,
         subforum: "jazz",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 8,
+        downvoteCnt: 0,
         commentCnt: 4
     })).save()
 
@@ -187,8 +187,8 @@ async function test() {
         I want to start listening to classical music. Where should one start? Any recommendations would be much appreciated. Thank you!
         `,
         subforum: "classical",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 3,
+        downvoteCnt: 0,
         commentCnt: 3
     })).save()
 
@@ -201,7 +201,7 @@ async function test() {
         `,
         subforum: "country",
         upvoteCnt: 5,
-        downvoteCnt: 5,
+        downvoteCnt: 0,
         commentCnt: 4
     })).save()
 
@@ -213,8 +213,8 @@ async function test() {
         I find it pretty sad that among my friends, I am the only one who listens to alternative and indie rock. They all just listen to your typical, generic pop and rap. While I respect the fact that people have different tastes, which is quite evident, it makes me feel lonely, like I can't even talk to them about the music I love. Instead, I have to consult strangers on the internet I've never seen or met before. I'm just worried that someday, alternative music will just completely fade into obscurity never to be seen again, and I feel like I will really struggle in relating to other people's tastes in music. Thoughts?
         `,
         subforum: "alternative",
-        upvoteCnt: 5,
-        downvoteCnt: 5,
+        upvoteCnt: 7,
+        downvoteCnt: 2,
         commentCnt: 4
     })).save()
 
