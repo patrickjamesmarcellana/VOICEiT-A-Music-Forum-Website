@@ -290,9 +290,7 @@ $(document).ready(async function() {
 
             let posts_list = await postManager.getSubforumPosts(forum_id) // get all posts
             const see_more_panel = $(".see-more-panel");
-            console.log("UNBREAKABLE *********")
-            console.log(posts_list)
-
+            
             // erase
             $(".see-more-panel").remove();
             $(".post-container").remove();
@@ -301,7 +299,7 @@ $(document).ready(async function() {
             if(is_logged_in())
                 max_posts = posts_list.length
             else
-                max_posts = 15
+                max_posts = Math.min(15, posts_list.length)
 
             // append the first 5 posts
             let added_posts = 0
@@ -328,11 +326,10 @@ $(document).ready(async function() {
                         added_posts += 1
                     }
                     $(".post-panel").append(see_more_panel);
+
                     loading = false; // reset value of loading once content loaded
                 }
-            });
-            
-            
+            });            
         } else {
             window.location.href = `index.html?forum=${forum_id}`
         }
