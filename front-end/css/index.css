@@ -490,6 +490,7 @@ body {
 
 .search-container {
     padding-top: 30px;
+    border-right: none;
 }
 
 .create-post-container {
@@ -774,6 +775,10 @@ body {
     margin: 0 auto;
     min-width: 400px;
     width: 20vw;
+}
+
+.left-border {
+    border-left: solid 1px var(--main-color)
 }
 
 .forum-info-panel {
