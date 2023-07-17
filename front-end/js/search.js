@@ -29,19 +29,25 @@ const data = `<div class="post-container post-container-clickable">
 
 // extract query from URL
 const extract_query = (param_name) => {
-const search_params = new URLSearchParams(window.location.search)
-return search_params.get(param_name)
+    const search_params = new URLSearchParams(window.location.search)
+    return search_params.get(param_name)
 }
-$(document).ready(function() {
-// set search query
-console.log(extract_query("search"))
-$(".search-box").val(extract_query("search"))
 
-// fill search results
-const posts_list = Object.entries(posts);
-for(let i = 0; i < Math.min(20, posts_list.length); i++) {
-    const key = posts_list[i][0];
-    const val = posts_list[i][1];
-    insert_post(key);
-}
+$(document).ready(async function() {
+    // set search query
+    console.log(extract_query("search"))
+    $(".search-box").val(extract_query("search"))
+
+    // fill search results
+    const posts_list = await postManager.getSearchPosts(extract_query("search")) // get all posts containing the search key
+    for(let post of posts_list) {
+        postViewManager.insert_post(post)
+    }
+
+    // const posts_list = Object.entries(posts);
+    // for(let i = 0; i < Math.min(20, posts_list.length); i++) {
+    //     const key = posts_list[i][0];
+    //     const val = posts_list[i][1];
+    //     insert_post(key);
+    // }
 }) 

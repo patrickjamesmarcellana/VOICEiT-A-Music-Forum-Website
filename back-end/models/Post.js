@@ -55,4 +55,6 @@ const postSchema = new Schema({
     }
 })
 
+postSchema.index({title: 'text', body: 'text'}) // text index that will be useful for the search feature
+
 module.exports = model('Post', postSchema)

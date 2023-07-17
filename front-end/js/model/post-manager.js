@@ -7,8 +7,8 @@ const postManager = {
         return post
     },
 
-    getSubforumPosts: async function(post_id) {
-        const response = await fetch("api/posts/subforum/" + post_id)
+    getSubforumPosts: async function(subforum_id) {
+        const response = await fetch("api/posts/subforum/" + subforum_id)
         const json = await response.json()
 
         json.forEach(post => post.date = new Date(post.date))
@@ -17,6 +17,14 @@ const postManager = {
 
     getUserPosts: async function(user) {
         const response = await fetch("api/posts/user/" + user)
+        const json = await response.json()
+
+        json.forEach(post => post.date = new Date(post.date))
+        return json
+    },
+
+    getSearchPosts: async function(searchkey) {
+        const response = await fetch("api/posts/search/" + searchkey)
         const json = await response.json()
 
         json.forEach(post => post.date = new Date(post.date))

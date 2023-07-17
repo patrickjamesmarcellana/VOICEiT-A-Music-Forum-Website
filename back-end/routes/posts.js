@@ -33,6 +33,7 @@ const documentsToJson = async (documents) => {
     }
     return json
 }
+
 router.get("/id/:id", async (req, res) => {
     console.log("Request for post by id", req.params.id)
     try{
@@ -63,20 +64,13 @@ router.get("/user/:user", async (req, res) => {
         } else {
             res.sendStatus(404)
         }
-    } catch {
-
+    } catch(err){
+        console.error(err)
     }
 })
 
 router.get("/subforum/:subforum", async (req, res) => {
     console.log("Request for posts by subforum", req.params.subforum)
-    function compare_date(d1, d2) {
-        return new Date(d2.date) - new Date(d1.date);
-    }
-    
-    function compare_comment_count(c1, c2) {
-        return c2.comment_count - c1.comment_count;
-    }
 
     try {
         let query = []
@@ -84,7 +78,7 @@ router.get("/subforum/:subforum", async (req, res) => {
         
         //hardcoded_posts_list.forEach(post => post.comment_count = comment_count(post.top_level_comments_list))
         if(req.params.subforum === "home") {
-            req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
+            // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
             // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
             //     query.push(doc)
             //     i++
@@ -107,7 +101,30 @@ router.get("/subforum/:subforum", async (req, res) => {
     } catch(e) {
         console.log(e)
     }
+})
 
+router.get("/search/:searchkey", async(req, res) => {
+    console.log("Request for posts via search key: ", req.params.searchkey)
+    const key = req.params.searchkey
+    // Post.createIndexes({title: 'text', body: 'text'}) // text index that will be useful for the search feature
+    try {
+        // How to Populate Users with aggregate?
+
+        const query = await Post.aggregate([
+            { $match: { $text: { $search: key } } },
+            { $sort: { score: { $meta: "textScore" } } }
+        ])
+
+        console.log(query)
+        const json = await documentsToJson(query)
+        if(json !== undefined) {
+            res.send(json)
+        } else {
+            res.sendStatus(404)
+        }
+    } catch(err) {
+        console.error(err)
+    }
 })
 
 module.exports = router
