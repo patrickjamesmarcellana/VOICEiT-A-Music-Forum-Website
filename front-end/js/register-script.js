@@ -1,6 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const loginUsername = document.getElementById("login-username");
     const loginPassword = document.getElementById("login-password");
+    const confirmLoginPassword = document.getElementById(
+        "confirm-login-password"
+    );
 
     loginUsername.addEventListener("keyup", (event) => {
         const invalidUsername = document.createElement("div");
@@ -69,14 +72,39 @@ $(document).ready(function() {
         if (invalidPasswordMessage) {
             invalidPasswordMessage.remove();
         }
-        
+    });
+
+    confirmLoginPassword.addEventListener("keyup", (event) => {
+        const mismatchedPassword = document.createElement("div");
+        mismatchedPassword.className = "invalid-field-message";
+        mismatchedPassword.id = "mismatched-confirm-password-message";
+        mismatchedPassword.innerHTML = "Entered password does not match.";
+
+        // if entered password does not match, set text border to red and
+        // display message if one is not displayed already
+        if (loginPassword.value !== confirmLoginPassword.value) {
+            confirmLoginPassword.style.border = "2px solid red";
+            const mismatchedConfirmPasswordMessage = document.getElementById(
+                "mismatched-confirm-password-message"
+            );
+            if (!mismatchedConfirmPasswordMessage) {
+                confirmLoginPassword.parentElement.append(mismatchedPassword);
+            }
+            return;
+        }
+
+        // if password matches, set text box border to default and remove
+        // invalid message if there is any
+        confirmLoginPassword.style.border = "";
+        document
+            .getElementById("mismatched-confirm-password-message")
+            ?.remove();
     });
 });
 
 $(".submit-form-button").click(function (e) {
     e.preventDefault();
-    
+
     // redirect to index.html
     window.location.href = "index.html";
 });
-
