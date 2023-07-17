@@ -3,8 +3,9 @@ const session = require("express-session")
 const passport = require('passport')
 const passport_loader = require("./passport_loader")
 
+require('dotenv').config()
+
 const app = express()
-const port = 8080
 
 mongoose = require("mongoose")
 User = require("./models/User")
@@ -52,9 +53,9 @@ app.use("/api/comments", comments_router)
 const users_router = require("./routes/users")
 app.use("/api/users", users_router)
 
-mongoose.connect("mongodb://127.0.0.1/voiceit").then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log(`Mongoose connected to DB`)
 })
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Example app listening on port ${process.env.PORT}`)
 })
