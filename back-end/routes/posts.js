@@ -84,13 +84,14 @@ router.get("/subforum/:subforum", async (req, res) => {
         
         //hardcoded_posts_list.forEach(post => post.comment_count = comment_count(post.top_level_comments_list))
         if(req.params.subforum === "home") {
-            req.session.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
-            for (let doc = await req.session.cursor.next(), i = 0; doc != null && i < 5; doc = await req.session.cursor.next()) {
-                query.push(doc)
-                i++
-            }
+            req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
+            // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
+            //     query.push(doc)
+            //     i++
+            // }
             
-            // query = await Post.find().sort({date: -1}).populate("user").exec()
+            // for now: retrieve all then handle per-batch load in front end
+            query = await Post.find().sort({date: -1}).populate("user").exec()
         } else if(req.params.subforum === "popular"){
             query = await Post.find().sort({views: -1}).populate("user").exec()
         } else {

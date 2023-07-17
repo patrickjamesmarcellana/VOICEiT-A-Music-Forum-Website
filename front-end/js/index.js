@@ -288,30 +288,44 @@ $(document).ready(async function() {
             forum_name.text(forums[forum_id].name);
             forum_description.html(forums[forum_id].description);
 
-            let posts_list = await postManager.getSubforumPosts(forum_id) // get first 5 posts for now
+            let posts_list = await postManager.getSubforumPosts(forum_id) // get all posts
             const see_more_panel = $(".see-more-panel");
+            console.log("UNBREAKABLE *********")
+            console.log(posts_list)
 
-            let loading= false;
-            $(window).scroll(async function() {
-                if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
-                    loading= true;
-                    
-                    posts_list = await postManager.getSubforumPosts(forum_id)
-                    // your content loading call goes here.
-                    
-
-                loading = false; // reset value of loading once content loaded
-            }});
-            
             // erase
             $(".see-more-panel").remove();
             $(".post-container").remove();
 
-            for(const post of posts_list) {
-                postViewManager.insert_post(post)
+            // append the first 5 posts
+            let added_posts = 0
+            let posts_to_add = 5
+            for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
+                postViewManager.insert_post(posts_list[added_posts])
+                added_posts += 1
             }
-            
             $(".post-panel").append(see_more_panel);
+
+            // add 5 posts each time the window scrolls to the bottom
+            let loading= false;
+            $(window).scroll(async function() {
+                if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100) &&
+                    added_posts < posts_list.length) {
+                    loading= true;
+                    $(".see-more-panel").remove();
+                    // call for query cursor
+                    // posts_list = await postManager.getSubforumPosts(forum_id)
+
+                    for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
+                        postViewManager.insert_post(posts_list[added_posts])
+                        added_posts += 1
+                    }
+                    $(".post-panel").append(see_more_panel);
+                    loading = false; // reset value of loading once content loaded
+                }
+            });
+            
+            
         } else {
             window.location.href = `index.html?forum=${forum_id}`
         }
