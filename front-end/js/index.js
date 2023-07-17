@@ -297,10 +297,17 @@ $(document).ready(async function() {
             $(".see-more-panel").remove();
             $(".post-container").remove();
 
+            // set maximum posts to add: 15 for logged_out users, total post count in db for logged_in  users
+            if(is_logged_in())
+                max_posts = posts_list.length
+            else
+                max_posts = 15
+
             // append the first 5 posts
             let added_posts = 0
             let posts_to_add = 5
-            for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
+            
+            for(let i = 0; i < posts_to_add && added_posts < max_posts; i++) {
                 postViewManager.insert_post(posts_list[added_posts])
                 added_posts += 1
             }
@@ -310,13 +317,13 @@ $(document).ready(async function() {
             let loading= false;
             $(window).scroll(async function() {
                 if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100) &&
-                    added_posts < posts_list.length) {
+                    added_posts < max_posts) {
                     loading= true;
                     $(".see-more-panel").remove();
                     // call for query cursor
                     // posts_list = await postManager.getSubforumPosts(forum_id)
 
-                    for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
+                    for(let i = 0; i < posts_to_add && added_posts < max_posts; i++) {
                         postViewManager.insert_post(posts_list[added_posts])
                         added_posts += 1
                     }
