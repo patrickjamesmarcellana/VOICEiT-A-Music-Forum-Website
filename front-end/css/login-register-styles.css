@@ -95,6 +95,12 @@ body {
     width: 100%;
 }
 
+#confirm-login-password {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 100%;
+}
+
 .login-username {
     margin-bottom: 5%;
 }
