@@ -115,6 +115,8 @@ router.get("/search/:searchkey", async(req, res) => {
             { $sort: { score: { $meta: "textScore" } } }
         ])
 
+        await User.populate(query, {path: "user"})
+
         console.log(query)
         const json = await documentsToJson(query)
         if(json !== undefined) {
