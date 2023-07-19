@@ -51,4 +51,37 @@ router.patch("/edit-post", async (req, res) => {
     }
 })
 
+router.post("/create-comment", async (req, res) => {
+    if(req.user) {
+        const commentContent = req.body["comment-content"]
+        const parentPost = req.body["parent-post"]
+        const parentComment = req.body["parent-comment"] // can be null
+
+        if(commentContent && parentPost) {
+            const new_comment = await Comment.create({
+                user: req.user._id,
+                post_id: parentPost,
+                body: commentContent,
+            })
+
+            if(parentComment != null) {
+                await Comment.findByIdAndUpdate(parentComment, {
+                    $push: {subcomments: new_comment._id}
+                }).exec()
+            } else {
+                await Post.findByIdAndUpdate(parentPost, {
+                    $push: {top_level_comments_list: new_comment._id}
+                }).exec()
+            }
+            res.send({
+                comment_id: new_comment.id
+            })
+        } else {
+            res.sendStatus(400)
+        }
+    } else {
+        res.sendStatus(401)
+    }
+})
+
 module.exports = router
