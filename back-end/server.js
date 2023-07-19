@@ -15,6 +15,10 @@ const bodyparser = require('body-parser');
 app.use(bodyparser.json()) // decode JSON requests (from JS front end code usually)
 app.use(bodyparser.urlencoded({ extended: true })) // decode form data (from HTML forms usually)
 
+// allow the usage of HTTP PATCH in HTML forms
+const methodOverride = require('method-override')
+app.use(methodOverride("_method"))
+
 // session management
 app.use(session({
     secret: 'do not hardcode this',

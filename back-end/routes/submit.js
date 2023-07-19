@@ -27,7 +27,7 @@ router.post("/create-post", async (req, res) => {
     }
 })
 
-router.post("/edit-post", async (req, res) => {
+router.patch("/edit-post", async (req, res) => {
     const postId = req.body["post-id"]
     const post = await Post.findById(postId).populate("user").exec()
 
