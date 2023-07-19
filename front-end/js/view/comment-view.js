@@ -67,6 +67,10 @@ const commentViewManager = {
                 const editor_container = container.querySelector(".comment-text-editor")
                 editor_container.classList.remove("hidden")
                 editor_container.querySelector("textarea").textContent = comment.content
+
+                // set mode and listener
+                editor_container.setAttribute("mode", "edit")
+                editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
             })
             container.querySelector(".comment-delete-button").classList.remove("hidden")
         }
@@ -81,6 +85,10 @@ const commentViewManager = {
     
                 // wipe text are to be sure
                 editor_container.querySelector("textarea").textContent = ""
+
+                // set mode and listener
+                editor_container.setAttribute("mode", "reply")
+                editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
             } else {
                 window.location.href = "login.html"
             }
@@ -114,6 +122,43 @@ const commentViewManager = {
         }
 
         return container
-    } 
+    },
+
+    // add listners
+    onMiniSubmitButtonPressed: async (event) => {
+        const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
+        const editor_container = event.currentTarget.closest(".comment-text-editor")
+        const mode = editor_container.getAttribute("mode")
+        console.log(comment_id, mode)
+
+        
+        const text_content = editor_container.querySelector("textarea").value
+        let status = null
+
+        switch(mode) {
+            case "edit":
+                status = await commentManager.editComment(comment_id, text_content)
+                break
+            case "reply":
+                const post_id = event.currentTarget.closest(".post-container").getAttribute("post-id")
+                status = await commentManager.createComment(post_id, comment_id, text_content)
+                break
+            default:
+                console.log("Unknown action")
+        }
+
+        if(status == 200) {
+            commentViewManager.insert_comment(commentManager.getComment(comment_id))
+        }
+    },
+
+    onDeleteButtonPressed: async (event) => {
+        const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
+
+        const status = commentManager.deleteComment(comment_id)
+        if(status == 200) {
+            event.currentTarget.closest(".comment-container").remove()
+        }
+    }
 }
 

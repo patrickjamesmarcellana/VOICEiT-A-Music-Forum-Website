@@ -11,5 +11,43 @@ const commentManager = {
         const response = await fetch("api/comments/user/" + user)
         const json = await response.json()
         return json
+    },
+
+    createComment: async function(parent_post, parent_comment, comment_content) {
+        const response = await fetch("/api/create/comment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "comment-content": comment_content,
+                "parent-post": parent_post,
+                "parent-comment": parent_comment,
+            })
+        })
+
+        return response.status
+    },
+
+    editComment: async function(comment_id, comment_content) {
+        const response = await fetch("/api/update/comment/" + comment_id, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "comment-content": comment_content,
+            })
+        })
+
+        return response.status
+    },
+
+    deleteComment: async function(comment_id) {
+        const response = await fetch("/api/delete/comment/" + comment_id, {
+            method: "DELETE",
+        })
+
+        return response.status
     }
 }
