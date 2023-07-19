@@ -39,6 +39,7 @@
         <script src="js/view/post-view.js" type="text/javascript"></script>
         <script src="js/model/comment-manager.js" type="text/javascript"></script>
         <script src="js/model/post-manager.js" type="text/javascript"></script>
+        <script src="js/model/user-manager.js" defer></script>
 
         <template id="comment-template"> 
             <div class="comment-parent-container comment-container">
@@ -68,6 +69,15 @@
             </div>
             
         </template>  
+        <script>
+            $(document).ready(async function() {
+                const search_params = new URLSearchParams(window.location.search)
+                user = await userManager.getPost(search_params.get("user"))
+
+                $("#profile-picture").val(user.photoUrl)
+                $("#description").val(user.description)
+            })
+        </script>
     </head>
 
     <body>
@@ -179,7 +189,7 @@
                 </div>
         
                 <div class="user-form">
-                    <form id="edit-profile-form">
+                    <form method="POST" action="/api/submit/edit-profile?_method=PATCH" id="edit-profile-form">
                         <label for="profile-picture" class="header-font">Profile Picture</label>
                         <div class="profile-picture">
                             <input type="file" name="profile-picture" id="profile-picture" accept="image/png, image/jpeg" />
