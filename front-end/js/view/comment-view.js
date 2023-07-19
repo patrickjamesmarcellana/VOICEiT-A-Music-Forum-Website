@@ -163,7 +163,8 @@ const commentViewManager = {
                 console.log("Unknown action")
         }
 
-        
+        // hide the panel again
+        editor_container.classList.add("hidden")
     },
 
     onDeleteButtonPressed: async (event) => {
