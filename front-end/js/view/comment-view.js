@@ -109,8 +109,12 @@ const commentViewManager = {
         container.querySelector(".comment-text-editor-cancel-button").addEventListener("click", onCancelButtonPressed)
 
         // attach custom functions
+        container.getSubcommentsPanel = function() {
+            return this.querySelector(":scope > .comment-subcomments-panel")
+        }
+
         container.enableSubcommentsPanel = function() {
-            this.querySelector(":scope > .comment-subcomments-panel").classList.remove("hidden")
+            this.getSubcommentsPanel().classList.remove("hidden")
             this.classList.add("with-subcomments")
         }
 
@@ -154,7 +158,11 @@ const commentViewManager = {
                 const [status, new_comment_id] = await commentManager.createComment(post_id, comment_id, text_content)
                 if(status == 200) {
                     console.log(status, new_comment_id)
-                    commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), comment_container)
+
+                    // extra: the parent comment now has subcomments, enable if it has not been enabled
+                    comment_container.enableSubcommentsPanel()
+
+                    commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), comment_container.getSubcommentsPanel())
                 }
                 break
             }
