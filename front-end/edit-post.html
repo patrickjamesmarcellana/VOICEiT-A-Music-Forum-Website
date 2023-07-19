@@ -9,31 +9,16 @@
         <script src="js/side_panel_a.js" defer></script>
         <script src="js/navbar.js" defer></script>
         <script src="js/index.js" defer></script>
-        <script src="js/edit-post.js" defer></script>
+        <script src="js/model/post-manager.js" defer></script>
         <script src="js/code.jquery.com_jquery-3.6.0.min.js"></script>
-
-        <script src="js/vote_logic.js" type="text/javascript"></script>
-        <script src="js/comments.js" type="text/javascript"></script>
-
-        <script src="js/hardcoded/hardcoded_users.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_posts.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_1.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_2.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_3.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_4.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_5.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_6.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_7.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_8.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_9.js" type="text/javascript"></script>
-        <script src="js/hardcoded/hardcoded_comments_10.js" type="text/javascript"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(async function() {
                 const search_params = new URLSearchParams(window.location.search)
-                post_id = search_params.get("post")
+                post = await postManager.getPost(search_params.get("post"))
 
-                $("#post-title").val(posts[post_id].title)
-                $("#post-content").val(posts[post_id].text)
+                $("#post-title").val(post.title)
+                $("#post-content").val(post.text)
+                $("#post-id").val(post.post_id)
             })
         </script>
     </head>
@@ -55,13 +40,14 @@
                     <span class="cp-title"> 
                         Edit Post 
                     </span>
-                    <form method="GET">
+                    <form method="POST" action="/api/submit/edit-post">
                         <div class="create-post-forms">
 
                             <label class="post-intro-text"> Voice what's on your mind!</label>
                             <input class="post-title-input" type="text" id="post-title" name="post-title" placeholder="Title">
                             <textarea class="post-content-input" id="post-content" name="post-content" placeholder="VoiceIt!"></textarea><br>
 
+                            <input type="hidden" id="post-id" name="post-id">
                             <input class="create-post-submit-button" type="submit" value="POST" id="post-button">
                         </div>
                     </form>
