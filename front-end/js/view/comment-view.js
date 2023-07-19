@@ -149,7 +149,7 @@ const commentViewManager = {
         }
 
         if(status == 200) {
-            commentViewManager.insert_comment(commentManager.getComment(comment_id))
+            commentViewManager.insert_comment(await commentManager.getComment(comment_id))
         }
     },
 
