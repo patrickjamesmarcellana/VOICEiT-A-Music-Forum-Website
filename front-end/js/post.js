@@ -15,6 +15,8 @@ $(document).ready(async function() {
         $(".post-profile-photo").attr("src", `images/${post.op}.jpg`)
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
+        $(".upvote-count").text(post.upvote_count)
+        $(".downvote-count").text(post.downvote_count)
         $(".comment-count").text(post.comment_count)
         $(".post-date").html(`${post.date.toDateString('en-CA')} | ${post.date.toLocaleTimeString()}`)
     
