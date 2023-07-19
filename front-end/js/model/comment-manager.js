@@ -14,7 +14,7 @@ const commentManager = {
     },
 
     createComment: async function(parent_post, parent_comment, comment_content) {
-        const response = await fetch("/api/create/comment", {
+        const response = await fetch("/api/submit/create-comment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -26,7 +26,10 @@ const commentManager = {
             })
         })
 
-        return response.status
+        const response_json = await response.json()
+        const new_comment_id = response_json.comment_id
+
+        return [response.status, new_comment_id]
     },
 
     editComment: async function(comment_id, comment_content) {

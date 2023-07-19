@@ -128,30 +128,42 @@ const commentViewManager = {
 
     // add listners
     onMiniSubmitButtonPressed: async (event) => {
-        const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
+        const comment_container = event.currentTarget.closest(".comment-container")
         const editor_container = event.currentTarget.closest(".comment-text-editor")
+
+        const comment_id = comment_container.getAttribute("backend_id")
         const mode = editor_container.getAttribute("mode")
         console.log(comment_id, mode)
 
         
         const text_content = editor_container.querySelector("textarea").value
-        let status = null
 
+        let status
         switch(mode) {
             case "edit":
-                status = await commentManager.editComment(comment_id, text_content)
+            {
+                const status = await commentManager.editComment(comment_id, text_content)
+                if(status == 200) {
+                    commentViewManager.insert_comment(await commentManager.getComment(comment_id))
+                }
                 break
+            }
             case "reply":
+            { // need to block scope status
                 const post_id = event.currentTarget.closest(".post-container").getAttribute("post-id")
-                status = await commentManager.createComment(post_id, comment_id, text_content)
+                const [status, new_comment_id] = await commentManager.createComment(post_id, comment_id, text_content)
+                if(status == 200) {
+                    console.log(status, new_comment_id)
+                    commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), comment_container)
+                }
                 break
+            }
+
             default:
                 console.log("Unknown action")
         }
 
-        if(status == 200) {
-            commentViewManager.insert_comment(await commentManager.getComment(comment_id))
-        }
+        
     },
 
     onDeleteButtonPressed: async (event) => {
