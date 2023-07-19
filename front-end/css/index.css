@@ -84,6 +84,10 @@ body {
     }
 }
 
+.mark {
+    background-color: #d3a3da;
+}
+
 .search-bar {
     border: solid 1px #edf6ff;
     border-radius: 50px;

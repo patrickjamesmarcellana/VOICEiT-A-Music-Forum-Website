@@ -181,7 +181,7 @@ router.get("/search/:searchkey", async(req, res) => {
     const key = req.params.searchkey
     try {
         const query = await Post.aggregate([
-            { $match: { $text: { $search: key, $language: "none" } } },
+            { $match: { $text: { $search: key } } },
             { $sort: { score: { $meta: "textScore" } } }
         ])
 
