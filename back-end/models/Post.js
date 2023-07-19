@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 const User = require("./User")
 const { required } = require('nodemon/lib/config')
-const { post } = require('../routes/posts')
+// const { post } = require('../routes/posts')
 
 const postSchema = new Schema({
     user: {
