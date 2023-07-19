@@ -47,6 +47,7 @@ const commentViewManager = {
 
         // inject comment text
         const lines = comment.content.split('\n')
+        container.querySelector(".comment-content").innerHTML = ""
         lines.forEach(function(line) {
             const paragraph = document.createElement("p")
             paragraph.textContent = line
