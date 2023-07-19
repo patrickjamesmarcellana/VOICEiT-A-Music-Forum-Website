@@ -67,7 +67,7 @@ const commentViewManager = {
                 const container = event.currentTarget.closest(".comment-container")
                 const editor_container = container.querySelector(".comment-text-editor")
                 editor_container.classList.remove("hidden")
-                editor_container.querySelector("textarea").textContent = comment.content
+                editor_container.querySelector("textarea").value = comment.content
 
                 // set mode and listener
                 editor_container.setAttribute("mode", "edit")
@@ -86,7 +86,7 @@ const commentViewManager = {
                 editor_container.classList.remove("hidden")
     
                 // wipe text are to be sure
-                editor_container.querySelector("textarea").textContent = ""
+                editor_container.querySelector("textarea").value = ""
 
                 // set mode and listener
                 editor_container.setAttribute("mode", "reply")
