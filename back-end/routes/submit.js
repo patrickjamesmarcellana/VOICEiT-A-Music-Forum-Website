@@ -84,4 +84,26 @@ router.post("/create-comment", async (req, res) => {
     }
 })
 
+router.patch("/edit-comment/:comment_id", async (req, res) => {
+    const commentId = req.params.comment_id
+    const comment = await Comment.findById(commentId).populate("user").exec()
+
+    if(req.user && req.user._id.equals(comment.user._id)) {
+        const commentContent = req.body["comment-content"]
+
+        if(commentContent) {
+            comment.body = commentContent
+            comment.isEdited = true
+            
+            await comment.save()
+
+            res.sendStatus(200)
+        } else {
+            res.sendStatus(400)
+        }
+    } else {
+        res.sendStatus(401)
+    }
+})
+
 module.exports = router

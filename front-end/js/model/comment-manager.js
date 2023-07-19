@@ -33,7 +33,7 @@ const commentManager = {
     },
 
     editComment: async function(comment_id, comment_content) {
-        const response = await fetch("/api/update/comment/" + comment_id, {
+        const response = await fetch("/api/submit/edit-comment/" + comment_id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
