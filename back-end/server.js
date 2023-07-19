@@ -53,6 +53,9 @@ app.use("/api/comments", comments_router)
 const users_router = require("./routes/users")
 app.use("/api/users", users_router)
 
+const submit_router = require("./routes/submit")
+app.use("/api/submit", submit_router)
+
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log(`Mongoose connected to DB`)
 })

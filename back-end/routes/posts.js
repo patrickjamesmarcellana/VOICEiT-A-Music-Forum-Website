@@ -98,6 +98,7 @@ router.get("/subforum/:subforum", async (req, res) => {
         }
         
         //hardcoded_posts_list.forEach(post => post.comment_count = comment_count(post.top_level_comments_list))
+        console.log(req.query)
         if(req.params.subforum === "home") {
             // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
             // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
