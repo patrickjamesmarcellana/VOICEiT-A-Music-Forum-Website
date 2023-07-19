@@ -53,7 +53,8 @@ a {
     outline: none;
 }
 
-.comment-text-editor > textarea {
+.comment-text-editor > textarea,
+.post-text-editor > textarea {
     width: 100%;
     resize: vertical;
 }

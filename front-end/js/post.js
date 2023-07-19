@@ -26,7 +26,16 @@ $(document).ready(async function() {
             $(".post-options-button").css("display", "none")
         }
         
-    
+        $(".post-text-editor-submit-button").click(async () => {
+            const post_id = $(".post-container").attr("post-id")
+            const [status, new_comment_id] = await commentManager.createComment(post_id, null, $(".post-text-editor > textarea").val())
+            if(status == 200) {
+                commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), document.querySelector("#comments-panel"))
+            }
+
+            // reset text editor
+            $(".post-text-editor").val("")
+        })
         // render comments
         loadAllComment(post.top_level_comments_list)
     } 
