@@ -179,10 +179,7 @@ router.get("/subforum/:subforum", async (req, res) => {
 router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
-    // Post.createIndexes({title: 'text', body: 'text'}) // text index that will be useful for the search feature
     try {
-        // How to Populate Users with aggregate?
-
         const query = await Post.aggregate([
             { $match: { $text: { $search: key, $language: "none" } } },
             { $sort: { score: { $meta: "textScore" } } }
