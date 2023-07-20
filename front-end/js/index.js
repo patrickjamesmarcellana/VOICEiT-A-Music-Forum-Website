@@ -363,7 +363,7 @@ $(document).ready(async function() {
     const user_description = $(".user-description");
     const user_last_login = $(".user-last-login > span:nth-child(2)");
     const user_register_date = $(".user-register-date > span:nth-child(2)")
-    const nav_bar_profile = ${}
+    // const nav_bar_profile = ${}
 
     async function changeProfile(user_id) {
         const response = await fetch("api/users/" + user_id)
