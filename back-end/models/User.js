@@ -17,7 +17,7 @@ const userSchema = new Schema({
     },
     photoUrl: {
         type: String,
-        default: "empty-profile.png"
+        default: "images/empty-profile.png"
     },
     lastLogin: {
         type: Date,

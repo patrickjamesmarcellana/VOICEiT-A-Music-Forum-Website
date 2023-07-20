@@ -101,10 +101,3 @@ $(document).ready(function () {
             ?.remove();
     });
 });
-
-$(".submit-form-button").click(function (e) {
-    e.preventDefault();
-
-    // redirect to index.html
-    window.location.href = "index.html";
-});
