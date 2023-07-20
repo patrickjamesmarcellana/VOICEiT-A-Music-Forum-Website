@@ -34,7 +34,7 @@ app.use(session({
         maxAge: 300 * 1000 // five minutes
     },
 
-    // reset the session expiration every time the user connects to the website
+    // reset the session expiration time every time the user connects to the website
     rolling: true,
 
     //cookie: { secure: true }
