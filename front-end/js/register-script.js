@@ -40,6 +40,9 @@ $(document).ready(function () {
     });
 
     loginPassword.addEventListener("keyup", (event) => {
+        // update confirm password error message as well
+        setMismatchedPasswordMessage();
+
         const invalidPassword = document.createElement("div");
         invalidPassword.className = "invalid-field-message";
         invalidPassword.id = "invalid-password-message";
@@ -76,6 +79,10 @@ $(document).ready(function () {
     });
 
     confirmLoginPassword.addEventListener("keyup", (event) => {
+        setMismatchedPasswordMessage();
+    });
+
+    function setMismatchedPasswordMessage() {
         const mismatchedPassword = document.createElement("div");
         mismatchedPassword.className = "invalid-field-message";
         mismatchedPassword.id = "mismatched-confirm-password-message";
@@ -100,5 +107,5 @@ $(document).ready(function () {
         document
             .getElementById("mismatched-confirm-password-message")
             ?.remove();
-    });
+    }
 });
