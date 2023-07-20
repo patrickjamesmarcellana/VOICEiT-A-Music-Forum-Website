@@ -254,9 +254,9 @@ $(document).ready(async function() {
                 $(".logout-button").css("display", "flex");
         }
     }
-    
+    adjust_window();
+
     window.onresize = adjust_window;
-    window.onload = adjust_window;
 
 
     // sample posts loop
