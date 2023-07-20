@@ -70,11 +70,34 @@
             
         </template>  
         <script>
+            // Reference: https://stackoverflow.com/questions/1696877/how-to-set-a-value-to-a-file-input-in-html/70485949#70485949
+            function loadURLToInputFiled(url) {
+                getImgURL(url, (imgBlob) => {
+                    // Load img blob to input
+                    // WIP: UTF8 character error
+                    let fileName = url.substring(7)
+                    let file = new File([imgBlob], fileName,{type:"image/jpeg", lastModified:new Date().getTime()}, 'utf-8');
+                    let container = new DataTransfer(); 
+                    container.items.add(file);
+                    document.querySelector('#profile-picture').files = container.files;
+                })
+            }
+            // xmlHTTP return blob respond
+            function getImgURL(url, callback){
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                    callback(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.send();
+            }
+
             $(document).ready(async function() {
                 const search_params = new URLSearchParams(window.location.search)
-                user = await userManager.getPost(search_params.get("user"))
-
-                $("#profile-picture").val(user.photoUrl)
+                user = await userManager.getUser(search_params.get("user"))
+                loadURLToInputFiled(user.photoUrl)
+                // $("#profile-picture").val(user.photoUrl)
                 $("#description").val(user.description)
             })
         </script>

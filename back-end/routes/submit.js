@@ -106,4 +106,12 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
     }
 })
 
+router.patch('/edit-profile', async (req, res) => {
+    if(req.user) {
+        const user_id = req.user._id
+        // await User.findByIdAndUpdate(user_id, 
+        //     , options)
+    }
+})
+
 module.exports = router
