@@ -44,8 +44,9 @@ $(document).ready(function () {
         invalidPassword.className = "invalid-field-message";
         invalidPassword.id = "invalid-password-message";
         invalidPassword.innerHTML =
-            "Password must be between 8 - 32 characters long and contain the \
-            following: uppercase, lowercase, numbers, and symbols.";
+            "Password must be between 8 - 32 characters long. It should \
+            contain one of each: uppercase, lowercase, numbers, and symbols \
+            (#?!@$%^&*-).";
 
         const validPasswordRegex =
             /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,32}$/;
