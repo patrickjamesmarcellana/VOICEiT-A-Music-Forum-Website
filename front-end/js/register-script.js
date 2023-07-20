@@ -10,7 +10,7 @@ $(document).ready(function () {
         invalidUsername.className = "invalid-field-message";
         invalidUsername.id = "invalid-username-message";
         invalidUsername.innerHTML =
-            "Username must be between 3 - 20 characters and \
+            "Username must be between 3 - 20 characters only. It \
         can contain the following: uppercase, lowercase, numbers, and underscores.";
 
         const validUsernameRegex = /^\w{3,20}$/;
