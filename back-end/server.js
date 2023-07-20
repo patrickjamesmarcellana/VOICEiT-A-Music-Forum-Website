@@ -37,6 +37,19 @@ app.use(session({
     // reset the session expiration time every time the user connects to the website
     rolling: true,
 
+    /* when the expiration time is changed, the corresponding cookie in the DB is not updated by default (still has old expiration)
+        example:
+            _id: "_y3dnzLgWOYm_Xeg40gBEDTPje5qJMNC"
+            expires: 2023-07-20T09:28:58.978+00:00
+            session "{"cookie":{"originalMaxAge":300000,"expires":"2023-07-20T09:28:50.376Z…"
+
+        the expiration of the MongoDB document is correct tho 
+
+        Note: having an incorrect cookie entry in the DB does not break anything (tested by setting session.expires to the year 2000)
+              but it is better to keep the corresponding DB entry in sync
+    */
+    resave: true,
+
     //cookie: { secure: true }
 }));
 
