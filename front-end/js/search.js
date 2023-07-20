@@ -41,7 +41,7 @@ $(document).ready(async function() {
     // fill search results
     const posts_list = await postManager.getSearchPosts(extract_query("search")) // get all posts containing the search key
     for(let post of posts_list) {
-        postViewManager.insert_post(post)
+        postViewManager.search_insert_post(post, extract_query("search"))
     }
 
     // const posts_list = Object.entries(posts);
