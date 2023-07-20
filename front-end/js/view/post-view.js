@@ -88,10 +88,10 @@ const postViewManager = {
             key = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
         }
         
-        let regex_string = "/"
+        let regex_string = ""
         for(let i = 0; i < keys.length; i++) {
             if (i === keys.length - 1) {
-                regex_string += (keys[i] + "/")
+                regex_string += (keys[i])
             } else {
                 regex_string += (keys[i] + "|")
             }
@@ -100,8 +100,8 @@ const postViewManager = {
         const pattern = new RegExp(`${regex_string}`, "gi")
         let post_title = post.title
         let post_text = post.text
-        post_title.replace("/music|alternative/g", match => `<span class="mark">${match}</span>`)
-        post_text.replace("/music|alternative/g", match => `<span class="mark">${match}</span>`)
+        post_title = post_title.replace(pattern, match => `<span class="mark">${match}</span>`)
+        post_text = post_text.replace(pattern, match => `<span class="mark">${match}</span>`)
         const inserted_post = $(`
                     <div class="post-container post-container-clickable" post-id="${post_id}">
                         <div class="post-header"> 
