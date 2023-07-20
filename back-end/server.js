@@ -2,7 +2,7 @@ const express = require("express")
 const session = require("express-session")
 const passport = require('passport')
 const passport_loader = require("./passport_loader")
-
+const MongoStore = require('connect-mongo')
 require('dotenv').config()
 
 const app = express()
@@ -24,6 +24,15 @@ app.use(session({
     secret: 'do not hardcode this',
     resave: false,
     saveUninitialized: false,
+
+    // save all logged-in browser sessions to MongoDB
+    //
+    // note: connect-mongo automatically removes sessions that have expired (set by cookie maxAge)
+    //       no need to manually clean-up the DB
+    store: MongoStore.create({mongoUrl: process.env.MONGO_SESSIONSTORE_URI}),
+    cookie: {
+        maxAge: 300 * 1000 // five minutes
+    }
     //cookie: { secure: true }
 }));
 
