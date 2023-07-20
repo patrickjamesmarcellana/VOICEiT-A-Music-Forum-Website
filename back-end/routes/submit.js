@@ -107,10 +107,20 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
 })
 
 router.patch('/edit-profile', async (req, res) => {
+    console.log("I am here")
     if(req.user) {
         const user_id = req.user._id
-        // await User.findByIdAndUpdate(user_id, 
-        //     , options)
+        if(req.body["profile-picture"] && req.body["description"]) {
+            await User.findByIdAndUpdate(user_id, {
+                description: req.body["description"],
+                photoUrl: req.body["profile-picture"]
+            })
+            res.redirect(`/profile.html?user=${req.user.username}`)
+        } else {
+            res.sendStatus(400)
+        }
+    } else {
+        res.sendStatus(401)
     }
 })
 
