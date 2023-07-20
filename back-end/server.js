@@ -32,7 +32,11 @@ app.use(session({
     store: MongoStore.create({mongoUrl: process.env.MONGO_SESSIONSTORE_URI}),
     cookie: {
         maxAge: 300 * 1000 // five minutes
-    }
+    },
+
+    // reset the session expiration every time the user connects to the website
+    rolling: true,
+
     //cookie: { secure: true }
 }));
 
