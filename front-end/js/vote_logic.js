@@ -74,8 +74,8 @@ const onVoteButtonPressed = (event) => {
                 break
         }
         
-        const post_id = container.id // get id of post to pass to API
-        //changeVoteApi(post_id, newVote)
+        const comment_id = container.getAttribute("backend_id") // get id of post to pass to API
+        voteManager.voteComment(comment_id, new_state)
 
         const cur_votes = parseInt(container.getAttribute("raw_vote_count"))
         container.setAttribute("raw_vote_count", cur_votes + vote_delta)

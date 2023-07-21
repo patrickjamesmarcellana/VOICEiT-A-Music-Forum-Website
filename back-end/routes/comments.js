@@ -1,11 +1,8 @@
 const router = require("express").Router()
 
+const Constants = require("../constants")
 const Comment = require("../models/Comment")
-
-const STATE_NOT_VOTED = 0
-const STATE_UPVOTED = 1
-const STATE_DOWNVOTED = 2
-const STATE_INVALID = 3
+const Vote = require("../models/Vote")
 
 const documentToJson = (document) => {
     console.log(document)
@@ -16,8 +13,8 @@ const documentToJson = (document) => {
 
         flags: [],
         author: document.user.username,
-        votes: document.upvoters.length + document.downvoters.length,
-        vote_state: STATE_NOT_VOTED,
+        votes: document.upvoteCnt - document.downvoteCnt,
+        vote_state: Constants.STATE_NOT_VOTED,
         content: document.body
     }
 }
@@ -31,11 +28,23 @@ const documentsToJson = (documents) => {
     return json
 }
 
+// add vote state to a set of comments (an array of comments)
+const addVoteToJson = async (user_id, json) => {
+    for(let i = 0; i < json.length; i++) {
+        const vote_info = await Vote.findOne({user: user_id, type: Constants.VOTE_TYPE_COMMENT, target: json[i].comment_id})
+        if(vote_info != null) {
+            json[i].vote_state = vote_info.vote
+        }
+    }
+}
 router.get('/id/:id', async (req, res) => {
     console.log("Request for comment by id", req.params.id)
     try {
         const query = await Comment.findById(req.params.id).populate("user")
         const json = documentToJson(query)
+
+        if(req.user)
+            await addVoteToJson(req.user._id, [json])
     
         if(json != null) {
             res.send(json)
@@ -53,6 +62,9 @@ router.get("/user/:user", async (req, res) => {
         const user_id = await User.findOne({username: req.params.user})
         const query = await Comment.find({user: user_id}).populate("user")
         const json = documentsToJson(query);
+
+        if(req.user)
+            await addVoteToJson(req.user._id, json)
 
         if(json !== undefined) {
             res.send(json)

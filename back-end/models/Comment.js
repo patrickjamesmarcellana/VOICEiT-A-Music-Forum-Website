@@ -21,22 +21,20 @@ const commentSchema = new Schema({
         type: String,
         required: true
     },
-    upvoters: {
-        type: [Schema.Types.ObjectId],
-        ref: "User",
-        required: true,
-        default: []
-    },
-    downvoters: {
-        type: [Schema.Types.ObjectId],
-        ref: "User",
-        required: true,
-        default: []
-    },
     subcomments: {
         type: [Schema.Types.ObjectId], // technically an ObjectID but we do not need to populate it
         ref: "Comment"
-    }
+    },
+    upvoteCnt: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    downvoteCnt: {
+        type: Number,
+        required: true,
+        default: 0
+    },
 })
 
 module.exports = model('Comment', commentSchema)
