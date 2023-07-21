@@ -1,6 +1,7 @@
 const Comment = require("./models/Comment")
 const Post = require("./models/Post")
 const User = require("./models/User")
+const Password = require("./models/Password")
 mongoose = require("mongoose")
 
 
@@ -69,7 +70,36 @@ async function test() {
         lastLogin: new Date(),
         registerDate: new Date("2023-06-25T00:00:00")
     })).save()
+
     console.log("Populated \"users\" table")
+
+    // POPULATE PASSWORDS COLLECTION
+    const hardcoded_password1 = await(new Password({
+        user: hardcoded_user1._id,
+        password: "Melissa-12345"
+    })).save()
+
+    const hardcoded_password2 = await(new Password({
+        user: hardcoded_user2._id,
+        password: "Draeznor-12345"
+    })).save()
+
+    const hardcoded_password3 = await(new Password({
+        user: hardcoded_user3._id,
+        password: "Jennie-12345"
+    })).save()
+    
+    const hardcoded_password4 = await(new Password({
+        user: hardcoded_user4._id,
+        password: "Marithus-12345"
+    })).save()
+
+    const hardcoded_password5 = await(new Password({
+        user: hardcoded_user5._id,
+        password: "Aria-12345"
+    })).save()
+
+    console.log("Populated \"passwords\" table")
 
     // POPULATE POSTS COLLECTION
     const hardcoded_post1 = await (new Post({
@@ -218,70 +248,9 @@ async function test() {
         commentCnt: 4
     })).save()
 
-    // populate "user" fields of posts
-    // await Post.findOne({
-    //     user: hardcoded_user5._id,
-    //     title: "Help me ID this pop song that goes \"ay oh ay oh ay oh\"",
-    //     date: new Date("2023-06-21T05:20:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user2._id,
-    //     title: "Eminem: Recovery or Relapse?",
-    //     date: new Date("2023-06-20T23:18:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user2._id,
-    //     title: "Remember the time when Billboard announced the top 10 rock songs of the 2010s and none of the songs were rock?",
-    //     date: new Date("2023-01-17T04:16:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     ser: hardcoded_user1._id,
-    //     title: "Thoughts on SZA - SOS?",
-    //     date: new Date("2023-02-01T11:15:30"),
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user3._id,
-    //     title: "Fifty Fifty becomes longest-charting K-pop girl group on Billboard Hot 100",
-    //     date: new Date("2023-06-26T23:59:59"),
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user4._id,
-    //     title: "How did Bad Bunny blow up?",
-    //     date: new Date("2023-06-26T10:02:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user1._id,
-    //     title: "What album do you think is perfect?",
-    //     date: new Date("2023-06-14T03:33:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user1._id,
-    //     title: "How to start listening to classical music?",
-    //     date: new Date("2022-06-26T05:20:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user4._id,
-    //     title: "Why don't most people don't like country music?",
-    //     date: new Date("2022-12-31T03:16:30")
-    // }).populate("user").exec()
-
-    // await Post.findOne({
-    //     user: hardcoded_user5._id,
-    //     title: "The future of alternative music",
-    //     date: new Date("2023-06-24T17:18:30")
-    // }).populate("user").exec()
-
     console.log("Populated \"posts\" table")
 
-    // populate comments
+    // POPULATE COMMENTS COLLECTION
     const hardcoded_comment1004 = await (new Comment({ post_id: hardcoded_post10, subcomments: [], user: hardcoded_user4._id, body: "yeah, it's such a broad term that it lost its original meaning" } )).save()
     const hardcoded_comment1003 = await (new Comment({ post_id: hardcoded_post10, subcomments: [hardcoded_comment1004.id], user: hardcoded_user3._id, body: "When every band, even the popular ones got marketed as \"indie\", that word just completely lost its meaning." } )).save()
     const hardcoded_comment1002 = await (new Comment({ post_id: hardcoded_post10, subcomments: [hardcoded_comment1003.id], user: hardcoded_user2._id, body: "Got to be honest, aren't most mainstream rock bands labeled as \"alternative\" or \"indie\" despite them not actually being alternative or independent? Say, like, Radiohead." } )).save()
