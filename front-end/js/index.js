@@ -390,10 +390,6 @@ $(document).ready(async function() {
     }
 
     function setEditProfileBtnVisibility(user_id) {
-        // TODO: change this once sessions are implemented
-        // Since only one user can log in for now, the edit profile
-        // button is only displayed when the user is logged in and is
-        // viewing that one user's profile
         let displayMode = "none";
         if (is_logged_in() && user_id === Cookies.get("logged_in_as")) {
             displayMode = "block";
