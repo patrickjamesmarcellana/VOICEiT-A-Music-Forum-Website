@@ -5,7 +5,7 @@ const postViewManager = {
                     <div class="post-container post-container-clickable" post-id="${post_id}">
                         <div class="post-header"> 
                             <a href="profile.html?user=${post.op}" class="post-profile">
-                                <img class="post-profile-photo" src="images/${post.op}.jpg">
+                                <img class="post-profile-photo" src="${post.photoUrl}">
                             </a>
     
                             <a href="profile.html?user=${post.op}" class="post-profile">

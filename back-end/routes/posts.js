@@ -13,6 +13,7 @@ const documentToJson = async (document) => {
         post_id: document._id,
         subforum: document.subforum,
         op: document.user.username,
+        photoUrl: document.user.photoUrl,
                 
         title: document.title,
         text: document.body,
