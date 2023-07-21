@@ -22,6 +22,8 @@ router.post("/register",  async (req, res) => {
         // also create a new document in passwords collection, 
         // store hashed password
         // redirect the user to index.html but make it logged in
+
+        // don't forget to populate user
     } catch(e) {
         console.log(e)
     }
