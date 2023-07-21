@@ -17,7 +17,10 @@ exitModalBtn.addEventListener("click", (event) => {
 });
 
 for (const editProfileBtn of editProfileBtns) {
-    editProfileBtn.addEventListener("click", (event) => {
+    editProfileBtn.addEventListener("click", async (event) => {
+        const search_params = new URLSearchParams(window.location.search)
+        user = await userManager.getUser(search_params.get("user"));
+        document.querySelector("#description").value = user.description;
         modal.style.display = "block";
     });
 }
