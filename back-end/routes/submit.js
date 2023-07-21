@@ -107,21 +107,28 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
 })
 
 router.patch('/edit-profile', async (req, res) => {
-    console.log("I am here")
-    if(req.user) {
-        const user_id = req.user._id
-        if(req.body["profile-picture"] && req.body["description"]) {
-            await User.findByIdAndUpdate(user_id, {
-                description: req.body["description"],
-                photoUrl: req.body["profile-picture"]
-            })
-            res.redirect(`/profile.html?user=${req.user.username}`)
-        } else {
-            res.sendStatus(400)
-        }
-    } else {
-        res.sendStatus(401)
+    if (!req.user) {
+        res.sendStatus(401);
     }
-})
+
+    const user_id = req.user._id;
+
+    // if user uploaded profile picture, set it as new profile picture
+    // NOTE/TODO: due to security reasons, it is not possible to obtain the
+    // absolute file path of the image selected, thus the image needs to be
+    // moved to the images folder with a unique name (preferably the user's)
+    // username (and replace the existing profile picture, if any)
+    if (req.body["profile-picture"]) {
+        await User.findByIdAndUpdate(user_id, {
+            photoUrl: `images/${req.body["profile-picture"]}`
+        });
+    }
+
+    await User.findByIdAndUpdate(user_id, {
+        description: req.body["description"]
+    });
+
+    res.redirect(`/profile.html?user=${req.user.username}`);
+});
 
 module.exports = router
