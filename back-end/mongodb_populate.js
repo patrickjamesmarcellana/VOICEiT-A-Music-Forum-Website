@@ -76,27 +76,27 @@ async function test() {
     // POPULATE PASSWORDS COLLECTION
     const hardcoded_password1 = await(new Password({
         user: hardcoded_user1._id,
-        password: "melissa-12345"
+        password: "Melissa-12345"
     })).save()
 
     const hardcoded_password2 = await(new Password({
         user: hardcoded_user2._id,
-        password: "draeznor-12345"
+        password: "Draeznor-12345"
     })).save()
 
     const hardcoded_password3 = await(new Password({
         user: hardcoded_user3._id,
-        password: "jennie-12345"
+        password: "Jennie-12345"
     })).save()
     
     const hardcoded_password4 = await(new Password({
         user: hardcoded_user4._id,
-        password: "marithus-12345"
+        password: "Marithus-12345"
     })).save()
 
     const hardcoded_password5 = await(new Password({
         user: hardcoded_user5._id,
-        password: "aria-12345"
+        password: "Aria-12345"
     })).save()
 
     console.log("Populated \"passwords\" table")

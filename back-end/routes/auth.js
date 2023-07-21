@@ -16,16 +16,19 @@ router.post("/register",  async (req, res) => {
             _id: new mongoose.Types.ObjectId(),
             username: req.body["username"]
         }).save()
+
+        const newPassword = await new Password({
+            user: newUser._id,
+            password: req.body["password"]
+        }).save()
         console.log("user successfully created")
         res.redirect("/index.html")
         // todo: validate password, 
-        // also create a new document in passwords collection, 
-        // store hashed password
         // redirect the user to index.html but make it logged in
 
         // don't forget to populate user
     } catch(e) {
-        console.log(e)
+        console.error(e)
     }
 
 
