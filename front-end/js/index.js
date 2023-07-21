@@ -115,7 +115,12 @@ $(document).ready(async function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
     const username = Cookies.get("logged_in_as");
-    const profile_photo = `images/${username}.jpg`;
+    let profile_photo = "/images/empty-profile.png";
+    if (username) {
+        const response = await fetch("api/users/" + username);
+        const currentUser = await response.json();
+        profile_photo = currentUser.photoUrl;
+    }
 
     // load the nav bar and side panel a on all applicable pages
     // note: if function is not defined then it is was intentionally not included for this page
