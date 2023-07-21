@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
+const bcrypt = require("bcrypt")
 
 const SALT_WORK_FACTOR = 10 // how long the salt will be
 
