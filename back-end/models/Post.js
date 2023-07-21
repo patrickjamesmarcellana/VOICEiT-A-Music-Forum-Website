@@ -39,7 +39,7 @@ const postSchema = new Schema({
         required: true,
         default: 0
     },
-    views: { // popularity is based on the number of clicks on the post
+    views: { // popularity is based on the number of views on the post
         type: Number,
         default: 0,
     },
