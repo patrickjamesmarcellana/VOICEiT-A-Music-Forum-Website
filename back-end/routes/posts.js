@@ -1,8 +1,10 @@
 const router = require("express").Router()
 
 const Comment = require("../models/Comment")
+const Constants = require("../constants")
 const Post = require("../models/Post")
 const User = require("../models/User")
+const Utils = require("../utils/utils")
 
 // remove private info, set public info etc
 // and get comments list
@@ -42,7 +44,10 @@ router.get("/id/:id", async (req, res) => {
         await Post.updateOne({_id: req.params.id}, {$inc: {views: 1}})
         console.log(query)
         const json = [await documentToJson(query)]
-    
+
+        if(req.user)
+            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+
         if(json != null) {
             res.send(json)
         } else {
@@ -60,6 +65,9 @@ router.get("/user/:user", async (req, res) => {
         let query = await Post.find({user: user_id}).populate("user")
         let json = await documentsToJson(query)
         
+        if(req.user)
+            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+
         if(json != null) {
             res.send(json)
         } else {
@@ -167,6 +175,9 @@ router.get("/subforum/:subforum", async (req, res) => {
         }
         
         const json = await documentsToJson(query)
+        if(req.user)
+            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+
         if(json !== undefined) {
             res.send(json)
         } else {
@@ -190,6 +201,9 @@ router.get("/search/:searchkey", async(req, res) => {
 
         console.log(query)
         const json = await documentsToJson(query)
+        if(req.user)
+            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+        
         if(json !== undefined) {
             res.send(json)
         } else {

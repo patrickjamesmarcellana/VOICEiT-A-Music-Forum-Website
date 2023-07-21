@@ -39,10 +39,10 @@ const postViewManager = {
                             </div>
     
                             <div class="post-buttons">
-                                <button title="Upvote" class="upvote-sprite"></button>
-                                <span class="upvote-count" title="Upvote Count">${post.upvote_count}</span>
-                                <button title="Downvote" class="downvote-sprite"></button>
-                                <span class="downvote-count" title="Downvote Count">${post.downvote_count}</span>
+                                <button title="Upvote" class="post-upvote-button upvote-sprite"></button>
+                                <span class="upvote-count" title="Upvote Count"></span>
+                                <button title="Downvote" class="post-downvote-button downvote-sprite"></button>
+                                <span class="downvote-count" title="Downvote Count"></span>
                                 <a class="comment-sprite" title="Comment" href="post.html?post=${post_id}"></a>
                                 <a class="comment-count" title="Comment Count" href="post.html?post=${post_id}">${post.comment_count}</a>
                                 <span class="analytics-icon analytics-sprite view-analytics-button" title="Post Views/Clicks"></span>
@@ -78,6 +78,16 @@ const postViewManager = {
                 }
             }
         })
+
+        // add votes
+        inserted_post.attr("upvote-count", post.upvote_count)
+        inserted_post.attr("downvote-count", post.downvote_count)
+        updateVoteUI(inserted_post.get(0), post.vote_state, [post.upvote_count, post.downvote_count])
+
+        // add vote listeners
+        inserted_post.find(".post-upvote-button").click(onPostVoteButtonPressed)
+        inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
+
         return inserted_post
     },
     search_insert_post: function(post, search_key, post_insertion_location=".post-panel") {
@@ -140,10 +150,10 @@ const postViewManager = {
                             </div>
     
                             <div class="post-buttons">
-                                <button title="Upvote" class="upvote-sprite"></button>
-                                <span class="upvote-count" title="Upvote Count">${post.upvote_count}</span>
-                                <button title="Downvote" class="downvote-sprite"></button>
-                                <span class="downvote-count" title="Downvote Count">${post.downvote_count}</span>
+                                <button title="Upvote" class="post-upvote-button upvote-sprite"></button>
+                                <span class="upvote-count" title="Upvote Count"></span>
+                                <button title="Downvote" class="post-downvote-button  downvote-sprite"></button>
+                                <span class="downvote-count" title="Downvote Count"></span>
                                 <a class="comment-sprite" title="Comment" href="post.html?post=${post_id}"></a>
                                 <a class="comment-count" title="Comment Count" href="post.html?post=${post_id}">${post.comment_count}</a>
                                 <span class="analytics-icon analytics-sprite view-analytics-button" title="Post Views/Clicks"></span>
@@ -179,6 +189,16 @@ const postViewManager = {
                 }
             }
         })
+
+        // add votes
+        inserted_post.attr("upvote-count", post.upvote_count)
+        inserted_post.attr("downvote-count", post.downvote_count)
+        updateVoteUI(inserted_post.get(0), post.vote_state, [post.upvote_count, post.downvote_count])
+
+        // add vote listeners
+        inserted_post.find(".post-upvote-button").click(onPostVoteButtonPressed)
+        inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
+
         return inserted_post
     } 
 } 

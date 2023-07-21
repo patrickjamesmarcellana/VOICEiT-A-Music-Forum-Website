@@ -4,9 +4,16 @@ const STATE_DOWNVOTED = 2
 const STATE_INVALID = 3
 
 // for convinience
-const getVoteButtons = (container) => ({
-        upvote_button: container.querySelector(".comment-upvote-button"),
-        downvote_button: container.querySelector(".comment-downvote-button"),
+const getVoteButtons = (container) => {
+    let button_class_prefix
+    if(container.classList.contains("comment-container"))
+        button_class_prefix = "comment-"
+    else if(container.classList.contains("post-container"))
+        button_class_prefix = "post-"
+    
+    return {
+        upvote_button: container.querySelector(`.${button_class_prefix}upvote-button`),
+        downvote_button: container.querySelector(`.${button_class_prefix}downvote-button`),
         getState: function() {
             const state = this.downvote_button.classList.contains("toggled") << 1 | this.upvote_button.classList.contains("toggled")
             if(state == STATE_INVALID)
@@ -14,7 +21,7 @@ const getVoteButtons = (container) => ({
             
             return state
         } 
-    })
+    }}
 
 const updateVoteUI = (container, new_state, vote_count) => {
     const vote_buttons = getVoteButtons(container)
@@ -34,11 +41,18 @@ const updateVoteUI = (container, new_state, vote_count) => {
             break;
     }
     
-    container.querySelector(".comment-vote-count").textContent = vote_count
+    if(container.classList.contains("comment-container")) {
+        container.querySelector(".comment-vote-count").textContent = vote_count
+    } else if(container.classList.contains("post-container")) {
+        container.querySelector(".upvote-count").textContent = vote_count[0]
+        container.querySelector(".downvote-count").textContent = vote_count[1]
+    }
+        
+
 }
 
 // determines new vote state based on user's button presses
-const onVoteButtonPressed = (event) => {
+const onCommentVoteButtonPressed = (event) => {
     const container = event.currentTarget.closest(".comment-container")
     const vote_buttons = getVoteButtons(container)
     const prev_state = vote_buttons.getState()
@@ -84,3 +98,64 @@ const onVoteButtonPressed = (event) => {
         window.location.href = "login.html"
     }
 } 
+
+const onPostVoteButtonPressed = async (event) => {
+    const container = event.currentTarget.closest(".post-container")
+    const vote_buttons = getVoteButtons(container)
+    const prev_state = vote_buttons.getState()
+
+    if(is_logged_in()) {
+        // ensure that button is either an upvote or downvote button (it cannot be both at the same time and it cannot be neither)
+        if(!(event.currentTarget.classList.contains("post-upvote-button") ^ event.currentTarget.classList.contains("post-downvote-button"))) {
+            throw "Invalid button state"
+        }
+
+        // check whether the user pressed the upvote or the downvote button
+        // due to the assertion above, we are 100% sure that if pressedUpvote is false, then it is automatically a downvote button press
+        const pressedUpvote = event.currentTarget.classList.contains("post-upvote-button")
+
+        let upvote_cnt = parseInt(container.getAttribute("upvote-count"))
+        let downvote_cnt = parseInt(container.getAttribute("downvote-count"))
+        let new_state
+        switch(prev_state) {
+            case STATE_NOT_VOTED:
+                new_state  = pressedUpvote ? STATE_UPVOTED : STATE_DOWNVOTED
+                if(pressedUpvote) {
+                    upvote_cnt   += 1
+                    downvote_cnt += 0
+                } else {
+                    upvote_cnt   += 0
+                    downvote_cnt += 1
+                }
+                break
+            case STATE_UPVOTED:
+                new_state  = pressedUpvote ? STATE_NOT_VOTED : STATE_DOWNVOTED
+                if(pressedUpvote) {
+                    upvote_cnt   -= 1
+                    downvote_cnt += 0
+                } else {
+                    upvote_cnt   -= 1
+                    downvote_cnt += 1
+                }
+                break
+            case STATE_DOWNVOTED:
+                new_state  = pressedUpvote ? STATE_UPVOTED : STATE_NOT_VOTED
+                if(pressedUpvote) {
+                    upvote_cnt   += 1
+                    downvote_cnt -= 1
+                } else {
+                    upvote_cnt   += 0
+                    downvote_cnt -= 1
+                }
+                break
+        }
+
+        const post_id = container.getAttribute("post-id") // get id of post to pass to API
+        await voteManager.votePost(post_id, new_state)
+        container.setAttribute("upvote-count", upvote_cnt)
+        container.setAttribute("downvote-count", downvote_cnt)
+        updateVoteUI(container, new_state, [upvote_cnt, downvote_cnt])
+    } else {
+        window.location.href = "login.html"
+    }
+}

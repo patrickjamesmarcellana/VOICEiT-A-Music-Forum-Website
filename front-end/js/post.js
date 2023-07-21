@@ -27,6 +27,15 @@ $(document).ready(async function() {
             $(".post-options-button").css("display", "none")
         }
         
+        // add votes
+        $(".post-container").attr("upvote-count", post.upvote_count)
+        $(".post-container").attr("downvote-count", post.downvote_count)
+        updateVoteUI($(".post-container").get(0) /* convert to vanilla DOM */, post.vote_state, [post.upvote_count, post.downvote_count])
+
+        // add vote listeners
+        $(".post-container").find(".post-upvote-button").click(onPostVoteButtonPressed)
+        $(".post-container").find(".post-downvote-button").click(onPostVoteButtonPressed)
+
         $(".post-text-editor-submit-button").click(async () => {
             const post_id = $(".post-container").attr("post-id")
             const [status, new_comment_id] = await commentManager.createComment(post_id, null, $(".post-text-editor > textarea").val())

@@ -112,6 +112,16 @@ $(document).ready(async function() {
         await $.getScript("/js/js.cookie-3.0.5.min.js");
     }
 
+    {
+        console.log("HACK: Downloading vote scripts");
+
+        if(typeof onPostVoteButtonPressed === "undefined")
+            await $.getScript("/js/vote_logic.js");
+
+        if(typeof voteManager === "undefined")
+            await $.getScript("/js/model/vote-manager.js");
+    }
+
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
     const username = Cookies.get("logged_in_as");

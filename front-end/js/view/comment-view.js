@@ -56,8 +56,8 @@ const commentViewManager = {
 
         // inject listeners
         const vote_buttons = getVoteButtons(container)
-        vote_buttons.upvote_button.addEventListener("click", onVoteButtonPressed)
-        vote_buttons.downvote_button.addEventListener("click", onVoteButtonPressed)
+        vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
+        vote_buttons.downvote_button.addEventListener("click", onCommentVoteButtonPressed)
         updateVoteUI(container, comment.vote_state, comment.votes)
 
         // should the edit/delete buttons be visible?
