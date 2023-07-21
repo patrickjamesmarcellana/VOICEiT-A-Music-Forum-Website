@@ -37,8 +37,8 @@ passwordSchema.pre('save', async function(next) {
     }
 })
 
-passwordSchema.method('comparePassword', function(candidatePassword) {
-    return bcrypt.compare(candidatePassword, this.password)
+passwordSchema.method('comparePassword', async function(candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password)
 })
 
 module.exports = model('Password', passwordSchema);

@@ -9,8 +9,14 @@ const User = require("./models/User")
 passport.use(new LocalStrategy(async function(username, password, cb) {
     const user_info = await User.findOne({username: username}).exec()
     if(user_info != null) {
-        // send entire user object
-        cb(null, user_info)
+        const password_info = await Password.findOne({user: user_info._id}).exec()
+
+        if(password_info != null && await password_info.comparePassword(password)) {
+            // send entire user object
+            cb(null, user_info)
+        } else {
+            cb(null, null) // todo: add error messages
+        }
     } else {
         cb(null, null) // todo: add error messages
     }
