@@ -100,6 +100,12 @@
     margin-bottom: 5%;
 }
 
+.profile-picture-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #profile-picture {
     width: 100%;
 }

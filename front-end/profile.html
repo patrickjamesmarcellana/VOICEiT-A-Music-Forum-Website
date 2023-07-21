@@ -181,8 +181,14 @@
                 <div class="user-form">
                     <form method="POST" action="/api/submit/edit-profile?_method=PATCH" id="edit-profile-form">
                         <label for="profile-picture" class="header-font">Profile Picture</label>
-                        <div class="profile-picture">
-                            <input type="file" name="profile-picture" id="profile-picture" accept="image/png, image/jpeg" />
+                        <div class="profile-picture-options">
+                            <div class="profile-picture">
+                                <input type="file" name="profile-picture" id="profile-picture" accept="image/png, image/jpeg" />
+                            </div>
+                            
+                            <div class="clear-profile">
+                                <input type="button" id="remove-picture" value="Remove Picture"></type>
+                            </div>
                         </div>
         
                         <label for="description" class="header-font">Description</label>

@@ -113,6 +113,16 @@ router.patch('/edit-profile', async (req, res) => {
 
     const user_id = req.user._id;
 
+    // remove user's profile picture
+    const removePhoto = req.body["removePhoto"];
+    if (removePhoto === "true") {
+        await User.findByIdAndUpdate(user_id, {
+            photoUrl: `images/empty-profile.png`
+        });
+        res.send(200);
+        return;
+    }
+
     // if user uploaded profile picture, set it as new profile picture
     // NOTE/TODO: due to security reasons, it is not possible to obtain the
     // absolute file path of the image selected, thus the image needs to be
