@@ -21,12 +21,12 @@ const userSchema = new Schema({
     },
     lastLogin: {
         type: Date,
-        default: new Date()
+        default: Date.now
     },
     registerDate: {
         type: Date,
         immutable: true,
-        default: new Date()
+        default: Date.now
     }
 });
 
