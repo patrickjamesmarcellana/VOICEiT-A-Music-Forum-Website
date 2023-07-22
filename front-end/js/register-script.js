@@ -3,6 +3,17 @@ const loginPassword = document.getElementById("login-password");
 const confirmLoginPassword = document.getElementById("confirm-login-password");
 const createAccountBtn = document.getElementById("submit-button");
 
+document.addEventListener("DOMContentLoaded", async (event) => {
+    if (typeof Cookies === "undefined") {
+        console.log("Downloading js-cookie");
+        await $.getScript("/js/js.cookie-3.0.5.min.js");
+    }
+
+    if (is_logged_in()) {
+        window.location.replace("index.html");
+    }
+});
+
 loginUsername.addEventListener("keyup", (event) => {
     // if user tried registering with username and it already exists, remove
     // the error message as they type a new username
@@ -85,7 +96,7 @@ createAccountBtn.addEventListener("click", async (event) => {
             // redirect to index after logging in
             if (loginResponse.status === 200) {
                 alert("Account successfully created!");
-                window.location.href = "index.html";
+                window.location.replace("index.html");
             } else {
                 console.log("Login after register error");
             }
