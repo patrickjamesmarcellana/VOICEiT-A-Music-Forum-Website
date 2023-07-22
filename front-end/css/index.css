@@ -84,6 +84,16 @@ body {
     }
 }
 
+@media screen and(max-height: 100vh) {
+    .left-border {
+        border-left: solid 1px var(--main-color)
+    }
+
+    .post-panel {
+        border-right: none;
+    };
+}
+
 .mark {
     background-color: black;
 }
@@ -489,6 +499,7 @@ body {
     display: flex;
     flex-direction: column;
     padding-bottom: 30px;
+    border-right: solid 1px var(--main-color)
 }
 
 .search-container {
@@ -781,11 +792,6 @@ body {
     margin: 0 auto;
     min-width: 400px;
     width: 20vw;
-    height: 100vh;
-}
-
-.left-border {
-    border-left: solid 1px var(--main-color)
 }
 
 .forum-info-panel {
