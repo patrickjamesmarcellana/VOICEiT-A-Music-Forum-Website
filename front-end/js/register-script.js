@@ -95,8 +95,19 @@ createAccountBtn.addEventListener("click", async (event) => {
 
             // redirect to index after logging in
             if (loginResponse.status === 200) {
-                alert("Account successfully created!");
-                window.location.replace("index.html");
+                $(".notification-container").css("display", "flex")
+                $(".register-box").css("display", "none")
+                $(".next-button").attr("href", "profile.html?user=" + loginUsername.value)
+                $(".next-button").click( () => {
+                    let timer = null
+                    if(timer !== null) {
+                        clearTimeout(timer)
+                    }
+                    timer = setTimeout(() => {
+                        $(".register-box").css("display", "flex")
+                    }, 1000)
+                })
+                // window.location.replace("index.html");
             } else {
                 console.log("Login after register error");
             }
