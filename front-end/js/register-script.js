@@ -96,10 +96,13 @@ createAccountBtn.addEventListener("click", async (event) => {
 
             // if successful, display account registration notification
             if (loginResponse.status === 200) {
+                document.querySelector(".register-box").style.display = "none";
                 document.querySelector(
                     ".notification-container"
+                ).style.display = "block";
+                document.querySelector(
+                    ".notification-inner-container"
                 ).style.display = "flex";
-                document.querySelector(".register-box").style.display = "none";
             } else {
                 console.log("Login after register error");
             }
