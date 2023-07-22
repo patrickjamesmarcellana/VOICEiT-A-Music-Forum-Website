@@ -42,19 +42,17 @@ router.post("/register", async (req, res) => {
     }
 });
 
+router.post("/login", passport.authenticate("local", {}), async (req, res) => {
+    const new_date = Date.now();
 
-router.post("/login", 
-    passport.authenticate("local", {}), 
-    async (req, res) => {
-        const new_date = Date.now()
+    const user = await User.findOneAndUpdate(
+        { username: req.body["username"] },
+        { lastLogin: new_date }
+    );
 
-        const user = await User.findOneAndUpdate(
-            {username: req.body["username"]},
-            {lastLogin: new_date})
-
-        console.log("Updated login time")
-        res.sendStatus(200) 
-    })
+    console.log("Updated login time");
+    res.sendStatus(200);
+});
 
 router.post("/logout", (req, res) => {
     req.logout((err) => {
@@ -66,4 +64,5 @@ router.post("/logout", (req, res) => {
         }
     });
 });
+
 module.exports = router;
