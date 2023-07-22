@@ -176,11 +176,11 @@ const request_paginate = async (collection, filter_query, metric_name, last_sent
                 }, 
                 filter_query,
             ]
-        }).sort(sort_query).limit(post_limit).populate("user").exec() // DEBUG: to dump the actual query process, add .explain() before .exec()
+        }).sort(sort_query).limit(post_limit).populate("user").explain().exec() // DEBUG: to dump the actual query process, add .explain() before .exec()
 
         // DEBUG: in the dump, make sure the word SORT does not appear 
         // for performance reasons, we should not be sorting every time we query
-        //console.log(query.queryPlanner)
+        console.log(query.queryPlanner)
 
         return query
     } catch(e) {
