@@ -1,3 +1,38 @@
+const {ObjectId} = require('mongodb');
+
+const parse_pagination_params = (req, res, next) => {
+    // if the front-end knows the last post it was sent
+    // we can skip all posts that were posted earlier than that
+
+    if(req.query.last_sent_views) {
+        req.query.last_sent_views = parseInt(req.query.last_sent_views)
+    } else {
+        req.query.last_sent_views = 2 ** 64 // reasonable max num of views
+    }
+
+    if(req.query.last_sent_datetime) {
+        req.query.last_sent_datetime = new Date(req.query.last_sent_datetime)
+        console.log(req.query.last_sent_datetime)
+    } else {
+        req.query.last_sent_datetime = new Date(8640000000000000) // max date supported by JS
+    }
+
+    if(req.query.last_sent_id) {
+        req.query.last_sent_id = req.query.last_sent_id
+    } else {
+        // NOTE: since it is a hex string, it must be compared with the hex string .id (instead of ._id)
+        req.query.last_sent_id = new ObjectId("ffffffffffffffffffffffff") // max object id
+    }
+
+    if(req.query.post_limit) {
+        req.query.post_limit = parseInt(req.query.post_limit)
+    } else {
+        req.query.post_limit = 10 // 10 post limit
+    }
+
+    next()
+}
+
 const cursor_paginate = async (collection, filter_query, metric_name, last_sent_score, last_sent_id, post_limit) => {
     try {
         // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
@@ -49,4 +84,4 @@ const cursor_paginate = async (collection, filter_query, metric_name, last_sent_
     }
 }
 
-module.exports = Object.freeze({cursor_paginate})
+module.exports = Object.freeze({parse_pagination_params, cursor_paginate})

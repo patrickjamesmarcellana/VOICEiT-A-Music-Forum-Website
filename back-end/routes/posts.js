@@ -1,5 +1,4 @@
 const router = require("express").Router()
-const {ObjectId} = require('mongodb');
 
 const Comment = require("../models/Comment")
 const Constants = require("../constants")
@@ -7,7 +6,7 @@ const Post = require("../models/Post")
 const User = require("../models/User")
 const Utils = require("../utils/utils")
 
-const {cursor_paginate} = require("../utils/pagination")
+const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
 
 // remove private info, set public info etc
 // and get comments list
@@ -63,38 +62,7 @@ router.get("/id/:id", async (req, res) => {
 })
 
 // pagination
-router.use((req, res, next) => {
-    // if the front-end knows the last post it was sent
-    // we can skip all posts that were posted earlier than that
-
-    if(req.query.last_sent_views) {
-        req.query.last_sent_views = parseInt(req.query.last_sent_views)
-    } else {
-        req.query.last_sent_views = 2 ** 64 // reasonable max num of views
-    }
-
-    if(req.query.last_sent_datetime) {
-        req.query.last_sent_datetime = new Date(req.query.last_sent_datetime)
-        console.log(req.query.last_sent_datetime)
-    } else {
-        req.query.last_sent_datetime = new Date(8640000000000000) // max date supported by JS
-    }
-
-    if(req.query.last_sent_id) {
-        req.query.last_sent_id = req.query.last_sent_id
-    } else {
-        // NOTE: since it is a hex string, it must be compared with the hex string .id (instead of ._id)
-        req.query.last_sent_id = new ObjectId("ffffffffffffffffffffffff") // max object id
-    }
-
-    if(req.query.post_limit) {
-        req.query.post_limit = parseInt(req.query.post_limit)
-    } else {
-        req.query.post_limit = 10 // 10 post limit
-    }
-
-    next()
-})
+router.use(parse_pagination_params)
 
 router.get("/user/:user", async (req, res) => {
     console.log("Request for posts by user", req.params.user)
