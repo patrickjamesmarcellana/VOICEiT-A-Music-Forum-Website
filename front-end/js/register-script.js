@@ -56,8 +56,8 @@ createAccountBtn.addEventListener("click", async (event) => {
         return;
     }
 
-    // if all fields are valid, try to create account with given username
     try {
+        // if all fields are valid, try to create account with given username
         const response = await fetch("/api/auth/register", {
             method: "POST",
             headers: {
@@ -69,11 +69,29 @@ createAccountBtn.addEventListener("click", async (event) => {
             }),
         });
 
+        // automatically login to account after registering
         if (response.status === 200) {
-            window.location.href = "/index.html";
+            const loginResponse = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: loginUsername.value,
+                    password: loginPassword.value,
+                }),
+            });
+
+            // redirect to index after logging in
+            if (loginResponse.status === 200) {
+                window.location.href = "index.html";
+            } else {
+                console.log("Login after register error");
+            }
             return;
         }
 
+        // username already exists in DB
         const responseText = await response.text();
         if (response.status === 401 && responseText === "Username exists") {
             loginUsername.style.border = "2px solid red";
@@ -81,6 +99,7 @@ createAccountBtn.addEventListener("click", async (event) => {
             return;
         }
 
+        // extra backend username validation
         if (
             response.status === 401 &&
             responseText === "Username format invalid"

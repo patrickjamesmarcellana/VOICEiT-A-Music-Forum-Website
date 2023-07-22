@@ -4,7 +4,7 @@ const passport = require("passport");
 const Password = require("../models/Password");
 const User = require("../models/User");
 
-const Constants = require("../constants")
+const Constants = require("../constants");
 
 router.post("/register", async (req, res) => {
     // todo: validation
@@ -23,12 +23,7 @@ router.post("/register", async (req, res) => {
             user: newUser._id,
             password: req.body["password"],
         }).save();
-        console.log("user successfully created");
         res.sendStatus(200);
-        // todo: validate password,
-        // redirect the user to index.html but make it logged in
-
-        // don't forget to populate user
     } catch (e) {
         console.error(e);
 
@@ -46,8 +41,8 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", passport.authenticate("local", {}), async (req, res) => {
     // set session expiry
-    if(req.body["persist"]) {
-        req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 300
+    if (req.body["persist"]) {
+        req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 1000;
     }
 
     // set login date
