@@ -190,7 +190,6 @@ body {
     box-shadow: 0px 3px 6px 0px #31294c;
     display: none;
     top: 0;
-    transition: display 0.4s;
 }
 
 .check-mark {
@@ -218,6 +217,7 @@ body {
     text-align: center;
     border-radius: 25px;
     border: solid 1px var(--main-color);
-    background-color:#31294c;
+    background-color: #31294c;
     box-shadow: 0px 3px 6px 0px #31294c;
+    cursor: default;
 }
