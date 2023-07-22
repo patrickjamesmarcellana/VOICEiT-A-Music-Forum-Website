@@ -6,13 +6,16 @@ $(document).ready(async function() {
     
     if(post_id !== null) {
         post = await postManager.getPost(post_id)
+        const postOpResponse = await fetch("api/users/" + post.op);
+        const postOp = await postOpResponse.json();
+
         $(".post-container").attr("post-id", post_id)
         $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)
         $(".post-subforum").text("v/" + post.subforum)
         $(".post-profile").attr("href", "profile.html?user=" + post.op)
         $(".post-profile-text").attr("href", "profile.html?user=" + post.op)
         $(".post-profile-text").text(post.op)
-        $(".post-profile-photo").attr("src", `images/${post.op}.jpg`)
+        $(".post-profile-photo").attr("src", postOp.photoUrl);
         $(".post-title").text(post.title)
         $(".post-body").html(post.text)
         $(".upvote-count").text(post.upvote_count)
