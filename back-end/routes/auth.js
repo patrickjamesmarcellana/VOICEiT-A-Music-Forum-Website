@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", passport.authenticate("local", {}), async (req, res) => {
     // set session expiry
     if(req.body["persist"]) {
-        req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 300
+        req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 1000
     }
 
     // set login date
