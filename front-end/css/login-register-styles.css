@@ -178,45 +178,43 @@ body {
 }
 
 .notification-container {
-    width: 30vw;
-    min-width: 432px;
-    height: 50vh;
+    display: none;
     background-color: white;
     margin: auto;
+    box-shadow: 0px 3px 6px 0px #31294c;
+}
+
+.notification-inner-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: center;
-    box-shadow: 0px 3px 6px 0px #31294c;
-    display: none;
+    padding: 10%;
 }
 
 .check-mark {
     height: 100px;
     width: 100px;
-    margin-top: 50px;
+    margin-bottom: 5%;
 }
 
 .notif-text-big {
+    color: #31294c;
     font-size: 33px;
     font-family: var(--header-font);
-    color: #31294c;
     text-align: center;
-    line-height: 1;
-    margin-top: 20px;
+    margin-bottom: 12.5%;
 }
 
 .next-button {
-    margin-top: 60px;
-    text-decoration: none;
     color: var(--main-color);
-    padding: 7px 0vw;
     box-sizing: border-box;
-    width: 180px;
-    text-align: center;
     border-radius: 25px;
     border: solid 1px var(--main-color);
     background-color: #31294c;
     box-shadow: 0px 3px 6px 0px #31294c;
+    width: 180px;
+    padding: 7px 0vw;
+    text-align: center;
     cursor: default;
+    text-decoration: none;
 }
