@@ -57,6 +57,6 @@ const postSchema = new Schema({
 postSchema.index({title: 'text', body: 'text'}) // text index that will be useful for the search feature
 
 // store in sorted orders
-postSchema.index({date: 1, id: 1}) // sort by new (with tie-breaker)
-postSchema.index({views: 1, id: 1})  // sort by top (with tie-breaker)
+postSchema.index({date: 1, _id: 1}) // sort by new (with tie-breaker)
+postSchema.index({views: 1, _id: 1})  // sort by top (with tie-breaker)
 module.exports = model('Post', postSchema)

@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const {ObjectId} = require('mongodb');
 
 const Comment = require("../models/Comment")
 const Constants = require("../constants")
@@ -72,6 +73,7 @@ router.use((req, res, next) => {
 
     if(req.query.last_sent_datetime) {
         req.query.last_sent_datetime = new Date(req.query.last_sent_datetime)
+        console.log(req.query.last_sent_datetime)
     } else {
         req.query.last_sent_datetime = new Date(8640000000000000) // max date supported by JS
     }
@@ -80,7 +82,7 @@ router.use((req, res, next) => {
         req.query.last_sent_id = req.query.last_sent_id
     } else {
         // NOTE: since it is a hex string, it must be compared with the hex string .id (instead of ._id)
-        req.query.last_sent_id = "ffffffffffffffffffffffff" // max object id
+        req.query.last_sent_id = new ObjectId("ffffffffffffffffffffffff") // max object id
     }
 
     if(req.query.post_limit) {
@@ -158,7 +160,7 @@ const request_paginate = async (collection, filter_query, metric_name, last_sent
 
         sort_query = {}
         sort_query[metric_name] = -1 // sort by scores first in descending order,
-        sort_query["id"] = -1 // if they have equal scores, sort by the object ID in descending order
+        sort_query["_id"] = -1 // if they have equal scores, sort by the object ID in descending order
 
         // Case 1: all posts with score < last sent score
         const case1 = {}
@@ -167,7 +169,7 @@ const request_paginate = async (collection, filter_query, metric_name, last_sent
         // Case 2: all posts with score = last sent score, but ID < last sent ID
         const case2 = {}
         case2[metric_name] = {$eq: last_sent_score}
-        case2["id"] = {$lt: last_sent_id }
+        case2["_id"] = {$lt: last_sent_id }
 
         const query = await collection.find({
             $and: [
@@ -199,7 +201,7 @@ router.get("/search/:searchkey", async(req, res) => {
             { $match: { $or: [ 
                 {
                     score: {$eq: req.query.last_sent_score},
-                    id:    {$lt: req.query.last_sent_id}
+                    _id:   {$lt: req.query.last_sent_id}
                 },
                 {
                     score: {$lt: req.query.last_sent_score}
