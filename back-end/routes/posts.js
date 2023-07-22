@@ -100,7 +100,7 @@ router.get("/user/:user", async (req, res) => {
     try {
         
         let user_id = await User.findOne({username: req.params.user})
-        let query = await request_paginate(Post, {user: user_id}, "date", req.query.last_sent_datetime, req.query.last_sent_id, post_limit)
+        let query = await request_paginate(Post, {user: user_id}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.query.post_limit)
         
         let json = await documentsToJson(query)
         
