@@ -7,6 +7,8 @@ const Post = require("../models/Post")
 const User = require("../models/User")
 const Utils = require("../utils/utils")
 
+const {cursor_paginate} = require("../utils/pagination")
+
 // remove private info, set public info etc
 // and get comments list
 // TODO: explore https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/#pipe._S_lookup
@@ -100,7 +102,7 @@ router.get("/user/:user", async (req, res) => {
     try {
         
         let user_id = await User.findOne({username: req.params.user})
-        let query = await request_paginate(Post, {user: user_id}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.query.post_limit)
+        let query = await cursor_paginate(Post, {user: user_id}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.query.post_limit)
         
         let json = await documentsToJson(query)
         
@@ -122,11 +124,11 @@ router.get("/subforum/:subforum", async (req, res) => {
 
     let query
     if(req.params.subforum == "home")
-        query = await request_paginate(Post, {}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
+        query = await cursor_paginate(Post, {}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
     else if(req.params.subforum == "popular")
-        query = await request_paginate(Post, {}, "views", req.query.last_sent_views, req.query.last_sent_id, req.params.post_limit)
+        query = await cursor_paginate(Post, {}, "views", req.query.last_sent_views, req.query.last_sent_id, req.params.post_limit)
     else
-        query = await request_paginate(Post, {subforum: req.params.subforum}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
+        query = await cursor_paginate(Post, {subforum: req.params.subforum}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
   
     const json = await documentsToJson(query)
     if(req.user)
@@ -137,58 +139,6 @@ router.get("/subforum/:subforum", async (req, res) => {
         res.sendStatus(404)
     }
 })
-
-
-const request_paginate = async (collection, filter_query, metric_name, last_sent_score, last_sent_id, post_limit) => {
-    try {
-        // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
-        // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
-        //     query.push(doc)
-        //     i++
-        // }
-        
-        // for now: retrieve all then handle per-batch load in front end
-
-        // UPDATE: attempt to do it without cursors
-        // inspiration: https://medium.com/swlh/mongodb-pagination-fast-consistent-ece2a97070f3
-        // sort by date field
-        // tie-breaker in the case the posts have the same date/time: post id
-
-        // note: we could use object ID only to sort the posts (since first 4 bytes of it represents the time in seconds) but
-        //   1. the sample post's document creation time (eg. the time when the document was inserted to the DB) !=  post's actual creation date (eg. the hardcoded time of the post)
-        //   2. the object ID will overflow in the year 2106
-
-        sort_query = {}
-        sort_query[metric_name] = -1 // sort by scores first in descending order,
-        sort_query["_id"] = -1 // if they have equal scores, sort by the object ID in descending order
-
-        // Case 1: all posts with score < last sent score
-        const case1 = {}
-        case1[metric_name] = {$lt: last_sent_score}
-
-        // Case 2: all posts with score = last sent score, but ID < last sent ID
-        const case2 = {}
-        case2[metric_name] = {$eq: last_sent_score}
-        case2["_id"] = {$lt: last_sent_id }
-
-        const query = await collection.find({
-            $and: [
-                {
-                    $or: [ case1, case2 ],
-                }, 
-                filter_query,
-            ]
-        }).sort(sort_query).limit(post_limit).populate("user").exec() // DEBUG: to dump the actual query process, add .explain() before .exec()
-
-        // DEBUG: in the dump, make sure the word SORT does not appear 
-        // for performance reasons, we should not be sorting every time we query
-        //console.log(query.queryPlanner)
-
-        return query
-    } catch(e) {
-        console.log(e)
-    }
-}
 
 router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
