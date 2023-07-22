@@ -7,7 +7,6 @@ const User = require("../models/User");
 const Constants = require("../constants");
 
 router.post("/register", async (req, res) => {
-    // todo: validation
     try {
         await User.validate({
             username: req.body["username"],
