@@ -35,6 +35,10 @@ const commentSchema = new Schema({
         required: true,
         default: 0
     },
+    isEdited: {
+        type: Boolean,
+        default: false
+    },
 })
 
 module.exports = model('Comment', commentSchema)
