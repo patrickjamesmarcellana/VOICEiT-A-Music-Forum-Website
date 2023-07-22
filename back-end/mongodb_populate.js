@@ -2,7 +2,7 @@ const Comment = require("./models/Comment")
 const Post = require("./models/Post")
 const User = require("./models/User")
 const Password = require("./models/Password")
-mongoose = require("mongoose")
+const mongoose = require("mongoose")
 
 
 /*
