@@ -808,7 +808,7 @@ body {
 .forum-info-panel {
     margin: 0px auto 0px auto;
     width: 82%;
-    padding: 5%;
+    padding: 19px;
     color: var(--main-color);
     position: sticky;
     top: 71px;
