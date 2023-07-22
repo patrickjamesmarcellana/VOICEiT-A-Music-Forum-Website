@@ -44,25 +44,22 @@ router.post("/register", async (req, res) => {
     }
 });
 
+router.post("/login", passport.authenticate("local", {}), async (req, res) => {
+    // set session expiry
+    if(req.body["persist"]) {
+        req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 300
+    }
 
-router.post("/login", 
-    passport.authenticate("local", {}), 
-    async (req, res) => {
-        // set session expiry
-        if(req.body["persist"]) {
-            req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 300
-        }
+    // set login date
+    const new_date = Date.now();
+    const user = await User.findOneAndUpdate(
+        { username: req.body["username"] },
+        { lastLogin: new_date }
+    );
 
-        // set login date
-        const new_date = Date.now()
-
-        const user = await User.findOneAndUpdate(
-            {username: req.body["username"]},
-            {lastLogin: new_date})
-
-        console.log("Updated login time")
-        res.sendStatus(200) 
-    })
+    console.log("Updated login time");
+    res.sendStatus(200);
+});
 
 router.post("/logout", (req, res) => {
     req.logout((err) => {
@@ -74,4 +71,5 @@ router.post("/logout", (req, res) => {
         }
     });
 });
+
 module.exports = router;
