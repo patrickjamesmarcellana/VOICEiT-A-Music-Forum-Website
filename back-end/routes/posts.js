@@ -91,16 +91,16 @@ router.get("/subforum/:subforum", async (req, res) => {
     // if the front-end knows the last post it was sent
     // we can skip all posts that were posted earlier than that
     if(req.query.last_sent_views) {
-        last_sent_views = req.query.last_sent_views
+        last_sent_views = parseInt(req.query.last_sent_views)
     }
     if(req.query.last_sent_datetime) {
         last_sent_datetime = new Date(req.query.last_sent_datetime)
     }
     if(req.query.last_sent_id) {
-        last_sent_id = new Date(req.query.last_sent_id)
+        last_sent_id = req.query.last_sent_id
     }
     if(req.query.post_limit) {
-        post_limit = req.query.post_limit
+        post_limit = parseInt(req.query.post_limit)
     }
 
     let query
@@ -177,10 +177,36 @@ router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
     try {
+        let last_sent_score = 2 ^ 64 // reasonable max num of views
+        let last_sent_id = 2 ^ 96 // larger than max id (2^96 - 1)
+        let post_limit = 10 // 10 post limit  
+
+        // if the front-end knows the last post it was sent
+        // we can skip all posts that were posted earlier than that
+        if(req.query.last_sent_score) {
+            last_sent_score = parseFloat(req.query.last_sent_score)
+        }
+        if(req.query.last_sent_id) {
+            last_sent_id = req.query.last_sent_id
+        }
+        if(req.query.post_limit) {
+            post_limit = parseInt(req.query.post_limit)
+        }
+
         const query = await Post.aggregate([
             { $match: { $text: { $search: key } } } ,
             { $addFields: { score: { $meta: "textScore" } } },
             { $sort: { score: -1 } },
+            { $match: { $or: [ 
+                {
+                    score: {$eq: last_sent_score},
+                    _id:   {$lt: last_sent_id}
+                },
+                {
+                    score: {$lt: last_sent_score}
+                }
+            ] } },
+            { $limit: post_limit }
         ])
 
         await User.populate(query, {path: "user"})
