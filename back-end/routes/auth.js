@@ -40,7 +40,16 @@ router.post("/register",  async (req, res) => {
 
 router.post("/login", 
     passport.authenticate("local", {}), 
-    (req, res) => { res.sendStatus(200) })
+    async (req, res) => {
+        const new_date = Date.now()
+
+        const user = await User.findOneAndUpdate(
+            {username: req.body["username"]},
+            {lastLogin: new_date})
+
+        console.log("Updated login time")
+        res.sendStatus(200) 
+    })
 
 router.post("/logout", (req, res) => {
     req.logout((err) => {
