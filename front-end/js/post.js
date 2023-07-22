@@ -6,8 +6,7 @@ $(document).ready(async function() {
     
     if(post_id !== null) {
         post = await postManager.getPost(post_id)
-        const postOpResponse = await fetch("api/users/" + post.op);
-        const postOp = await postOpResponse.json();
+        postOp = await userManager.getUser(post.op);
 
         $(".post-container").attr("post-id", post_id)
         $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)
