@@ -97,7 +97,7 @@ router.get("/subforum/:subforum", async (req, res) => {
         last_sent_datetime = new Date(req.query.last_sent_datetime)
     }
     if(req.query.last_sent_id) {
-        last_sent_id = new Date(req.query.last_sent_id)
+        last_sent_id = req.query.last_sent_id
     }
     if(req.query.post_limit) {
         post_limit = req.query.post_limit
