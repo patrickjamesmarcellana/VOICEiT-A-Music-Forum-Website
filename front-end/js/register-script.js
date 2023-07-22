@@ -101,7 +101,7 @@ function isUsernameFormatValid() {
 
 function isPasswordFormatValid() {
     const validPasswordRegex =
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,32}$/;
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-._]).{8,32}$/;
     return loginPassword.value.match(validPasswordRegex);
 }
 
@@ -135,8 +135,8 @@ function addInvalidPasswordMessage() {
     invalidPassword.id = "invalid-password-message";
     invalidPassword.innerHTML =
         "Password must be between 8 - 32 characters long. It should \
-        contain one of each: uppercase, lowercase, numbers, and symbols \
-        (#?!@$%^&*-).";
+        contain at least one of each: uppercase, lowercase, numbers, and symbols \
+        (#?!@$%^&*-_.).";
 
     const invalidPasswordMessage = document.getElementById(
         "invalid-password-message"
