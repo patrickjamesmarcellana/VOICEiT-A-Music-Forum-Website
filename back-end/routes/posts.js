@@ -197,7 +197,7 @@ router.get("/search/:searchkey", async(req, res) => {
         const query = await Post.aggregate([
             { $match: { $text: { $search: key } } } ,
             { $addFields: { score: { $meta: "textScore" } } },
-            { $sort: { score: -1 } },
+            { $sort: { score: -1, _id: -1 } },
             { $match: { $or: [ 
                 {
                     score: {$eq: req.query.last_sent_score},
