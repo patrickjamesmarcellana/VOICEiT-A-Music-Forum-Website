@@ -486,7 +486,6 @@ body {
 /* posts' panel (middle) */
 .post-panel {
     width: 56vw;
-    border-right: solid 1px var(--main-color);
     display: flex;
     flex-direction: column;
     padding-bottom: 30px;
@@ -782,6 +781,7 @@ body {
     margin: 0 auto;
     min-width: 400px;
     width: 20vw;
+    height: 100vh;
 }
 
 .left-border {
