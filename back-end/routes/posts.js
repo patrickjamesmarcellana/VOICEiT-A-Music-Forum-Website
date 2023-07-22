@@ -112,6 +112,13 @@ router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
     try {
+        // parse last_sent_score
+        if(req.query.last_sent_score) {
+            req.query.last_sent_score = parseFloat(req.query.last_sent_score)
+        } else {
+            req.query.last_sent_score = Infinity // if nothing was last sent
+        }
+
         const query = await Post.aggregate([
             { $match: { $text: { $search: key } } } ,
             { $addFields: { score: { $meta: "textScore" } } },
@@ -125,7 +132,7 @@ router.get("/search/:searchkey", async(req, res) => {
                     score: {$lt: req.query.last_sent_score}
                 }
             ] } },
-            { $limit: post_limit }
+            { $limit: req.query.post_limit }
         ])
 
         await User.populate(query, {path: "user"})
