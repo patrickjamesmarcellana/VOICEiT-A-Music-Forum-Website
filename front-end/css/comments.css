@@ -1,3 +1,28 @@
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
 a {
     color: inherit;
 }
@@ -57,6 +82,8 @@ a {
 .post-text-editor > textarea {
     width: 100%;
     resize: vertical;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
 }
 
 .hidden {
