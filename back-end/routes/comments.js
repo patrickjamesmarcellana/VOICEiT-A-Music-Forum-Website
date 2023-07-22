@@ -6,12 +6,17 @@ const Utils = require("../utils/utils")
 
 const documentToJson = (document) => {
     console.log(document)
+    
+    const flags = []
+    if(document.isEdited)
+        flags.push("edited")
+    
     return {
         post_id: document.post_id,
         comment_id: document.id,
         subcomments: document.subcomments,
 
-        flags: [],
+        flags: flags,
         author: document.user.username,
         votes: document.upvoteCnt - document.downvoteCnt,
         vote_state: Constants.STATE_NOT_VOTED,
