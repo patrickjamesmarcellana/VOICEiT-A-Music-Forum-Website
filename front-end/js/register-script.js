@@ -84,6 +84,7 @@ createAccountBtn.addEventListener("click", async (event) => {
 
             // redirect to index after logging in
             if (loginResponse.status === 200) {
+                alert("Account successfully created!");
                 window.location.href = "index.html";
             } else {
                 console.log("Login after register error");
