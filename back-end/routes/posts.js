@@ -91,7 +91,7 @@ router.get("/subforum/:subforum", async (req, res) => {
     // if the front-end knows the last post it was sent
     // we can skip all posts that were posted earlier than that
     if(req.query.last_sent_views) {
-        last_sent_views = req.query.last_sent_views
+        last_sent_views = parseInt(req.query.last_sent_views)
     }
     if(req.query.last_sent_datetime) {
         last_sent_datetime = new Date(req.query.last_sent_datetime)
@@ -100,7 +100,7 @@ router.get("/subforum/:subforum", async (req, res) => {
         last_sent_id = req.query.last_sent_id
     }
     if(req.query.post_limit) {
-        post_limit = req.query.post_limit
+        post_limit = parseInt(req.query.post_limit)
     }
 
     let query
@@ -184,7 +184,7 @@ router.get("/search/:searchkey", async(req, res) => {
         // if the front-end knows the last post it was sent
         // we can skip all posts that were posted earlier than that
         if(req.query.last_sent_score) {
-            last_sent_score = req.query.last_sent_score
+            last_sent_score = parseFloat(req.query.last_sent_score)
         }
         if(req.query.last_sent_id) {
             last_sent_id = req.query.last_sent_id
