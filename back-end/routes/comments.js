@@ -4,6 +4,8 @@ const Constants = require("../constants")
 const Comment = require("../models/Comment")
 const Utils = require("../utils/utils")
 
+const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
+
 const documentToJson = (document) => {
     console.log(document)
     
@@ -53,11 +55,12 @@ router.get('/id/:id', async (req, res) => {
     }
 })
 
+router.use(parse_pagination_params)
 router.get("/user/:user", async (req, res) => {
     console.log("Request for comments by user", req.params.user)
     try {
         const user_id = await User.findOne({username: req.params.user})
-        const query = await Comment.find({user: user_id}).populate("user")
+        const query = await cursor_paginate(Comment, {user: user_id}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.query.post_limit) // sort by new
         const json = documentsToJson(query);
 
         if(req.user)
