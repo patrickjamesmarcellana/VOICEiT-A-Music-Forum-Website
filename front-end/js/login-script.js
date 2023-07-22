@@ -1,5 +1,6 @@
 const loginUsername = document.getElementById("login-username");
 const loginPassword = document.getElementById("login-password");
+const stayLoggedIn = document.getElementById("stay-logged-in");
 
 $(".submit-form-button").click(async function (e) {
     e.preventDefault();
@@ -12,6 +13,7 @@ $(".submit-form-button").click(async function (e) {
         body: JSON.stringify({
             username: loginUsername.value,
             password: loginPassword.value,
+            persist: stayLoggedIn.checked,
         })
     })
 

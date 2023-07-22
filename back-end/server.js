@@ -1,3 +1,4 @@
+const Constants = require("./constants")
 const express = require("express")
 const session = require("express-session")
 const passport = require('passport')
@@ -29,10 +30,10 @@ app.use(session({
     //
     // note: connect-mongo automatically removes sessions that have expired (set by cookie maxAge)
     //       no need to manually clean-up the DB
-    store: MongoStore.create({mongoUrl: process.env.MONGO_SESSIONSTORE_URI}),
-    cookie: {
-        maxAge: 300 * 1000 // five minutes
-    },
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_SESSIONSTORE_URI, 
+        ttl: Constants.SESSION_TIMEOUT_SECS, // seconds of inactivity before the session is deleted from the DB
+    }),
 
     // reset the session expiration time every time the user connects to the website
     rolling: true,

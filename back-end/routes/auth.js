@@ -4,6 +4,8 @@ const passport = require("passport");
 const Password = require("../models/Password");
 const User = require("../models/User");
 
+const Constants = require("../constants")
+
 router.post("/register", async (req, res) => {
     // todo: validation
     try {
@@ -46,6 +48,12 @@ router.post("/register", async (req, res) => {
 router.post("/login", 
     passport.authenticate("local", {}), 
     async (req, res) => {
+        // set session expiry
+        if(req.body["persist"]) {
+            req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 300
+        }
+
+        // set login date
         const new_date = Date.now()
 
         const user = await User.findOneAndUpdate(
