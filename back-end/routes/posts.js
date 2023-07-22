@@ -59,11 +59,47 @@ router.get("/id/:id", async (req, res) => {
     }
 })
 
+// pagination
+router.use((req, res, next) => {
+    // if the front-end knows the last post it was sent
+    // we can skip all posts that were posted earlier than that
+
+    if(req.query.last_sent_views) {
+        req.query.last_sent_views = parseInt(req.query.last_sent_views)
+    } else {
+        req.query.last_sent_views = 2 ** 64 // reasonable max num of views
+    }
+
+    if(req.query.last_sent_datetime) {
+        req.query.last_sent_datetime = new Date(req.query.last_sent_datetime)
+    } else {
+        req.query.last_sent_datetime = new Date(8640000000000000) // max date supported by JS
+    }
+
+    if(req.query.last_sent_id) {
+        req.query.last_sent_id = req.query.last_sent_id
+    } else {
+        // NOTE: since it is a hex string, it must be compared with the hex string .id (instead of ._id)
+        req.query.last_sent_id = "ffffffffffffffffffffffff" // max object id
+    }
+
+    if(req.query.post_limit) {
+        req.query.post_limit = parseInt(req.query.post_limit)
+    } else {
+        req.query.post_limit = 10 // 10 post limit
+    }
+
+    next()
+})
+
 router.get("/user/:user", async (req, res) => {
     console.log("Request for posts by user", req.params.user)
+    console.log(req.query)
     try {
+        
         let user_id = await User.findOne({username: req.params.user})
-        let query = await Post.find({user: user_id}).populate("user")
+        let query = await request_paginate(Post, {user: user_id}, "date", req.query.last_sent_datetime, req.query.last_sent_id, post_limit)
+        
         let json = await documentsToJson(query)
         
         if(req.user)
@@ -82,34 +118,13 @@ router.get("/user/:user", async (req, res) => {
 router.get("/subforum/:subforum", async (req, res) => {
     console.log("Request for posts by subforum", req.params.subforum)
 
-    //TODO: fix this before Sat Sep 13 275760 08:00:00 GMT+0800 (Philippine Standard Time)
-    let last_sent_views = 2 ^ 64 // reasonable max num of views
-    let last_sent_datetime = new Date(8640000000000000) // max date supported by JS
-    let last_sent_id = 2 ^ 96 // larger than max id (2^96 - 1)
-    let post_limit = 10 // 10 post limit  
-
-    // if the front-end knows the last post it was sent
-    // we can skip all posts that were posted earlier than that
-    if(req.query.last_sent_views) {
-        last_sent_views = parseInt(req.query.last_sent_views)
-    }
-    if(req.query.last_sent_datetime) {
-        last_sent_datetime = new Date(req.query.last_sent_datetime)
-    }
-    if(req.query.last_sent_id) {
-        last_sent_id = req.query.last_sent_id
-    }
-    if(req.query.post_limit) {
-        post_limit = parseInt(req.query.post_limit)
-    }
-
     let query
     if(req.params.subforum == "home")
-        query = await request_paginate(Post, {}, "date", last_sent_datetime, last_sent_id, post_limit)
+        query = await request_paginate(Post, {}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
     else if(req.params.subforum == "popular")
-        query = await request_paginate(Post, {}, "views", last_sent_views, last_sent_id, post_limit)
+        query = await request_paginate(Post, {}, "views", req.query.last_sent_views, req.query.last_sent_id, req.params.post_limit)
     else
-        query = await request_paginate(Post, {subforum: req.params.subforum}, "date", last_sent_datetime, last_sent_id, post_limit)
+        query = await request_paginate(Post, {subforum: req.params.subforum}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
   
     const json = await documentsToJson(query)
     if(req.user)
@@ -177,33 +192,17 @@ router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
     try {
-        let last_sent_score = 2 ^ 64 // reasonable max num of views
-        let last_sent_id = 2 ^ 96 // larger than max id (2^96 - 1)
-        let post_limit = 10 // 10 post limit  
-
-        // if the front-end knows the last post it was sent
-        // we can skip all posts that were posted earlier than that
-        if(req.query.last_sent_score) {
-            last_sent_score = parseFloat(req.query.last_sent_score)
-        }
-        if(req.query.last_sent_id) {
-            last_sent_id = req.query.last_sent_id
-        }
-        if(req.query.post_limit) {
-            post_limit = parseInt(req.query.post_limit)
-        }
-
         const query = await Post.aggregate([
             { $match: { $text: { $search: key } } } ,
             { $addFields: { score: { $meta: "textScore" } } },
             { $sort: { score: -1 } },
             { $match: { $or: [ 
                 {
-                    score: {$eq: last_sent_score},
-                    _id:   {$lt: last_sent_id}
+                    score: {$eq: req.query.last_sent_score},
+                    id:    {$lt: req.query.last_sent_id}
                 },
                 {
-                    score: {$lt: last_sent_score}
+                    score: {$lt: req.query.last_sent_score}
                 }
             ] } },
             { $limit: post_limit }
