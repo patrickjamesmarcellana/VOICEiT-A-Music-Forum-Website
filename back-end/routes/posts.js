@@ -86,7 +86,7 @@ router.get("/subforum/:subforum", async (req, res) => {
     let last_sent_views = 2 ^ 64 // reasonable max num of views
     let last_sent_datetime = new Date(8640000000000000) // max date supported by JS
     let last_sent_id = 2 ^ 96 // larger than max id (2^96 - 1)
-    let post_limit = 1 // 1 post limit  
+    let post_limit = 10 // 10 post limit  
 
     // if the front-end knows the last post it was sent
     // we can skip all posts that were posted earlier than that
