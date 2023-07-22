@@ -2,6 +2,7 @@ const loginUsername = document.getElementById("login-username");
 const loginPassword = document.getElementById("login-password");
 const confirmLoginPassword = document.getElementById("confirm-login-password");
 const createAccountBtn = document.getElementById("submit-button");
+const customizeProfileBtn = document.querySelector(".next-button");
 
 document.addEventListener("DOMContentLoaded", async (event) => {
     if (typeof Cookies === "undefined") {
@@ -93,10 +94,12 @@ createAccountBtn.addEventListener("click", async (event) => {
                 }),
             });
 
-            // redirect to index after logging in
+            // if successful, display account registration notification
             if (loginResponse.status === 200) {
-                alert("Account successfully created!");
-                window.location.replace("index.html");
+                document.querySelector(
+                    ".notification-container"
+                ).style.display = "flex";
+                document.querySelector(".register-box").style.display = "none";
             } else {
                 console.log("Login after register error");
             }
@@ -123,6 +126,10 @@ createAccountBtn.addEventListener("click", async (event) => {
     } catch (error) {
         console.error(error);
     }
+});
+
+customizeProfileBtn.addEventListener("click", (event) => {
+    window.location.replace("profile.html?user=" + loginUsername.value);
 });
 
 function isUsernameFormatValid() {

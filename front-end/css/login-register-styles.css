@@ -49,6 +49,7 @@ body {
     font-size: medium;
     box-shadow: 0px 3px 6px 0px #31294c;
     align-self: center;
+    display: none;
 }
 
 .main-content-container {
@@ -180,7 +181,8 @@ body {
 .notification-container {
     width: 30vw;
     min-width: 432px;
-    height: 50vh;
+    min-height: 390px;
+    height:50vh;
     background-color: white;
     margin: auto;
     display: flex;
@@ -188,41 +190,39 @@ body {
     align-items: center;
     align-self: center;
     box-shadow: 0px 3px 6px 0px #31294c;
-    display: none;
+    display: flex;
 }
 
 .check-mark {
-    height: 100px;
-    width: 100px;
+    height: 13vh;
+    min-height: 100px;
+    min-width: 100px;
+    width: 13vh;
     margin-top: 50px;
 }
 
 .notif-text-big {
-    font-size: 33px;
+    font-size: clamp(2.1rem, 30vw + 2.1rem, 2.1rem);
     font-family: var(--header-font);
     color: #31294c;
     text-align: center;
     line-height: 1;
-    margin-top: 20px;
+    margin-top: 3.5vh;
 }
 
 .next-button {
-    margin-top: 60px;
+    margin-top: auto;
+    margin-bottom: 50px;
     text-decoration: none;
     color: var(--main-color);
     padding: 7px 0vw;
     box-sizing: border-box;
-    width: 170px;
+    min-width: 180px;
+    width: 35%;
     text-align: center;
     border-radius: 25px;
     border: solid 1px var(--main-color);
-    background-color:#31294c;
-    min-width: 80px;
+    background-color: #31294c;
     box-shadow: 0px 3px 6px 0px #31294c;
-}
-
-.show-popup {
-    display: block;
-    top: 50%;
-    transform: translate(-50%, 50%) scale(1);
+    cursor: default;
 }

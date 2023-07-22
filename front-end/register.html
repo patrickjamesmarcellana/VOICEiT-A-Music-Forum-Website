@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <div class="main">
+        <div class="main register-box">
             <div class="main-content-container">
                 <div class="website-logo">
                     <a href="index.html"><img src="images/logo2.png" /></a>
@@ -34,7 +34,11 @@
                 </div>
 
                 <div class="user-form">
-                    <form id="login-form" method="POST" action="/api/auth/register">
+                    <form
+                        id="login-form"
+                        method="POST"
+                        action="/api/auth/register"
+                    >
                         <label for="login-username"
                             >Username<span class="red-text">*</span></label
                         >
@@ -60,7 +64,9 @@
                         </div>
 
                         <label for="confirm-login-password"
-                            >Confirm Password<span class="red-text">*</span></label
+                            >Confirm Password<span class="red-text"
+                                >*</span
+                            ></label
                         >
                         <div class="login-password">
                             <input
@@ -108,10 +114,9 @@
             </div>
         </div>
         <div class="notification-container">
-            <img class="check-mark" src="./images/check-mark.png">
-            <span class="notif-text-big">Account Successfully Created</span>
-            <a class="login-button next-button" href="login.html">Head to Login</a>
-
+            <img class="check-mark" src="./images/check-mark.png" />
+            <span class="notif-text-big">Account Successfully<br>Created</span>
+            <a class="login-button next-button">Customize Profile &#10148;</a>
         </div>
     </body>
 </html>
