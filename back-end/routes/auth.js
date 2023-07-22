@@ -21,14 +21,18 @@ router.post("/register",  async (req, res) => {
             user: newUser._id,
             password: req.body["password"]
         }).save()
-        console.log("user successfully created")
-        res.redirect("/index.html")
+        console.log("user successfully created");
+        res.sendStatus(200);
         // todo: validate password, 
         // redirect the user to index.html but make it logged in
 
         // don't forget to populate user
     } catch(e) {
-        console.error(e)
+        console.error(e);
+        
+        if (e.code === 11000 && e.keyPattern["username"] === 1) {
+            res.status(401).send("Username exists");
+        }
     }
 
 

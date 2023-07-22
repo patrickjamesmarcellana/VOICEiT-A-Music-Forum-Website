@@ -1,8 +1,13 @@
 const loginUsername = document.getElementById("login-username");
 const loginPassword = document.getElementById("login-password");
 const confirmLoginPassword = document.getElementById("confirm-login-password");
+const createAccountBtn = document.getElementById("submit-button");
 
 loginUsername.addEventListener("keyup", (event) => {
+    // if user tried registering with username and it already exists, remove
+    // the error message as they type a new username
+    removeUsernameExistsMessage();
+
     // if username is invalid, set text box border to red and display message
     // if one is not displayed already
     if (!isUsernameFormatValid()) {
@@ -39,6 +44,48 @@ confirmLoginPassword.addEventListener("keyup", (event) => {
     setMismatchedPasswordMessage();
 });
 
+createAccountBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    // if any field is invalid, don't do anything when button is clicked
+    if (
+        !isUsernameFormatValid() ||
+        !isPasswordFormatValid() ||
+        !arePasswordsMatching()
+    ) {
+        return;
+    }
+
+    // if all fields are valid, try to create account with given username
+    try {
+        const response = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: loginUsername.value,
+                password: loginPassword.value,
+            }),
+        });
+
+        if (response.status === 200) {
+            window.location.href = "/index.html";
+            return;
+        }
+
+        if (
+            response.status === 401 &&
+            (await response.text()) === "Username exists"
+        ) {
+            loginUsername.style.border = "2px solid red";
+            addUsernameExistsMessage();
+        }
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 function isUsernameFormatValid() {
     const validUsernameRegex = /^\w{3,20}$/;
     return loginUsername.value.match(validUsernameRegex);
@@ -61,7 +108,7 @@ function addInvalidUsernameMessage() {
     invalidUsername.innerHTML =
         "Username must be between 3 - 20 characters only. It \
         can contain the following: uppercase, lowercase, numbers, and underscores.";
-    
+
     const invalidUsernameMessage = document.getElementById(
         "invalid-username-message"
     );
@@ -82,7 +129,7 @@ function addInvalidPasswordMessage() {
         "Password must be between 8 - 32 characters long. It should \
         contain one of each: uppercase, lowercase, numbers, and symbols \
         (#?!@$%^&*-).";
-    
+
     const invalidPasswordMessage = document.getElementById(
         "invalid-password-message"
     );
@@ -137,13 +184,11 @@ function addUsernameExistsMessage() {
     const usernameTakenMessage = document.getElementById(
         "existing-username-message"
     );
-    loginPassword.style.border = "2px solid red";
     if (!usernameTakenMessage) {
         loginUsername.parentElement.append(usernameTaken);
     }
 }
 
 function removeUsernameExistsMessage() {
-    loginUsername.style.border = "";
     document.getElementById("existing-username-message")?.remove();
 }
