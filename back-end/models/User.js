@@ -7,6 +7,9 @@ const userSchema = new Schema({
     },
     username: {
         type: String,
+        minLength: 3,
+        maxLength: 20,
+        match: /^\w{3,20}$/,
         required: true,
         immutable: true,
         unique: true

@@ -74,12 +74,20 @@ createAccountBtn.addEventListener("click", async (event) => {
             return;
         }
 
-        if (
-            response.status === 401 &&
-            (await response.text()) === "Username exists"
-        ) {
+        const responseText = await response.text();
+        if (response.status === 401 && responseText === "Username exists") {
             loginUsername.style.border = "2px solid red";
             addUsernameExistsMessage();
+            return;
+        }
+
+        if (
+            response.status === 401 &&
+            responseText === "Username format invalid"
+        ) {
+            loginUsername.style.border = "2px solid red";
+            addInvalidUsernameMessage();
+            return;
         }
     } catch (error) {
         console.error(error);
