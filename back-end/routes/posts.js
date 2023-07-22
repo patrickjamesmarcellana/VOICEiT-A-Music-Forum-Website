@@ -16,6 +16,7 @@ const documentToJson = async (document) => {
         subforum: document.subforum,
         op: document.user.username,
         photoUrl: document.user.photoUrl,
+        score: document.score,
                 
         title: document.title,
         text: document.body,
@@ -81,120 +82,105 @@ router.get("/user/:user", async (req, res) => {
 router.get("/subforum/:subforum", async (req, res) => {
     console.log("Request for posts by subforum", req.params.subforum)
 
+    //TODO: fix this before Sat Sep 13 275760 08:00:00 GMT+0800 (Philippine Standard Time)
+    let last_sent_views = 2 ^ 64 // reasonable max num of views
+    let last_sent_datetime = new Date(8640000000000000) // max date supported by JS
+    let last_sent_id = 2 ^ 96 // larger than max id (2^96 - 1)
+    let post_limit = 1 // 1 post limit  
+
+    // if the front-end knows the last post it was sent
+    // we can skip all posts that were posted earlier than that
+    if(req.query.last_sent_views) {
+        last_sent_views = req.query.last_sent_views
+    }
+    if(req.query.last_sent_datetime) {
+        last_sent_datetime = new Date(req.query.last_sent_datetime)
+    }
+    if(req.query.last_sent_id) {
+        last_sent_id = new Date(req.query.last_sent_id)
+    }
+    if(req.query.post_limit) {
+        post_limit = req.query.post_limit
+    }
+
+    let query
+    if(req.params.subforum == "home")
+        query = await request_paginate(Post, {}, "date", last_sent_datetime, last_sent_id, post_limit)
+    else if(req.params.subforum == "popular")
+        query = await request_paginate(Post, {}, "views", last_sent_views, last_sent_id, post_limit)
+    else
+        query = await request_paginate(Post, {subforum: req.params.subforum}, "date", last_sent_datetime, last_sent_id, post_limit)
+  
+    const json = await documentsToJson(query)
+    if(req.user)
+        await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+    if(json !== undefined) {
+        res.send(json)
+    } else {
+        res.sendStatus(404)
+    }
+})
+
+
+const request_paginate = async (collection, filter_query, metric_name, last_sent_score, last_sent_id, post_limit) => {
     try {
-        let query = []
-        // let cursor
-
-        //TODO: fix this before Sat Sep 13 275760 08:00:00 GMT+0800 (Philippine Standard Time)
-        let last_sent_views = 2 ^ 64 // reasonable max num of views
-        let last_sent_datetime = new Date(8640000000000000) // max date supported by JS
-        let last_sent_id = 2 ^ 96 // larger than max id (2^96 - 1)
-        let post_limit = 0 // no limit
-
-        // if the front-end knows the last post it was sent
-        // we can skip all posts that were posted earlier than that
-        if(req.query.last_sent_views) {
-            last_sent_views = req.query.last_sent_views
-        }
-        if(req.query.last_sent_datetime) {
-            last_sent_datetime = new Date(req.query.last_sent_datetime)
-        }
-        if(req.query.last_sent_id) {
-            last_sent_id = new Date(req.query.last_sent_id)
-        }
-        if(req.query.post_limit) {
-            post_limit = req.query.post_limit
-        }
+        // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
+        // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
+        //     query.push(doc)
+        //     i++
+        // }
         
-        //hardcoded_posts_list.forEach(post => post.comment_count = comment_count(post.top_level_comments_list))
-        console.log(req.query)
-        if(req.params.subforum === "home") {
-            // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
-            // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
-            //     query.push(doc)
-            //     i++
-            // }
-            
-            // for now: retrieve all then handle per-batch load in front end
+        // for now: retrieve all then handle per-batch load in front end
 
-            // UPDATE: attempt to do it without cursors
-            // inspiration: https://medium.com/swlh/mongodb-pagination-fast-consistent-ece2a97070f3
-            // sort by date field
-            // tie-breaker in the case the posts have the same date/time: post id
+        // UPDATE: attempt to do it without cursors
+        // inspiration: https://medium.com/swlh/mongodb-pagination-fast-consistent-ece2a97070f3
+        // sort by date field
+        // tie-breaker in the case the posts have the same date/time: post id
 
-            // note: we could use object ID only to sort the posts (since first 4 bytes of it represents the time in seconds) but
-            //   1. the sample post's document creation time (eg. the time when the document was inserted to the DB) !=  post's actual creation date (eg. the hardcoded time of the post)
-            //   2. the object ID will overflow in the year 2106
+        // note: we could use object ID only to sort the posts (since first 4 bytes of it represents the time in seconds) but
+        //   1. the sample post's document creation time (eg. the time when the document was inserted to the DB) !=  post's actual creation date (eg. the hardcoded time of the post)
+        //   2. the object ID will overflow in the year 2106
 
-            query = await Post.find({
-                $or: [
-                    {
-                        date: { $lt: last_sent_datetime },
-                    },
-                    {
-                        date: last_sent_datetime,
-                        id: {$lt: last_sent_id }
-                    }
-                ]
-            }).sort({date: -1, _id: -1}).limit(post_limit).populate("user").exec() // DEBUG: to dump the actual query process, add .explain() before .exec()
+        sort_query = {}
+        sort_query[metric_name] = -1 // sort by scores first in descending order,
+        sort_query["id"] = -1 // if they have equal scores, sort by the object ID in descending order
 
-            // DEBUG: in the dump, make sure the word SORT does not appear 
-            // for performance reasons, we should not be sorting every time we query
-            //console.log(query.queryPlanner)
-        } else if(req.params.subforum === "popular"){
-            query = await Post.find({
-                $or: [
-                    {
-                        views: { $lt: last_sent_views },
-                    },
-                    {
-                        views: last_sent_views,
-                        id: {$lt: last_sent_id }
-                    }
-                ]
-            }).sort({views: -1, _id: -1}).limit(post_limit).populate("user").exec()
-        } else {
-            query = await Post.find({
-                $and: [
-                    {
-                        $or: [
-                        {
-                            date: { $lt: last_sent_datetime },
-                        },
-                        {
-                            date: last_sent_datetime,
-                            id: {$lt: last_sent_id }
-                        }
-                        ],
-                    }, 
-                    {
-                        subforum: req.params.subforum,
-                    },
-                ]
-            }).sort({date: -1, _id: -1}).limit(post_limit).populate("user").exec()
-        }
-        
-        const json = await documentsToJson(query)
-        if(req.user)
-            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+        // Case 1: all posts with score < last sent score
+        const case1 = {}
+        case1[metric_name] = {$lt: last_sent_score}
 
-        if(json !== undefined) {
-            res.send(json)
-        } else {
-            res.sendStatus(404)
-        }
+        // Case 2: all posts with score = last sent score, but ID < last sent ID
+        const case2 = {}
+        case2[metric_name] = {$eq: last_sent_score}
+        case2["id"] = {$lt: last_sent_id }
+
+        const query = await collection.find({
+            $and: [
+                {
+                    $or: [ case1, case2 ],
+                }, 
+                filter_query,
+            ]
+        }).sort(sort_query).limit(post_limit).populate("user").exec() // DEBUG: to dump the actual query process, add .explain() before .exec()
+
+        // DEBUG: in the dump, make sure the word SORT does not appear 
+        // for performance reasons, we should not be sorting every time we query
+        //console.log(query.queryPlanner)
+
+        return query
     } catch(e) {
         console.log(e)
     }
-})
+}
 
 router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
     try {
         const query = await Post.aggregate([
-            { $match: { $text: { $search: key } } },
-            { $sort: { score: { $meta: "textScore" } } }
+            { $match: { $text: { $search: key } } } ,
+            { $addFields: { score: { $meta: "textScore" } } },
+            { $sort: { score: -1 } },
         ])
 
         await User.populate(query, {path: "user"})
