@@ -100,9 +100,6 @@ createAccountBtn.addEventListener("click", async (event) => {
                 document.querySelector(
                     ".notification-container"
                 ).style.display = "block";
-                document.querySelector(
-                    ".notification-inner-container"
-                ).style.display = "flex";
             } else {
                 console.log("Login after register error");
             }
