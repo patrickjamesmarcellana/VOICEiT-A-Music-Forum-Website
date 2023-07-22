@@ -189,7 +189,6 @@ body {
     align-self: center;
     box-shadow: 0px 3px 6px 0px #31294c;
     display: none;
-    transition: display 0.4s;
 }
 
 .check-mark {
