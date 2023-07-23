@@ -36,9 +36,7 @@ for (const editProfileBtn of editProfileBtns) {
         document.querySelector("#description").value = user.description;
         document.querySelector("#newimage").src = user.photoUrl;
         modal.style.display = "block";
-        console.log($("#newimage").attr("src"))
         if($("#newimage").attr("src") === "images/empty-profile.png") {
-            console.log("YES")
             $("#remove-picture").attr('disabled', 'disabled')
             $("#remove-picture").addClass('noHover')
         }
@@ -58,7 +56,6 @@ $("#submit-button").click(async (e) => {
     const description = $("#description").val()
     const input_file = $("#file").get(0).files[0]
     const formData = new FormData()
-    console.log(input_file)
     
     formData.set('description', description)
     formData.set('file', input_file)
