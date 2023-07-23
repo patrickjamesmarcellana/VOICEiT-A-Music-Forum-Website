@@ -6,14 +6,12 @@ const removePictureBtn = document.querySelector("#remove-picture");
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
-        document.querySelector("#profile-picture").value = "";
         document.querySelector("#description").value = "";
     }
 };
 
 exitModalBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
-    document.querySelector("#profile-picture").value = "";
     document.querySelector("#description").value = "";
 });
 
@@ -43,6 +41,12 @@ for (const editProfileBtn of editProfileBtns) {
         document.querySelector("#description").value = user.description;
         document.querySelector("#newimage").src = user.photoUrl;
         modal.style.display = "block";
+        console.log($("#newimage").attr("src"))
+        if($("#newimage").attr("src") === "images/empty-profile.png") {
+            console.log("YES")
+            $("#remove-picture").attr('disabled', 'disabled')
+            $("#remove-picture").addClass('noHover')
+        }
     });
 }
 
@@ -63,10 +67,22 @@ $("#submit-button").click(async (e) => {
     
     formData.set('description', description)
     formData.set('file', input_file)
-    try {
-        await userManager.editProfile(username, formData)
-        modal.style.display = "none";
-    } catch(err) {
-        console.error(err)
+
+    if(!input_file) {
+        try {
+            await userManager.editDescOnly(username, description)
+            modal.style.display = "none"
+            window.location.reload()
+        } catch(err) {
+            console.error(err)
+        }
+    } else {
+        try {
+            await userManager.editProfile(username, formData)
+            modal.style.display = "none"
+            window.location.reload()
+        } catch(err) {
+            console.error(err)
+        }
     }
 })
