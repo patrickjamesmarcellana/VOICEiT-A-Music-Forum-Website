@@ -34,8 +34,6 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     
                 if(new_posts.length == 0) 
                     posts_list_exhausted = true;
-
-                console.log(new_posts)
             }
     
             for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
