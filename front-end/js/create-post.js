@@ -27,21 +27,19 @@ $(document).ready(function() {
         fonts: true,
         fontList: [
             "Arial", 
-            "Arial Black", 
             "Comic Sans MS", 
-            "Courier New", 
-            "Geneva", 
-            "Georgia", 
+            "Courier New",  
+            "Gugi",
             "Helvetica", 
-            "Impact", 
-            "Lucida Console", 
+            "Noir-Light",
+            "Noir-Bold",
             "Tahoma", 
             "Times New Roman",
             "Verdana"
         ],
-        fontColor: false,
+        fontColor: true,
         backgroundColor: false,
-        fontSize: false,
+        fontSize: true,
 
         // uploads
         imageUpload: false,
@@ -57,7 +55,7 @@ $(document).ready(function() {
         table: false,
 
         // code
-        removeStyles: true,
+        removeStyles: false,
         code: false,
 
         // colors
@@ -147,7 +145,7 @@ $(document).ready(function() {
         // developer settings
         useSingleQuotes: false,
         height: 0,
-        heightPercentage: 0,
+        heightPercentage: 50,
         adaptiveHeight: false,
         id: "",
         class: "",
@@ -159,6 +157,6 @@ $(document).ready(function() {
         save: false,
         saveCallback: undefined,
         saveOnBlur: 0, 
-        undoRedo: true
+        undoRedo: false
     });
 });
