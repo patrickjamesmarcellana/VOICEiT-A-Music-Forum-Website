@@ -32,7 +32,8 @@ passport.deserializeUser(async function(user_id, cb) {
     if(user_info != null) {
         cb(null, user_info)
     } else {
-        cb("error")
+        console.log(`WARN: deserialization of user_id ${user_id} failed`)
+        cb(null, null)
     }
 })
 module.exports = null
