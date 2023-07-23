@@ -1,5 +1,9 @@
 const {ObjectId} = require('mongodb');
 
+const MAX_VIEWS = 2 ** 64
+const MAX_DATE = new Date(8640000000000000) // max date supported by JS
+const MAX_OBJECTID = new ObjectId("ffffffffffffffffffffffff") // max object id
+
 const parse_pagination_params = (req, res, next) => {
     // if the front-end knows the last post it was sent
     // we can skip all posts that were posted earlier than that
@@ -7,21 +11,21 @@ const parse_pagination_params = (req, res, next) => {
     if(req.query.last_sent_views) {
         req.query.last_sent_views = parseInt(req.query.last_sent_views)
     } else {
-        req.query.last_sent_views = 2 ** 64 // reasonable max num of views
+        req.query.last_sent_views = MAX_VIEWS // assume last post had infinite views
     }
 
     if(req.query.last_sent_datetime) {
         req.query.last_sent_datetime = new Date(req.query.last_sent_datetime)
         console.log(req.query.last_sent_datetime)
     } else {
-        req.query.last_sent_datetime = new Date(8640000000000000) // max date supported by JS
+        req.query.last_sent_datetime = MAX_DATE // assume last post was posted in the far future (get posts before it)
     }
 
     if(req.query.last_sent_id) {
         req.query.last_sent_id = req.query.last_sent_id
     } else {
         // NOTE: since it is a hex string, it must be compared with the hex string .id (instead of ._id)
-        req.query.last_sent_id = new ObjectId("ffffffffffffffffffffffff") // max object id
+        req.query.last_sent_id = MAX_OBJECTID
     }
 
     if(req.query.post_limit) {
@@ -30,6 +34,14 @@ const parse_pagination_params = (req, res, next) => {
         req.query.post_limit = 10 // 10 post limit
     }
 
+    // disable pagination if configured
+    if(req.disablePagination && (
+        req.query.last_sent_views != MAX_VIEWS ||
+        req.query.last_sent_datetime != MAX_DATE ||
+        req.query.last_sent_id != MAX_OBJECTID
+    )) {
+        req.query.post_limit = 0
+    }
     next()
 }
 

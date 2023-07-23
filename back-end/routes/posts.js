@@ -61,7 +61,15 @@ router.get("/id/:id", async (req, res) => {
     }
 })
 
-// pagination
+// prevent unregistered users from attmpting to load more pages
+router.use((req, res, next) => {
+    if(!req.user) 
+        req.disablePagination = true
+
+    next()
+})
+
+// pagination proper
 router.use(parse_pagination_params)
 
 router.get("/user/:user", async (req, res) => {
