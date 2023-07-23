@@ -92,11 +92,11 @@ router.get("/subforum/:subforum", async (req, res) => {
 
     let query
     if(req.params.subforum == "home")
-        query = await cursor_paginate(Post, {}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
+        query = await cursor_paginate(Post, {}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.query.post_limit)
     else if(req.params.subforum == "popular")
-        query = await cursor_paginate(Post, {}, "views", req.query.last_sent_views, req.query.last_sent_id, req.params.post_limit)
+        query = await cursor_paginate(Post, {}, "views", req.query.last_sent_views, req.query.last_sent_id, req.query.post_limit)
     else
-        query = await cursor_paginate(Post, {subforum: req.params.subforum}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.params.post_limit)
+        query = await cursor_paginate(Post, {subforum: req.params.subforum}, "date", req.query.last_sent_datetime, req.query.last_sent_id, req.query.post_limit)
   
     const json = await documentsToJson(query)
     if(req.user)
