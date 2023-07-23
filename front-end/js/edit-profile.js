@@ -66,7 +66,7 @@ $("#submit-button").click((e) => {
     const username = search_params.get("user")
 
     const description = $("#description").val()
-    const input_file = $("#file").prop('files')
+    const input_file = $("#file").get(0).files[0]
     const formData = new FormData()
     console.log(input_file)
     
