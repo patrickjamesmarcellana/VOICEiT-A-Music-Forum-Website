@@ -176,17 +176,22 @@
                 </div>
         
                 <div class="user-form">
-                    <form method="POST" action="/api/submit/edit-profile?_method=PATCH" id="edit-profile-form">
-                        <label for="profile-picture" class="header-font">Profile Picture</label>
-                        <div class="profile-picture-options">
-                            <div class="profile-picture">
-                                <input type="file" name="profile-picture" id="profile-picture" accept="image/png, image/jpeg" />
-                            </div>
-                            
-                            <div class="clear-profile">
-                                <input type="button" id="remove-picture" value="Remove Picture"></type>
+                    <form method="POST" id="edit-profile-form">
+                        <label for="file" class="header-font">Profile Picture</label>
+                        <div class="profile-options">
+                            <span class="profile-image">
+                                <label class="image-placeholder" for="file">
+                                    <span>Choose New</span>
+                                </label>
+                                <input id="file" type="file" name="file" onchange="changePhoto(event)" accept="image/png, image/jpeg"/>
+                                <img src="images/draeznor_rock_lover.jpg" id="newimage" width="200" />
+                            </span>
+
+                            <span class="clear-profile">
+                                <input type="button" id="remove-picture" value="Remove"></type>
                             </div>
                         </div>
+                        
         
                         <label for="description" class="header-font">Description</label>
                         <div class="description">
