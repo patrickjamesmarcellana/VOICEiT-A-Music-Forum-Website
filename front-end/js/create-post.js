@@ -176,8 +176,8 @@ $(document).ready(function() {
     $('#post-title').keyup(function() {
         let content_count = removeHTMLTags($('#post-content').val()).length
         let title_count = $('#post-title').val().length
-        console.log(title_count)
-        console.log(content_count)
+        // console.log(title_count)
+        // console.log(content_count)
         if(title_count > 0 && content_count > 0) {
             $('#post-button').attr('disabled', false);            
             $("#post-button").removeClass('noHover')
@@ -191,8 +191,8 @@ $(document).ready(function() {
 $(this).keyup(function() { // this points to the rich text editor... I think, or probably the whole document (no prob with that)
     let content_count = removeHTMLTags($('#post-content').val()).length
     let title_count = $('#post-title').val().length
-    console.log(title_count)
-    console.log(content_count)
+    // console.log(title_count)
+    // console.log(content_count)
     if(title_count > 0 && content_count > 0) {
         $('#post-button').attr('disabled', false);    
         $("#post-button").removeClass('noHover')        
