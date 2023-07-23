@@ -312,9 +312,10 @@ $(document).ready(async function() {
             
             let added_posts = 0
             let posts_to_add = 5
+            let posts_list_exhausted = false
             let posts_list = await postManager.getSubforumPosts(forum_id, new URLSearchParams([["post_limit", posts_to_add]])) // get all posts
-            for(let i = 0; i < posts_list.length; i++) {
-                postViewManager.insert_post(posts_list[i])
+            for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
+                postViewManager.insert_post(posts_list[added_posts])
                 added_posts++
             }
             $(".post-panel").append(see_more_panel);
@@ -325,25 +326,29 @@ $(document).ready(async function() {
                 if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
                     loading= true;
                     $(".see-more-panel").remove();
-                    // call for query cursor
-                    const last_sent = posts_list[posts_list.length - 1]
-                    const queryParams = new URLSearchParams()
 
-                    if(forum_id == "popular") {
-                        queryParams.append("last_sent_views", last_sent.views)
-                        queryParams.append("last_sent_id", last_sent.post_id)
-                    } else {
-                        queryParams.append("last_sent_datetime", last_sent.date.toJSON()    )
-                        queryParams.append("last_sent_id", last_sent.post_id)
+                    // call for query cursor if needed
+                    if(!posts_list_exhausted && added_posts + posts_to_add > posts_list.length) {
+                        const last_sent = posts_list[posts_list.length - 1]
+                        const queryParams = new URLSearchParams()
+
+                        if(forum_id == "popular") {
+                            queryParams.append("last_sent_views", last_sent.views)
+                            queryParams.append("last_sent_id", last_sent.post_id)
+                        } else {
+                            queryParams.append("last_sent_datetime", last_sent.date.toJSON()    )
+                            queryParams.append("last_sent_id", last_sent.post_id)
+                        }
+                        queryParams.append("post_limit", posts_to_add)
+                        const new_posts = await postManager.getSubforumPosts(forum_id, queryParams)
+                        posts_list.push(...new_posts)
+
+                        if(new_posts.length == 0) 
+                            posts_list_exhausted = true;
                     }
-                    queryParams.append("post_limit", posts_to_add)
-                    
-                    const new_posts = await postManager.getSubforumPosts(forum_id, queryParams)
-                    console.log(queryParams.toString())
-                    posts_list.push(...new_posts)
 
-                    for(let i = added_posts; i < posts_list.length; i++) {
-                        postViewManager.insert_post(posts_list[i])
+                    for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
+                        postViewManager.insert_post(posts_list[added_posts])
                         added_posts++
                     }
                     $(".post-panel").append(see_more_panel);
