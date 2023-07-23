@@ -193,9 +193,6 @@ $(document).ready(async function() {
 
         // make create-post container appear
         $(".create-post-container").css("display", "flex");
-
-        // remove see-more-panel
-        $(".see-more-panel").css("display", "none");
     } else {
         // remove profile and logout buttons from nav-bar
         $(".user-buttons").remove();
@@ -233,9 +230,6 @@ $(document).ready(async function() {
  
         // make logout button disappear
         $(".logout-button").css("display", "none");
-
-        // add see-more-panel
-        $(".see-more-panel").css("display", "flex");
     }
 
     // for dynamic content sizing when adjusting window size

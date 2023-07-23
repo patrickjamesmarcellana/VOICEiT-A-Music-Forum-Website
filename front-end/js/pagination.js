@@ -16,15 +16,18 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
         added_posts++
     }
     
-    const see_more_panel = $(".see-more-panel");
-    $(".post-panel").append(see_more_panel);
+    const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="register.html">See More</a></div>`);
+    see_more_panel.remove();
+
+    if(!is_logged_in() && added_posts == posts_to_add)
+        $(".post-panel").append(see_more_panel);
 
     // add 5 posts each time the window scrolls to the bottom
     let loading= false;
     $(window).scroll(async function() {
         if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
             loading= true;
-            $(".see-more-panel").remove();
+            see_more_panel.remove();
     
             // call for query cursor if needed
             if(!posts_list_exhausted && added_posts + posts_to_add > posts_list.length) {
@@ -40,7 +43,9 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
                 await insertPost(posts_list[added_posts])
                 added_posts++
             }
-            $(".post-panel").append(see_more_panel);
+
+            if(!posts_list_exhausted || (!is_logged_in() && added_posts == posts_to_add))
+                $(".post-panel").append(see_more_panel);
     
             loading = false; // reset value of loading once content loaded
         }
