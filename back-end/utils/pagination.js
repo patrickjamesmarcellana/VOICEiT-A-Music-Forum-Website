@@ -21,6 +21,12 @@ const parse_pagination_params = (req, res, next) => {
         req.query.last_sent_datetime = MAX_DATE // assume last post was posted in the far future (get posts before it)
     }
 
+    if(req.query.last_sent_score) {
+        req.query.last_sent_score = parseFloat(req.query.last_sent_score)
+    } else {
+        req.query.last_sent_score = Infinity // assume last post's text similarity score was infinitely high
+    }
+
     if(req.query.last_sent_id) {
         req.query.last_sent_id = new ObjectId(req.query.last_sent_id)
     } else {
@@ -38,6 +44,7 @@ const parse_pagination_params = (req, res, next) => {
     if(req.disablePagination && (
         req.query.last_sent_views != MAX_VIEWS ||
         req.query.last_sent_datetime != MAX_DATE ||
+        req.query.last_sent_score != Infinity ||
         req.query.last_sent_id != MAX_OBJECTID
     )) {
         req.query.post_limit = 0
@@ -63,6 +70,11 @@ const cursor_paginate = async (collection, filter_query, metric_name, last_sent_
         // note: we could use object ID only to sort the posts (since first 4 bytes of it represents the time in seconds) but
         //   1. the sample post's document creation time (eg. the time when the document was inserted to the DB) !=  post's actual creation date (eg. the hardcoded time of the post)
         //   2. the object ID will overflow in the year 2106
+        
+        // MongoDB assumes that "0" means no limit, which is not ideal in our case
+        if(post_limit == 0) {
+            return []
+        }
 
         sort_query = {}
         sort_query[metric_name] = -1 // sort by scores first in descending order,

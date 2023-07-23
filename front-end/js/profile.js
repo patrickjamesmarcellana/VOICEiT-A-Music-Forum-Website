@@ -47,6 +47,7 @@ async function render_profile(target_user, mode) {
                             post = await postManager.getPost(comment.post_id)
                             post.text = ""
                             const s = postViewManager.insert_post(post, ".profile-user-posts")
+                            s.find(".post-body, .post-buttons").hide()
                             commentViewManager.insert_comment(comment, s.get(0))
                             break
                     }
@@ -87,6 +88,7 @@ async function render_profile(target_user, mode) {
                     let post = await postManager.getPost(comment.post_id)
                     post.text = ""
                     const s = postViewManager.insert_post(post, ".profile-user-posts")
+                    s.find(".post-body, .post-buttons").hide()
                     commentViewManager.insert_comment(comment, s.get(0))
                 })
             break

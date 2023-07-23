@@ -120,35 +120,32 @@ router.get("/search/:searchkey", async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
     try {
-        // parse last_sent_score
-        if(req.query.last_sent_score) {
-            req.query.last_sent_score = parseFloat(req.query.last_sent_score)
+        let json
+        if(req.query.post_limit > 0) {
+            const query = await Post.aggregate([
+                { $match: { $text: { $search: key } } } ,
+                { $addFields: { score: { $meta: "textScore" } } },
+                { $sort: { score: -1, _id: -1 } },
+                { $match: { $or: [ 
+                    {
+                        score: {$eq: req.query.last_sent_score},
+                        _id:   {$lt: req.query.last_sent_id}
+                    },
+                    {
+                        score: {$lt: req.query.last_sent_score}
+                    }
+                ] } },
+                { $limit: req.query.post_limit }
+            ])
+
+            await User.populate(query, {path: "user"})
+            console.log(query)
+            json = await documentsToJson(query)
+            if(req.user)
+                await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
         } else {
-            req.query.last_sent_score = Infinity // if nothing was last sent
+            json = []
         }
-
-        const query = await Post.aggregate([
-            { $match: { $text: { $search: key } } } ,
-            { $addFields: { score: { $meta: "textScore" } } },
-            { $sort: { score: -1, _id: -1 } },
-            { $match: { $or: [ 
-                {
-                    score: {$eq: req.query.last_sent_score},
-                    _id:   {$lt: req.query.last_sent_id}
-                },
-                {
-                    score: {$lt: req.query.last_sent_score}
-                }
-            ] } },
-            { $limit: req.query.post_limit }
-        ])
-
-        await User.populate(query, {path: "user"})
-
-        console.log(query)
-        const json = await documentsToJson(query)
-        if(req.user)
-            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
         
         if(json !== undefined) {
             res.send(json)

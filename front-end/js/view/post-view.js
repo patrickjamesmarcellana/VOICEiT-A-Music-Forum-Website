@@ -56,7 +56,6 @@ const postViewManager = {
     
         // hiding it
         if(!is_logged_in() || post.op !== Cookies.get("logged_in_as")) {
-            console.log(inserted_post)
             // inserted_post.find(".edit-post-button").css("display", "none")
             // inserted_post.find(".delete-post-button").css("display", "none")
             inserted_post.find(".post-options-button").css("display", "none")
@@ -167,7 +166,6 @@ const postViewManager = {
     
         // hiding it
         if(!is_logged_in() || post.op !== Cookies.get("logged_in_as")) {
-            console.log(inserted_post)
             // inserted_post.find(".edit-post-button").css("display", "none")
             // inserted_post.find(".delete-post-button").css("display", "none")
             inserted_post.find(".post-options-button").css("display", "none")
