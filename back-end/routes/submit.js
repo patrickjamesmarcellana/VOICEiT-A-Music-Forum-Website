@@ -5,7 +5,7 @@ const Post = require("../models/Post")
 const User = require("../models/User")
 
 const multer = require("multer")
-const upload = multer({dest: "../../front-end/uploads/"}) 
+const upload = multer({dest: "./front-end/uploads/"}) 
 
 router.post("/create-post", async (req, res) => {
     if(req.user) {
