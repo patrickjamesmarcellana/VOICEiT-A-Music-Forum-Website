@@ -20,7 +20,7 @@ const commentSchema = new Schema({
     date: {
         type: Date,
         required: true,
-        default: new Date() 
+        default: Date.now
     },
     body: {
         type: String,

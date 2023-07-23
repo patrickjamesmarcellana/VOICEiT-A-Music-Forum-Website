@@ -54,6 +54,8 @@ const commentViewManager = {
             container.querySelector(".comment-content").appendChild(paragraph)
         })
 
+        // inject date
+        container.querySelector(".comment-date").textContent = `${new Date(comment.date).toDateString('en-CA')} | ${new Date(comment.date).toLocaleTimeString()}`
         // inject listeners
         const vote_buttons = getVoteButtons(container)
         vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
