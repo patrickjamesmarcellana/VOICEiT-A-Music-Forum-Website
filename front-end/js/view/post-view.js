@@ -11,7 +11,7 @@ const postViewManager = {
                             <a href="profile.html?user=${post.op}" class="post-profile">
                                 ${post.op}
                             </a>
-                            &nbsp;•&nbsp; <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
+                            &nbsp;•&nbsp; <span class="post-edited" hidden> Last Edited:&nbsp </span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
     
                             <span class="post-options-button">
                                 <div class="options-dropdown">
@@ -121,7 +121,7 @@ const postViewManager = {
                             <a href="profile.html?user=${post.op}" class="post-profile">
                                 ${post.op}
                             </a>
-                            &nbsp;•&nbsp; <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
+                            &nbsp;•&nbsp; <span class="post-edited" hidden> Last Edited:&nbsp </span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
     
                             <span class="post-options-button">
                                 <div class="options-dropdown">
