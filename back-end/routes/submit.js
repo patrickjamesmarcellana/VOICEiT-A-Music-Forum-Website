@@ -124,6 +124,8 @@ const upload = multer({
     storage: multerStorage
 })
 
+
+// Routers below are for Edit Profile
 router.patch('/edit-profile', upload.single('file'), async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
