@@ -2,8 +2,9 @@
     loadInitialPosts - callback that returns the initial set of posts given the requested number of initial posts
     loadMorePosts - callback that returns the next set of posts to display given the cursor and requested number of posts 
     insertPost - callback that inserts the post/comment
+    totalPosts (optional) - callback that returns the total amount of posts/comments, return 0 if not implemented
 */
-async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertPost) {
+async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertPost, totalPosts) {
     // unset other scroll handlers
     $(window).off("scroll")
 
@@ -19,7 +20,8 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="register.html">See More</a></div>`);
     see_more_panel.remove();
 
-    if(!is_logged_in() && added_posts == posts_to_add)
+    const total_posts = totalPosts ? await totalPosts() : 0
+    if(added_posts < total_posts || (!is_logged_in() && added_posts == posts_to_add))
         $(".post-panel").append(see_more_panel);
 
     // add 5 posts each time the window scrolls to the bottom
