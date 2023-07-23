@@ -63,6 +63,11 @@ const cursor_paginate = async (collection, filter_query, metric_name, last_sent_
         // note: we could use object ID only to sort the posts (since first 4 bytes of it represents the time in seconds) but
         //   1. the sample post's document creation time (eg. the time when the document was inserted to the DB) !=  post's actual creation date (eg. the hardcoded time of the post)
         //   2. the object ID will overflow in the year 2106
+        
+        // MongoDB assumes that "0" means no limit, which is not ideal in our case
+        if(post_limit == 0) {
+            return []
+        }
 
         sort_query = {}
         sort_query[metric_name] = -1 // sort by scores first in descending order,

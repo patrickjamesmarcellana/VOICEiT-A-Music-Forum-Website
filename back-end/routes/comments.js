@@ -56,6 +56,12 @@ router.get('/id/:id', async (req, res) => {
     }
 })
 
+router.use((req, res, next) => {
+    if(!req.user) 
+        req.disablePagination = true
+
+    next()
+})
 router.use(parse_pagination_params)
 router.get("/user/:user", async (req, res) => {
     console.log("Request for comments by user", req.params.user)

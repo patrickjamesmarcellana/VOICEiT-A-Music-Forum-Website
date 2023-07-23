@@ -21,37 +21,48 @@ router.get("/:user", async (req, res) => {
     }
 }) 
 
+router.use((req, res, next) => {
+    if(!req.user) 
+        req.disablePagination = true
+
+    next()
+})
+
 router.get("/:user/combo", parse_pagination_params, async (req, res) => {
     let user = await User.findOne({username: req.params.user})
 
-    console.log(req.query.last_sent_datetime, req.query.last_sent_id)
-    const combo = await Post.aggregate([
-        { $match: {user: user._id} },
-        { $project: { type: "post", _id: 1, date: 1 } },
-        { $unionWith: { 
-            coll: "comments", 
-            pipeline: [
-                { $match: {user: user._id} }, 
-                { $project: { type: "comment", _id: 1, date: 1 } } 
+    // MongoDB assumes that "0" means no limit, which is not ideal in our case
+    if(req.query.post_limit == 0) {
+        res.send([])
+    } else {
+        const combo = await Post.aggregate([
+            { $match: {user: user._id} },
+            { $project: { type: "post", _id: 1, date: 1 } },
+            { $unionWith: { 
+                coll: "comments", 
+                pipeline: [
+                    { $match: {user: user._id} }, 
+                    { $project: { type: "comment", _id: 1, date: 1 } } 
+                ] } },
+            { $sort: { date: -1, _id: -1, type: -1 } },
+            { $match: { $or: [ 
+                {
+                    date: {$eq: req.query.last_sent_datetime},
+                    _id:  {$eq: req.query.last_sent_id},
+                    type: {$ne: req.query.last_sent_type}
+                },
+                {
+                    date: {$eq: req.query.last_sent_datetime},
+                    _id:  {$lt: req.query.last_sent_id}
+                },
+                {
+                    date: {$lt: req.query.last_sent_datetime}
+                }
             ] } },
-        { $sort: { date: -1, _id: -1, type: -1 } },
-        { $match: { $or: [ 
-            {
-                date: {$eq: req.query.last_sent_datetime},
-                _id:  {$eq: req.query.last_sent_id},
-                type: {$ne: req.query.last_sent_type}
-            },
-            {
-                date: {$eq: req.query.last_sent_datetime},
-                _id:  {$lt: req.query.last_sent_id}
-            },
-            {
-                date: {$lt: req.query.last_sent_datetime}
-            }
-        ] } },
-        { $limit: req.query.post_limit }
-    ]).exec()
-
-    res.send(combo)
+            { $limit: req.query.post_limit }
+        ]).exec()
+    
+        res.send(combo)
+    }
 })
 module.exports = router
