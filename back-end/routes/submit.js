@@ -154,4 +154,16 @@ router.post('/edit-profile/remove-photo', async (req, res) => {
     }
 });
 
+router.post('/edit-description', async (req, res) => {
+    if (!req.user) {
+        res.sendStatus(401);
+    }
+
+    await User.findByIdAndUpdate(req.user._id, {
+        description: req.body["description"],
+    })
+
+    res.redirect(`/profile.html?user=${req.user.username}`);
+});
+
 module.exports = router

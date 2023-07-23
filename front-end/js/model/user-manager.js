@@ -22,4 +22,15 @@ const userManager = {
 
         return response.status
     },
+    editDescOnly: async function(username, description) {
+        const response = await fetch("/api/submit/edit-description", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "description": description
+            })
+        })
+    }
 }

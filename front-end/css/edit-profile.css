@@ -234,3 +234,11 @@
     background-image: none;
     background-color: black;
 }
+
+#remove-picture:disabled {
+    opacity: 0.3;
+}
+
+.noHover {
+    pointer-events: none;
+}
