@@ -41,6 +41,7 @@ router.patch("/edit-post", async (req, res) => {
             post.title = postTitle
             post.body = postBody
             post.isEdited = true
+            post.date = Date.now()
             
             await post.save()
 
