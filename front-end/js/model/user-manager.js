@@ -16,7 +16,7 @@ const userManager = {
     },
     editProfile: async function(username, formData) {
         const response = await fetch("/api/submit/edit-profile", {
-            method: "POST",
+            method: "PATCH",
             body: formData
         })
 
@@ -24,7 +24,7 @@ const userManager = {
     },
     editDescOnly: async function(username, description) {
         const response = await fetch("/api/submit/edit-description", {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -32,5 +32,17 @@ const userManager = {
                 "description": description
             })
         })
+
+        return response.status
+    },
+    setDefaultPhoto: async function() {
+        const response = await fetch("/api/submit/set-default-photo", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        return response.status
     }
 }

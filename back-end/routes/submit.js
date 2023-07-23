@@ -124,7 +124,7 @@ const upload = multer({
     storage: multerStorage
 })
 
-router.post('/edit-profile', upload.single('file'), async (req, res) => {
+router.patch('/edit-profile', upload.single('file'), async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
@@ -139,10 +139,10 @@ router.post('/edit-profile', upload.single('file'), async (req, res) => {
         photoUrl: photo_file_path
     })
 
-    res.redirect(`/profile.html?user=${req.user.username}`);
+    res.send(200)
 });
 
-router.post('/edit-profile/remove-photo', async (req, res) => {
+router.patch('/set-default-photo', async (req, res) => { // removing a photo is updating it to default
     try {
         await User.findByIdAndUpdate(req.user._id, {
             photoUrl: `images/empty-profile.png`
@@ -154,7 +154,7 @@ router.post('/edit-profile/remove-photo', async (req, res) => {
     }
 });
 
-router.post('/edit-description', async (req, res) => {
+router.patch('/edit-description', async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
@@ -163,7 +163,7 @@ router.post('/edit-description', async (req, res) => {
         description: req.body["description"],
     })
 
-    res.redirect(`/profile.html?user=${req.user.username}`);
+    res.send(200)
 });
 
 module.exports = router

@@ -19,14 +19,9 @@ removePictureBtn.addEventListener("click", async (event) => {
     event.preventDefault();
 
     try {
-        const response = await fetch("/api/submit/edit-profile/remove-photo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
+        const response_status = await userManager.setDefaultPhoto();
 
-        if (response.status === 200) {
+        if (response_status === 200) {
             window.location.reload();
         }
     } catch (err) {
