@@ -303,42 +303,48 @@ $(document).ready(async function() {
             forum_name.text(forums[forum_id].name);
             forum_description.html(forums[forum_id].description);
 
-            let posts_list = await postManager.getSubforumPosts(forum_id) // get all posts
+            
             const see_more_panel = $(".see-more-panel");
             
             // erase
             $(".see-more-panel").remove();
             $(".post-container").remove();
-
-            // set maximum posts to add: 15 for logged_out users, total post count in db for logged_in  users
-            if(is_logged_in())
-                max_posts = posts_list.length
-            else
-                max_posts = Math.min(15, posts_list.length)
-
-            // append the first 5 posts
+            
             let added_posts = 0
             let posts_to_add = 5
-            
-            for(let i = 0; i < posts_to_add && added_posts < max_posts; i++) {
-                postViewManager.insert_post(posts_list[added_posts])
-                added_posts += 1
+            let posts_list = await postManager.getSubforumPosts(forum_id, new URLSearchParams([["post_limit", posts_to_add]])) // get all posts
+            for(let i = 0; i < posts_list.length; i++) {
+                postViewManager.insert_post(posts_list[i])
+                added_posts++
             }
             $(".post-panel").append(see_more_panel);
 
             // add 5 posts each time the window scrolls to the bottom
             let loading= false;
             $(window).scroll(async function() {
-                if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100) &&
-                    added_posts < max_posts) {
+                if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
                     loading= true;
                     $(".see-more-panel").remove();
                     // call for query cursor
-                    // posts_list = await postManager.getSubforumPosts(forum_id)
+                    const last_sent = posts_list[posts_list.length - 1]
+                    const queryParams = new URLSearchParams()
 
-                    for(let i = 0; i < posts_to_add && added_posts < max_posts; i++) {
-                        postViewManager.insert_post(posts_list[added_posts])
-                        added_posts += 1
+                    if(forum_id == "popular") {
+                        queryParams.append("last_sent_views", last_sent.views)
+                        queryParams.append("last_sent_id", last_sent.post_id)
+                    } else {
+                        queryParams.append("last_sent_datetime", last_sent.date.toJSON()    )
+                        queryParams.append("last_sent_id", last_sent.post_id)
+                    }
+                    queryParams.append("post_limit", posts_to_add)
+                    
+                    const new_posts = await postManager.getSubforumPosts(forum_id, queryParams)
+                    console.log(queryParams.toString())
+                    posts_list.push(...new_posts)
+
+                    for(let i = added_posts; i < posts_list.length; i++) {
+                        postViewManager.insert_post(posts_list[i])
+                        added_posts++
                     }
                     $(".post-panel").append(see_more_panel);
 
