@@ -4,5 +4,13 @@ const userManager = {
         const json = await response.json()
 
         return json
-    }
+    },
+    editProfile: async function(username, formData) {
+        const response = await fetch("/api/submit/edit-profile", {
+            method: "POST",
+            body: formData
+        })
+
+        return response.status
+    },
 }

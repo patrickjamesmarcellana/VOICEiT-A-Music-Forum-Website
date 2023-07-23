@@ -17,33 +17,60 @@ exitModalBtn.addEventListener("click", (event) => {
     document.querySelector("#description").value = "";
 });
 
-removePictureBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
+// removePictureBtn.addEventListener("click", async (event) => {
+//     event.preventDefault();
 
-    try {
-        const response = await fetch("/api/submit/edit-profile?_method=PATCH", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                removePhoto: "true",
-            }),
-        });
+//     try {
+//         const response = await fetch("/api/submit/edit-profile?_method=PATCH", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 removePhoto: "true",
+//             }),
+//         });
 
-        if (response.status === 200) {
-            window.location.reload();
-        }
-    } catch (err) {
-        console.error(err);
-    }
-});
+//         if (response.status === 200) {
+//             window.location.reload();
+//         }
+//     } catch (err) {
+//         console.error(err);
+//     }
+// });
+
+$("#remove-picture").click(() => {
+    const new_image = document.getElementById("newimage");
+    new_image.src = 'images/empty-profile.png'
+})
+
 
 for (const editProfileBtn of editProfileBtns) {
     editProfileBtn.addEventListener("click", async (event) => {
         const search_params = new URLSearchParams(window.location.search)
         user = await userManager.getUser(search_params.get("user"));
         document.querySelector("#description").value = user.description;
+        document.querySelector("#newimage").src = user.photoUrl;
         modal.style.display = "block";
     });
 }
+
+const changePhoto = (event) => {
+    const new_image = document.getElementById("newimage");
+    new_image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+$("#submit-button").click((e) => {
+    e.preventDefault()
+    const search_params = new URLSearchParams(window.location.search)
+    const username = search_params.get("user")
+
+    const description = $("#description").val()
+    const input_file = $("#file").prop('files')
+    const formData = new FormData()
+    console.log(input_file)
+    
+    formData.set('description', description)
+    formData.set('file', input_file)
+    userManager.editProfile(username, formData)
+})

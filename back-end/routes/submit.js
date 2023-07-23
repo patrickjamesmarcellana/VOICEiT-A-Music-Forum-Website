@@ -4,6 +4,9 @@ const Comment = require("../models/Comment")
 const Post = require("../models/Post")
 const User = require("../models/User")
 
+const multer = require("multer")
+const upload = multer({dest: "../../front-end/uploads/"}) 
+
 router.post("/create-post", async (req, res) => {
     if(req.user) {
         const postTitle = req.body["post-title"]
@@ -107,39 +110,21 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
     }
 })
 
-router.patch('/edit-profile', async (req, res) => {
+router.post('/edit-profile', upload.single('file'), async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
+    console.log("BOUND")
+    console.log(req.body)
+    console.log(req.file)
+    // const new_picture = URL.createObjectURL(req.body["file"]);
+    // const user_id = req.user._id;
+    // await User.findByIdAndUpdate(user_id, {
+    //     description: req.body["description"],
+    //     photoUrl: new_picture
+    // });
 
-    const user_id = req.user._id;
-
-    // remove user's profile picture
-    const removePhoto = req.body["removePhoto"];
-    if (removePhoto === "true") {
-        await User.findByIdAndUpdate(user_id, {
-            photoUrl: `images/empty-profile.png`
-        });
-        res.send(200);
-        return;
-    }
-
-    // if user uploaded profile picture, set it as new profile picture
-    // NOTE/TODO: due to security reasons, it is not possible to obtain the
-    // absolute file path of the image selected, thus the image needs to be
-    // moved to the images folder with a unique name (preferably the user's)
-    // username (and replace the existing profile picture, if any)
-    if (req.body["profile-picture"]) {
-        await User.findByIdAndUpdate(user_id, {
-            photoUrl: `images/${req.body["profile-picture"]}`
-        });
-    }
-
-    await User.findByIdAndUpdate(user_id, {
-        description: req.body["description"]
-    });
-
-    res.redirect(`/profile.html?user=${req.user.username}`);
+    // res.redirect(`/profile.html?user=${req.user.username}`);
 });
 
 module.exports = router

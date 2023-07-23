@@ -72,7 +72,8 @@
 }
 
 .header-font {
-    font-family: var(--header-font)
+    font-family: var(--header-font);
+    font-size: 120%;
 }
 
 .exit-button {
@@ -112,6 +113,8 @@
 
 #description {
     width: 100%;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
 }
 
 #description::placeholder {
@@ -122,22 +125,117 @@
     margin-bottom: 5%;
 }
 
-.description {
-    margin-bottom: 5%;
-}
-
 #description {
     resize: none;
 }
 
+.submit-form-button-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
 .submit-form-button {
-    padding: 1% 2%;
-    font-size: medium;
-    font-family: var(--main-font);
-    display: block;
-    margin: 0 auto;
+    color: var(--main-color);
+    box-sizing: border-box;
+    width: 90px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 25px;
+    border: solid 1px var(--main-color);
+    background-image: linear-gradient(#5756bb, #8182da, #a18ddd);
+    font-family: var(--header-font);
+    font-size: 120%;
+    margin: 0px auto;
 }
 
 .submit-form-button:hover {
-    background-color: lightgray;
+    background-image: none;
+    background-color: black;
+}
+
+/*
+    Reference for Changing Profile Picture: https://codepen.io/azazy/pen/EgdXxG?editors=0110
+*/
+
+.profile-image {
+    color: transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+    width:fit-content;
+    margin: 0px 0px 0px 14px;
+}
+
+.profile-image input {
+    display: none;
+}
+
+.profile-image img {
+    position: absolute;
+    object-fit: cover;
+    width: 165px;
+    height: 165px;
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.35);
+    border: solid 1px white;
+    border-radius: 100px;
+    z-index: 0;
+}
+
+.profile-image .image-placeholder {
+    cursor: pointer;
+    height: 165px;
+    width: 165px;
+}
+
+.profile-image:hover .image-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    color: #fafafa;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 100px;
+    margin-bottom: 0;
+}
+
+.profile-image span {
+    display: inline-flex;
+    padding: 0.2em;
+    height: 1.4em;
+}
+
+.clear-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-options {
+    display: flex;
+    flex-direction: row;
+    margin-top: 14px;
+    margin-bottom: 25px;
+}
+
+#remove-picture {
+    text-decoration: none;
+    color: var(--main-color);
+    padding: 7px 0vw;
+    box-sizing: border-box;
+    width: 100px;
+    text-align: center;
+    border-radius: 25px;
+    border: solid 1px var(--main-color);
+    background-image: linear-gradient(#5756bb, #8182da, #a18ddd);
+    min-width: 80px;
+    margin: 0px 0px 0px 30px;
+}
+
+#remove-picture:hover {
+    background-image: none;
+    background-color: black;
 }
