@@ -12,6 +12,11 @@ const commentSchema = new Schema({
         ref: "Post",
         required: true
     },
+    parent_comment_id: {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+        default: null
+    },
     date: {
         type: Date,
         required: true,

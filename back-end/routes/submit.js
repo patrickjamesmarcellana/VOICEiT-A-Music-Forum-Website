@@ -55,12 +55,13 @@ router.post("/create-comment", async (req, res) => {
     if(req.user) {
         const commentContent = req.body["comment-content"]
         const parentPost = req.body["parent-post"]
-        const parentComment = req.body["parent-comment"] // can be null
+        const parentComment = req.body["parent-comment"] ?? null // can be null, also convert undefined to null using "??"
 
         if(commentContent && parentPost) {
             const new_comment = await Comment.create({
                 user: req.user._id,
                 post_id: parentPost,
+                parent_comment_id: parentComment,
                 body: commentContent,
             })
 
