@@ -97,6 +97,7 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
         if(commentContent) {
             comment.body = commentContent
             comment.isEdited = true
+            comment.date = Date.now()
             
             await comment.save()
 
