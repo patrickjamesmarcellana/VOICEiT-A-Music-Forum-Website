@@ -85,22 +85,17 @@
             <div class="post-panel">
                 <div class="profile-panel-2">
                     <div class="profile-picture">
-                        <img src="images/melissa_spellman.jpg">
+                        <img src="images/empty-profile.png">
                     </div>
 
                     <div class="username-and-edit-button-container">
-                        <span class="username-text profile-username">melissa_spellman</span>
+                        <span class="username-text profile-username"></span>
                         <span>
                             <input type="button" class="edit-profile-button" value="Edit Profile">
                         </span>
                     </div>
 
                     <div class="user-description">
-                        Hi! I'm a neuroscientist student from Johns Hopkins University, and I'm highly invested in how music transcends
-                        generations. Currently, my favorite genres of music are classical, jazz, and R&B. Hit me up on my personal email
-                        if you'd like to discuss music on your leisure time!
-
-                        Email: melissa_spellman@yahoo.com
                     </div>
                     
                     <div class="user-statistics">
@@ -178,31 +173,35 @@
         
                 <div class="user-form">
                     <form method="POST" id="edit-profile-form">
-                        <label for="file" class="header-font">Profile Picture</label>
-                        <div class="profile-options">
-                            <span class="profile-image">
-                                <label class="image-placeholder" for="file">
-                                    <span>Choose New</span>
-                                </label>
-                                <input id="file" type="file" name="file" onchange="changePhoto(event)" accept="image/png, image/jpeg"/>
-                                <img src="images/draeznor_rock_lover.jpg" id="newimage" width="200" />
-                            </span>
+                        <div class="centered">
+                            <label for="file" class="header-font center-text">Profile Picture</label>
+                        </div>
 
-                            <span class="clear-profile">
-                                <input type="button" id="remove-picture" value="Remove"></type>
-                            </div>
+                        <span class="profile-image">
+                            <label class="image-placeholder" for="file">
+                                <span>Choose New</span>
+                                </label>
+                            <input id="file" type="file" name="file" onchange="changePhoto(event)" accept="image/png, image/jpeg"/>
+                            <img src="images/draeznor_rock_lover.jpg" id="newimage" width="200" />
+                        </span>              
+                        
+                        <div class="centered">
+                            <label for="description" class="header-font center-text">Description</label>
                         </div>
                         
-        
-                        <label for="description" class="header-font">Description</label>
                         <div class="description">
                             <textarea name="description" id="description" rows="5"
                                 placeholder="Write something about yourself"></textarea>
                         </div>
-        
-                        <div class="submit-form-button-container">
-                            <input type="submit" class="submit-form-button" id="submit-button" value="Save" />
-                        </div>
+                        <div class="profile-options">
+                            <span class="clear-profile">
+                                <input type="button" id="remove-picture" value="Remove Photo"></type>
+                            </span>
+
+                            <span class="submit-form-button-container">
+                                <input type="submit" class="submit-form-button" id="submit-button" value="Save Profile" />
+                            </span>
+                        </div>    
                     </form>
                 </div>
             </div>
