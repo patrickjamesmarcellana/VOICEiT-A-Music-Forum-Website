@@ -324,7 +324,8 @@ $(document).ready(async function() {
                 },
                 async (post) => {
                     postViewManager.insert_post(post)
-                })
+                },
+                async () => (await postManager.getSubforumPostCount(forum_id)))
                 
         } else {
             window.location.href = `index.html?forum=${forum_id}`

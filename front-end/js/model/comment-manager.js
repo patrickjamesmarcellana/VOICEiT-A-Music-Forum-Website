@@ -19,6 +19,12 @@ const commentManager = {
         return json
     },
 
+    getUserCommentCount: async function(user) {
+        const response = await fetch("api/comments/count/user/" + user)
+        const json = await response.json()
+        return json
+    },
+
     createComment: async function(parent_post, parent_comment, comment_content) {
         const response = await fetch("/api/submit/create-comment", {
             method: "POST",

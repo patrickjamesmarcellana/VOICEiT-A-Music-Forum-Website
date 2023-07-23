@@ -21,7 +21,8 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     see_more_panel.remove();
 
     const total_posts = totalPosts ? await totalPosts() : 0
-    if(added_posts < total_posts || (!is_logged_in() && added_posts == posts_to_add))
+    console.log(await totalPosts())
+    if(added_posts < total_posts)
         $(".post-panel").append(see_more_panel);
 
     // add 5 posts each time the window scrolls to the bottom
@@ -46,7 +47,8 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
                 added_posts++
             }
 
-            if(!posts_list_exhausted || (!is_logged_in() && added_posts == posts_to_add))
+            // in logged out view, post list can appear exhausted even if added_posts < total_posts due to the restrictions
+            if(!posts_list_exhausted || added_posts < total_posts) 
                 $(".post-panel").append(see_more_panel);
     
             loading = false; // reset value of loading once content loaded

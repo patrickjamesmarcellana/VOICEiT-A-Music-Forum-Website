@@ -51,7 +51,8 @@ async function render_profile(target_user, mode) {
                             commentViewManager.insert_comment(comment, s.get(0))
                             break
                     }
-                })
+                },
+                async () => (await postManager.getUserPostCount(target_user) + await commentManager.getUserCommentCount(target_user)))
             break
         case ProfileMode.MODE_POSTS:
             setInfiniteScrollHandler(
@@ -68,7 +69,8 @@ async function render_profile(target_user, mode) {
                 },
                 async (post) => {
                     postViewManager.insert_post(post, ".profile-user-posts")
-                })
+                },
+                async () => (await postManager.getUserPostCount(target_user)))
             break
         case ProfileMode.MODE_COMMENTS:
             setInfiniteScrollHandler(
@@ -90,7 +92,8 @@ async function render_profile(target_user, mode) {
                     const s = postViewManager.insert_post(post, ".profile-user-posts")
                     s.find(".post-body, .post-buttons").hide()
                     commentViewManager.insert_comment(comment, s.get(0))
-                })
+                },
+                async () => (await commentManager.getUserCommentCount(target_user)))
             break
     }
 

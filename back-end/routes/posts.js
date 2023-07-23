@@ -159,7 +159,10 @@ router.get("/search/:searchkey", async(req, res) => {
 
 // count posts in subforum
 router.get("/count/subforum/:subforum", async (req, res) => {
-    res.send(`${await Post.count({subforum: req.params.subforum})}`)
+    if(req.params.subforum === "home" || req.params.subforum === "popular")
+        res.send(`${await Post.count({})}`)
+    else
+        res.send(`${await Post.count({subforum: req.params.subforum})}`)
 })
 
 // count posts by user

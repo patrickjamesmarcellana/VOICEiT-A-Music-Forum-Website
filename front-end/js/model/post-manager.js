@@ -19,6 +19,12 @@ const postManager = {
         return json
     },
 
+    getSubforumPostCount: async function(subforum_id) {
+        const response = await fetch("api/posts/count/subforum/" + subforum_id)
+        const json = await response.json()
+        return json
+    },
+
     getUserPosts: async function(user, queryParams) {
         let queryString = ""
         if(queryParams != null) {
@@ -28,6 +34,12 @@ const postManager = {
         const json = await response.json()
 
         json.forEach(post => post.date = new Date(post.date))
+        return json
+    },
+
+    getUserPostCount: async function(user) {
+        const response = await fetch("api/posts/count/user/" + user)
+        const json = await response.json()
         return json
     },
 
