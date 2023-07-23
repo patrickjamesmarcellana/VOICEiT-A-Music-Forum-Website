@@ -21,6 +21,12 @@ const parse_pagination_params = (req, res, next) => {
         req.query.last_sent_datetime = MAX_DATE // assume last post was posted in the far future (get posts before it)
     }
 
+    if(req.query.last_sent_score) {
+        req.query.last_sent_score = parseFloat(req.query.last_sent_score)
+    } else {
+        req.query.last_sent_score = Infinity // assume last post's text similarity score was infinitely high
+    }
+
     if(req.query.last_sent_id) {
         req.query.last_sent_id = new ObjectId(req.query.last_sent_id)
     } else {
@@ -38,6 +44,7 @@ const parse_pagination_params = (req, res, next) => {
     if(req.disablePagination && (
         req.query.last_sent_views != MAX_VIEWS ||
         req.query.last_sent_datetime != MAX_DATE ||
+        req.query.last_sent_score != Infinity ||
         req.query.last_sent_id != MAX_OBJECTID
     )) {
         req.query.post_limit = 0
