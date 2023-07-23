@@ -16,6 +16,7 @@ const documentToJson = (document) => {
     return {
         post_id: document.post_id,
         comment_id: document.id,
+        date: document.date,
         subcomments: document.subcomments,
 
         flags: flags,
