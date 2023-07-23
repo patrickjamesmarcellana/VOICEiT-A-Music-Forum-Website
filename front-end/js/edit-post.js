@@ -6,9 +6,8 @@ $(".edit-post-button").click(function(e) {
 $(document).ready(async function() {
 
     const search_params = new URLSearchParams(window.location.search)
-    post = await postManager.getPost(search_params.get("post"))
-
-    console.log(post.title)
+    const post = await postManager.getPost(search_params.get("post"))
+    $("#subforum").val(post.subforum)
     $("#post-title").val(post.title)
     $("#post-content").val(post.text)
     $("#post-id").val(post.post_id)
