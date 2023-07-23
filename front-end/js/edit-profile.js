@@ -60,7 +60,7 @@ const changePhoto = (event) => {
     new_image.src = URL.createObjectURL(event.target.files[0]);
 };
 
-$("#submit-button").click((e) => {
+$("#submit-button").click(async (e) => {
     e.preventDefault()
     const search_params = new URLSearchParams(window.location.search)
     const username = search_params.get("user")
@@ -72,5 +72,10 @@ $("#submit-button").click((e) => {
     
     formData.set('description', description)
     formData.set('file', input_file)
-    userManager.editProfile(username, formData)
+    try {
+        await userManager.editProfile(username, formData)
+        modal.style.display = "none";
+    } catch(err) {
+        console.error(err)
+    }
 })

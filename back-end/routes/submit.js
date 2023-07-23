@@ -5,7 +5,6 @@ const Post = require("../models/Post")
 const User = require("../models/User")
 
 const multer = require("multer")
-const upload = multer({dest: "./front-end/uploads/"}) 
 
 router.post("/create-post", async (req, res) => {
     if(req.user) {
@@ -110,21 +109,36 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
     }
 })
 
+// const upload = multer({dest: "./front-end/uploads/"}) 
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./front-end/uploads/");
+    },
+    filename: (req, file, cb) => {
+        const ext = file.mimetype.split("/")[1];
+        cb(null, `${req.user.username}-${Date.now()}.${ext}`);
+    },
+});
+
+const upload = multer({
+    storage: multerStorage
+})
+
 router.post('/edit-profile', upload.single('file'), async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
-    console.log("BOUND")
+    console.log("Photo upload complete")
     console.log(req.body)
     console.log(req.file)
-    // const new_picture = URL.createObjectURL(req.body["file"]);
-    // const user_id = req.user._id;
-    // await User.findByIdAndUpdate(user_id, {
-    //     description: req.body["description"],
-    //     photoUrl: new_picture
-    // });
 
-    // res.redirect(`/profile.html?user=${req.user.username}`);
+    const photo_file_path = `uploads/${req.file.filename}`
+    await User.findByIdAndUpdate(req.user._id, {
+        description: req.body["description"],
+        photoUrl: photo_file_path
+    })
+
+    res.redirect(`/profile.html?user=${req.user.username}`);
 });
 
 module.exports = router
