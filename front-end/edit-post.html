@@ -9,9 +9,11 @@
         <script src="js/side_panel_a.js" defer></script>
         <script src="js/navbar.js" defer></script>
         <script src="js/index.js" defer></script>
+
         <script src="js/model/post-manager.js" defer></script>
         <script src="js/code.jquery.com_jquery-3.6.0.min.js"></script>
-        <script>
+        
+        <!-- <script>
             $(document).ready(async function() {
                 const search_params = new URLSearchParams(window.location.search)
                 post = await postManager.getPost(search_params.get("post"))
@@ -19,8 +21,18 @@
                 $("#post-title").val(post.title)
                 $("#post-content").val(post.text)
                 $("#post-id").val(post.post_id)
-            })
-        </script>
+            }) 
+        </script> -->
+
+        <!-- Rich Text -->
+        <script src="js/edit-post.js" defer></script> <!-- Do not remove this line ir removing Rich Text-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="RichText/src/richtext.min.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+        <script type="text/javascript" src="RichText/src/jquery.richtext.js" defer></script>
+        
+
+        
     </head>
 
     <body>
