@@ -128,6 +128,7 @@ router.post('/edit-profile', upload.single('file'), async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
+    
     console.log("Photo upload complete")
     console.log(req.body)
     console.log(req.file)
@@ -139,6 +140,18 @@ router.post('/edit-profile', upload.single('file'), async (req, res) => {
     })
 
     res.redirect(`/profile.html?user=${req.user.username}`);
+});
+
+router.post('/edit-profile/remove-photo', async (req, res) => {
+    try {
+        await User.findByIdAndUpdate(req.user._id, {
+            photoUrl: `images/empty-profile.png`
+        });
+        res.send(200);
+    } catch(err) {
+        console.error(err)
+        res.send(502)
+    }
 });
 
 module.exports = router
