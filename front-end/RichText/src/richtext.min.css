@@ -20,6 +20,31 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
 .richText{
     z-index: 1;
     position:relative;
@@ -32,7 +57,7 @@
 }
     
 .richText .richText-form{
-    font-family:Calibri,Verdana,Helvetica,sans-serif
+    font-family:var(--main-font)
 }
 
 .richText .richText-form label{
@@ -70,7 +95,7 @@
 }
 
 .richText .richText-toolbar .richText-length{
-    font-family:Verdana,Helvetica,sans-serif;
+    font-family:var(--main-font);
     font-size:13px;
     vertical-align:middle;
     line-height:34px
@@ -159,7 +184,7 @@
 .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li{
     display:block;
     float:none;
-    font-family:Calibri,Verdana,Helvetica,sans-serif
+    font-family:var(--main-font)
 }
     
 .richText .richText-toolbar ul li a .richText-dropdown-outer ul.richText-dropdown li a{
@@ -240,7 +265,7 @@
     padding:20px;
     background-color:#fff;
     border-left:#fff solid 2px;
-    font-family:Calibri,Verdana,Helvetica,sans-serif;
+    font-family:var(--main-font);
     height:300px;
     outline:0;
     overflow-y:scroll;
@@ -277,7 +302,7 @@
     background-color:#282828;
     border:none;
     color:#3f3;
-    font-family:Monospace,Calibri,Verdana,Helvetica,sans-serif;
+    font-family:var(--main-font);
     max-width:100%;
     min-width:100%;
     width:100%;
@@ -305,7 +330,7 @@
 }
 
 .richText .richText-help-popup a{
-    color:#3498db;
+    color:#31294c;
     text-decoration:underline
 }
 
