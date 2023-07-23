@@ -7,9 +7,15 @@ const commentManager = {
         return await response.json()
     },
 
-    getUserComments: async function(user) {
-        const response = await fetch("api/comments/user/" + user)
+    getUserComments: async function(user, queryParams) {
+        let queryString = ""
+        if(queryParams != null) {
+            queryString = "?" + queryParams.toString()
+        }
+        const response = await fetch("api/comments/user/" + user + queryString)
         const json = await response.json()
+
+        json.forEach(post => post.date = new Date(post.date))
         return json
     },
 

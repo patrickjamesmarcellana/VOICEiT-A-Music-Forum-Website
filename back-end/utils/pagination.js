@@ -22,7 +22,7 @@ const parse_pagination_params = (req, res, next) => {
     }
 
     if(req.query.last_sent_id) {
-        req.query.last_sent_id = req.query.last_sent_id
+        req.query.last_sent_id = new ObjectId(req.query.last_sent_id)
     } else {
         // NOTE: since it is a hex string, it must be compared with the hex string .id (instead of ._id)
         req.query.last_sent_id = MAX_OBJECTID

@@ -106,6 +106,8 @@ async function logout() {
     window.location.reload();
 }
 
+
+
 $(document).ready(async function() {
     if(typeof Cookies === "undefined") {
         console.log("Downloading js-cookie");
@@ -302,60 +304,34 @@ $(document).ready(async function() {
             //window.location.href = `index.html?forum=${forum_id}`;
             forum_name.text(forums[forum_id].name);
             forum_description.html(forums[forum_id].description);
-
-            
-            const see_more_panel = $(".see-more-panel");
             
             // erase
             $(".see-more-panel").remove();
             $(".post-container").remove();
             
-            let added_posts = 0
-            let posts_to_add = 5
-            let posts_list_exhausted = false
-            let posts_list = await postManager.getSubforumPosts(forum_id, new URLSearchParams([["post_limit", posts_to_add]])) // get all posts
-            for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
-                postViewManager.insert_post(posts_list[added_posts])
-                added_posts++
-            }
-            $(".post-panel").append(see_more_panel);
-
-            // add 5 posts each time the window scrolls to the bottom
-            let loading= false;
-            $(window).scroll(async function() {
-                if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
-                    loading= true;
-                    $(".see-more-panel").remove();
-
-                    // call for query cursor if needed
-                    if(!posts_list_exhausted && added_posts + posts_to_add > posts_list.length) {
-                        const last_sent = posts_list[posts_list.length - 1]
-                        const queryParams = new URLSearchParams()
-
-                        if(forum_id == "popular") {
-                            queryParams.append("last_sent_views", last_sent.views)
-                            queryParams.append("last_sent_id", last_sent.post_id)
-                        } else {
-                            queryParams.append("last_sent_datetime", last_sent.date.toJSON()    )
-                            queryParams.append("last_sent_id", last_sent.post_id)
-                        }
-                        queryParams.append("post_limit", posts_to_add)
-                        const new_posts = await postManager.getSubforumPosts(forum_id, queryParams)
-                        posts_list.push(...new_posts)
-
-                        if(new_posts.length == 0) 
-                            posts_list_exhausted = true;
+            /* parameter is load more posts function based on given cursor and requested number of posts */
+            setInfiniteScrollHandler(
+                async(num_posts) => {
+                    return await postManager.getSubforumPosts(forum_id, new URLSearchParams([["post_limit", num_posts]]))
+                },
+                async (last_sent_post, num_posts) => {
+                    const queryParams = new URLSearchParams()
+        
+                    if(forum_id == "popular") {
+                        queryParams.append("last_sent_views", last_sent_post.views)
+                        queryParams.append("last_sent_id", last_sent_post.post_id)
+                    } else {
+                        queryParams.append("last_sent_datetime", last_sent_post.date.toJSON()    )
+                        queryParams.append("last_sent_id", last_sent_post.post_id)
                     }
+                    queryParams.append("post_limit", num_posts)
 
-                    for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
-                        postViewManager.insert_post(posts_list[added_posts])
-                        added_posts++
-                    }
-                    $(".post-panel").append(see_more_panel);
-
-                    loading = false; // reset value of loading once content loaded
-                }
-            });            
+                    return await postManager.getSubforumPosts(forum_id, queryParams)
+                },
+                async (post) => {
+                    postViewManager.insert_post(post)
+                })
+                
         } else {
             window.location.href = `index.html?forum=${forum_id}`
         }

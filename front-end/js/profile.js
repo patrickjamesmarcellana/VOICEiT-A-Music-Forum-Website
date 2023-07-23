@@ -12,7 +12,7 @@ ProfileMode = {
 }
 
 
-async function render_profile(mode) {
+async function render_profile(target_user, mode) {
     // note: .op is for post, .author is for comment (fix this)
     // note 2: post is a global variable containing all the posts for some reason
     // note 3: same for saved_comments
@@ -20,36 +20,78 @@ async function render_profile(mode) {
     // 0. wipe
     $(".profile-user-posts").html("")
 
-    // 1. add posts by user
-    let post_id_list = [];
-    let post_list = [];
-    if (mode == ProfileMode.MODE_OVERVIEW || mode == ProfileMode.MODE_POSTS) {
-        post_list = await postManager.getUserPosts(target_user)
-        post_id_list = post_list.map(post => post.post_id)
+    switch(mode) {
+        case ProfileMode.MODE_OVERVIEW:
+            setInfiniteScrollHandler(
+                async(num_posts) => {
+                    return await userManager.getUserOverview(target_user, new URLSearchParams([["post_limit", num_posts]]))
+                },
+                async (last_sent_post, num_posts) => {
+                    const queryParams = new URLSearchParams()
+                    queryParams.append("last_sent_datetime", last_sent_post.date)
+                    queryParams.append("last_sent_id", last_sent_post._id)
+                    queryParams.append("last_sent_type", last_sent_post.type)
+                    queryParams.append("post_limit", num_posts)
+        
+                    return await userManager.getUserOverview(target_user, queryParams)
+                },
+                async (reference) => { // here, the API only provides the id so we have to resolve it
+                    let post, comment
+                    switch(reference.type) {
+                        case "post":
+                            post = (await postManager.getPost(reference._id))
+                            postViewManager.insert_post(post, ".profile-user-posts")
+                            break
+                        case "comment":
+                            comment = await commentManager.getComment(reference._id)
+                            post = await postManager.getPost(comment.post_id)
+                            post.text = ""
+                            const s = postViewManager.insert_post(post, ".profile-user-posts")
+                            commentViewManager.insert_comment(comment, s.get(0))
+                            break
+                    }
+                })
+            break
+        case ProfileMode.MODE_POSTS:
+            setInfiniteScrollHandler(
+                async(num_posts) => {
+                    return await postManager.getUserPosts(target_user, new URLSearchParams([["post_limit", num_posts]]))
+                },
+                async (last_sent_post, num_posts) => {
+                    const queryParams = new URLSearchParams()
+                    queryParams.append("last_sent_datetime", last_sent_post.date.toJSON())
+                    queryParams.append("last_sent_id", last_sent_post.post_id)
+                    queryParams.append("post_limit", num_posts)
+        
+                    return await postManager.getUserPosts(target_user, queryParams)
+                },
+                async (post) => {
+                    postViewManager.insert_post(post, ".profile-user-posts")
+                })
+            break
+        case ProfileMode.MODE_COMMENTS:
+            setInfiniteScrollHandler(
+                async(num_posts) => {
+                    return await commentManager.getUserComments(target_user, new URLSearchParams([["post_limit", num_posts]]))
+                },
+                async (last_sent_post, num_posts) => {
+                    console.log(last_sent_post)
+                    const queryParams = new URLSearchParams()
+                    queryParams.append("last_sent_datetime", last_sent_post.date.toJSON())
+                    queryParams.append("last_sent_id", last_sent_post.comment_id)
+                    queryParams.append("post_limit", num_posts)
+        
+                    return await commentManager.getUserComments(target_user, queryParams)
+                },
+                async (comment) => {
+                    let post = await postManager.getPost(comment.post_id)
+                    post.text = ""
+                    const s = postViewManager.insert_post(post, ".profile-user-posts")
+                    commentViewManager.insert_comment(comment, s.get(0))
+                })
+            break
     }
-    
-    // 2. add comments by user
-    let comments_list = [];
-    if (mode == ProfileMode.MODE_OVERVIEW || mode == ProfileMode.MODE_COMMENTS) {
-        comments_list = await commentManager.getUserComments(target_user)
 
-        // find post the comment belongs to
-        for (const comment of comments_list) {
-            if(comment.post_id != null && !post_id_list.includes(comment.post_id.toString())) { // todo: optimize
-                post_id_list.push(comment.post_id);
-                post_list.push(await postManager.getPost(comment.post_id));
-            }
-        }
-    }
-
-    // 3. render both
-    for (const post of post_list) {
-        postViewManager.insert_post(post, ".profile-user-posts")
-    }
-    
-    for (const comment of comments_list) {
-        commentViewManager.insert_comment(comment, document.querySelector(`div[post-id="${comment.post_id}"]`))
-    }
 }
 
 $(document).ready(async function() {
@@ -57,14 +99,14 @@ $(document).ready(async function() {
     target_user = search_params.get("user")
 
     $("#profile-overview-button").click(async function() {
-        await render_profile(ProfileMode.MODE_OVERVIEW)
+        await render_profile(target_user, ProfileMode.MODE_OVERVIEW)
     })
     $("#profile-posts-button").click(async function() {
-        await render_profile(ProfileMode.MODE_POSTS)
+        await render_profile(target_user, ProfileMode.MODE_POSTS)
     })
     $("#profile-comments-button").click(async function() {
-        await render_profile(ProfileMode.MODE_COMMENTS)
+        await render_profile(target_user, ProfileMode.MODE_COMMENTS)
     })
 
-    await render_profile(ProfileMode.MODE_OVERVIEW)
+    await render_profile(target_user, ProfileMode.MODE_OVERVIEW)
 })
