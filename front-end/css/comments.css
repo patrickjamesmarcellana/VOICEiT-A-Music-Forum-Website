@@ -35,6 +35,16 @@ a {
     margin-bottom: 1em;
 }
 
+.comment-author {
+    font-family: var(--header-font)
+}
+
+.comment-edited-remark {
+    color: lightgray;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 /* bottom padding is redundant in this case because it is provided by subcomments' margin */
 .comment-container.with-subcomments {
     padding-bottom: 0;
