@@ -3,7 +3,17 @@ $(".post-title-input").on("input", function() {
     this.css("height", this.scrollHeight + "px");
 });
 
+function removeHTMLTags(str) {
+    if ((str===null) || (str===''))
+        return false;
+    else
+        str = str.toString();
+
+    return str.replace(/(<([^>]+)>)/ig, '');
+}
+
 $(document).ready(function() {
+
     $('#post-content').richText({
         // text formatting
         bold: true,
@@ -56,7 +66,7 @@ $(document).ready(function() {
 
         // code
         removeStyles: false,
-        code: false,
+        code: true,
 
         // colors
         colors: [],
@@ -159,4 +169,35 @@ $(document).ready(function() {
         saveOnBlur: 0, 
         undoRedo: false
     });
+
+    $('#post-button').attr('disabled', 'disabled');
+    $("#post-button").addClass('noHover');
+
+    $('#post-title').keyup(function() {
+        let content_count = removeHTMLTags($('#post-content').val()).length
+        let title_count = $('#post-title').val().length
+        console.log(title_count)
+        console.log(content_count)
+        if(title_count > 0 && content_count > 0) {
+            $('#post-button').attr('disabled', false);            
+            $("#post-button").removeClass('noHover')
+        } else {
+            $('#post-button').attr('disabled', true);
+            $("#post-button").addClass('noHover');
+        }
+    });
+});
+
+$(this).keyup(function() { // this points to the rich text editor... I think, or probably the whole document (no prob with that)
+    let content_count = removeHTMLTags($('#post-content').val()).length
+    let title_count = $('#post-title').val().length
+    console.log(title_count)
+    console.log(content_count)
+    if(title_count > 0 && content_count > 0) {
+        $('#post-button').attr('disabled', false);    
+        $("#post-button").removeClass('noHover')        
+    } else {
+        $('#post-button').attr('disabled', true);
+        $("#post-button").addClass('noHover');
+    }
 });

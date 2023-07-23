@@ -63,6 +63,14 @@
     background-color: #5756bb;
 }
 
+#post-button:disabled {
+    opacity: 0.3;
+}
+
+.noHover {
+    pointer-events: none;
+}
+
 .create-post-forms{
     padding: 15px 40px 30px 40px;
     display: flex;
