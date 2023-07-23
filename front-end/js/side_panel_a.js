@@ -1,5 +1,3 @@
-
-
 side_panel_a_html = `
     <span class="side-panel-a">
         <div class="options-panel side-a-top-panel">
