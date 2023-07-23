@@ -157,4 +157,15 @@ router.get("/search/:searchkey", async(req, res) => {
     }
 })
 
+// count posts in subforum
+router.get("/count/subforum/:subforum", async (req, res) => {
+    res.send(`${await Post.count({subforum: req.params.subforum})}`)
+})
+
+// count posts by user
+router.get("/count/user/:user", async (req, res) => {
+    let user_id = await User.findOne({username: req.params.user})
+    res.send(`${await Post.count({user: user_id})}`)
+})
+
 module.exports = router

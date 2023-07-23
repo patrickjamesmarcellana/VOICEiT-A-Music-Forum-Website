@@ -83,4 +83,10 @@ router.get("/user/:user", async (req, res) => {
     }
 })
 
+// count comments by user
+router.get("/count/user/:user", async (req, res) => {
+    let user_id = await User.findOne({username: req.params.user})
+    res.send(`${await Comment.count({user: user_id})}`)
+})
+
 module.exports = router
