@@ -46,7 +46,7 @@ $(document).ready(async function() {
             }
 
             // reset text editor
-            $(".post-text-editor").val("")
+            $(".post-text-editor > textarea").val("")
         })
         // render comments
         loadAllComment(post.top_level_comments_list)
