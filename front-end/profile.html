@@ -172,31 +172,35 @@
         
                 <div class="user-form">
                     <form method="POST" id="edit-profile-form">
-                        <label for="file" class="header-font">Profile Picture</label>
-                        <div class="profile-options">
-                            <span class="profile-image">
-                                <label class="image-placeholder" for="file">
-                                    <span>Choose New</span>
-                                </label>
-                                <input id="file" type="file" name="file" onchange="changePhoto(event)" accept="image/png, image/jpeg"/>
-                                <img src="images/draeznor_rock_lover.jpg" id="newimage" width="200" />
-                            </span>
+                        <div class="centered">
+                            <label for="file" class="header-font center-text">Profile Picture</label>
+                        </div>
 
-                            <span class="clear-profile">
-                                <input type="button" id="remove-picture" value="Remove"></type>
-                            </div>
+                        <span class="profile-image">
+                            <label class="image-placeholder" for="file">
+                                <span>Choose New</span>
+                                </label>
+                            <input id="file" type="file" name="file" onchange="changePhoto(event)" accept="image/png, image/jpeg"/>
+                            <img src="images/draeznor_rock_lover.jpg" id="newimage" width="200" />
+                        </span>              
+                        
+                        <div class="centered">
+                            <label for="description" class="header-font center-text">Description</label>
                         </div>
                         
-        
-                        <label for="description" class="header-font">Description</label>
                         <div class="description">
                             <textarea name="description" id="description" rows="5"
                                 placeholder="Write something about yourself"></textarea>
                         </div>
-        
-                        <div class="submit-form-button-container">
-                            <input type="submit" class="submit-form-button" id="submit-button" value="Save" />
-                        </div>
+                        <div class="profile-options">
+                            <span class="clear-profile">
+                                <input type="button" id="remove-picture" value="Remove Photo"></type>
+                            </span>
+
+                            <span class="submit-form-button-container">
+                                <input type="submit" class="submit-form-button" id="submit-button" value="Save Profile" />
+                            </span>
+                        </div>    
                     </form>
                 </div>
             </div>
