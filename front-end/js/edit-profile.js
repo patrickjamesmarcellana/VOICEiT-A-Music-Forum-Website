@@ -7,7 +7,7 @@ const submitBtn = document.querySelector("#submit-button");
 // when file is selected, change image preview
 const changePhoto = (event) => {
     const newImage = document.getElementById("newimage");
-    newImage.src = URL.createObjectURL(event.target.files[0]);
+    newImage.setAttribute("src", URL.createObjectURL(event.target.files[0]));
 };
 
 window.onclick = function (event) {
@@ -43,10 +43,10 @@ for (const editProfileBtn of editProfileBtns) {
         const user = await userManager.getUser(search_params.get("user"));
         const newImage = document.querySelector("#newimage");
         document.querySelector("#description").value = user.description;
-        newImage.src = user.photoUrl;
+        newImage.setAttribute("src", user.photoUrl);
 
         // disable removing of picture when profile is default
-        if (newImage.src === "images/empty-profile.png") {
+        if (user.photoUrl === "images/empty-profile.png") {
             const removePictureBtn = document.querySelector("#remove-picture");
             removePictureBtn.disabled = true;
             removePictureBtn.classList.add("noHover");
