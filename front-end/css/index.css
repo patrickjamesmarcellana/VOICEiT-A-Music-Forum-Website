@@ -130,6 +130,16 @@ body {
     color: var(--main-color);
 }
 
+.search-box:-webkit-autofill,
+.search-box:-webkit-autofill:hover, 
+.search-box:-webkit-autofill:focus, 
+.search-box:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--main-color);
+    -webkit-text-font-family: var(--main-font);
+    -webkit-background-clip: text;
+}
+
 .search-box::placeholder {
     color: var(--main-color);
 }
