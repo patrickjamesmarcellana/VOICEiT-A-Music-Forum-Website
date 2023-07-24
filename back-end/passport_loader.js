@@ -2,7 +2,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
 const Password = require("./models/Password")
-const Session = require("./models/Session")
 const User = require("./models/User")
 
 
