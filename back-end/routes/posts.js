@@ -24,6 +24,7 @@ const documentToJson = async (document) => {
         title: document.title,
         text: document.body,
         date: document.date,
+        updateDate: document.updateDate,
         upvote_count: document.upvoteCnt,
         downvote_count: document.downvoteCnt,
         comment_count: await Comment.count({post_id: document._id}),

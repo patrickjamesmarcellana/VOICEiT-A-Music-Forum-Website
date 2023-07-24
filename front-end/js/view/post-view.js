@@ -100,6 +100,7 @@ const postViewManager = {
         // add edited mark if edited
         if(post.isEdited === true) {
             inserted_post.find(".post-edited").removeClass("hidden")
+            inserted_post.find(".post-date").text(`${new Date(post.updateDate).toLocaleDateString('en-US', date_options)} | ${new Date(post.updateDate).toLocaleTimeString('en-US', time_options)}`)
         }
 
         return inserted_post

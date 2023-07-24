@@ -43,7 +43,7 @@ router.patch("/edit-post", async (req, res) => {
             post.body = postBody
             post.subforum = postSubforum
             post.isEdited = true
-            post.date = Date.now()
+            post.updateDate = Date.now()
             
             await post.save()
 

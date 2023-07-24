@@ -26,8 +26,10 @@ $(document).ready(async function() {
         $(".view-count").text(post.views)
         if(post.isEdited) {
             $(".post-edited").removeClass("hidden")
+            $(".post-date").html(`${new Date(post.updateDate).toLocaleDateString('en-US', date_options)} | ${new Date(post.updateDate).toLocaleTimeString('en-US', time_options)}`)
+        } else {
+            $(".post-date").html(`${new Date(post.date).toLocaleDateString('en-US', date_options)} | ${new Date(post.date).toLocaleTimeString('en-US', time_options)}`)
         }
-        $(".post-date").html(`${new Date(post.date).toLocaleDateString('en-US', date_options)} | ${new Date(post.date).toLocaleTimeString('en-US', time_options)}`)
     
         if(is_logged_in() && post.op === LOGIN_USER) {
             $(".post-options-button").css("display", "inline-block")
