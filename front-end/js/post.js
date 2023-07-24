@@ -36,6 +36,16 @@ $(document).ready(async function() {
         } else {
             $(".post-options-button").css("display", "none")
         }
+
+        //delete button listener
+        $(".delete-post-button").click(async () => {
+            const status = postManager.deletePost(post_id);
+
+                if(status == 200) {
+                    post.remove()
+                }
+                window.location.href = "index.html?forum=home";
+        })
         
         // add votes
         $(".post-container").attr("upvote-count", post.upvote_count)
