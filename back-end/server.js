@@ -87,6 +87,9 @@ app.use("/api/users", users_router)
 const submit_router = require("./routes/submit")
 app.use("/api/submit", submit_router)
 
+const delete_router = require("./routes/delete")
+app.use("/api/delete", delete_router)
+
 const vote_router = require("./routes/vote")
 app.use("/api/vote", vote_router)
 
