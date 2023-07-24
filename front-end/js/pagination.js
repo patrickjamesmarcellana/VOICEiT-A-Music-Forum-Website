@@ -10,7 +10,7 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     $(".see-more-panel").remove()
 
     let added_posts = 0
-    let posts_to_add = 5
+    let posts_to_add = 15
     let posts_list_exhausted = false
     let posts_list = await loadInitialPosts(posts_to_add)
     for(let i = 0; i < posts_to_add && added_posts < posts_list.length; i++) {
@@ -20,7 +20,7 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     
     const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="/register.html">See More</a></div>`);
 
-    // add 5 posts each time the window scrolls to the bottom
+    // add 15 posts each time the window scrolls to the bottom
     let loading= false;
     const request_load = async function() {
         if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {

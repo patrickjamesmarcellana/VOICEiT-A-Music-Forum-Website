@@ -37,7 +37,7 @@ const parse_pagination_params = (req, res, next) => {
     if(req.query.post_limit) {
         req.query.post_limit = parseInt(req.query.post_limit)
     } else {
-        req.query.post_limit = 10 // 10 post limit
+        req.query.post_limit = 15 // 15 post limit
     }
 
     // disable pagination if configured
