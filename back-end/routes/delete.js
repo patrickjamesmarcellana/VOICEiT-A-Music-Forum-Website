@@ -23,3 +23,5 @@ router.delete("/comment/:comment-id", async (req, res) => {
         res.sendStatus(401)
     }
 })
+
+module.exports = router;
