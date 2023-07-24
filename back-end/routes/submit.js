@@ -36,10 +36,12 @@ router.patch("/edit-post", async (req, res) => {
     if(req.user && req.user._id.equals(post.user._id)) {
         const postTitle = req.body["post-title"]
         const postBody = req.body["post-content"]
+        const postSubforum = req.body["subforum"]
 
         if(postTitle && postBody) {
             post.title = postTitle
             post.body = postBody
+            post.subforum = postSubforum
             post.isEdited = true
             post.date = Date.now()
             
