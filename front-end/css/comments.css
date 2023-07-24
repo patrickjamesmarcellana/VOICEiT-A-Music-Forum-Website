@@ -78,8 +78,7 @@ a {
 .comment-edit-button,
 .comment-delete-button,
 .comment-loadmore-button,
-.confirm-comment-deletion-button:hover,
-.cancel-comment-deletion-button:hover {
+.comment-delete-confirmation-text {
     cursor: pointer;
 }
 
