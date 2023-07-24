@@ -1,0 +1,7 @@
+# This folder needs to exist so uploading profile pictures work,
+# but its contents shouldn't be tracked.
+# https://stackoverflow.com/a/932982
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
