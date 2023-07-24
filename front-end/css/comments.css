@@ -28,7 +28,7 @@ a {
 }
 
 .red-text {
-    color: red;
+    color: rgb(255, 174, 174);
 }
 
 .comment-container {
@@ -81,6 +81,10 @@ a {
 .confirm-comment-deletion-button:hover,
 .cancel-comment-deletion-button:hover {
     cursor: pointer;
+}
+
+.red-text, .confirm-comment-deletion-button, .cancel-comment-deletion-button {
+    font-weight: 1000;
 }
 
 .comment-reply-button:hover,
