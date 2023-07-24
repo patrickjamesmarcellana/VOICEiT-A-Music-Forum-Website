@@ -43,7 +43,8 @@ async function render_profile(target_user, mode) {
         } else {
             comment_to_load = comment.comment_id
         }
-        insertedComment.addEventListener("click", () => {
+        insertedComment.addEventListener("click", (event) => {
+            const exact_element_pressed = event.target
             // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button 
             if(!(["a", "button", "textarea"].includes(exact_element_pressed.tagName.toLowerCase()) ||
                  [...exact_element_pressed.classList].some(class_name => class_name.endsWith("-button")))) {
