@@ -3,7 +3,7 @@
         "debug": "nodemon ./back-end/server.js",
         "release": "node ./back-end/server.js",
         "start": "node ./back-end/server.js",
-        "popdb": "node ./back-end/mongodb_populate.js"
+        "popdb": "node ./back-end/db/import.js"
     },
     "dependencies": {
         "bcrypt": "^5.1.0",
