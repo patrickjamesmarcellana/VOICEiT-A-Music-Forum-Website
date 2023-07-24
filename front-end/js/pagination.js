@@ -18,7 +18,7 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     }
     
     const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="register.html">See More</a></div>`);
-    see_more_panel.remove();
+    $(".see-more-panel").remove();
 
     const total_posts = totalPosts ? await totalPosts() : 0
     if(added_posts < total_posts)
@@ -29,7 +29,7 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     $(window).scroll(async function() {
         if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
             loading= true;
-            see_more_panel.remove();
+            $(".see-more-panel").remove();
     
             // call for query cursor if needed
             if(!posts_list_exhausted && added_posts + posts_to_add > posts_list.length) {
