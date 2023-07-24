@@ -27,6 +27,10 @@ a {
     color: inherit;
 }
 
+.red-text {
+    color: rgb(255, 174, 174);
+}
+
 .comment-container {
     border: 1px solid white;
     border-radius: 5px;
@@ -73,19 +77,30 @@ a {
 .comment-reply-button,
 .comment-edit-button,
 .comment-delete-button,
-.comment-loadmore-button {
+.comment-loadmore-button,
+.comment-delete-confirmation-text {
     cursor: pointer;
+}
+
+.red-text, .confirm-comment-deletion-button, .cancel-comment-deletion-button {
+    font-weight: 1000;
 }
 
 .comment-reply-button:hover,
 .comment-edit-button:hover,
-.comment-delete-button:hover {
+.comment-delete-button:hover,
+.confirm-comment-deletion-button:hover,
+.cancel-comment-deletion-button:hover {
     text-decoration: underline;
 }
 
 .comment-container button {
     border: none;
     outline: none;
+}
+
+.cancel-submit-panel {
+    margin-bottom: 10px;
 }
 
 .comment-text-editor > textarea,

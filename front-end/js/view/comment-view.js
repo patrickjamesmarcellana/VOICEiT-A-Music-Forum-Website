@@ -101,8 +101,10 @@ const commentViewManager = {
                 editor_container.setAttribute("mode", "edit")
                 editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
             })
+            container.querySelector(".confirm-comment-deletion-button").addEventListener("click", commentViewManager.onDeleteButtonPressed)
+            container.querySelector(".cancel-comment-deletion-button").addEventListener("click", commentViewManager.hideDeleteCommentConfirmation)
+            container.querySelector(".comment-delete-button").addEventListener("click", commentViewManager.showDeleteCommentConfirmation)
             container.querySelector(".comment-delete-button").classList.remove("hidden")
-            container.querySelector(".comment-delete-button").addEventListener("click", commentViewManager.onDeleteButtonPressed)
         } else {
             container.querySelector(".comment-edit-button").classList.add("hidden")
             container.querySelector(".comment-delete-button").classList.add("hidden")
@@ -133,7 +135,6 @@ const commentViewManager = {
             const editor_container = container.querySelector(".comment-text-editor")
             editor_container.classList.add("hidden")
         }
-
         
         if(!is_deleted) {
             // reply button
@@ -218,7 +219,34 @@ const commentViewManager = {
         editor_container.classList.add("hidden")
     },
 
+    // show delete comment confirmation when user clicks on Delete
+    showDeleteCommentConfirmation: (event) => {
+        const container = event.currentTarget.closest(".comment-container")
+        const comment_footer = container.querySelector(".comment-footer")
+        const comment_delete_button = comment_footer.querySelector(".comment-delete-button")
+        comment_delete_button.classList.add("hidden")
+        const comment_delete_confirmation = comment_footer.querySelector(".comment-delete-confirmation")
+        comment_delete_confirmation.classList.remove("hidden")
+    },
+
+    // hide confirmation when user cancels comment deletion
+    hideDeleteCommentConfirmation: (event) => {
+        const container = event.currentTarget.closest(".comment-container")
+        const comment_footer = container.querySelector(".comment-footer")
+        const comment_delete_confirmation = comment_footer.querySelector(".comment-delete-confirmation")
+        comment_delete_confirmation.classList.add("hidden")
+        const comment_delete_button = comment_footer.querySelector(".comment-delete-button")
+        comment_delete_button.classList.remove("hidden")
+    },
+
     onDeleteButtonPressed: async (event) => {
+        const container = event.currentTarget.closest(".comment-container")
+        const comment_footer = container.querySelector(".comment-footer")
+        const comment_delete_confirmation = comment_footer.querySelector(".comment-delete-confirmation")
+        comment_delete_confirmation.classList.add("hidden")
+        const comment_delete_button = comment_footer.querySelector(".comment-delete-button")
+        comment_delete_button.classList.remove("hidden")
+        
         const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
         const status = await commentManager.deleteComment(comment_id)
         if(status == 200) {
