@@ -17,7 +17,16 @@ router.delete("/post/:post_id", async (req, res) => {
 router.delete("/comment/:comment_id", async (req, res) => {
     const comment = await Comment.findById(req.params["comment_id"]).populate("user").exec()
     if(req.user && req.user._id.equals(comment.user._id)) {
-        await Comment.findByIdAndDelete(req.params["comment_id"])
+        const deleteDescendants = async (comment_id) => {
+            const node = await Comment.findById(comment_id)
+            await Comment.findByIdAndDelete(comment_id)
+
+            for(const child of node.subcomments) {
+                await deleteDescendants(child)
+            }
+        }
+        await deleteDescendants(req.params["comment_id"])
+
         await Post.updateMany({}, {
             $pull: {
                 top_level_comments_list: { 
@@ -32,6 +41,9 @@ router.delete("/comment/:comment_id", async (req, res) => {
                 }
             }
         }).exec()
+
+
+
 
         res.sendStatus(200)
     } else {
