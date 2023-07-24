@@ -68,10 +68,7 @@ submitBtn.addEventListener("click", async (event) => {
 
     formData.set("description", description);
     formData.set("file", inputFile);
-
-    console.log(formData.get("description"));
-    console.log(formData.get("file"));
-
+    
     try {
         if (!inputFile) {
             // if user selected no file, then retain profile photo
