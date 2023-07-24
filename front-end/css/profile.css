@@ -22,6 +22,10 @@
     src: url(fonts/noir-std-semi-bold.ttf);
 }
 
+.display-linebreak {
+    white-space: pre-line;
+}
+
 .profile-panel {
     margin: 10px auto 0px auto;
     width: 80%;
