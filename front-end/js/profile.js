@@ -22,17 +22,27 @@ async function render_profile(target_user, mode) {
     $(".post-panel").append($(`<div class="profile-user-posts"></div>`))
     const profile_user_posts = $(".profile-user-posts")
 
+    const addPostToProfile = (post) => {
+        let last_displayed_post = $(".profile-user-posts > .post-container").last()
+        if(last_displayed_post.attr("post-id") === post.post_id) {
+            // just unhide the comment display's buttons
+            last_displayed_post.find(".post-body, .post-buttons").show()
+        } else {
+            postViewManager.insert_post(post, profile_user_posts)
+        }
+
+
+    }
+
     const addCommentToProfile = async (comment) => {
         let post
 
         let last_displayed_post = $(".profile-user-posts > .post-container").last()
-        console.log(last_displayed_post)
         if(last_displayed_post.attr("post-id") === comment.post_id) {
             post = last_displayed_post
         } else {
             // create a post for this comment
             post = await postManager.getPost(comment.post_id)
-            post.text = ""
             last_displayed_post = postViewManager.insert_post(post, profile_user_posts)
             last_displayed_post.find(".post-body, .post-buttons").hide()
         }
@@ -102,7 +112,7 @@ async function render_profile(target_user, mode) {
                     switch(reference.type) {
                         case "post":
                             post = (await postManager.getPost(reference._id))
-                            postViewManager.insert_post(post, profile_user_posts)
+                            addPostToProfile(post)
                             break
                         case "comment":
                             comment = await commentManager.getComment(reference._id)
@@ -126,7 +136,7 @@ async function render_profile(target_user, mode) {
                     return await postManager.getUserPosts(target_user, queryParams)
                 },
                 async (post) => {
-                    postViewManager.insert_post(post, profile_user_posts)
+                    addPostToProfile(post)
                 },
                 async () => (await postManager.getUserPostCount(target_user)))
             break
