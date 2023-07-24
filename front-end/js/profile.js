@@ -22,6 +22,37 @@ async function render_profile(target_user, mode) {
     $(".post-panel").append($(`<div class="profile-user-posts"></div>`))
     const profile_user_posts = $(".profile-user-posts")
 
+    const addCommentToProfile = async (comment) => {
+        let post
+
+        let last_displayed_post = $(".profile-user-posts > .post-container").last()
+        console.log(last_displayed_post)
+        if(last_displayed_post.attr("post-id") === comment.post_id) {
+            post = last_displayed_post
+        } else {
+            post = await postManager.getPost(comment.post_id)
+            post.text = ""
+            last_displayed_post = postViewManager.insert_post(post, profile_user_posts)
+            last_displayed_post.find(".post-body, .post-buttons").hide()
+        }
+        
+        const insertedComment = commentViewManager.insert_comment(comment, last_displayed_post.get(0))
+        let comment_to_load
+        if(comment.parent_comment_id != null) {
+            comment_to_load = comment.parent_comment_id
+        } else {
+            comment_to_load = comment.comment_id
+        }
+        insertedComment.addEventListener("click", () => {
+            // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button 
+            if(!(["a", "button", "textarea"].includes(exact_element_pressed.tagName.toLowerCase()) ||
+                 [...exact_element_pressed.classList].some(class_name => class_name.endsWith("-button")))) {
+                
+                window.location.href = "post.html?post=" + comment.post_id + "&comment_id=" + comment_to_load;
+            }
+        })
+
+    }
     switch(mode) {
         case ProfileMode.MODE_OVERVIEW:
             setInfiniteScrollHandler(
@@ -46,21 +77,7 @@ async function render_profile(target_user, mode) {
                             break
                         case "comment":
                             comment = await commentManager.getComment(reference._id)
-                            post = await postManager.getPost(comment.post_id)
-                            post.text = ""
-                            const s = postViewManager.insert_post(post, profile_user_posts)
-                            s.find(".post-body, .post-buttons").hide()
-
-                            const insertedComment = commentViewManager.insert_comment(comment, s.get(0))
-                            let comment_to_load
-                            if(comment.parent_comment_id != null) {
-                                comment_to_load = comment.parent_comment_id
-                            } else {
-                                comment_to_load = comment.comment_id
-                            }
-                            insertedComment.addEventListener("click", () => {
-                                window.location.href = "post.html?post=" + comment.post_id + "&comment_id=" + comment_to_load;
-                            })
+                            addCommentToProfile(comment)
                             break
                     }
                 },
@@ -99,21 +116,7 @@ async function render_profile(target_user, mode) {
                     return await commentManager.getUserComments(target_user, queryParams)
                 },
                 async (comment) => {
-                    let post = await postManager.getPost(comment.post_id)
-                    post.text = ""
-                    const s = postViewManager.insert_post(post, profile_user_posts)
-                    s.find(".post-body, .post-buttons").hide()
-
-                    const insertedComment = commentViewManager.insert_comment(comment, s.get(0))
-                    let comment_to_load
-                    if(comment.parent_comment_id != null) {
-                        comment_to_load = comment.parent_comment_id
-                    } else {
-                        comment_to_load = comment.comment_id
-                    }
-                    insertedComment.addEventListener("click", () => {
-                        window.location.href = "post.html?post=" + comment.post_id + "&comment_id=" + comment_to_load;
-                    })
+                    addCommentToProfile(comment)
                 },
                 async () => (await commentManager.getUserCommentCount(target_user)))
             break
