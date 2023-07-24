@@ -45,7 +45,11 @@ submitFormBtn.addEventListener("click", async (e) => {
     console.log(response.status);
     if (response.status == 200) {
         // redirect once login is successful
-        window.location.replace("index.html");
+        if ("referrer" in document) {
+            window.location.replace(document.referrer);
+        } else {
+            window.location.replace("index.html");
+        }
     } else {
         // inform user of incorrect credentials combination
         loginUsername.style.border = "";
