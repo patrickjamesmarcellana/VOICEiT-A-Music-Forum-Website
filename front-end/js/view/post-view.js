@@ -89,7 +89,7 @@ const postViewManager = {
         inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
 
         // add edited mark if edited
-        if(post.isEdited) {
+        if(post.isEdited === true) {
             inserted_post.find(".post-edited").removeClass("hidden")
         }
 
@@ -202,6 +202,11 @@ const postViewManager = {
         // add vote listeners
         inserted_post.find(".post-upvote-button").click(onPostVoteButtonPressed)
         inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
+
+        // add edited mark if edited
+        if(post.isEdited === true) {
+            inserted_post.find(".post-edited").removeClass("hidden")
+        }
 
         return inserted_post
     } 
