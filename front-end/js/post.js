@@ -60,6 +60,7 @@ $(document).ready(async function() {
             const [status, new_comment_id] = await commentManager.createComment(post_id, null, $(".post-text-editor > textarea").val())
             if(status == 200) {
                 commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), document.querySelector("#comments-panel"))
+                $(".comment-count").text(parseInt($(".comment-count").text()) + 1)
             }
 
             // reset text editor

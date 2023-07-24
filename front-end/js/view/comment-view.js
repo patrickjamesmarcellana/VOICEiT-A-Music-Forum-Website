@@ -197,7 +197,7 @@ const commentViewManager = {
                 const [status, new_comment_id] = await commentManager.createComment(post_id, comment_id, text_content)
                 if(status == 200) {
                     console.log(status, new_comment_id)
-
+                    $(".comment-count").text(parseInt($(".comment-count").text()) + 1)
                     // extra: the parent comment now has subcomments, enable if it has not been enabled
                     comment_container.enableSubcommentsPanel()
 
@@ -251,6 +251,7 @@ const commentViewManager = {
         const status = await commentManager.deleteComment(comment_id)
         if(status == 200) {
             commentViewManager.insert_comment(await commentManager.getComment(comment_id))
+            $(".comment-count").text(parseInt($(".comment-count").text()) - 1)
         }
     },
 
