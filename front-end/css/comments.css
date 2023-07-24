@@ -96,6 +96,10 @@ a {
     outline: none;
 }
 
+.cancel-submit-panel {
+    margin-bottom: 10px;
+}
+
 .comment-text-editor > textarea,
 .post-text-editor > textarea {
     width: 100%;
