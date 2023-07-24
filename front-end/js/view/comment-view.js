@@ -7,9 +7,9 @@ const commentViewManager = {
 
     // comment - comment object containing details
     // commentInjectionLocation - location to insert the comment into, ignored if the comment already exists
-    // reduced_duplicate_search_space - option to search for comments in a reduced scope (only direct children are considered)
+    // container - option to use a pre-existing container
     // returns: container containing the displayed comment
-    insert_comment: function(comment, commentInjectionLocation, reduced_duplicate_search_space){
+    insert_comment: function(comment, commentInjectionLocation, container){
         if(comment == null) {
             console.warn(`Comment ${comment_id} not found. Aborting`)
             return
@@ -17,37 +17,24 @@ const commentViewManager = {
 
         // overwrite existing comment?
         const container_id = COMMENT_PREFIX + comment.comment_id
-        let old_comment
-        if(reduced_duplicate_search_space != null) {
-            old_comment = reduced_duplicate_search_space.querySelector(":scope > ." + container_id)
-        } else {
-            old_comment = document.querySelector("#" + container_id)
-        }
         
-        let container = undefined
-        if(old_comment === null) {
+        if(container == null) {
             // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
             // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
             container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
 
-        } else {
-            container = old_comment
-        }
-
-        if(commentInjectionLocation != null) {
-            commentInjectionLocation.appendChild(container)
+            if(commentInjectionLocation != null) {
+                commentInjectionLocation.appendChild(container)
+            }
         }
 
         const is_deleted = (comment.author == null)
         
         // comment prefix is important so we dont have to worry about posts and comments with the same id
-        
-        if(reduced_duplicate_search_space != null) {
-            // add a class because multiple copies can exist in the same document
-            container.classList.add(container_id)
-        } else {
+        container.classList.add(container_id)
+
+        if(!document.getElementById(container_id))
             container.id = container_id
-        }
         
         container.setAttribute("backend_id", comment.comment_id)
 
@@ -199,7 +186,7 @@ const commentViewManager = {
             {
                 const status = await commentManager.editComment(comment_id, text_content)
                 if(status == 200) {
-                    commentViewManager.insert_comment(await commentManager.getComment(comment_id))
+                    commentViewManager.insert_comment(await commentManager.getComment(comment_id), null, comment_container)
                 }
                 break
             }
@@ -219,7 +206,12 @@ const commentViewManager = {
                     const insertedComment = commentViewManager.insert_comment(reply, comment_container.getSubcommentsPanel())
                     const viewDepth = commentViewManager.getViewDepth(insertedComment)
                     if(viewDepth >= 5) {
-                        await loadSingleComment(reply.parent_comment_id)
+                        if(typeof loadSingleComment !== "undefined") {
+                            await loadSingleComment(reply.parent_comment_id)
+                        } else {
+                            // we are in profile.html, loadSingleComment does not exist there
+                            window.location.href = "/post.html?post=" + reply.post_id + "&comment_id=" + reply.parent_comment_id
+                        }
                     }
                 }
                 break
@@ -264,7 +256,7 @@ const commentViewManager = {
         const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
         const status = await commentManager.deleteComment(comment_id)
         if(status == 200) {
-            commentViewManager.insert_comment(await commentManager.getComment(comment_id))
+            commentViewManager.insert_comment(await commentManager.getComment(comment_id), null, container)
 
             const commentCounter = container.closest(".post-container").querySelector(".comment-count")
             commentCounter.textContent = parseInt(commentCounter.textContent) - 1

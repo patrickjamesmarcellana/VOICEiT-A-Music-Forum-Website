@@ -42,15 +42,32 @@ async function render_profile(target_user, mode) {
             comment_to_load = comment.parent_comment_id
 
             const parent_comment = await commentManager.getComment(comment.parent_comment_id)
-            inserted_parent_comment = commentViewManager.insert_comment(parent_comment, last_displayed_post.get(0), last_displayed_post.get(0) /* only search for duplicates here */)
-            inserted_parent_comment.enableSubcommentsPanel()
-            inserted_parent_comment.querySelector(":scope > .comment-footer").classList.add("hidden")
+            const parent_comment_query = ":scope > .comment-" + parent_comment.comment_id
 
-            commentViewManager.insert_comment(comment, inserted_parent_comment.getSubcommentsPanel(), inserted_parent_comment.getSubcommentsPanel() /* only search for duplicates here */)
+            // try to find
+            inserted_parent_comment = last_displayed_post.get(0).querySelector(parent_comment_query)
+            console.log(inserted_parent_comment)
+
+            // create if not exist
+            if(!inserted_parent_comment) {
+                inserted_parent_comment = commentViewManager.insert_comment(parent_comment, last_displayed_post.get(0))
+                inserted_parent_comment.enableSubcommentsPanel()
+                inserted_parent_comment.querySelector(":scope > .comment-footer").classList.add("hidden")
+            }
+            
+            commentViewManager.insert_comment(comment, inserted_parent_comment.getSubcommentsPanel())
+            
         } else {
             comment_to_load = comment.comment_id
             
-            inserted_parent_comment = commentViewManager.insert_comment(comment, last_displayed_post.get(0), last_displayed_post.get(0) /* only search for duplicates here */)
+            // only insert comment if it has not been inserted as a "parent_comment" by the if statement
+            inserted_parent_comment = last_displayed_post.get(0).querySelector(":scope > .comment-" + comment.comment_id)
+            if(!inserted_parent_comment) {
+                inserted_parent_comment = commentViewManager.insert_comment(comment, last_displayed_post.get(0))
+            } else {
+                // it exists, but we need to turn on its controls
+                inserted_parent_comment.querySelector(":scope > .comment-footer").classList.remove("hidden")
+            }
         }
             
 
