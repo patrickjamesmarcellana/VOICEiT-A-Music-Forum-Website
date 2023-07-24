@@ -19,6 +19,7 @@ const documentToJson = async (document) => {
         op: document.user.username,
         photoUrl: document.user.photoUrl,
         score: document.score,
+        isEdited: document.isEdited,
                 
         title: document.title,
         text: document.body,

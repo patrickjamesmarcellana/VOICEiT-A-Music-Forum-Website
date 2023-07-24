@@ -628,9 +628,15 @@ body {
     font-size: 0.9rem;
 }
 
-.post-date, .comment-date, .post-edited {
+.post-date, .comment-date {
     color: lightgray;
     font-size: 0.9rem;
+}
+
+.post-edited {
+    color: lightgray;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .post-options-button {
