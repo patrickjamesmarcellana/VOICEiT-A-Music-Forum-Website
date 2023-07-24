@@ -10,12 +10,12 @@ const changePhoto = (event) => {
     newImage.setAttribute("src", URL.createObjectURL(event.target.files[0]));
 };
 
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-        document.querySelector("#description").value = "";
-    }
-};
+// window.onclick = function (event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//         document.querySelector("#description").value = "";
+//     }
+// };
 
 exitModalBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
