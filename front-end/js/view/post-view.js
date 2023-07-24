@@ -71,7 +71,7 @@ const postViewManager = {
         }
     
         // making post containers a clickable container to post.html
-        inserted_post.click(function(e) {
+        inserted_post.click(async function(e) {
             // e.currentTarget - element where listener is registered (in this case element with class post-container-clickable)
             // e.target - exact element (can be e.currentTarget or its descendant)
             const exact_element_pressed = e.target;
@@ -81,12 +81,13 @@ const postViewManager = {
             } 
             //delete post button
             else if(exact_element_pressed.classList.contains("delete-post-button")) {
-                const status = postManager.deletePost(post_id);
+                const post_id = e.currentTarget.getAttribute("post-id")
 
+                const post_container = e.currentTarget
+                const status = await postManager.deletePost(post_id)
                 if(status == 200) {
-                    inserted_post.remove()
+                    post_container.remove()
                 }
-                window.location.href = "index.html?forum=home";
             }
             else {
                 // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button 
@@ -140,5 +141,5 @@ const postViewManager = {
         post_with_highlight.text = post_with_highlight.text.replace(pattern, match => `<span class="mark">${match}</span>`)
 
         return postViewManager.insert_post(post_with_highlight)
-    } 
+    }
 } 

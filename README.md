@@ -1,6 +1,12 @@
 # VOICEiT-A-Music-Forum-Website
 This web development project is a mini forum web application designed for those interested in music. It allows users to make conversations with other people by making an account, posting, interacting, and commenting, among others.
 
+Web Development Team:
+Chua, Harvey Shawn
+Harwani, Latasha
+Marcellana, Patrick James
+Mider, Brett Harley
+
 Instructions on How to Set up and Run the Application Locally:
 1. Download the .zip file and extract all files into a single folder.
 2. Open the command prompt or the terminal.
@@ -20,7 +26,7 @@ Instructions on How to Set up and Run the Application Locally:
     k. js-cookie
     l. jquery (used in front-end, not included in npm install)
     m. multer
-6. Populate the database using the command 'node ./back-end/db/import.js'. Console logs should show that the tables in the database have been populated.
+6. Populate the database using the command 'node run popdb'. Console logs should show that the tables in the database have been populated.
 7. Run the server using the command 'npm start'.
 8. Launch 'localhost:3000' on the web.
 
