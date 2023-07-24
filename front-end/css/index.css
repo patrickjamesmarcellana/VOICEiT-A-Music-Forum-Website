@@ -815,6 +815,10 @@ body {
     width: 20vw;
 }
 
+.search-side-b {
+    border-left: solid 1px var(--main-color)
+}
+
 .forum-info-panel {
     margin: 0px auto 0px auto;
     width: 82%;
