@@ -17,7 +17,8 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
         added_posts++
     }
     
-    const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="register.html">See More</a></div>`);
+    const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="/register.html">See More</a></div>`);
+
     $(".see-more-panel").remove();
 
     const total_posts = totalPosts ? await totalPosts() : 0
@@ -26,7 +27,7 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
 
     // add 5 posts each time the window scrolls to the bottom
     let loading= false;
-    $(window).scroll(async function() {
+    const request_load = async function() {
         if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
             loading= true;
             $(".see-more-panel").remove();
@@ -52,5 +53,13 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     
             loading = false; // reset value of loading once content loaded
         }
-    })
+    }
+
+    $(window).scroll(request_load)
+
+    if(is_logged_in()) {
+        // allow loading more
+        see_more_panel.find("a").click(request_load)
+        see_more_panel.find("a").attr("href", "javascript:void")
+    }
 }
