@@ -171,7 +171,7 @@ const commentViewManager = {
                     const insertedComment = commentViewManager.insert_comment(reply, comment_container.getSubcommentsPanel())
                     const viewDepth = commentViewManager.getViewDepth(insertedComment)
                     if(viewDepth >= 5) {
-                        loadSingleComment(reply.parent_comment_id)
+                        await loadSingleComment(reply.parent_comment_id)
                     }
                 }
                 break
