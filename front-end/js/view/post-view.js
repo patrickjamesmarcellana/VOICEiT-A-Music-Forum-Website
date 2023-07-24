@@ -2,7 +2,7 @@ const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
 const time_options = {hour: 'numeric', minute: '2-digit'}
 
 const postViewManager = {
-    insert_post: function(post, post_insertion_location=".post-panel") {
+    insert_post: function(post, post_insertion_location=$(".post-panel")) {
         const post_id = post.post_id
         const inserted_post = $(`
                     <div class="post-container post-container-clickable" post-id="${post_id}">
@@ -56,7 +56,7 @@ const postViewManager = {
                     </div>
                     `);
                 
-        $(post_insertion_location).append(inserted_post)
+        post_insertion_location.append(inserted_post)
     
         // hiding it
         if(!is_logged_in() || post.op !== Cookies.get("logged_in_as")) {

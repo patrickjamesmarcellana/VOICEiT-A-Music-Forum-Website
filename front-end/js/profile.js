@@ -18,7 +18,9 @@ async function render_profile(target_user, mode) {
     // note 3: same for saved_comments
 
     // 0. wipe
-    $(".profile-user-posts").html("")
+    $(".profile-user-posts").remove()
+    $(".post-panel").append($(`<div class="profile-user-posts"></div>`))
+    const profile_user_posts = $(".profile-user-posts")
 
     switch(mode) {
         case ProfileMode.MODE_OVERVIEW:
@@ -40,13 +42,13 @@ async function render_profile(target_user, mode) {
                     switch(reference.type) {
                         case "post":
                             post = (await postManager.getPost(reference._id))
-                            postViewManager.insert_post(post, ".profile-user-posts")
+                            postViewManager.insert_post(post, profile_user_posts)
                             break
                         case "comment":
                             comment = await commentManager.getComment(reference._id)
                             post = await postManager.getPost(comment.post_id)
                             post.text = ""
-                            const s = postViewManager.insert_post(post, ".profile-user-posts")
+                            const s = postViewManager.insert_post(post, profile_user_posts)
                             s.find(".post-body, .post-buttons").hide()
                             commentViewManager.insert_comment(comment, s.get(0))
                             break
@@ -68,7 +70,7 @@ async function render_profile(target_user, mode) {
                     return await postManager.getUserPosts(target_user, queryParams)
                 },
                 async (post) => {
-                    postViewManager.insert_post(post, ".profile-user-posts")
+                    postViewManager.insert_post(post, profile_user_posts)
                 },
                 async () => (await postManager.getUserPostCount(target_user)))
             break
@@ -89,7 +91,7 @@ async function render_profile(target_user, mode) {
                 async (comment) => {
                     let post = await postManager.getPost(comment.post_id)
                     post.text = ""
-                    const s = postViewManager.insert_post(post, ".profile-user-posts")
+                    const s = postViewManager.insert_post(post, profile_user_posts)
                     s.find(".post-body, .post-buttons").hide()
                     commentViewManager.insert_comment(comment, s.get(0))
                 },
