@@ -42,8 +42,10 @@ router.delete("/comment/:comment_id", async (req, res) => {
             }
         }).exec()
 
-
-
+        // update comment count
+        await Post.findByIdAndUpdate(comment.post_id, {
+            commentCnt:  await Comment.count({post_id: comment.post_id}),
+        })
 
         res.sendStatus(200)
     } else {

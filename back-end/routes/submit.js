@@ -79,6 +79,11 @@ router.post("/create-comment", async (req, res) => {
                     $push: {top_level_comments_list: new_comment._id}
                 }).exec()
             }
+            // update comment count
+            await Post.findByIdAndUpdate(parentPost, {
+                commentCnt:  await Comment.count({post_id: parentPost}),
+            })
+
             res.send({
                 comment_id: new_comment.id
             })
