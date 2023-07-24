@@ -183,9 +183,12 @@ const commentViewManager = {
     onDeleteButtonPressed: async (event) => {
         const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
 
-        const status = commentManager.deleteComment(comment_id)
+        // need to get currentTaget before await due async weirdness
+        const container = event.currentTarget.closest(".comment-container")
+
+        const status = await commentManager.deleteComment(comment_id)
         if(status == 200) {
-            event.currentTarget.closest(".comment-container").remove()
+            container.remove()
         }
     }
 }
