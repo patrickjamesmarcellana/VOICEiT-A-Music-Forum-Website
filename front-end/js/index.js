@@ -371,7 +371,7 @@ $(document).ready(async function() {
             //window.location.href = `index.html?user=${username}`;
             profile_username.text(user.username);
             profile_picture.attr("src", user.photoUrl)
-            user_description.text(user.description);
+            user_description.html(user.description.replace(/\n/g, "<br />"));
             user_last_login.text(formatDate(user.lastLogin));
             user_register_date.text(formatDate(user.registerDate));
 
