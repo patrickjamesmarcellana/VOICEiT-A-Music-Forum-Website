@@ -10,18 +10,26 @@ const documentToJson = (document) => {
     console.log(document)
     
     const flags = []
-    if(document.isEdited)
-        flags.push("edited")
+    let username, date
+    if(document.user) {
+        if(document.isEdited) {
+            flags.push("edited")
+        }
+        
+        username = document.user.username
+        date = document.date
+    }
+        
     
     return {
         post_id: document.post_id,
         parent_comment_id: document.parent_comment_id,
         comment_id: document.id,
-        date: document.date,
+        date: date,
         subcomments: document.subcomments,
 
         flags: flags,
-        author: document.user.username,
+        author: username,
         votes: document.upvoteCnt - document.downvoteCnt,
         vote_state: Constants.STATE_NOT_VOTED,
         content: document.body

@@ -28,6 +28,8 @@ const commentViewManager = {
         } else {
             container = old_comment
         }
+
+        const is_deleted = (comment.author == null)
         
         // comment prefix is important so we dont have to worry about posts and comments with the same id
         container.id = container_id
@@ -37,8 +39,13 @@ const commentViewManager = {
         container.setAttribute("raw_vote_count", comment.votes)
 
         // inject comment author
-        container.querySelector(".comment-author").textContent = comment.author
-        container.querySelector(".comment-author").href = `profile.html?user=${comment.author}`
+        if(!is_deleted) {
+            container.querySelector(".comment-author").textContent = comment.author
+            container.querySelector(".comment-author").href = `profile.html?user=${comment.author}`
+        } else {
+            container.querySelector(".comment-author").textContent = "[deleted]"
+        }
+
 
         // was the comment edited
         if(comment.flags.includes("edited")) {
@@ -57,12 +64,24 @@ const commentViewManager = {
         // inject date
         const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
         const time_options = {hour: 'numeric', minute: '2-digit'}
-        container.querySelector(".comment-date").textContent = `${new Date(comment.date).toLocaleDateString('en-US', date_options)} | ${new Date(comment.date).toLocaleTimeString('en-US', time_options)}`
+        if(!is_deleted) {
+            container.querySelector(".comment-date").textContent = `${new Date(comment.date).toLocaleDateString('en-US', date_options)} | ${new Date(comment.date).toLocaleTimeString('en-US', time_options)}`
+        } else {
+            // remove dot
+            container.querySelector(".comment-header").innerHTML = container.querySelector(".comment-header").innerHTML.replace("•", "")
+            container.querySelector(".comment-date").textContent = ""
+        }
+        
 
         // inject listeners
         const vote_buttons = getVoteButtons(container)
-        vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
-        vote_buttons.downvote_button.addEventListener("click", onCommentVoteButtonPressed)
+        if(!is_deleted) {
+            vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
+            vote_buttons.downvote_button.addEventListener("click", onCommentVoteButtonPressed)
+        } else {
+            vote_buttons.upvote_button.style["pointer-events"] = "none"
+            vote_buttons.downvote_button.style["pointer-events"] = "none"
+        }
         updateVoteUI(container, comment.vote_state, comment.votes)
 
         // should the edit/delete buttons be visible?
@@ -80,6 +99,9 @@ const commentViewManager = {
             })
             container.querySelector(".comment-delete-button").classList.remove("hidden")
             container.querySelector(".comment-delete-button").addEventListener("click", commentViewManager.onDeleteButtonPressed)
+        } else {
+            container.querySelector(".comment-edit-button").classList.add("hidden")
+            container.querySelector(".comment-delete-button").classList.add("hidden")
         }
 
         // listeners
@@ -108,10 +130,17 @@ const commentViewManager = {
             editor_container.classList.add("hidden")
         }
 
-        container.querySelector(".comment-reply-button").addEventListener("click", onReplyButtonPressed)
         
-        // mini text editor's buttons
-        container.querySelector(".comment-text-editor-cancel-button").addEventListener("click", onCancelButtonPressed)
+        if(!is_deleted) {
+            // reply button
+            container.querySelector(".comment-reply-button").addEventListener("click", onReplyButtonPressed)
+        
+            // mini text editor's buttons
+            container.querySelector(".comment-text-editor-cancel-button").addEventListener("click", onCancelButtonPressed)
+        } else {
+            // hide reply for deleted comment
+            container.querySelector(".comment-reply-button").classList.add("hidden")
+        }
 
         // attach custom functions
         container.getSubcommentsPanel = function() {
@@ -187,13 +216,9 @@ const commentViewManager = {
 
     onDeleteButtonPressed: async (event) => {
         const comment_id = event.currentTarget.closest(".comment-container").getAttribute("backend_id")
-
-        // need to get currentTaget before await due async weirdness
-        const container = event.currentTarget.closest(".comment-container")
-
         const status = await commentManager.deleteComment(comment_id)
         if(status == 200) {
-            container.remove()
+            commentViewManager.insert_comment(await commentManager.getComment(comment_id))
         }
     },
 
