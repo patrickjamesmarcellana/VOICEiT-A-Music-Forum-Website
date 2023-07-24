@@ -7,6 +7,7 @@
 async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertPost, totalPosts) {
     // unset other scroll handlers
     $(window).off("scroll")
+    $(".see-more-panel").remove()
 
     let added_posts = 0
     let posts_to_add = 5
@@ -19,18 +20,11 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     
     const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="/register.html">See More</a></div>`);
 
-    $(".see-more-panel").remove();
-
-    const total_posts = totalPosts ? await totalPosts() : 0
-    if(added_posts < total_posts)
-        $(".post-panel").append(see_more_panel);
-
     // add 5 posts each time the window scrolls to the bottom
     let loading= false;
     const request_load = async function() {
         if (!loading && ($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
             loading= true;
-            $(".see-more-panel").remove();
     
             // call for query cursor if needed
             if(!posts_list_exhausted && added_posts + posts_to_add > posts_list.length) {
@@ -46,10 +40,6 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
                 await insertPost(posts_list[added_posts])
                 added_posts++
             }
-
-            // in logged out view, post list can appear exhausted even if added_posts < total_posts due to the restrictions
-            if(!posts_list_exhausted || added_posts < total_posts) 
-                $(".post-panel").append(see_more_panel);
     
             loading = false; // reset value of loading once content loaded
         }
@@ -57,15 +47,12 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
 
     $(window).scroll(request_load)
 
-    // NOTE: since we now load posts until we can scroll, this is redundant
-    if(is_logged_in()) {
-        // allow loading more
-        see_more_panel.find("a").click(request_load)
-        see_more_panel.find("a").attr("href", "javascript:void")
-    }
-
     // load posts until we can scroll (or run out of posts)
     while($(document).height() <= $(window).height() && !posts_list_exhausted) {
         await request_load()
     }
+
+    const total_posts = totalPosts ? await totalPosts() : 0
+    if(!is_logged_in() && added_posts < total_posts)
+        $(".post-panel").append(see_more_panel);
 }
