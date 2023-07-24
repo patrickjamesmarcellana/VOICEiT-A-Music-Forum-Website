@@ -1,3 +1,6 @@
+const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
+const time_options = {hour: 'numeric', minute: '2-digit'}
+
 const postViewManager = {
     insert_post: function(post, post_insertion_location=".post-panel") {
         const post_id = post.post_id
@@ -11,7 +14,7 @@ const postViewManager = {
                             <a href="profile.html?user=${post.op}" class="post-profile">
                                 ${post.op}
                             </a>
-                            &nbsp;•&nbsp; <span class="post-edited hidden">Edited:&nbsp;</span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
+                            &nbsp;•&nbsp; <span class="post-edited hidden">Edited:&nbsp;</span> <span class="post-date"> ${new Date(post.date).toLocaleDateString('en-US', date_options)} | ${new Date(post.date).toLocaleTimeString('en-US', time_options)} </span>  
     
                             <span class="post-options-button">
                                 <div class="options-dropdown">
@@ -127,7 +130,7 @@ const postViewManager = {
                             <a href="profile.html?user=${post.op}" class="post-profile">
                                 ${post.op}
                             </a>
-                            &nbsp;•&nbsp; <span class="post-edited hidden">Edited: &nbsp;</span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
+                            &nbsp;•&nbsp; <span class="post-edited hidden">Edited: &nbsp;</span> <span class="post-date"> ${new Date(post.date).toLocaleDateString('en-US', date_options)} | ${new Date(post.date).toLocaleTimeString('en-US', time_options)} </span>  
     
                             <span class="post-options-button">
                                 <div class="options-dropdown">

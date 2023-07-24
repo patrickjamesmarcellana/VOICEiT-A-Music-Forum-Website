@@ -3,6 +3,9 @@ $(document).ready(async function() {
     const LOGIN_USER = Cookies.get("logged_in_as")
     const search_params = new URLSearchParams(window.location.search)
     post_id = search_params.get("post")
+
+    const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
+    const time_options = {hour: 'numeric', minute: '2-digit'}
     
     if(post_id !== null) {
         post = await postManager.getPost(post_id)
@@ -24,7 +27,7 @@ $(document).ready(async function() {
         if(post.isEdited) {
             $(".post-edited").removeClass("hidden")
         }
-        $(".post-date").html(`${post.date.toDateString('en-CA')} | ${post.date.toLocaleTimeString()}`)
+        $(".post-date").html(`${new Date(post.date).toLocaleDateString('en-US', date_options)} | ${new Date(post.date).toLocaleTimeString('en-US', time_options)}`)
     
         if(is_logged_in() && post.op === LOGIN_USER) {
             $(".post-options-button").css("display", "inline-block")
