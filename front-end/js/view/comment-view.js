@@ -7,8 +7,9 @@ const commentViewManager = {
 
     // comment - comment object containing details
     // commentInjectionLocation - location to insert the comment into, ignored if the comment already exists
+    // reduced_duplicate_search_space - option to search for comments in a reduced scope (only direct children are considered)
     // returns: container containing the displayed comment
-    insert_comment: function(comment, commentInjectionLocation, allow_duplicate){
+    insert_comment: function(comment, commentInjectionLocation, reduced_duplicate_search_space){
         if(comment == null) {
             console.warn(`Comment ${comment_id} not found. Aborting`)
             return
@@ -16,9 +17,15 @@ const commentViewManager = {
 
         // overwrite existing comment?
         const container_id = COMMENT_PREFIX + comment.comment_id
-        const old_comment = document.querySelector("#" + container_id)
+        let old_comment
+        if(reduced_duplicate_search_space != null) {
+            old_comment = reduced_duplicate_search_space.querySelector(":scope > ." + container_id)
+        } else {
+            old_comment = document.querySelector("#" + container_id)
+        }
+        
         let container = undefined
-        if(old_comment === null || allow_duplicate) {
+        if(old_comment === null) {
             // only .container will be cloned because cloning the entire template breaks clicking (example: upvote button changes votes to NaN)
             // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#avoiding_documentfragment_pitfall
             container = document.getElementById("comment-template").content.querySelector(".comment-container").cloneNode(/* deep copy */ true)
@@ -34,8 +41,13 @@ const commentViewManager = {
         const is_deleted = (comment.author == null)
         
         // comment prefix is important so we dont have to worry about posts and comments with the same id
-        if(old_comment === null) // duplicates will receive no id
+        
+        if(reduced_duplicate_search_space != null) {
+            // add a class because multiple copies can exist in the same document
+            container.classList.add(container_id)
+        } else {
             container.id = container_id
+        }
         
         container.setAttribute("backend_id", comment.comment_id)
 

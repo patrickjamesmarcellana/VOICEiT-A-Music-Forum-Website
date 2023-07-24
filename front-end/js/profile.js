@@ -42,15 +42,15 @@ async function render_profile(target_user, mode) {
             comment_to_load = comment.parent_comment_id
 
             const parent_comment = await commentManager.getComment(comment.parent_comment_id)
-            inserted_parent_comment = commentViewManager.insert_comment(parent_comment, last_displayed_post.get(0))
+            inserted_parent_comment = commentViewManager.insert_comment(parent_comment, last_displayed_post.get(0), last_displayed_post.get(0) /* only search for duplicates here */)
             inserted_parent_comment.enableSubcommentsPanel()
             inserted_parent_comment.querySelector(":scope > .comment-footer").classList.add("hidden")
 
-            commentViewManager.insert_comment(comment, inserted_parent_comment.getSubcommentsPanel(), last_displayed_post.get(0), true /* allow duplicate */)
+            commentViewManager.insert_comment(comment, inserted_parent_comment.getSubcommentsPanel(), inserted_parent_comment.getSubcommentsPanel() /* only search for duplicates here */)
         } else {
             comment_to_load = comment.comment_id
             
-            inserted_parent_comment = commentViewManager.insert_comment(comment, last_displayed_post.get(0), true /* allow duplicate */)
+            inserted_parent_comment = commentViewManager.insert_comment(comment, last_displayed_post.get(0), last_displayed_post.get(0) /* only search for duplicates here */)
         }
             
 
