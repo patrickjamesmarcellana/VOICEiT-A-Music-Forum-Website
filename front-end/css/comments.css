@@ -78,16 +78,16 @@ a {
 .comment-edit-button,
 .comment-delete-button,
 .comment-loadmore-button,
-.confirm-comment-deletion:hover,
-.cancel-comment-deletion:hover {
+.confirm-comment-deletion-button:hover,
+.cancel-comment-deletion-button:hover {
     cursor: pointer;
 }
 
 .comment-reply-button:hover,
 .comment-edit-button:hover,
 .comment-delete-button:hover,
-.confirm-comment-deletion:hover,
-.cancel-comment-deletion:hover {
+.confirm-comment-deletion-button:hover,
+.cancel-comment-deletion-button:hover {
     text-decoration: underline;
 }
 

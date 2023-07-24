@@ -97,8 +97,8 @@ const commentViewManager = {
                 editor_container.setAttribute("mode", "edit")
                 editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
             })
-            container.querySelector(".confirm-comment-deletion").addEventListener("click", commentViewManager.onDeleteButtonPressed)
-            container.querySelector(".cancel-comment-deletion").addEventListener("click", commentViewManager.hideDeleteCommentConfirmation)
+            container.querySelector(".confirm-comment-deletion-button").addEventListener("click", commentViewManager.onDeleteButtonPressed)
+            container.querySelector(".cancel-comment-deletion-button").addEventListener("click", commentViewManager.hideDeleteCommentConfirmation)
             container.querySelector(".comment-delete-button").addEventListener("click", commentViewManager.showDeleteCommentConfirmation)
             container.querySelector(".comment-delete-button").classList.remove("hidden")
         } else {
