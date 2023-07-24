@@ -11,7 +11,7 @@ const postViewManager = {
                             <a href="profile.html?user=${post.op}" class="post-profile">
                                 ${post.op}
                             </a>
-                            &nbsp;•&nbsp; <span class="post-edited" hidden> Last Edited:&nbsp </span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
+                            &nbsp;•&nbsp; <span class="post-edited hidden">Edited:&nbsp;</span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
     
                             <span class="post-options-button">
                                 <div class="options-dropdown">
@@ -52,6 +52,7 @@ const postViewManager = {
                         </div>
                     </div>
                     `);
+                
         $(post_insertion_location).append(inserted_post)
     
         // hiding it
@@ -87,6 +88,11 @@ const postViewManager = {
         inserted_post.find(".post-upvote-button").click(onPostVoteButtonPressed)
         inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
 
+        // add edited mark if edited
+        if(post.isEdited === true) {
+            inserted_post.find(".post-edited").removeClass("hidden")
+        }
+
         return inserted_post
     },
     search_insert_post: function(post, search_key, post_insertion_location=".post-panel") {
@@ -121,7 +127,7 @@ const postViewManager = {
                             <a href="profile.html?user=${post.op}" class="post-profile">
                                 ${post.op}
                             </a>
-                            &nbsp;•&nbsp; <span class="post-edited" hidden> Last Edited:&nbsp </span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
+                            &nbsp;•&nbsp; <span class="post-edited hidden">Edited: &nbsp;</span> <span class="post-date"> ${new Date(post.date).toDateString('en-CA')} | ${new Date(post.date).toLocaleTimeString()} </span>  
     
                             <span class="post-options-button">
                                 <div class="options-dropdown">
@@ -196,6 +202,11 @@ const postViewManager = {
         // add vote listeners
         inserted_post.find(".post-upvote-button").click(onPostVoteButtonPressed)
         inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
+
+        // add edited mark if edited
+        if(post.isEdited === true) {
+            inserted_post.find(".post-edited").removeClass("hidden")
+        }
 
         return inserted_post
     } 
