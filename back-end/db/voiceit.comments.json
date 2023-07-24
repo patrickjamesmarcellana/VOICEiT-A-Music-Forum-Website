@@ -1,0 +1,1387 @@
+[
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bb8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "yeah, it's such a broad term that it lost its original meaning",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bba"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bba"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "When every band, even the popular ones got marketed as \"indie\", that word just completely lost its meaning.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bb8"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bbc"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bbc"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Got to be honest, aren't most mainstream rock bands labeled as \"alternative\" or \"indie\" despite them not actually being alternative or independent? Say, like, Radiohead.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bba"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bbe"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "You have to understand that most people aren't really passionate about music and will just follow whatever the ongoing trend or fad is. They're only interested in whatever's popular. But you shouldn't care about that. Screw them. Just do you, and your people and the community you belong to will find you.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bc0"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "You'll never find a good country song on the radio. You actually have to actively seek them out. Listen to Colter Wall and Orville Peck on Spotify and you'll see the difference.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bc2"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "The rednecks, the cowboy boots, rednecks, line dancing, rednecks, lyrics no man on Earth would be able to relate to, rednecks, and the extremely simple and repetitive song structure. Oh, did I forget to mention the rednecks?\nCountry music is the same old, soulless song filled with boring, bland, and dull cliches produced over and over again by corporations with clearly no regard for quality. There are exceptions, of course, but then again, they are exceptions, not the rule.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bc4"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "I highly agree on this. It's just the same song copy and pasted without any innovation. It's become like hip-hop imo",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bc6"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bc6"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "I don't know about you but I hear this one guitar tone in literally every country song known to mankind. If there's anything that would put someone off, it's definitely one of the reasons.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bc4"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bc8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb2"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "The only answer you need is Bach. And more Bach.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bca"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb2"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Bach: Goldberg Variations \n Mozart: Symphonies 25, 40, and 41\n Beethoven: Symphonies 3, 5, 7, and 9\n Chopin: …everything.\n Tchaikovsky: Symphony No. 4\n Debussy: Clair De Lune\n ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bcc"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb2"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Most definitely start with Bach and Mozart so you can get a good feel of the genre and know what to expect from that point. People might say try Tchaikovsky but I feel like his music is just flashy and is unsuited for a beginner. Maybe when you've grown accustomed to the entire thing.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bce"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb0"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Yes, fantastic album. Absolute classic.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bd0"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bd0"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb0"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Idle Moments by Grant Green, no doubt about it.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bce"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bd2"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb0"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "good taste, was just about to comment the same thing",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bd4"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bd4"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bb0"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Charles Mingus - Mingus Ah Um",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bd2"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bd6"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bae"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "I remember him performing during Royal Rumble 2022. What an absolute waste of time and money. It's just like Maroon 5 and Travis Scott during the Super Bowl LIII halftime show. Unbelievable.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bd8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bae"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Have this downvote.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bda"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bda"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bae"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "no, I agree with him",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bd8"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bdc"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bdc"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bae"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "That's just like, your opinion, man. A very shitty one, too.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bda"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bde"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bac"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "They already signed with Warner Records, so I think they'll do fine",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45be0"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45be0"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bac"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Hope they could make something out of this and not just become another artist or group that became viral on TikTok. I wish them all the best.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bde"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45be2"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bac"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Yes. As much as I love Cupid, I just think Higher is their best song yet. I honestly have trouble getting it out of my head.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45be4"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45be4"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45bac"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "So happy for them. Hope they can keep this up and their other songs get popular as well.",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45be2"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45be6"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45baa"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "I like it, but it's definitely too long. CTRL > SOS. 7-8/10",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45be8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45baa"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Loved it. Even the ones I skipped on re-listens, I like them.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bea"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45baa"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "I honestly loved it. It's the perfect post-breakup album, so it really spoke to me. I love her so much.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bec"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba8"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Nah, pop-rock is Blink 182, early One Republic, Fall Out Boy, and Coldplay, not that garbage",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bee"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bee"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba8"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "They're usually considered pop-rock, but they're just stylish pop imo",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bec"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bf0"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bf0"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba8"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Wait, Imagine Dragons is a rock band?",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bee"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bf2"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "frfr",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bf4"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bf4"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Recovery gang",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bf2"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bf6"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "L take",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bf8"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bf8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba6"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Relapse, hands down. Better production, flows, and lyrics. Recovery has its hooks and choruses literally catered to 14-year-old girls. Em hasn't topped Relapse yet. Screw Recovery. ",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bf6"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bfa"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "I don't think it's too EDM-y like that one",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45bfc"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bfc"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Roses by the Chainsmokers maybe?",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bfa"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45bfe"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "Sorry, it's not it",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45c00"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45c00"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "This has to be Zedd - Clarity. Check the part around 1:09",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45bfe"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45c02"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "lmao I seriously can't tell if you're being sarcastic or not, but I just woke up my kids from laughing so hard",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca4d60712ffa84af45c04"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca4d60712ffa84af45c04"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca4d60712ffa84af45ba4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:06.220Z"
+    },
+    "body": "You sure it's not Bastille - Pompeii?",
+    "subcomments": [
+      {
+        "$oid": "64bca4d60712ffa84af45c02"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca60fb70e6fbb5fbe801f"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca533b70e6fbb5fbe7e2c"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "Pop stans are so delusional lmaoo. Pop is still pop — a music genre.",
+    "subcomments": [
+      {
+        "$oid": "64bca6bcb70e6fbb5fbe8223"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca63db70e6fbb5fbe80b3"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca58cb70e6fbb5fbe7e9e"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "Compared to other popular musicians, her music is a little more creative and daring yet firmly remaining in the pop genre. Pop alternative. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca6bcb70e6fbb5fbe8223"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca533b70e6fbb5fbe7e2c"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "She was just asking a question, why are you so mean? ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca60fb70e6fbb5fbe801f"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca7adb70e6fbb5fbe83fe"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca6a4b70e6fbb5fbe8196"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "Mine is Mahler’s Fourth Symphony. I hear it all the time when I was a kid. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca821b70e6fbb5fbe848c"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca5f1b70e6fbb5fbe7f95"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "I watched an interview with Chuck D that summarized in one line about their heyday “The dirty little secret at the time is these three white boys had the best beats in all of hip hop”. So the answer that you’re looking for is yes, they were very well respected in the hip hop community.",
+    "subcomments": [
+      {
+        "$oid": "64bca849b70e6fbb5fbe8494"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bca849b70e6fbb5fbe8494"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca5f1b70e6fbb5fbe7f95"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "To add to that, people were a lot more at ease in trashing white rappers back in the days. The fact that the Beastie Boys weren’t ridiculed at all unlike Vanilla Ice should already tell you the difference between their talents. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca821b70e6fbb5fbe848c"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca86db70e6fbb5fbe84dc"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca5c7b70e6fbb5fbe7f1e"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "In the same way that jazz or classical music have died, rock has too. Although you don't hear it as often in popular culture, it is still played and recorded. ",
+    "subcomments": [
+      {
+        "$oid": "64bcac23b70e6fbb5fbe90ec"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca9b3b70e6fbb5fbe8726"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca5c7b70e6fbb5fbe7f1e"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "How are you going to produce that lengthy content without include any recommendations? I'm constantly seeking for new rock songs.",
+    "subcomments": [
+      {
+        "$oid": "64bcab00b70e6fbb5fbe8bd3"
+      },
+      {
+        "$oid": "64bcabd0b70e6fbb5fbe8fd5"
+      }
+    ],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca9d7b70e6fbb5fbe8779"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca6a4b70e6fbb5fbe8196"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "Chopin’s Nocturne Op.9 No.2 is definitely mine! I attended a prom once playing this piece, and boy it sent me into tears! ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bca9fdb70e6fbb5fbe87e7"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b96"
+    },
+    "post_id": {
+      "$oid": "64bca533b70e6fbb5fbe7e2c"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "Pop Music started to be defined as popular music, but after a few generations, the type of music that was popular combined itself eventually into the genre. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcaa50b70e6fbb5fbe8949"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca760b70e6fbb5fbe8372"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "I thought I’m the only one who thought this. I also find it weird that they don’t debut idols greater than 20 anymore, and instead, they let minors debut. You’ll even be startled when you find out when these idols release music / music videos that are not appropriate for their age sometimes. Take New Jeans for example!",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcaa70b70e6fbb5fbe89a2"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b98"
+    },
+    "post_id": {
+      "$oid": "64bca984b70e6fbb5fbe8691"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "I disagree with your second reason. Each country has a lot of pop artists lol, and they all shine when their music becomes widespread.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcaacab70e6fbb5fbe8b80"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca760b70e6fbb5fbe8372"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "I think this is driven by Korean beauty standards and their ridiculous obsession with young women in entertainment. It’s terrifying, I wish these idols would be protected.",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bcab00b70e6fbb5fbe8bd3"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca5c7b70e6fbb5fbe7f1e"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "LOL This occurs frequently. \"You simply need to seek for it, but rock music is still around and kicking” then doesn't mention any bands. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca9b3b70e6fbb5fbe8726"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcab1eb70e6fbb5fbe8c62"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca8adb70e6fbb5fbe85b4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "I think that’s completely normal. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcab32b70e6fbb5fbe8cb8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca739b70e6fbb5fbe82f4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "You should definitely listen to Kind of Blue first by Miles David. Like, listen to it now!",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcab3db70e6fbb5fbe8cc0"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca739b70e6fbb5fbe82f4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "A Love Supreme by John Coltrane would also be a good start. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcab45b70e6fbb5fbe8cc8"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b8c"
+    },
+    "post_id": {
+      "$oid": "64bca739b70e6fbb5fbe82f4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "Oh I have so many recommendations!!!",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bcabd0b70e6fbb5fbe8fd5"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca5c7b70e6fbb5fbe7f1e"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "He couldn’t name any bands because the genre is dead lmao. ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca9b3b70e6fbb5fbe8726"
+    }
+  },
+  {
+    "parent_comment_id": null,
+    "_id": {
+      "$oid": "64bcabebb70e6fbb5fbe9057"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b94"
+    },
+    "post_id": {
+      "$oid": "64bca8adb70e6fbb5fbe85b4"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "What kind of question is this… geez. In what world is listening to country music absurd and illegal? ",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "64bcac23b70e6fbb5fbe90ec"
+    },
+    "user": {
+      "$oid": "64bca4d60712ffa84af45b92"
+    },
+    "post_id": {
+      "$oid": "64bca5c7b70e6fbb5fbe7f1e"
+    },
+    "date": {
+      "$date": "2023-07-23T03:56:44.416Z"
+    },
+    "body": "It is far more well-liked than jazz or classical music. Numerous rock artists continue to sell out 18,000-seat venues. Jazz or classical bands are not capable of doing that",
+    "subcomments": [],
+    "upvoteCnt": 0,
+    "downvoteCnt": 0,
+    "isEdited": false,
+    "__v": 0,
+    "parent_comment_id": {
+      "$oid": "64bca86db70e6fbb5fbe84dc"
+    }
+  }
+]

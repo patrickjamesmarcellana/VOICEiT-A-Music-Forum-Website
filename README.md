@@ -19,6 +19,6 @@ Instructions on How to Set up and Run the Application Locally:
     j. dotenv
     k. js-cookie
     l. jquery (used in front-end, not included in npm install)
-6. Populate the database using the command 'node ./back-end/mongodb_populate.js'. Console logs should show that the tables in the database have been populated.
+6. Populate the database using the command 'node ./back-end/db/import.js'. Console logs should show that the tables in the database have been populated.
 7. Run the server using the command 'npm start'.
 8. Launch 'localhost:3000' on the web.
