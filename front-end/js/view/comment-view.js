@@ -126,10 +126,10 @@ const commentViewManager = {
         container.showLoadMoreSubcommentsButton = function(subcomment_amount) {
             const loadmore = this.querySelector(":scope > .comment-subcomments-panel > .comment-loadmore-button")
         
-            const comment_id = this.getAttribute("comment-id")
+            const comment_id = this.getAttribute("backend_id")
             loadmore.classList.remove("hidden")
             loadmore.textContent = loadmore.textContent.replace("$COUNT", subcomment_amount)
-            loadmore.href = `javascript:loadSingleComment(${comment_id})`
+            loadmore.href = `javascript:loadSingleComment("${comment_id}")`
         }
 
         return container
@@ -167,7 +167,12 @@ const commentViewManager = {
                     // extra: the parent comment now has subcomments, enable if it has not been enabled
                     comment_container.enableSubcommentsPanel()
 
-                    commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), comment_container.getSubcommentsPanel())
+                    const reply = await commentManager.getComment(new_comment_id)
+                    const insertedComment = commentViewManager.insert_comment(reply, comment_container.getSubcommentsPanel())
+                    const viewDepth = commentViewManager.getViewDepth(insertedComment)
+                    if(viewDepth >= 5) {
+                        await loadSingleComment(reply.parent_comment_id)
+                    }
                 }
                 break
             }
@@ -190,6 +195,21 @@ const commentViewManager = {
         if(status == 200) {
             container.remove()
         }
+    },
+
+    getViewDepth: (commentElement) => {
+        let depth = 0
+
+        let element = commentElement
+        while(element.parentElement) {
+            element = element.parentElement
+
+            if(element.classList.contains("comment-container")) {
+                depth++
+            }
+        }
+
+        return depth
     }
 }
 

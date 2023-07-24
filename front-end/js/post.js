@@ -55,6 +55,12 @@ $(document).ready(async function() {
             $(".post-text-editor > textarea").val("")
         })
         // render comments
-        loadAllComment(post.top_level_comments_list)
+        const specific_comment_id = search_params.get("comment_id")
+        if(specific_comment_id) {
+            comment_view_stack.push(post.top_level_comments_list) // push the "previous" view
+            await loadSingleComment(specific_comment_id)
+        } else {
+            await loadAllComment(post.top_level_comments_list)
+        }
     } 
 })

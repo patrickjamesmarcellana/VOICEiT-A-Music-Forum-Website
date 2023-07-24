@@ -32,6 +32,8 @@ const loadAllComment = async (top_level_comments_list) => {
     for(const comment_id of top_level_comments_list) {
         await loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
     }
+
+    comment_view_stack.push(top_level_comments_list)
 }
 
 
@@ -56,13 +58,12 @@ const comment_panel_back = () => {
     const current_comment = comment_view_stack.pop()
 
     console.log(comment_view_stack)
-    if(comment_view_stack.length > 0) {
+    if(comment_view_stack.length > 1) {
         loadSingleComment(comment_view_stack.pop())
     } else {
-        loadAllComment()
+        loadAllComment(comment_view_stack.pop())
     }
 
     // change anchor
     location.href = `${location.href.replace(/#.+/, "")}#comment-${current_comment}`
 }
-
