@@ -78,9 +78,10 @@ const postViewManager = {
             if(exact_element_pressed.classList.contains("edit-post-button")) {
                 window.location.href = "edit-post.html?post=" + e.currentTarget.getAttribute("post-id");
             } else {
-                // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button
+                // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button 
                 if(!(["a", "button", "textarea"].includes(exact_element_pressed.tagName.toLowerCase()) ||
-                     [...exact_element_pressed.classList].some(class_name => class_name.endsWith("-button"))
+                     [...exact_element_pressed.classList].some(class_name => class_name.endsWith("-button")) ||
+                     exact_element_pressed.closest(".comment-container") != null // or an element inside a comment (for profile)
                    )) {
                     window.location.href = "post.html?post=" + e.currentTarget.getAttribute("post-id");
                 }

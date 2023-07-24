@@ -50,7 +50,17 @@ async function render_profile(target_user, mode) {
                             post.text = ""
                             const s = postViewManager.insert_post(post, profile_user_posts)
                             s.find(".post-body, .post-buttons").hide()
-                            commentViewManager.insert_comment(comment, s.get(0))
+
+                            const insertedComment = commentViewManager.insert_comment(comment, s.get(0))
+                            let comment_to_load
+                            if(comment.parent_comment_id != null) {
+                                comment_to_load = comment.parent_comment_id
+                            } else {
+                                comment_to_load = comment.comment_id
+                            }
+                            insertedComment.addEventListener("click", () => {
+                                window.location.href = "post.html?post=" + comment.post_id + "&comment_id=" + comment_to_load;
+                            })
                             break
                     }
                 },
@@ -93,7 +103,17 @@ async function render_profile(target_user, mode) {
                     post.text = ""
                     const s = postViewManager.insert_post(post, profile_user_posts)
                     s.find(".post-body, .post-buttons").hide()
-                    commentViewManager.insert_comment(comment, s.get(0))
+
+                    const insertedComment = commentViewManager.insert_comment(comment, s.get(0))
+                    let comment_to_load
+                    if(comment.parent_comment_id != null) {
+                        comment_to_load = comment.parent_comment_id
+                    } else {
+                        comment_to_load = comment.comment_id
+                    }
+                    insertedComment.addEventListener("click", () => {
+                        window.location.href = "post.html?post=" + comment.post_id + "&comment_id=" + comment_to_load;
+                    })
                 },
                 async () => (await commentManager.getUserCommentCount(target_user)))
             break
