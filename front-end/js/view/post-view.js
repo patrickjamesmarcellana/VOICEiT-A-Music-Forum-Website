@@ -75,9 +75,20 @@ const postViewManager = {
             // e.currentTarget - element where listener is registered (in this case element with class post-container-clickable)
             // e.target - exact element (can be e.currentTarget or its descendant)
             const exact_element_pressed = e.target;
+            //edit post button
             if(exact_element_pressed.classList.contains("edit-post-button")) {
                 window.location.href = "edit-post.html?post=" + e.currentTarget.getAttribute("post-id");
-            } else {
+            } 
+            //delete post button
+            else if(exact_element_pressed.classList.contains("delete-post-button")) {
+                const status = postManager.deletePost(post_id);
+
+                if(status == 200) {
+                    inserted_post.remove()
+                }
+                window.location.href = "index.html?forum=home";
+            }
+            else {
                 // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button 
                 if(!(["a", "button", "textarea"].includes(exact_element_pressed.tagName.toLowerCase()) ||
                      [...exact_element_pressed.classList].some(class_name => class_name.endsWith("-button")) ||
