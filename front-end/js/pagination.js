@@ -57,9 +57,15 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
 
     $(window).scroll(request_load)
 
+    // NOTE: since we now load posts until we can scroll, this is redundant
     if(is_logged_in()) {
         // allow loading more
         see_more_panel.find("a").click(request_load)
         see_more_panel.find("a").attr("href", "javascript:void")
+    }
+
+    // load posts until we can scroll (or run out of posts)
+    while($(document).height() <= $(window).height() && !posts_list_exhausted) {
+        await request_load()
     }
 }
