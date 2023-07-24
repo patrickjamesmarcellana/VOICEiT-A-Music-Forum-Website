@@ -19,6 +19,11 @@ Instructions on How to Set up and Run the Application Locally:
     j. dotenv
     k. js-cookie
     l. jquery (used in front-end, not included in npm install)
+    m. multer
 6. Populate the database using the command 'node ./back-end/db/import.js'. Console logs should show that the tables in the database have been populated.
 7. Run the server using the command 'npm start'.
 8. Launch 'localhost:3000' on the web.
+
+The development team would like to acknowledge webfashionist for the WYSIWYG editor developed as jQuery plugin that we used for the RichText editor in our project.
+Link to Repository: https://github.com/webfashionist/RichText/
+Github Profile: https://github.com/webfashionist 
