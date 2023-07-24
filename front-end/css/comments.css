@@ -27,6 +27,10 @@ a {
     color: inherit;
 }
 
+.red-text {
+    color: red;
+}
+
 .comment-container {
     border: 1px solid white;
     border-radius: 5px;
@@ -73,13 +77,17 @@ a {
 .comment-reply-button,
 .comment-edit-button,
 .comment-delete-button,
-.comment-loadmore-button {
+.comment-loadmore-button,
+.confirm-comment-deletion:hover,
+.cancel-comment-deletion:hover {
     cursor: pointer;
 }
 
 .comment-reply-button:hover,
 .comment-edit-button:hover,
-.comment-delete-button:hover {
+.comment-delete-button:hover,
+.confirm-comment-deletion:hover,
+.cancel-comment-deletion:hover {
     text-decoration: underline;
 }
 
