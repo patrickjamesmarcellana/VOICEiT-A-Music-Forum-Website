@@ -31,11 +31,11 @@ Instructions on How to Set up and Run the Application Locally:
 8. Launch 'localhost:3000' on the web.
 
 Sample usernames and passwords you can use to login:
-1. username: melissa_spellman,    password: Melissa-12345
-2. username: draeznor_rock_lover, password: Draeznor-12345
-3. username: aria_eagleheart,     password: Aria-12345
-4. username: marithus_25,         password: Marithus-12345
-5. username: jennie_itgirl,       password: Jennie-12345
+1. username: melissa_spellman    password: Melissa-12345
+2. username: draeznor_rock_lover password: Draeznor-12345
+3. username: aria_eagleheart     password: Aria-12345
+4. username: marithus_25         password: Marithus-12345
+5. username: jennie_itgirl       password: Jennie-12345
 
 The development team would like to acknowledge webfashionist for the WYSIWYG editor developed as jQuery plugin that we used for the RichText editor in our project.
 Link to Repository: https://github.com/webfashionist/RichText/
