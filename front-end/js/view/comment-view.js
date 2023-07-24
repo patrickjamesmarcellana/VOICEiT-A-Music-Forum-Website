@@ -55,7 +55,10 @@ const commentViewManager = {
         })
 
         // inject date
-        container.querySelector(".comment-date").textContent = `${new Date(comment.date).toDateString('en-CA')} | ${new Date(comment.date).toLocaleTimeString()}`
+        const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
+        const time_options = {hour: 'numeric', minute: '2-digit'}
+        container.querySelector(".comment-date").textContent = `${new Date(comment.date).toLocaleDateString('en-US', date_options)} | ${new Date(comment.date).toLocaleTimeString('en-US', time_options)}`
+
         // inject listeners
         const vote_buttons = getVoteButtons(container)
         vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
