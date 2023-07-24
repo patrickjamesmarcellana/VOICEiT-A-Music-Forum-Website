@@ -21,7 +21,6 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     see_more_panel.remove();
 
     const total_posts = totalPosts ? await totalPosts() : 0
-    console.log(await totalPosts())
     if(added_posts < total_posts)
         $(".post-panel").append(see_more_panel);
 
