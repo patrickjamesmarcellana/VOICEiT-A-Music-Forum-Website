@@ -121,8 +121,8 @@ const postViewManager = {
 
         const pattern = new RegExp(`${regex_string}`, "gi")
         
-        // create a copy of post
-        const post_with_highlight = $.extend(true, {}, post)
+        // create a shallow copy of post (it is enough because we are only modifying .title and .text)
+        const post_with_highlight = { ...post }
         post_with_highlight.title = post_with_highlight.title.replace(pattern, match => `<span class="mark">${match}</span>`)
         post_with_highlight.text = post_with_highlight.text.replace(pattern, match => `<span class="mark">${match}</span>`)
 
