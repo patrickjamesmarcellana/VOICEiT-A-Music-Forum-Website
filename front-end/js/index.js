@@ -398,10 +398,6 @@ $(document).ready(async function() {
         await changeProfile(goto_user_id);
     }
 
-    $(".post-profile, .nav-profile").click(async function() {
-        await changeProfile($(".post-profile, .nav-profile").text());
-    })
-
     // making the title panel (page title + logo) clickable to redirect to home page
     $(".title-panel").click(function() {
         window.location.href = "index.html";
