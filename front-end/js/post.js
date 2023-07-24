@@ -21,6 +21,9 @@ $(document).ready(async function() {
         $(".downvote-count").text(post.downvote_count)
         $(".comment-count").text(post.comment_count)
         $(".view-count").text(post.views)
+        if(post.isEdited) {
+            $(".post-edited").removeClass("hidden")
+        }
         $(".post-date").html(`${post.date.toDateString('en-CA')} | ${post.date.toLocaleTimeString()}`)
     
         if(is_logged_in() && post.op === LOGIN_USER) {
