@@ -79,7 +79,7 @@ const commentViewManager = {
                 editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
             })
             container.querySelector(".comment-delete-button").classList.remove("hidden")
-            container.querySelector(".comment-delete-button").addEventListener("delete", commentViewManager.onDeleteButtonPressed)
+            container.querySelector(".comment-delete-button").addEventListener("click", commentViewManager.onDeleteButtonPressed)
         }
 
         // listeners
