@@ -53,5 +53,13 @@ const postManager = {
 
         json.forEach(post => post.date = new Date(post.date))
         return json
+    },
+    
+    deletePost: async function(post_id) {
+        const response = await fetch("/api/delete/post/" + post_id, {
+            method: "DELETE",
+        })
+
+        return response.status
     }
 } 
