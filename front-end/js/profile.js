@@ -30,20 +30,31 @@ async function render_profile(target_user, mode) {
         if(last_displayed_post.attr("post-id") === comment.post_id) {
             post = last_displayed_post
         } else {
+            // create a post for this comment
             post = await postManager.getPost(comment.post_id)
             post.text = ""
             last_displayed_post = postViewManager.insert_post(post, profile_user_posts)
             last_displayed_post.find(".post-body, .post-buttons").hide()
         }
         
-        const insertedComment = commentViewManager.insert_comment(comment, last_displayed_post.get(0))
-        let comment_to_load
+        let inserted_parent_comment, comment_to_load
         if(comment.parent_comment_id != null) {
             comment_to_load = comment.parent_comment_id
+
+            const parent_comment = await commentManager.getComment(comment.parent_comment_id)
+            inserted_parent_comment = commentViewManager.insert_comment(parent_comment, last_displayed_post.get(0))
+            inserted_parent_comment.enableSubcommentsPanel()
+            inserted_parent_comment.querySelector(":scope > .comment-footer").classList.add("hidden")
+
+            commentViewManager.insert_comment(comment, inserted_parent_comment.getSubcommentsPanel(), last_displayed_post.get(0), true /* allow duplicate */)
         } else {
             comment_to_load = comment.comment_id
+            
+            inserted_parent_comment = commentViewManager.insert_comment(comment, last_displayed_post.get(0), true /* allow duplicate */)
         }
-        insertedComment.addEventListener("click", (event) => {
+            
+
+        inserted_parent_comment.addEventListener("click", (event) => {
             const exact_element_pressed = event.target
             // do not go if we pressed <a> or <button> or <textarea> or an element declared with suffix -button 
             if(!(["a", "button", "textarea"].includes(exact_element_pressed.tagName.toLowerCase()) ||
@@ -78,7 +89,7 @@ async function render_profile(target_user, mode) {
                             break
                         case "comment":
                             comment = await commentManager.getComment(reference._id)
-                            addCommentToProfile(comment)
+                            await addCommentToProfile(comment)
                             break
                     }
                 },
@@ -117,7 +128,7 @@ async function render_profile(target_user, mode) {
                     return await commentManager.getUserComments(target_user, queryParams)
                 },
                 async (comment) => {
-                    addCommentToProfile(comment)
+                    await addCommentToProfile(comment)
                 },
                 async () => (await commentManager.getUserCommentCount(target_user)))
             break
