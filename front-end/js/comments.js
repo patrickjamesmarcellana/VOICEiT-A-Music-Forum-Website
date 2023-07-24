@@ -20,6 +20,9 @@ const loadSingleComment = async function(comment_id) {
 
     comment_view_stack.push(comment_id)
 
+    const search_params = new URLSearchParams(window.location.search)
+    search_params.set("comment_id", comment_id)
+    window.history.pushState({}, window.title, "?" + search_params.toString())
 }
 
 const loadAllComment = async (top_level_comments_list) => {
@@ -34,6 +37,10 @@ const loadAllComment = async (top_level_comments_list) => {
     }
 
     comment_view_stack.push(top_level_comments_list)
+
+    const search_params = new URLSearchParams(window.location.search)
+    search_params.delete("comment_id")
+    window.history.pushState({}, window.title, "?" + search_params.toString())
 }
 
 
