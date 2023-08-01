@@ -39,10 +39,9 @@ $(document).ready(async function() {
 
         // delete button listener
         $(".delete-post-button").click(async () => {
-            const status = postManager.deletePost(post_id);
+            const status = await postManager.deletePost(post_id);
                 if(status == 200) {
-                    post.remove()
-                    window.location.href = "index.html?forum=home";
+                    window.location.replace("index.html?forum=home")
                 }
         })
         
