@@ -48,10 +48,16 @@ router.get("/id/:id", async (req, res) => {
         let query = await Post.findById(req.params.id).populate("user").exec()
         await Post.updateOne({_id: req.params.id}, {$inc: {views: 1}})
         console.log(query)
-        const json = [await documentToJson(query)]
+        if (query === null) {
+            res.sendStatus(404);
+            return;
+        }
 
-        if(req.user)
+        const json = [await documentToJson(query)]
+        
+        if (req.user) {
             await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+        }
 
         if(json != null) {
             res.send(json)
