@@ -41,18 +41,19 @@ const commentViewManager = {
         // store vote count on dict
         container.setAttribute("raw_vote_count", comment.votes)
 
+        // was the comment edited
+        if(comment.flags.includes("edited")) {
+            container.querySelector(".comment-edited-remark").classList.remove("hidden")
+        }
+        
         // inject comment author
         if(!is_deleted) {
             container.querySelector(".comment-author").textContent = comment.author
             container.querySelector(".comment-author").href = `profile.html?user=${comment.author}`
         } else {
             container.querySelector(".comment-author").textContent = "[deleted]"
-        }
-
-
-        // was the comment edited
-        if(comment.flags.includes("edited")) {
-            container.querySelector(".comment-edited-remark").classList.remove("hidden")
+            container.querySelector(".comment-author").removeAttribute("href")
+            container.querySelector(".comment-edited-remark").classList.add("hidden")
         }
 
         // inject comment text
