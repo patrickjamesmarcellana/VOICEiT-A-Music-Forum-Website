@@ -83,8 +83,11 @@ const commentViewManager = {
             vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
             vote_buttons.downvote_button.addEventListener("click", onCommentVoteButtonPressed)
         } else {
-            vote_buttons.upvote_button.style["pointer-events"] = "none"
-            vote_buttons.downvote_button.style["pointer-events"] = "none"
+            // vote_buttons.upvote_button.style["pointer-events"] = "none"
+            // vote_buttons.downvote_button.style["pointer-events"] = "none"
+            vote_buttons.upvote_button.classList.add("hidden")
+            vote_buttons.downvote_button.classList.add("hidden")
+            container.querySelector(".comment-vote-count").classList.add("hidden")
         }
         updateVoteUI(container, comment.vote_state, comment.votes)
 
