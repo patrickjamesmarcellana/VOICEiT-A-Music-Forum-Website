@@ -141,7 +141,6 @@ $(document).ready(async function() {
     // for dynamic content sizing when adjusting window size
     function adjust_window() {
         if(window.visualViewport.width <= 1080) {
-            $(".side-panel-b").css("display", "none")
             $("#search-input").css('-webkit-appearance', 'textfield')
             if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
                 $(".title-panel").attr('href', 'about.html')
