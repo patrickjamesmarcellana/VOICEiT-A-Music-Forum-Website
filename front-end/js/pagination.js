@@ -17,6 +17,10 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
         await insertPost(posts_list[added_posts])
         added_posts++
     }
+
+    // it is possible that there are no posts in the first place
+    if(posts_list.length == 0) 
+        posts_list_exhausted = true;
     
     const see_more_panel = $(`<div class="see-more-panel"><a class="see-more-button" href="/register.html">See More</a></div>`);
 
