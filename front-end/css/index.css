@@ -870,7 +870,7 @@ body {
     box-sizing: border-box;
     border-radius: 25px;
     border: solid 1px white;
-    background-color: transparent;
+    background-image: linear-gradient(#5756bb, #8182da, #a18ddd);
     font-family: var(--main-font);
     font-size: 1rem;
     width: 160px;
@@ -878,17 +878,14 @@ body {
     display: block;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     margin: 15px auto 0px auto;
+    text-decoration: none;
+    color: inherit;
 }
 
 .about-button:hover {
-    background-color: white;
-    color: black;
+    background-color: black;
+    background-image: none;
     cursor: pointer;
-}
-
-.about-button a {
-    text-decoration: none;
-    color: inherit;
 }
 
 /* analytics panel css */

@@ -155,7 +155,7 @@ td:not(:last-child) {
     box-sizing: border-box;
     border-radius: 25px;
     border: solid 1px black;
-    background-color: transparent;
+    background-image: linear-gradient(#5756bb, #8182da, #a18ddd);
     font-family: var(--main-font);
     font-size: 1rem;
     width: 160px;
@@ -163,12 +163,13 @@ td:not(:last-child) {
     display: block;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     margin: 15px auto 0px auto;
+    color: var(--main-color)
 }
 
 .back-button:hover {
-    background-image: linear-gradient(#31294c, #5756bb);
-    color: white;
+    background-color: black;
     cursor: pointer;
+    background-image: none;
 }
 
 .back-button a {
