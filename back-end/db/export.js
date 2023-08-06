@@ -19,7 +19,7 @@ async function export_model(model, path) {
     fs.writeFileSync(path, text)
 }
 async function populate() {
-    await mongoose.connect("mongodb://127.0.0.1/voiceit")
+    await mongoose.connect(process.env.MONGO_URI)
     console.log("Connected to DB")
 
     await export_model(Comment, "./back-end/db/voiceit.comments.json")

@@ -15,7 +15,7 @@ async function populate_model(model, path) {
     await validate(model)
 }
 async function populate() {
-    await mongoose.connect("mongodb://127.0.0.1/voiceit")
+    await mongoose.connect(process.env.MONGO_URI)
     console.log("Connected to DB")
 
     await mongoose.connection.db.dropDatabase()
