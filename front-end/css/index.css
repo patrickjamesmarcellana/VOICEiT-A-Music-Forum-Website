@@ -696,6 +696,11 @@ body {
   
 .options-dropdown button:hover {background-color: black}
 
+/* dropdown button sprite */
+.options-dropdown button > * {
+    display: inline-block;
+}
+
 .edit-sprite{
 	background: url('sprites/spritesheet.png') no-repeat -135px -153px;
 	width: 21px;
