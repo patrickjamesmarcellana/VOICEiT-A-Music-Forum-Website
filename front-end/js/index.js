@@ -418,4 +418,19 @@ $(document).ready(async function() {
     $(".edit-post-button").click(function(e) {
         window.location.href = "edit-post.html?post=" + e.currentTarget.closest(".post-container").getAttribute("post-id");
     })
+
+    $("#search-form").submit((e) => {
+        const search_box = document.querySelector("#search-input")
+        let value = $("#search-input").val()
+        value = value.trim()
+        if(value === "") {
+            e.preventDefault()
+            search_box.setCustomValidity('You can\'t leave a blank search keyword.')
+        }
+    })
+
+    $("#search-form").on('input', (e) => {
+        const search_box = document.querySelector("#search-input")
+        search_box.setCustomValidity('')
+    })
 });

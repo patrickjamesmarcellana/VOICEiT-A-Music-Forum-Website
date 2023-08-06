@@ -14,8 +14,8 @@ navbar_html = `
     <span class="search-bar">
         <img class="search-sprite" src="images/search.png">
         <span class="search-inner-box">
-            <form action="search.html" method="get" target="_self">
-                <input class="search-box" type="search" name="search" placeholder="Search VOICEiT">
+            <form action="search.html" method="get" target="_self" id="search-form">
+                <input id="search-input" class="search-box" type="search" name="search" placeholder="Search VOICEiT" autocomplete="off">
             </form>
         </span>
     </span>

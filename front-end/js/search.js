@@ -30,7 +30,7 @@ const data = `<div class="post-container post-container-clickable">
 // extract query from URL
 const extract_query = (param_name) => {
     const search_params = new URLSearchParams(window.location.search)
-    return search_params.get(param_name)
+    return search_params.get(param_name).trim()
 }
 
 $(document).ready(async function() {
