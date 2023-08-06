@@ -88,7 +88,6 @@ $(document).ready(async function() {
         // render comments
         const specific_comment_id = search_params.get("comment_id")
         if(specific_comment_id) {
-            commentPanel.comment_view_stack.push(post.top_level_comments_list) // push the "previous" view
             await commentPanel.loadSingleComment(specific_comment_id)
         } else {
             await commentPanel.loadAllComment(post.top_level_comments_list)

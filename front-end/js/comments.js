@@ -1,4 +1,5 @@
 import commentManager from "./model/comment-manager.js"
+import postManager from "./model/post-manager.js"
 import commentViewManager from "./view/comment-view.js"
 
 const commentPanel = {
@@ -12,7 +13,7 @@ const commentPanel = {
     
         // set indicator
         document.querySelector(".comment-viewing-single-thread-indicator").classList.remove("hidden")
-        document.querySelector(".comment-viewing-single-thread-indicator").addEventListener("click", () => { commentPanel.comment_panel_back() })
+        document.querySelector(".comment-viewing-single-thread-indicator").addEventListener("click", commentPanel.comment_panel_back)
     
         await commentPanel.loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
     
@@ -61,13 +62,15 @@ const commentPanel = {
         }
     },
 
-    comment_panel_back: () => {
+    comment_panel_back: async () => {
         const current_comment = commentPanel.comment_view_stack.pop()
     
-        if(commentPanel.comment_view_stack.length > 1) {
-            commentPanel.loadSingleComment(commentPanel.comment_view_stack.pop())
+        if(commentPanel.comment_view_stack.length > 0) {
+            await commentPanel.loadSingleComment(commentPanel.comment_view_stack.pop())
         } else {
-            commentPanel.loadAllComment(commentPanel.comment_view_stack.pop())
+            const post_id = document.querySelector(".post-container").getAttribute("post-id")
+            const post = await postManager.getPost(post_id)
+            await commentPanel.loadAllComment(post.top_level_comments_list)
         }
     
         // change anchor
