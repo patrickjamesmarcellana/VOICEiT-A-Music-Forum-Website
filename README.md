@@ -53,6 +53,8 @@ Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mon
 5. Run the server using `npm start`. Console logs should show that the application is listening on port `3000` and that a connection to the database was successfully created.
 6. Go to [localhost:3000](http://localhost:3000) or [127.0.0.1:3000](http://127.0.0.1:3000) using a browser to use the application.
 
+NOTE: If using MongoDB Atlas, the user should have the built-in role "Atlas admin"
+
 ### Live Instance
 
 Alternatively, a live instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
