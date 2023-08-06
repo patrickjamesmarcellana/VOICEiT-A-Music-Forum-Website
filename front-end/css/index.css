@@ -841,7 +841,19 @@ body {
     box-shadow: 0px 3px 6px 0px #31294c;
 }
 
-.forum-name {
+.about-panel{
+    margin: 60px auto 0px auto;
+    width: 82%;
+    padding: 19px;
+    color: var(--main-color);
+    position: sticky;
+    top: 71px;
+    border-radius: 5px;
+    background-image: linear-gradient(#31294c, #5756bb, #8182da);
+    box-shadow: 0px 3px 6px 0px #31294c;
+}
+
+.forum-name, .about-name {
     font-family: var(--header-font);
     font-size: 1.2rem;
     margin-bottom: 4px;
@@ -849,6 +861,34 @@ body {
 
 .forum-description {
     text-align: justify;
+}
+
+/* About button */
+.about-button {
+    font-weight: bold;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: solid 1px white;
+    background-color: transparent;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    width: 160px;
+    text-align: center;
+    display: block;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin: 15px auto 0px auto;
+}
+
+.about-button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.about-button a {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* analytics panel css */
