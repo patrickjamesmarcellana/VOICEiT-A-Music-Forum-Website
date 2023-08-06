@@ -140,9 +140,6 @@ $(document).ready(async function() {
 
     // for dynamic content sizing when adjusting window size
     function adjust_window() {
-        if(window.visualViewport.width <= 1080) {
-            $(".side-panel-b").display("none")
-        }
         if(window.innerWidth <= 958) {
             $(".post-panel").css("width", "100vw");
             $(".register-button").css("margin-left", "1.2vw");
