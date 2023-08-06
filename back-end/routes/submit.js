@@ -6,13 +6,28 @@ const User = require("../models/User")
 
 const multer = require("multer")
 
+const forums_list = [
+    "home",
+    "popular",
+    "alternative",
+    "classical",
+    "country",
+    "jazz",
+    "kpop",
+    "latin",
+    "pop",
+    "rnb",
+    "rap",
+    "rock"
+]
+
 router.post("/create-post", async (req, res) => {
     if(req.user) {
         const postTitle = req.body["post-title"]
         const postBody = req.body["post-content"]
         const postSubforum = req.body["subforum"]
 
-        if(postTitle && postBody /* && postSubforum is valid*/) {
+        if(postTitle && postBody && forums_list.includes(postSubforum)) {
             const new_post = await Post.create({
                 user: req.user._id,
                 title: postTitle,
@@ -38,7 +53,7 @@ router.patch("/edit-post", async (req, res) => {
         const postBody = req.body["post-content"]
         const postSubforum = req.body["subforum"]
 
-        if(postTitle && postBody) {
+        if(postTitle && postBody && forums_list.includes(postSubforum)) {
             post.title = postTitle
             post.body = postBody
             post.subforum = postSubforum
