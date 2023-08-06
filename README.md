@@ -9,21 +9,21 @@ VoiceIt (stylized as **VOICEiT**) is a web forum application designed for people
 The web application was mainly written with HTML, CSS, and JavaScript. It requires [Node.js](https://nodejs.org) and uses [MongoDB](https://www.mongodb.com/) for the database. It also uses [jQuery](https://jquery.com) for DOM manipulation and rich text, which is bundled with the project and requires no further installation.
 
 The following is a list of libraries and packages that the project utilizes for its operation.
-| Dependency                                                       | Remark                                                              |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [mongoose](https://www.npmjs.com/package/mongoose)               | Object data modeling library for MongoDB.                           |
-| [bcrypt](https://www.npmjs.com/package/bcrypt)                   | For hashing user passwords.                                         |
-| [passport](https://www.npmjs.com/package/passport)               | For user authentication.                                            |
-| [passport-local](https://www.npmjs.com/package/passport-local)   | For local user authentication.                                      |
-| [express](https://www.npmjs.com/package/express)                 | Node.js web application framework the application was written with. |
-| [express-session](https://www.npmjs.com/package/express-session) | For managing user sessions.                                         |
-| [connect-mongo](https://www.npmjs.com/package/connect-mongo)     | For managing user sessions.                                         |
-| [body-parser](https://www.npmjs.com/package/body-parser)         | To parse request bodies.                                            |
-| [method-override](https://www.npmjs.com/package/method-override) | To use other HTTP request methods like PATCH.                       |
-| [dotenv](https://www.npmjs.com/package/dotenv)                   | To load custom environment variables in local instances.            |
-| [js-cookie](https://www.npmjs.com/package/js-cookie)             | For handling cookies.                                               |
-| [multer](https://www.npmjs.com/package/multer)                   | For handling file uploads.                                          |
-| [express-async-handler](https://www.npmjs.com/package/express-async-handler) | For handling async function exceptions.                 |
+| Dependency                                                                   | Remark                                                              |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [mongoose](https://www.npmjs.com/package/mongoose)                           | Object data modeling library for MongoDB.                           |
+| [bcrypt](https://www.npmjs.com/package/bcrypt)                               | For hashing user passwords.                                         |
+| [passport](https://www.npmjs.com/package/passport)                           | For user authentication.                                            |
+| [passport-local](https://www.npmjs.com/package/passport-local)               | For local user authentication.                                      |
+| [express](https://www.npmjs.com/package/express)                             | Node.js web application framework the application was written with. |
+| [express-session](https://www.npmjs.com/package/express-session)             | For managing user sessions.                                         |
+| [connect-mongo](https://www.npmjs.com/package/connect-mongo)                 | For managing user sessions.                                         |
+| [body-parser](https://www.npmjs.com/package/body-parser)                     | To parse request bodies.                                            |
+| [method-override](https://www.npmjs.com/package/method-override)             | To use other HTTP request methods like PATCH.                       |
+| [dotenv](https://www.npmjs.com/package/dotenv)                               | To load custom environment variables in local instances.            |
+| [js-cookie](https://www.npmjs.com/package/js-cookie)                         | For handling cookies.                                               |
+| [multer](https://www.npmjs.com/package/multer)                               | For handling file uploads.                                          |
+| [express-async-handler](https://www.npmjs.com/package/express-async-handler) | For handling async function exceptions.                             |
 
 ## Setup and Usage
 
@@ -53,11 +53,11 @@ Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mon
 5. Run the server using `npm start`. Console logs should show that the application is listening on port `3000` and that a connection to the database was successfully created.
 6. Go to [localhost:3000](http://localhost:3000) or [127.0.0.1:3000](http://127.0.0.1:3000) using a browser to use the application.
 
-NOTE: If using MongoDB Atlas, the user should have the built-in role "Atlas admin"
-
 ### Live Instance
 
-Alternatively, a live instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
+The web application can be deployed on the cloud for use. Ensure that the [dependencies](#dependencies) and environment variables are all properly configured, and the user account hosting the database has admin privileges. Consult the chosen server and database hosting provider for details as to how to do this.
+
+Alternatively, the development team has a live instance of the web application that is hosted using [Render](https://render.com/) with [MongoDB Atlas](https://www.mongodb.com/atlas/database) for the database. It can be viewed and used [here](https://voiceit.onrender.com/index.html?forum=home).
 
 ## Sample Accounts
 
