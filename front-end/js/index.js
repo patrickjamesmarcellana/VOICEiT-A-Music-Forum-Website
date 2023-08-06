@@ -26,6 +26,17 @@ async function logout() {
 window.logout = logout
 
 $(document).ready(async function() {
+    // load the nav bar and side panel a on all applicable pages
+    // IMPORTANT: THIS MUST BE THE FIRST THING TO HAPPEN (otherwise $(document).ready calls on other JS files that need the navbar might fail like in search.js)
+    
+    // note: if function is not defined then it is was intentionally not included for this page
+    //       there is no need to error out and stop the rest of this function from running
+    if(typeof load_navbar !== "undefined")
+        load_navbar();
+    
+    if(typeof load_side_panel_a !== "undefined")
+        load_side_panel_a();
+
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
     const username = Cookies.get("logged_in_as");
@@ -36,14 +47,7 @@ $(document).ready(async function() {
         profile_photo = currentUser.photoUrl;
     }
 
-    // load the nav bar and side panel a on all applicable pages
-    // note: if function is not defined then it is was intentionally not included for this page
-    //       there is no need to error out and stop the rest of this function from running
-    if(typeof load_navbar !== "undefined")
-        load_navbar();
-    
-    if(typeof load_side_panel_a !== "undefined")
-        load_side_panel_a();
+
 
     // action listener for logout button
     $(".logout-button").click(logout);
