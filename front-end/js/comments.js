@@ -35,8 +35,6 @@ const commentPanel = {
             await commentPanel.loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
         }
     
-        commentPanel.comment_view_stack.push(top_level_comments_list)
-    
         const search_params = new URLSearchParams(window.location.search)
         if(search_params.has("comment_id")) {
             search_params.delete("comment_id")
