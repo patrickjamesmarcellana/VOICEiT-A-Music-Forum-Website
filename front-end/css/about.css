@@ -1,0 +1,150 @@
+:root {
+    font-size: 16px;
+    --logo-font: "Gugi";
+    --main-font: "Noir-Light";
+    --header-font: "Noir-Bold";
+    --main-color: #edf6ff;
+    --navbar-height: 45px;
+}
+
+/* fonts */
+@font-face {
+    font-family: Gugi;
+    src: url(fonts/Gugi-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noir-Light;
+    src: url(fonts/noir-std-light.ttf);
+}
+
+@font-face {
+    font-family: Noir-Bold;
+    src: url(fonts/noir-std-semi-bold.ttf);
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(#8182da, #a18ddd, #d3a3da, #e1b1e8);
+    /* background-image: linear-gradient(#270F36, #642B6B, #C86B98, #F09F9C, #FFC19F, #FD9D7F); */
+    background-attachment: fixed;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    height: 100%;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-family: var(--main-font);
+    color: white;
+    margin-bottom: 15px;
+}
+
+#line{
+    width: 40%;
+    border: 1px solid white;
+    margin-top: 0px;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 15px 140px;
+    width: 80%;
+}
+
+.about-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-image: linear-gradient(#8182da, #b4a8da, #d7c7da, #f1ebf1);
+    border-radius: 5px;
+    padding: 20px 25px;
+    text-align: center;
+    border: 2px solid black; 
+}
+
+.intro {
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.content {
+    margin-top: 0px;
+    font-size: 1.1 rem;
+}
+
+#content-line{
+    width: 80%;
+    margin-top: 0px;
+}
+
+.team{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.member-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+/* Table styles */
+table {
+    width: 100%; /* Set the table width to be 30px less than 100% */
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 10px 20px; /* Add horizontal padding to cells */
+    text-align: left; /* Align content in "Dependency" column left */
+    border-bottom: 1px solid black;
+}
+
+th {
+    background-color: var(--main-color);
+    font-family: var(--header-font);
+    text-align: center;
+}
+
+td {
+    font-family: var(--main-font);
+}
+
+/* Alternate row background color */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Table link styles */
+a {
+    text-decoration: none;
+    color: #0366d6;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #03396c;
+}
+
+/* Division line between columns */
+th:not(:last-child),
+td:not(:last-child) {
+    border-right: 1px solid black;
+}
+
