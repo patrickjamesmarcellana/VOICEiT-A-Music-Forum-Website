@@ -24,6 +24,8 @@ The following is a list of libraries and packages that the project utilizes for 
 | [js-cookie](https://www.npmjs.com/package/js-cookie)             | For handling cookies.                                               |
 | [multer](https://www.npmjs.com/package/multer)                   | For handling file uploads.                                          |
 | [express-async-handler](https://www.npmjs.com/package/express-async-handler) | For handling async function exceptions.                 |
+| [eslint](https://www.npmjs.com/package/eslint)                   | For static code analysis.                                           |
+| [nodemon](https://www.npmjs.com/package/nodemon)                 | For debugging.                                                      |
 
 ## Setup and Usage
 
