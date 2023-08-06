@@ -162,6 +162,7 @@ td:not(:last-child) {
     display: block;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     margin: 15px auto 0px auto;
+    text-decoration: none;
     color: var(--main-color)
 }
 
