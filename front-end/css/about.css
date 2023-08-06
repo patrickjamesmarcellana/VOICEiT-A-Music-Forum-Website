@@ -62,7 +62,7 @@ body {
     align-items: center;
     color: var(--main-color);
     height: 100%;
-    background-image: linear-gradient(#8182da, #a18ddd, #d3a3da);
+    background-image: linear-gradient(#8182da, #a18ddd);
     border-radius: 5px;
     padding: 44px 80px;
     text-align: justify;
@@ -79,7 +79,7 @@ body {
 
 .about-content-text {
     margin-top: 0px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-bottom: solid 1px var(--main-color);
     padding-bottom: 20px;
     margin-bottom: 24px;
@@ -111,23 +111,33 @@ body {
 }
 
 /* Table styles */
+.credits {
+    display: flex;
+    flex-direction: column;
+}
+
+.intro {
+    align-self: center;
+}
 table {
     width: 100%; /* Set the table width to be 30px less than 100% */
     border-collapse: collapse;
     margin-top: 20px;
-    border: 2px solid black;
+    border: 2.5px solid black;
 }
 
 th, td {
     padding: 10px 20px; /* Add horizontal padding to cells */
     text-align: left; /* Align content in "Dependency" column left */
     border-bottom: 1px solid black;
+    box-sizing: border-box;
 }
 
 th {
-    background-color: var(--main-color);
+    background-color: #31294c;
     font-family: var(--header-font);
     text-align: center;
+    color: var(--main-color)
 }
 
 td {
@@ -136,17 +146,30 @@ td {
 
 /* Alternate row background color */
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: var(--main-color);
+    color: #31294c;
+}
+
+tr:nth-child(odd) {
+    background-color:#a18ddd;
 }
 
 /* Table link styles */
 .about-link {
-    text-decoration: none;
-    color: #0366d6;
+    color: #31294c;
 }
 .about-link:hover {
     text-decoration: underline;
+    text-decoration-color: #31294c;
     color: #03396c;
+}
+
+.even-white {
+    color: var(--main-color)
+}
+
+.credit-text {
+    margin-top: 30px;
 }
 
 /* Division line between columns */
@@ -161,15 +184,14 @@ td:not(:last-child) {
     padding: 10px 20px;
     box-sizing: border-box;
     border-radius: 25px;
-    border: solid 1px black;
-    background-image: linear-gradient(#5756bb, #8182da, #a18ddd);
+    border: solid 1.5px black;
+    background-image: linear-gradient(#31294c, #5756bb, #8182da);
     font-family: var(--main-font);
     font-size: 1rem;
-    width: 160px;
+    width: 300px;
     text-align: center;
     display: block;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    margin: 15px auto 0px auto;
+    margin: 35px auto 5px auto;
     text-decoration: none;
     color: var(--main-color)
 }
