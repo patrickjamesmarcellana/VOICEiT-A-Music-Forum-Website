@@ -83,7 +83,8 @@ $(document).ready(async function() {
         }
 
 
-
+        const editor_container = $(".post-container").find(".post-text-editor")
+        
         // hide when logged out
         if(!is_logged_in()) {
             const text_editor = editor_container.find("textarea")
@@ -106,7 +107,6 @@ $(document).ready(async function() {
             })
 
             // input validator
-            const editor_container = $(".post-container").find(".post-text-editor")
             const validateInput = (editor_container) => {
                 const text_editor = editor_container.find("textarea")
                 const submit_button = editor_container.find(".post-text-editor-submit-button")
