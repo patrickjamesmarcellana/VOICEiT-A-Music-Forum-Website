@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    SESSION_TIMEOUT_SECS: 300, // 5 mins
+    SESSION_TIMEOUT_SECS: 21 * 86400, // 21 days
 
     VOTE_TYPE_POST: 0,
     VOTE_TYPE_COMMENT: 1,

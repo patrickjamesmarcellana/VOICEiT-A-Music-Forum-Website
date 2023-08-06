@@ -92,19 +92,43 @@ const commentViewManager = {
         }
         voteLogic.updateVoteUI(container, comment.vote_state, comment.votes)
 
+        const prepareMiniTextEditor = (container, value) => {
+            const editor_container = container.querySelector(".comment-text-editor")
+            editor_container.classList.remove("hidden")
+            editor_container.querySelector("textarea").value = value
+
+            // set listeners
+            editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
+            editor_container.querySelector("textarea").addEventListener("keyup", (event) => {
+                validateInput(editor_container)
+            })
+
+            // run at start
+            validateInput(editor_container)
+
+            return editor_container
+        }
+        const onEditButtonPressed = (event) => {
+            const container = event.currentTarget.closest(".comment-container")
+            const editor_container = prepareMiniTextEditor(container, comment.content)
+            editor_container.setAttribute("mode", "edit")
+        }
+
+        const onReplyButtonPressed = (event) => {
+            const container = event.currentTarget.closest(".comment-container")
+    
+            if(is_logged_in()) {
+                const editor_container = prepareMiniTextEditor(container, "")
+                editor_container.setAttribute("mode", "reply")
+            } else {
+                window.location.href = "login.html"
+            }
+        }
+
         // should the edit/delete buttons be visible?
         if(is_logged_in() && comment.author === Cookies.get("logged_in_as")) {
             container.querySelector(".comment-edit-button").classList.remove("hidden")
-            container.querySelector(".comment-edit-button").addEventListener("click", (event) => {
-                const container = event.currentTarget.closest(".comment-container")
-                const editor_container = container.querySelector(".comment-text-editor")
-                editor_container.classList.remove("hidden")
-                editor_container.querySelector("textarea").value = comment.content
-
-                // set mode and listener
-                editor_container.setAttribute("mode", "edit")
-                editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
-            })
+            container.querySelector(".comment-edit-button").addEventListener("click", onEditButtonPressed)
             container.querySelector(".confirm-comment-deletion-button").addEventListener("click", commentViewManager.onDeleteButtonPressed)
             container.querySelector(".cancel-comment-deletion-button").addEventListener("click", commentViewManager.hideDeleteCommentConfirmation)
             container.querySelector(".comment-delete-button").addEventListener("click", commentViewManager.showDeleteCommentConfirmation)
@@ -113,31 +137,23 @@ const commentViewManager = {
             container.querySelector(".comment-edit-button").classList.add("hidden")
             container.querySelector(".comment-delete-button").classList.add("hidden")
         }
-
-        // listeners
-        const onReplyButtonPressed = (event) => {
-            const container = event.currentTarget.closest(".comment-container")
-            const editor_container = container.querySelector(".comment-text-editor")
-    
-            if(is_logged_in()) {
-                editor_container.classList.remove("hidden")
-    
-                // wipe text are to be sure
-                editor_container.querySelector("textarea").value = ""
-
-                // set mode and listener
-                editor_container.setAttribute("mode", "reply")
-                editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
-            } else {
-                window.location.href = "login.html"
-            }
-    
-        }
     
         const onCancelButtonPressed = (event) => {
             const container = event.currentTarget.closest(".comment-container")
             const editor_container = container.querySelector(".comment-text-editor")
             editor_container.classList.add("hidden")
+        }
+
+        // input validator
+        const validateInput = (editor_container) => {
+            const mini_text_editor = editor_container.querySelector("textarea")
+            const submit_button = editor_container.querySelector(".comment-text-editor-submit-button")
+
+            if(mini_text_editor.value.trim() !== "") {
+                submit_button.disabled = false
+            } else {
+                submit_button.disabled = true
+            }
         }
         
         if(!is_deleted) {
