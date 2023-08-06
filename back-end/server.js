@@ -4,7 +4,6 @@ const session = require("express-session")
 const passport = require('passport')
 require("./passport_loader")
 const MongoStore = require('connect-mongo')
-require('dotenv').config()
 
 const app = express()
 
