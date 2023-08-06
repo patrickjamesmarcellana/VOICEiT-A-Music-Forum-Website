@@ -238,3 +238,13 @@ function addUsernameExistsMessage() {
 function removeUsernameExistsMessage() {
     document.getElementById("existing-username-message")?.remove();
 }
+
+$(document).ready(() => {
+    if(window.visualViewport.width <= 1080) {
+        $(".main").css('transform', 'scale(1.3)')
+        $("body").css('height', '80vh')
+        $("#submit-button").css("background-color", 'white')
+        $("#submit-button").css("color", '#31294c')
+        $("#login-button").css("color", '#31294c')
+    }
+})
