@@ -5,6 +5,7 @@ const Comment = require("../models/Comment")
 const Utils = require("../utils/utils")
 
 const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
+const asyncHandler = require('express-async-handler')
 
 const documentToJson = (document) => {
     console.log(document)
@@ -46,7 +47,7 @@ const documentsToJson = (documents) => {
 }
 
 
-router.get('/id/:id', async (req, res) => {
+router.get('/id/:id', asyncHandler(async (req, res) => {
     console.log("Request for comment by id", req.params.id)
     try {
         const query = await Comment.findById(req.params.id).populate("user")
@@ -63,7 +64,7 @@ router.get('/id/:id', async (req, res) => {
     } catch(e) {
         console.log(e)
     }
-})
+}))
 
 router.use((req, res, next) => {
     if(!req.user) 
@@ -72,7 +73,7 @@ router.use((req, res, next) => {
     next()
 })
 router.use(parse_pagination_params)
-router.get("/user/:user", async (req, res) => {
+router.get("/user/:user", asyncHandler(async (req, res) => {
     console.log("Request for comments by user", req.params.user)
     try {
         const user_id = await User.findOne({username: req.params.user})
@@ -90,12 +91,12 @@ router.get("/user/:user", async (req, res) => {
     } catch(e) {
         console.log(e)
     }
-})
+}))
 
 // count comments by user
-router.get("/count/user/:user", async (req, res) => {
+router.get("/count/user/:user", asyncHandler(async (req, res) => {
     let user_id = await User.findOne({username: req.params.user})
     res.send(`${await Comment.count({user: user_id})}`)
-})
+}))
 
 module.exports = router

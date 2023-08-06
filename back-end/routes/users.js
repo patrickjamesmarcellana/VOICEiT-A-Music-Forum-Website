@@ -3,8 +3,9 @@ const Comment = require("../models/Comment")
 const Post = require("../models/Post")
 const User = require("../models/User")
 const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
+const asyncHandler = require('express-async-handler')
 
-router.get("/:user", async (req, res) => {
+router.get("/:user", asyncHandler(async (req, res) => {
     console.log("Request for user", req.params.user)
     const user_results = await User.find({username: req.params.user})
     if(user_results.length > 0) {
@@ -19,7 +20,7 @@ router.get("/:user", async (req, res) => {
     } else {
         res.sendStatus(404)
     }
-}) 
+}))
 
 router.use((req, res, next) => {
     if(!req.user) 
@@ -28,7 +29,7 @@ router.use((req, res, next) => {
     next()
 })
 
-router.get("/:user/combo", parse_pagination_params, async (req, res) => {
+router.get("/:user/combo", parse_pagination_params, asyncHandler(async (req, res) => {
     let user = await User.findOne({username: req.params.user})
 
     // MongoDB assumes that "0" means no limit, which is not ideal in our case
@@ -64,5 +65,5 @@ router.get("/:user/combo", parse_pagination_params, async (req, res) => {
     
         res.send(combo)
     }
-})
+}))
 module.exports = router

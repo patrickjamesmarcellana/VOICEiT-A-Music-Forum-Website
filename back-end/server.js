@@ -92,6 +92,12 @@ app.use("/api/delete", delete_router)
 const vote_router = require("./routes/vote")
 app.use("/api/vote", vote_router)
 
+// Send 400 Bad Request if there is an exception handling the request
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.sendStatus(400)
+})
+
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log(`Mongoose connected to DB`)
 })

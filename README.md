@@ -23,6 +23,7 @@ The following is a list of libraries and packages that the project utilizes for 
 | [dotenv](https://www.npmjs.com/package/dotenv)                   | To load custom environment variables in local instances.            |
 | [js-cookie](https://www.npmjs.com/package/js-cookie)             | For handling cookies.                                               |
 | [multer](https://www.npmjs.com/package/multer)                   | For handling file uploads.                                          |
+| [express-async-handler](https://www.npmjs.com/package/express-async-handler) | For handling async function exceptions.                 |
 
 ## Setup and Usage
 

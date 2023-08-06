@@ -5,7 +5,9 @@ const Comment = require("../models/Comment")
 const Post = require("../models/Post")
 const Vote = require("../models/Vote")
 
-router.post("/:target_type/:target_id/:vote_state", async (req, res) => {
+const asyncHandler = require('express-async-handler')
+
+router.post("/:target_type/:target_id/:vote_state", asyncHandler(async (req, res) => {
     try {
         const target_type = req.params.target_type // "post" or "comment"
         const target_id = req.params.target_id // id of post/comment
@@ -72,6 +74,6 @@ router.post("/:target_type/:target_id/:vote_state", async (req, res) => {
     } catch(e) {
         console.log(e)
     }
-})
+}))
 
 module.exports = router

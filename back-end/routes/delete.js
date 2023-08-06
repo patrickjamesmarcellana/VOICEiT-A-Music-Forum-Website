@@ -4,7 +4,9 @@ const Comment = require("../models/Comment")
 const Post = require("../models/Post")
 const User = require("../models/User")
 
-router.delete("/post/:post_id", async (req, res) => {
+const asyncHandler = require('express-async-handler')
+
+router.delete("/post/:post_id", asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params["post_id"]).populate("user").exec()
     if(post /* is not null */ && req.user && req.user._id.equals(post.user._id)) {
         await Post.findByIdAndDelete(req.params["post_id"])
@@ -13,9 +15,9 @@ router.delete("/post/:post_id", async (req, res) => {
     } else {
         res.sendStatus(401)
     }
-})
+}))
 
-router.delete("/comment/:comment_id", async (req, res) => {
+router.delete("/comment/:comment_id", asyncHandler(async (req, res) => {
     const comment = await Comment.findById(req.params["comment_id"]).populate("user").exec()
     if(comment /* is not null */ && req.user && req.user._id.equals(comment.user._id)) {
         await Comment.findByIdAndUpdate(req.params["comment_id"], {
@@ -32,6 +34,6 @@ router.delete("/comment/:comment_id", async (req, res) => {
     } else {
         res.sendStatus(401)
     }
-})
+}))
 
 module.exports = router;

@@ -6,7 +6,9 @@ const User = require("../models/User");
 
 const Constants = require("../constants");
 
-router.post("/register", async (req, res) => {
+const asyncHandler = require('express-async-handler')
+
+router.post("/register", asyncHandler(async (req, res) => {
     try {
         await User.validate({
             username: req.body["username"],
@@ -37,9 +39,9 @@ router.post("/register", async (req, res) => {
             return;
         }
     }
-});
+}));
 
-router.post("/login", passport.authenticate("local", {}), async (req, res) => {
+router.post("/login", passport.authenticate("local", {}), asyncHandler(async (req, res) => {
     // set session expiry
     if (req.body["persist"]) {
         req.session.cookie.maxAge = Constants.SESSION_TIMEOUT_SECS * 1000;
@@ -54,7 +56,7 @@ router.post("/login", passport.authenticate("local", {}), async (req, res) => {
 
     console.log("Updated login time");
     res.sendStatus(200);
-});
+}));
 
 router.post("/logout", (req, res) => {
     req.logout((err) => {

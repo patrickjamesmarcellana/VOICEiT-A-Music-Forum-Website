@@ -1,4 +1,5 @@
 const {ObjectId} = require('mongodb');
+const asyncHandler = require('express-async-handler')
 
 const MAX_VIEWS = 2 ** 64
 const MAX_DATE = new Date(8640000000000000) // max date supported by JS
@@ -52,7 +53,7 @@ const parse_pagination_params = (req, res, next) => {
     next()
 }
 
-const cursor_paginate = async (collection, filter_query, metric_name, last_sent_score, last_sent_id, post_limit) => {
+const cursor_paginate = asyncHandler(async (collection, filter_query, metric_name, last_sent_score, last_sent_id, post_limit) => {
     try {
         // req.cursor = await Post.find().populate("user").sort({date: -1}).cursor()
         // for (let doc = await req.cursor.next(), i = 0; doc != null && i < 5; doc = await req.cursor.next()) {
@@ -106,6 +107,6 @@ const cursor_paginate = async (collection, filter_query, metric_name, last_sent_
     } catch(e) {
         console.log(e)
     }
-}
+})
 
 module.exports = Object.freeze({parse_pagination_params, cursor_paginate})

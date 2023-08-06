@@ -5,6 +5,7 @@ const Post = require("../models/Post")
 const User = require("../models/User")
 
 const multer = require("multer")
+const asyncHandler = require('express-async-handler')
 
 const forums_list = [
     "home",
@@ -21,7 +22,7 @@ const forums_list = [
     "rock"
 ]
 
-router.post("/create-post", async (req, res) => {
+router.post("/create-post", asyncHandler(async (req, res) => {
     if(req.user) {
         const postTitle = req.body["post-title"]
         const postBody = req.body["post-content"]
@@ -42,9 +43,9 @@ router.post("/create-post", async (req, res) => {
     } else {
         res.sendStatus(401)
     }
-})
+}))
 
-router.patch("/edit-post", async (req, res) => {
+router.patch("/edit-post", asyncHandler(async (req, res) => {
     const postId = req.body["post-id"]
     const post = await Post.findById(postId).populate("user").exec()
 
@@ -69,9 +70,9 @@ router.patch("/edit-post", async (req, res) => {
     } else {
         res.sendStatus(401)
     }
-})
+}))
 
-router.post("/create-comment", async (req, res) => {
+router.post("/create-comment", asyncHandler(async (req, res) => {
     if(req.user) {
         const commentContent = req.body["comment-content"]
         const parentPost = req.body["parent-post"]
@@ -108,9 +109,9 @@ router.post("/create-comment", async (req, res) => {
     } else {
         res.sendStatus(401)
     }
-})
+}))
 
-router.patch("/edit-comment/:comment_id", async (req, res) => {
+router.patch("/edit-comment/:comment_id", asyncHandler(async (req, res) => {
     const commentId = req.params.comment_id
     const comment = await Comment.findById(commentId).populate("user").exec()
 
@@ -131,7 +132,7 @@ router.patch("/edit-comment/:comment_id", async (req, res) => {
     } else {
         res.sendStatus(401)
     }
-})
+}))
 
 // const upload = multer({dest: "./front-end/uploads/"}) 
 const multerStorage = multer.diskStorage({
@@ -150,7 +151,7 @@ const upload = multer({
 
 
 // Routers below are for Edit Profile
-router.patch('/edit-profile', upload.single('file'), async (req, res) => {
+router.patch('/edit-profile', upload.single('file'), asyncHandler(async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
@@ -166,9 +167,9 @@ router.patch('/edit-profile', upload.single('file'), async (req, res) => {
     })
 
     res.send(200)
-});
+}));
 
-router.patch('/set-default-photo', async (req, res) => { // removing a photo is updating it to default
+router.patch('/set-default-photo', asyncHandler(async (req, res) => { // removing a photo is updating it to default
     try {
         await User.findByIdAndUpdate(req.user._id, {
             photoUrl: `images/empty-profile.png`
@@ -178,9 +179,9 @@ router.patch('/set-default-photo', async (req, res) => { // removing a photo is 
         console.error(err)
         res.send(502)
     }
-});
+}));
 
-router.patch('/edit-description', async (req, res) => {
+router.patch('/edit-description', asyncHandler(async (req, res) => {
     if (!req.user) {
         res.sendStatus(401);
     }
@@ -190,6 +191,6 @@ router.patch('/edit-description', async (req, res) => {
     })
 
     res.send(200)
-});
+}));
 
 module.exports = router

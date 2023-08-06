@@ -8,6 +8,8 @@ const Utils = require("../utils/utils")
 
 const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
 
+const asyncHandler = require('express-async-handler')
+
 // remove private info, set public info etc
 // and get comments list
 // TODO: explore https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/#pipe._S_lookup
@@ -42,32 +44,28 @@ const documentsToJson = async (documents) => {
     return json
 }
 
-router.get("/id/:id", async (req, res) => {
+router.get("/id/:id", asyncHandler(async (req, res) => {
     console.log("Request for post by id", req.params.id)
-    try{
-        let query = await Post.findById(req.params.id).populate("user").exec()
-        await Post.updateOne({_id: req.params.id}, {$inc: {views: 1}})
-        console.log(query)
-        if (query === null) {
-            res.sendStatus(404);
-            return;
-        }
-
-        const json = [await documentToJson(query)]
-        
-        if (req.user) {
-            await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
-        }
-
-        if(json != null) {
-            res.send(json)
-        } else {
-            res.sendStatus(404)
-        }
-    } catch(e) {
-        console.log(e)
+    let query = await Post.findById(req.params.id).populate("user").exec()
+    await Post.updateOne({_id: req.params.id}, {$inc: {views: 1}})
+    console.log(query)
+    if (query === null) {
+        res.sendStatus(404);
+        return;
     }
-})
+
+    const json = [await documentToJson(query)]
+    
+    if (req.user) {
+        await Utils.addUserVoteStateToJson(req.user._id, Constants.VOTE_TYPE_POST, json)
+    }
+
+    if(json != null) {
+        res.send(json)
+    } else {
+        res.sendStatus(404)
+    }
+}))
 
 // prevent unregistered users from attmpting to load more pages
 router.use((req, res, next) => {
@@ -80,7 +78,7 @@ router.use((req, res, next) => {
 // pagination proper
 router.use(parse_pagination_params)
 
-router.get("/user/:user", async (req, res) => {
+router.get("/user/:user", asyncHandler(async (req, res) => {
     console.log("Request for posts by user", req.params.user)
     console.log(req.query)
     try {
@@ -101,9 +99,9 @@ router.get("/user/:user", async (req, res) => {
     } catch(err){
         console.error(err)
     }
-})
+}))
 
-router.get("/subforum/:subforum", async (req, res) => {
+router.get("/subforum/:subforum", asyncHandler(async (req, res) => {
     console.log("Request for posts by subforum", req.params.subforum)
 
     let query
@@ -122,9 +120,9 @@ router.get("/subforum/:subforum", async (req, res) => {
     } else {
         res.sendStatus(404)
     }
-})
+}))
 
-router.get("/search/:searchkey", async(req, res) => {
+router.get("/search/:searchkey", asyncHandler(async(req, res) => {
     console.log("Request for posts via search key: ", req.params.searchkey)
     const key = req.params.searchkey
     try {
@@ -163,20 +161,20 @@ router.get("/search/:searchkey", async(req, res) => {
     } catch(err) {
         console.error(err)
     }
-})
+}))
 
 // count posts in subforum
-router.get("/count/subforum/:subforum", async (req, res) => {
+router.get("/count/subforum/:subforum", asyncHandler(async (req, res) => {
     if(req.params.subforum === "home" || req.params.subforum === "popular")
         res.send(`${await Post.count({})}`)
     else
         res.send(`${await Post.count({subforum: req.params.subforum})}`)
-})
+}))
 
 // count posts by user
-router.get("/count/user/:user", async (req, res) => {
+router.get("/count/user/:user", asyncHandler(async (req, res) => {
     let user_id = await User.findOne({username: req.params.user})
     res.send(`${await Post.count({user: user_id})}`)
-})
+}))
 
 module.exports = router
