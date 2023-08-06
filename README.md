@@ -57,7 +57,7 @@ used in the web application. Here are their respective details.
 | Brett Harley Mider       | [ChorusMortis](https://github.com/ChorusMortis)                     |
 
 ## Acknowledgments
-The development team would also like to take a moment to acknowledge and credit the contributors/collaborators of the amazing, external libraries that were used in the development of this project.
+The development team would like to take a moment to acknowledge and credit the contributors/collaborators of the remarkable external libraries that were used in the development of this project.
 
 | Contributors/Organization                         | Libraries                                                                  | Remark                                         |
 | ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
