@@ -42,7 +42,7 @@ Alternatively, a live instance of the web application is hosted at [insert link 
 
 ## Sample Accounts
 
-The default database comes with pre-created accounts that may be used in the web application. Here are their respective credentials.
+The default database comes with pre-created accounts that may be used in the web application.
 
 | Username              | Password         |
 | --------------------- | ---------------- |
