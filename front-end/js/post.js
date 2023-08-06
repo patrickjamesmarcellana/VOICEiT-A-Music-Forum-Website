@@ -125,4 +125,8 @@ $(document).ready(async function() {
             validateInput(editor_container)
         }
     } 
+
+    if(window.visualViewport.width <= 1080) {
+        $(".post-container").css('width', '98%')
+    }
 })
