@@ -8,8 +8,19 @@ $(document).ready(async function() {
     const time_options = {hour: 'numeric', minute: '2-digit'}
     
     if(post_id !== null) {
-        post = await postManager.getPost(post_id)
-        postOp = await userManager.getUser(post.op);
+        const response = await fetch("api/posts/id/" + post_id)
+
+        // if post does not exist or was deleted yet the user was able to
+        // access its old URL, just redirect the user
+        if (response.status == 404) {
+            console.log("Post not found, redirecting to index");
+            window.location.replace("index.html?forum=home");
+        }
+
+        const post = (await response.json())[0]
+
+        post.date = new Date(post.date)
+        const postOp = await userManager.getUser(post.op);
 
         $(".post-container").attr("post-id", post_id)
         $(".post-subforum").attr("href", "index.html?forum=" + post.subforum)

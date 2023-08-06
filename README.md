@@ -1,42 +1,64 @@
-# VOICEiT-A-Music-Forum-Website
-This web development project is a mini forum web application designed for those interested in music. It allows users to make conversations with other people by making an account, posting, interacting, and commenting, among others.
+# VOICEiT: A Music Forum Website
 
-Web Development Team:
-Chua, Harvey Shawn
-Harwani, Latasha
-Marcellana, Patrick James
-Mider, Brett Harley
+## Overview
+VoiceIt is a web forum application designed for people interested in music. It allows users to make conversations with other people by making an account, posting, interacting, and commenting, among others.
 
-Instructions on How to Set up and Run the Application Locally:
-1. Download the .zip file and extract all files into a single folder.
-2. Open the command prompt or the terminal.
-3. Change your directory to the folder where you extracted your project to. This folder should contain the folders, front-end and back-end, as well as the other important files that came along with them.
-4. Make sure that MongoDB is running.
-5. Import the necessary modules for the project by entering 'npm install'. Here is a complete list of the modules used in the project:
-    a. mongoose       
-    b. bcrypt         
-    c. passport      
-    d. express        
-    e. passport-local 
-    f. express-session
-    g. connect-mongo
-    h. bodyparser
-    i. method-override
-    j. dotenv
-    k. js-cookie
-    l. jquery (used in front-end, not included in npm install)
-    m. multer
-6. Populate the database using the command 'npm run popdb'. Console logs should show that the tables in the database have been populated.
-7. Run the server using the command 'npm start'.
-8. Launch 'localhost:3000' on the web.
+## Dependencies
+The web application was written in and requires [Node.js](https://nodejs.org), and uses [MongoDB](https://www.mongodb.com/) for the database. It also uses [jQuery](https://jquery.com) for DOM manipulation and rich text, which is bundled with the project and requires no further installation.
 
-Sample usernames and passwords you can use to login:
-1. username: melissa_spellman    password: Melissa-12345
-2. username: draeznor_rock_lover password: Draeznor-12345
-3. username: aria_eagleheart     password: Aria-12345
-4. username: marithus_25         password: Marithus-12345
-5. username: jennie_itgirl       password: Jennie-12345
+The following is a list of libraries and packages that the project uses and depends on.
+| Dependency                                                       | Remark                                                              |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [mongoose](https://www.npmjs.com/package/mongoose)               | Object data modeling library for MongoDB.                           |
+| [bcrypt](https://www.npmjs.com/package/bcrypt)                   | For hashing user passwords.                                         |
+| [passport](https://www.npmjs.com/package/passport)               | For user authentication.                                            |
+| [passport-local](https://www.npmjs.com/package/passport-local)   | For local user authentication.                                      |
+| [express](https://www.npmjs.com/package/express)                 | Node.js web application framework the application was written with. |
+| [express-session](https://www.npmjs.com/package/express-session) | For managing user sessions.                                         |
+| [connect-mongo](https://www.npmjs.com/package/connect-mongo)     | For managing user sessions.                                         |
+| [body-parser](https://www.npmjs.com/package/body-parser)         | To parse request bodies.                                            |
+| [method-override](https://www.npmjs.com/package/method-override) | To use other HTTP request methods like PUT.                         |
+| [dotenv](https://www.npmjs.com/package/dotenv)                   | To load custom environment variables in local instances.            |
+| [js-cookie](https://www.npmjs.com/package/js-cookie)             | Handles cookies.                                                    |
+| [multer](https://www.npmjs.com/package/multer)                   | For handling file uploads.                                          |
 
-The development team would like to acknowledge webfashionist for the WYSIWYG editor developed as jQuery plugin that we used for the RichText editor in our project.
-Link to Repository: https://github.com/webfashionist/RichText/
-Github Profile: https://github.com/webfashionist 
+## Setup and Usage
+
+### Local Instance
+Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com/) prior to doing the following. After installation, also ensure that MongoDB is running properly.
+
+1. Clone the repository via Git or downloading the `.zip` file directly.
+2. In the root directory, launch the terminal and run `npm install` to install the project [dependencies](#dependencies).
+3. Populate the database using `npm run popdb`. Console logs should show that the documents (tables) in the database have been populated successfully.
+4. Run the server using `npm start`. Console logs should show that the application is listening on port `3000` and that a connection to the database was successfully created.
+5. Go to [localhost:3000](http://localhost:3000) or [127.0.0.1:3000](http://127.0.0.1:3000) using a browser to use the application.
+
+### Deployed Instance
+Alternatively, an instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
+
+## Sample Accounts
+The default database comes with some sample accounts that may be
+used in the web application.
+
+| Username              | Password         |
+| --------------------- | ---------------- |
+| `melissa_spellman`    | `Melissa-12345`  |
+| `draeznor_rock_lover` | `Draeznor-12345` |
+| `aria_eagleheart`     | `Aria-12345`     |
+| `marithus_25`         | `Marithus-12345` |
+| `jennie_itgirl`       | `Jennie-12345`   |
+
+## Contributors
+| Name                     | GitHub Profile                                                      |
+| ------------------------ | ------------------------------------------------------------------- |
+| Harvey Shawn Chua        | [3liteking148](https://github.com/3liteking148)                     |
+| Latasha Harwani          | [Tasha1403](https://github.com/Tasha1403)                           |
+| Patrick James Marcellana | [patrickjamesmarcellana](https://github.com/patrickjamesmarcellana) |
+| Brett Harley Mider       | [ChorusMortis](https://github.com/ChorusMortis)                     |
+
+## Acknowledgments
+The development team would like to acknowledge the following people and organizations for their amazing work that we used in developing the project.
+
+| Individual/Organization                           | Libraries                                                                  | Remark                                         |
+| ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
+| [webfashionist](https://github.com/webfashionist) | [WYSIWYG editor jQuery plugin](https://github.com/webfashionist/RichText/) | Used in the web application's RichText editor. |

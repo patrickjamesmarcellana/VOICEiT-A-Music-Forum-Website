@@ -41,18 +41,19 @@ const commentViewManager = {
         // store vote count on dict
         container.setAttribute("raw_vote_count", comment.votes)
 
+        // was the comment edited
+        if(comment.flags.includes("edited")) {
+            container.querySelector(".comment-edited-remark").classList.remove("hidden")
+        }
+        
         // inject comment author
         if(!is_deleted) {
             container.querySelector(".comment-author").textContent = comment.author
             container.querySelector(".comment-author").href = `profile.html?user=${comment.author}`
         } else {
             container.querySelector(".comment-author").textContent = "[deleted]"
-        }
-
-
-        // was the comment edited
-        if(comment.flags.includes("edited")) {
-            container.querySelector(".comment-edited-remark").classList.remove("hidden")
+            container.querySelector(".comment-author").removeAttribute("href")
+            container.querySelector(".comment-edited-remark").classList.add("hidden")
         }
 
         // inject comment text
@@ -82,8 +83,11 @@ const commentViewManager = {
             vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
             vote_buttons.downvote_button.addEventListener("click", onCommentVoteButtonPressed)
         } else {
-            vote_buttons.upvote_button.style["pointer-events"] = "none"
-            vote_buttons.downvote_button.style["pointer-events"] = "none"
+            // vote_buttons.upvote_button.style["pointer-events"] = "none"
+            // vote_buttons.downvote_button.style["pointer-events"] = "none"
+            vote_buttons.upvote_button.classList.add("hidden")
+            vote_buttons.downvote_button.classList.add("hidden")
+            container.querySelector(".comment-vote-count").classList.add("hidden")
         }
         updateVoteUI(container, comment.vote_state, comment.votes)
 

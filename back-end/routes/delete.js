@@ -8,6 +8,7 @@ router.delete("/post/:post_id", async (req, res) => {
     const post = await Post.findById(req.params["post_id"]).populate("user").exec()
     if(req.user && req.user._id.equals(post.user._id)) {
         await Post.findByIdAndDelete(req.params["post_id"])
+        await Comment.deleteMany({post_id: req.params["post_id"]})
         res.sendStatus(200)
     } else {
         res.sendStatus(401)
