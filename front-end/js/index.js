@@ -22,6 +22,9 @@ async function logout() {
     window.location.reload();
 }
 
+// let javascript:logout() work
+window.logout = logout
+
 $(document).ready(async function() {
     /* changing nav-bar and side-panel-a's views when logging in */
     const side_panel_bottom = $(".side-panel-bottom");
