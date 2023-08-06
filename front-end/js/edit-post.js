@@ -173,6 +173,10 @@ $(document).ready(async function() {
         saveOnBlur: 0, 
         undoRedo: true
     });
+
+    if(window.visualViewport.width <= 1080) {
+        $(".create-post").css('scale', '1.3')
+    }
 });
 
 $(this).keyup(function() { // this points to the rich text editor... I think, or probably the whole document (no prob with that)
