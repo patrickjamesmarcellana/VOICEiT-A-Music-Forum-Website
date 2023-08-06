@@ -1,10 +1,12 @@
 # VOICEiT: A Music Forum Website
 
 ## Overview
-VoiceIt is a web forum application designed for people interested in music. It allows users to make conversations with other people by making an account, posting, interacting, and commenting, among others.
+
+VoiceIt is a web forum application designed for people interested in discussing music. It allows users to connect with other people by making an account, posting, commenting, and interacting, among others.
 
 ## Dependencies
-The web application was written in and requires [Node.js](https://nodejs.org), and uses [MongoDB](https://www.mongodb.com/) for the database. It also uses [jQuery](https://jquery.com) for DOM manipulation and rich text, which is bundled with the project and requires no further installation.
+
+The web application was mainly written with HTML, CSS, and JavaScript. It requires [Node.js](https://nodejs.org) and uses [MongoDB](https://www.mongodb.com/) for the database. It also uses [jQuery](https://jquery.com) for DOM manipulation and rich text, which is bundled with the project and requires no further installation.
 
 The following is a list of libraries and packages that the project utilizes for its operation.
 | Dependency                                                       | Remark                                                              |
@@ -19,26 +21,28 @@ The following is a list of libraries and packages that the project utilizes for 
 | [body-parser](https://www.npmjs.com/package/body-parser)         | To parse request bodies.                                            |
 | [method-override](https://www.npmjs.com/package/method-override) | To use other HTTP request methods like PUT.                         |
 | [dotenv](https://www.npmjs.com/package/dotenv)                   | To load custom environment variables in local instances.            |
-| [js-cookie](https://www.npmjs.com/package/js-cookie)             | Handles cookies.                                                    |
+| [js-cookie](https://www.npmjs.com/package/js-cookie)             | For handling cookies.                                               |
 | [multer](https://www.npmjs.com/package/multer)                   | For handling file uploads.                                          |
 
 ## Setup and Usage
 
 ### Local Instance
+
 Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com/) prior to doing the following. After installation, also ensure that MongoDB is running properly.
 
 1. Clone the repository via Git or downloading the `.zip` file directly.
 2. In the root directory, launch the terminal and run `npm install` to install the project [dependencies](#dependencies).
-3. Populate the database using `npm run popdb`. Console logs should show that the documents (tables) in the database have been populated successfully.
+3. Populate the database using `npm run popdb`. Console logs should show that the tables (collections in MongoDB) in the database have been populated successfully.
 4. Run the server using `npm start`. Console logs should show that the application is listening on port `3000` and that a connection to the database was successfully created.
 5. Go to [localhost:3000](http://localhost:3000) or [127.0.0.1:3000](http://127.0.0.1:3000) using a browser to use the application.
 
-### Deployed Instance
-Alternatively, an instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
+### Live Instance
+
+Alternatively, a live instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
 
 ## Sample Accounts
-The default database comes with mock accounts that may be
-used in the web application. Here are their respective details.
+
+The default database comes with pre-created accounts that may be used in the web application. Here are their respective credentials.
 
 | Username              | Password         |
 | --------------------- | ---------------- |
@@ -49,6 +53,7 @@ used in the web application. Here are their respective details.
 | `jennie_itgirl`       | `Jennie-12345`   |
 
 ## Contributors
+
 | Name                     | GitHub Profile                                                      |
 | ------------------------ | ------------------------------------------------------------------- |
 | Harvey Shawn Chua        | [3liteking148](https://github.com/3liteking148)                     |
@@ -57,8 +62,9 @@ used in the web application. Here are their respective details.
 | Brett Harley Mider       | [ChorusMortis](https://github.com/ChorusMortis)                     |
 
 ## Acknowledgments
-The development team would like to take a moment to acknowledge and credit the contributors/collaborators of the remarkable external libraries that were used in the development of this project.
 
-| Contributors/Organization                         | Libraries                                                                  | Remark                                         |
+The development team would like to take a moment to acknowledge and credit the developers of the remarkable external libraries that were used in the development of this project.
+
+| Developer/Organization                            | Libraries                                                                  | Remark                                         |
 | ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
 | [webfashionist](https://github.com/webfashionist) | [WYSIWYG editor jQuery plugin](https://github.com/webfashionist/RichText/) | Used in the web application's RichText editor. |
