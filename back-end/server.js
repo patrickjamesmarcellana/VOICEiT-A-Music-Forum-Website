@@ -102,5 +102,5 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log(`Mongoose connected to DB`)
 })
 app.listen(process.env.PORT, () => {
-    console.log(`Example app listening on port ${process.env.PORT}`)
+    console.log(`VOICEiT listening on port ${process.env.PORT}`)
 })
