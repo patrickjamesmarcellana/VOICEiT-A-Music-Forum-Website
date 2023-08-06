@@ -31,7 +31,8 @@ The following is a list of libraries and packages that the project utilizes for 
 Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com/) prior to doing the following. After installation, also ensure that MongoDB is running properly.
 
 1. Clone the repository via Git or downloading the `.zip` file directly.
-2. In the root directory, launch the terminal and run `npm install` to install the project [dependencies](#dependencies).
+2. Create a .env file in the root directory. A sample is provided below
+3. In the root directory, launch the terminal and run `npm install` to install the project [dependencies](#dependencies).
 3. Populate the database using `npm run popdb`. Console logs should show that the tables (collections in MongoDB) in the database have been populated successfully.
 4. Run the server using `npm start`. Console logs should show that the application is listening on port `3000` and that a connection to the database was successfully created.
 5. Go to [localhost:3000](http://localhost:3000) or [127.0.0.1:3000](http://127.0.0.1:3000) using a browser to use the application.
@@ -39,6 +40,21 @@ Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mon
 ### Live Instance
 
 Alternatively, a live instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
+
+## Example .env file
+```
+// Port number
+PORT = 3000 
+
+// MongoDB database that stores the forum
+MONGO_URI = mongodb://127.0.0.1/voiceit 
+
+// MongoDB database that stores the user sessions
+MONGO_SESSIONSTORE_URI = mongodb://127.0.0.1/voiceit-sessions
+
+// Secret used to encrypt session cookies
+SESSION_SECRET = 'do not hardcode this'
+```
 
 ## Sample Accounts
 
