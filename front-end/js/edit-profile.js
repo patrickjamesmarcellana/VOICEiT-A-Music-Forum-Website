@@ -7,10 +7,10 @@ const removePictureBtn = document.querySelector("#remove-picture");
 const submitBtn = document.querySelector("#submit-button");
 
 // when file is selected, change image preview
-const changePhoto = (event) => {
+$("#file").on("change", (event) => {
     const newImage = document.getElementById("newimage");
     newImage.setAttribute("src", URL.createObjectURL(event.target.files[0]));
-};
+});
 
 // window.onclick = function (event) {
 //     if (event.target == modal) {
