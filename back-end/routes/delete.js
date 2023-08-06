@@ -6,7 +6,7 @@ const User = require("../models/User")
 
 router.delete("/post/:post_id", async (req, res) => {
     const post = await Post.findById(req.params["post_id"]).populate("user").exec()
-    if(req.user && req.user._id.equals(post.user._id)) {
+    if(post /* is not null */ && req.user && req.user._id.equals(post.user._id)) {
         await Post.findByIdAndDelete(req.params["post_id"])
         await Comment.deleteMany({post_id: req.params["post_id"]})
         res.sendStatus(200)
@@ -17,7 +17,7 @@ router.delete("/post/:post_id", async (req, res) => {
 
 router.delete("/comment/:comment_id", async (req, res) => {
     const comment = await Comment.findById(req.params["comment_id"]).populate("user").exec()
-    if(req.user && req.user._id.equals(comment.user._id)) {
+    if(comment /* is not null */ && req.user && req.user._id.equals(comment.user._id)) {
         await Comment.findByIdAndUpdate(req.params["comment_id"], {
             user: null,
             date: null,
