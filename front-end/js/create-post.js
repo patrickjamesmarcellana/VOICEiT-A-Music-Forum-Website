@@ -172,20 +172,6 @@ $(document).ready(function() {
 
     $('#post-button').attr('disabled', 'disabled');
     $("#post-button").addClass('noHover');
-
-    $('#post-title').keyup(function() {
-        let content_count = removeHTMLTags($('#post-content').val()).length
-        let title_count = $('#post-title').val().length
-        // console.log(title_count)
-        // console.log(content_count)
-        if(title_count > 0 && content_count > 0) {
-            $('#post-button').attr('disabled', false);            
-            $("#post-button").removeClass('noHover')
-        } else {
-            $('#post-button').attr('disabled', true);
-            $("#post-button").addClass('noHover');
-        }
-    });
 });
 
 $(this).keyup(function() { // this points to the rich text editor... I think, or probably the whole document (no prob with that)
@@ -195,9 +181,11 @@ $(this).keyup(function() { // this points to the rich text editor... I think, or
     // console.log(content_count)
     if(title_count > 0 && content_count > 0) {
         $('#post-button').attr('disabled', false);    
-        $("#post-button").removeClass('noHover')        
+        $("#post-button").removeClass('noHover')      
+        $(".post-invalid").css("display", 'none')  
     } else {
         $('#post-button').attr('disabled', true);
         $("#post-button").addClass('noHover');
+        $(".post-invalid").css("display", 'block')  
     }
 });

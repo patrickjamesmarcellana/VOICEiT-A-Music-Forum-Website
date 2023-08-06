@@ -127,3 +127,10 @@
         height: 90vh;
     }
 }
+
+.post-invalid {
+    display: none;
+    color: rgb(255, 174, 174);
+    text-align: center;
+    font-size: 0.8rem;
+}
