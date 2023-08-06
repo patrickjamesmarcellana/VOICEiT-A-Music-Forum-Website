@@ -22,8 +22,7 @@ app.use(methodOverride("_method"))
 
 // session management
 app.use(session({
-    secret: 'do not hardcode this',
-    resave: false,
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
 
     // save all logged-in browser sessions to MongoDB
