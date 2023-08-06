@@ -168,8 +168,8 @@ td:not(:last-child) {
 
 .back-button:hover {
     background-color: black;
-    color: white;
     cursor: pointer;
+    background-image: none;
 }
 
 .back-button a {

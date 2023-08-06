@@ -884,7 +884,7 @@ body {
 
 .about-button:hover {
     background-color: black;
-    color: black;
+    background-image: none;
     cursor: pointer;
 }
 
