@@ -828,6 +828,11 @@ body {
     margin: 0 auto;
     min-width: 400px;
     width: 20vw;
+
+    /* https://stackoverflow.com/questions/44446671/my-position-sticky-element-isnt-sticky-when-using-flexbox */
+    align-self: flex-start;
+    position: sticky;
+    top: 71px;
 }
 
 .search-side-b {
@@ -839,8 +844,6 @@ body {
     width: 82%;
     padding: 19px;
     color: var(--main-color);
-    position: sticky;
-    top: 71px;
     border-radius: 5px;
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
     box-shadow: 0px 3px 6px 0px #31294c;
@@ -851,8 +854,6 @@ body {
     width: 82%;
     padding: 19px;
     color: var(--main-color);
-    position: sticky;
-    top: 284px;
     height: auto;
     border-radius: 5px;
     background-image: linear-gradient(#31294c, #5756bb, #8182da);
