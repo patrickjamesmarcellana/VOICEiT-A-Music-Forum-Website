@@ -132,12 +132,11 @@ tr:nth-child(even) {
 }
 
 /* Table link styles */
-a {
+.about-link {
     text-decoration: none;
     color: #0366d6;
 }
-
-a:hover {
+.about-link:hover {
     text-decoration: underline;
     color: #03396c;
 }
@@ -163,6 +162,7 @@ td:not(:last-child) {
     display: block;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     margin: 15px auto 0px auto;
+    text-decoration: none;
     color: var(--main-color)
 }
 
