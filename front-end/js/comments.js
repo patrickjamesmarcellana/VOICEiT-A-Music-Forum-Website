@@ -1,21 +1,22 @@
 import commentManager from "./model/comment-manager.js"
 import commentViewManager from "./view/comment-view.js"
 
-// LIFO stack that stores the currently viewing comments by depth
-// to allow browsing very deep subcomments
-const comment_view_stack = []
-
 const commentPanel = {
+    // LIFO stack that stores the currently viewing comments by depth
+    // to allow browsing very deep subcomments
+    comment_view_stack: [],
+
     loadSingleComment: async function(comment_id) {
         // wipe comments?
         document.querySelector("#comments-panel").innerHTML = ""
     
         // set indicator
-        document.querySelector(".comment-subcomments-indicator").classList.remove("hidden")
+        document.querySelector(".comment-viewing-single-thread-indicator").classList.remove("hidden")
+        document.querySelector(".comment-viewing-single-thread-indicator").addEventListener("click", () => { commentPanel.comment_panel_back() })
     
         await commentPanel.loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
     
-        comment_view_stack.push(comment_id)
+        commentPanel.comment_view_stack.push(comment_id)
     
         const search_params = new URLSearchParams(window.location.search)
         search_params.set("comment_id", comment_id)
@@ -27,13 +28,13 @@ const commentPanel = {
         document.querySelector("#comments-panel").innerHTML = ""
     
         // set indicator
-        document.querySelector(".comment-subcomments-indicator").classList.add("hidden")
+        document.querySelector(".comment-viewing-single-thread-indicator").classList.add("hidden")
     
         for(const comment_id of top_level_comments_list) {
             await commentPanel.loadCommentTreeToView(comment_id, document.querySelector("#comments-panel"), 0)
         }
     
-        comment_view_stack.push(top_level_comments_list)
+        commentPanel.comment_view_stack.push(top_level_comments_list)
     
         const search_params = new URLSearchParams(window.location.search)
         if(search_params.has("comment_id")) {
@@ -61,13 +62,12 @@ const commentPanel = {
     },
 
     comment_panel_back: () => {
-        const current_comment = comment_view_stack.pop()
+        const current_comment = commentPanel.comment_view_stack.pop()
     
-        console.log(comment_view_stack)
-        if(comment_view_stack.length > 1) {
-            commentPanel.loadSingleComment(comment_view_stack.pop())
+        if(commentPanel.comment_view_stack.length > 1) {
+            commentPanel.loadSingleComment(commentPanel.comment_view_stack.pop())
         } else {
-            commentPanel.loadAllComment(comment_view_stack.pop())
+            commentPanel.loadAllComment(commentPanel.comment_view_stack.pop())
         }
     
         // change anchor
