@@ -2,7 +2,7 @@
 
 ## Overview
 
-VoiceIt is a web forum application designed for people interested in discussing music. It allows users to connect with other people by making an account, posting, commenting, and interacting, among others.
+VoiceIt (stylized as **VOICEiT**) is a web forum application designed for people interested in discussing music. It allows users to connect with other people by making an account, posting, commenting, and interacting, among others.
 
 ## Dependencies
 
@@ -19,7 +19,7 @@ The following is a list of libraries and packages that the project utilizes for 
 | [express-session](https://www.npmjs.com/package/express-session) | For managing user sessions.                                         |
 | [connect-mongo](https://www.npmjs.com/package/connect-mongo)     | For managing user sessions.                                         |
 | [body-parser](https://www.npmjs.com/package/body-parser)         | To parse request bodies.                                            |
-| [method-override](https://www.npmjs.com/package/method-override) | To use other HTTP request methods like PUT.                         |
+| [method-override](https://www.npmjs.com/package/method-override) | To use other HTTP request methods like PATCH.                       |
 | [dotenv](https://www.npmjs.com/package/dotenv)                   | To load custom environment variables in local instances.            |
 | [js-cookie](https://www.npmjs.com/package/js-cookie)             | For handling cookies.                                               |
 | [multer](https://www.npmjs.com/package/multer)                   | For handling file uploads.                                          |
