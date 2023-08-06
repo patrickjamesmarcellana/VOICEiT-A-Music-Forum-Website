@@ -142,6 +142,7 @@ $(document).ready(async function() {
     function adjust_window() {
         if(window.visualViewport.width <= 1080) {
             $(".side-panel-b").css("display", "none")
+            $("#search-input").css('-webkit-appearance', 'textfield')
         }
         if(window.innerWidth <= 958) {
             $(".post-panel").css("width", "100vw");
