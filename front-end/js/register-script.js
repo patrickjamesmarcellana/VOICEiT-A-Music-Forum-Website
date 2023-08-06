@@ -1,3 +1,5 @@
+import is_logged_in from "./auth.js"
+
 const loginUsername = document.getElementById("login-username");
 const loginPassword = document.getElementById("login-password");
 const confirmLoginPassword = document.getElementById("confirm-login-password");
@@ -5,11 +7,6 @@ const createAccountBtn = document.getElementById("submit-button");
 const customizeProfileBtn = document.querySelector(".next-button");
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-    if (typeof Cookies === "undefined") {
-        console.log("Downloading js-cookie");
-        await $.getScript("/js/js.cookie-3.0.5.min.js");
-    }
-
     if (is_logged_in()) {
         window.location.replace("index.html");
     }

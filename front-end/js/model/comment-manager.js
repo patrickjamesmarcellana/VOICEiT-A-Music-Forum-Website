@@ -66,3 +66,5 @@ const commentManager = {
         return response.status
     }
 }
+
+export default commentManager

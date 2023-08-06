@@ -9,3 +9,5 @@ const voteManager = {
         return response.status
     }
 } 
+
+export default voteManager

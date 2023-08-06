@@ -1,3 +1,9 @@
+import Cookies from "../js.cookie-3.0.5.min.mjs"
+import commentPanel from "../comments.js"
+import commentManager from "../model/comment-manager.js"
+import voteLogic from "../vote_logic.js"
+import is_logged_in from "../auth.js"
+
 // TODO: split onVoteButtonPressed between controller and view
 // important note: querySelector only returns the first element (which is fine for comments that only have 1 of each element like comment body, upvote button, etc)
 const COMMENT_PREFIX = "comment-"
@@ -10,11 +16,6 @@ const commentViewManager = {
     // container - option to use a pre-existing container
     // returns: container containing the displayed comment
     insert_comment: function(comment, commentInjectionLocation, container){
-        if(comment == null) {
-            console.warn(`Comment ${comment_id} not found. Aborting`)
-            return
-        }
-
         // overwrite existing comment?
         const container_id = COMMENT_PREFIX + comment.comment_id
         
@@ -78,10 +79,10 @@ const commentViewManager = {
         
 
         // inject listeners
-        const vote_buttons = getVoteButtons(container)
+        const vote_buttons = voteLogic.getVoteButtons(container)
         if(!is_deleted) {
-            vote_buttons.upvote_button.addEventListener("click", onCommentVoteButtonPressed)
-            vote_buttons.downvote_button.addEventListener("click", onCommentVoteButtonPressed)
+            vote_buttons.upvote_button.addEventListener("click", voteLogic.onCommentVoteButtonPressed)
+            vote_buttons.downvote_button.addEventListener("click", voteLogic.onCommentVoteButtonPressed)
         } else {
             // vote_buttons.upvote_button.style["pointer-events"] = "none"
             // vote_buttons.downvote_button.style["pointer-events"] = "none"
@@ -89,7 +90,7 @@ const commentViewManager = {
             vote_buttons.downvote_button.classList.add("hidden")
             container.querySelector(".comment-vote-count").classList.add("hidden")
         }
-        updateVoteUI(container, comment.vote_state, comment.votes)
+        voteLogic.updateVoteUI(container, comment.vote_state, comment.votes)
 
         // should the edit/delete buttons be visible?
         if(is_logged_in() && comment.author === Cookies.get("logged_in_as")) {
@@ -166,7 +167,7 @@ const commentViewManager = {
             const comment_id = this.getAttribute("backend_id")
             loadmore.classList.remove("hidden")
             loadmore.textContent = loadmore.textContent.replace("$COUNT", subcomment_amount)
-            loadmore.href = `javascript:loadSingleComment("${comment_id}")`
+            loadmore.addEventListener("click", () => {commentPanel.loadSingleComment(comment_id)})
         }
 
         return container
@@ -184,7 +185,6 @@ const commentViewManager = {
         
         const text_content = editor_container.querySelector("textarea").value
 
-        let status
         switch(mode) {
             case "edit":
             {
@@ -210,8 +210,8 @@ const commentViewManager = {
                     const insertedComment = commentViewManager.insert_comment(reply, comment_container.getSubcommentsPanel())
                     const viewDepth = commentViewManager.getViewDepth(insertedComment)
                     if(viewDepth >= 5) {
-                        if(typeof loadSingleComment !== "undefined") {
-                            await loadSingleComment(reply.parent_comment_id)
+                        if(window.location.pathname.split("/").pop() !== "profile.html") {
+                            await commentPanel.loadSingleComment(reply.parent_comment_id)
                         } else {
                             // we are in profile.html, loadSingleComment does not exist there
                             window.location.href = "/post.html?post=" + reply.post_id + "&comment_id=" + reply.parent_comment_id
@@ -283,3 +283,4 @@ const commentViewManager = {
     }
 }
 
+export default commentViewManager

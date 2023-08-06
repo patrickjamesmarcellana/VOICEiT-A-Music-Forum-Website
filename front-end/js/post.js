@@ -1,8 +1,17 @@
+import is_logged_in from "./auth.js"
+import Cookies from "./js.cookie-3.0.5.min.mjs"
+import userManager from "./model/user-manager.js"
+import commentPanel from "./comments.js"
+import voteLogic from "./vote_logic.js"
+import postManager from "./model/post-manager.js"
+import commentManager from "./model/comment-manager.js"
+import commentViewManager from "./view/comment-view.js"
+
 // TODO: move to template because theres a small delay between page load and post content load
 $(document).ready(async function() {
     const LOGIN_USER = Cookies.get("logged_in_as")
     const search_params = new URLSearchParams(window.location.search)
-    post_id = search_params.get("post")
+    const post_id = search_params.get("post")
 
     const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
     const time_options = {hour: 'numeric', minute: '2-digit'}
@@ -59,11 +68,11 @@ $(document).ready(async function() {
         // add votes
         $(".post-container").attr("upvote-count", post.upvote_count)
         $(".post-container").attr("downvote-count", post.downvote_count)
-        updateVoteUI($(".post-container").get(0) /* convert to vanilla DOM */, post.vote_state, [post.upvote_count, post.downvote_count])
+        voteLogic.updateVoteUI($(".post-container").get(0) /* convert to vanilla DOM */, post.vote_state, [post.upvote_count, post.downvote_count])
 
         // add vote listeners
-        $(".post-container").find(".post-upvote-button").click(onPostVoteButtonPressed)
-        $(".post-container").find(".post-downvote-button").click(onPostVoteButtonPressed)
+        $(".post-container").find(".post-upvote-button").click(voteLogic.onPostVoteButtonPressed)
+        $(".post-container").find(".post-downvote-button").click(voteLogic.onPostVoteButtonPressed)
 
         $(".post-text-editor-submit-button").click(async () => {
             const post_id = $(".post-container").attr("post-id")
@@ -79,10 +88,10 @@ $(document).ready(async function() {
         // render comments
         const specific_comment_id = search_params.get("comment_id")
         if(specific_comment_id) {
-            comment_view_stack.push(post.top_level_comments_list) // push the "previous" view
-            await loadSingleComment(specific_comment_id)
+            commentPanel.comment_view_stack.push(post.top_level_comments_list) // push the "previous" view
+            await commentPanel.loadSingleComment(specific_comment_id)
         } else {
-            await loadAllComment(post.top_level_comments_list)
+            await commentPanel.loadAllComment(post.top_level_comments_list)
         }
     } 
 })

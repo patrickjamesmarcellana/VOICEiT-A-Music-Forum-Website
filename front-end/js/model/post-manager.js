@@ -63,3 +63,5 @@ const postManager = {
         return response.status
     }
 } 
+
+export default postManager

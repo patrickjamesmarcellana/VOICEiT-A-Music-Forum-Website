@@ -46,3 +46,5 @@ const userManager = {
         return response.status
     }
 }
+
+export default userManager

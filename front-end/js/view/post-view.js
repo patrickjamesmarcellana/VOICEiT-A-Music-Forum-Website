@@ -1,3 +1,9 @@
+import Cookies from "../js.cookie-3.0.5.min.mjs"
+import postManager from "../model/post-manager.js"
+import voteLogic from "../vote_logic.js"
+import is_logged_in from "../auth.js"
+import forums from "../forums.js"
+
 const date_options = {year: 'numeric', month: 'short', day: 'numeric'}
 const time_options = {hour: 'numeric', minute: '2-digit'}
 
@@ -103,11 +109,11 @@ const postViewManager = {
         // add votes
         inserted_post.attr("upvote-count", post.upvote_count)
         inserted_post.attr("downvote-count", post.downvote_count)
-        updateVoteUI(inserted_post.get(0), post.vote_state, [post.upvote_count, post.downvote_count])
+        voteLogic.updateVoteUI(inserted_post.get(0), post.vote_state, [post.upvote_count, post.downvote_count])
 
         // add vote listeners
-        inserted_post.find(".post-upvote-button").click(onPostVoteButtonPressed)
-        inserted_post.find(".post-downvote-button").click(onPostVoteButtonPressed)
+        inserted_post.find(".post-upvote-button").click(voteLogic.onPostVoteButtonPressed)
+        inserted_post.find(".post-downvote-button").click(voteLogic.onPostVoteButtonPressed)
 
         // add edited mark if edited
         if(post.isEdited === true) {
@@ -143,3 +149,5 @@ const postViewManager = {
         return postViewManager.insert_post(post_with_highlight)
     }
 } 
+
+export default postViewManager

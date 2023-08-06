@@ -1,3 +1,5 @@
+import postManager from "./model/post-manager.js"
+
 function removeHTMLTags(str) {
     if ((str===null) || (str===''))
         return false;

@@ -1,3 +1,5 @@
+import is_logged_in from "./auth.js"
+
 /* sets scroll handler
     loadInitialPosts - callback that returns the initial set of posts given the requested number of initial posts
     loadMorePosts - callback that returns the next set of posts to display given the cursor and requested number of posts 
@@ -60,3 +62,5 @@ async function setInfiniteScrollHandler(loadInitialPosts, loadMorePosts, insertP
     if(!is_logged_in() && added_posts < total_posts)
         $(".post-panel").append(see_more_panel);
 }
+
+export default setInfiniteScrollHandler

@@ -1,5 +1,12 @@
+import setInfiniteScrollHandler from "./pagination.js"
+import commentManager from "./model/comment-manager.js"
+import postManager from "./model/post-manager.js"
+import commentViewManager from "./view/comment-view.js"
+import postViewManager from "./view/post-view.js"
+import userManager from "./model/user-manager.js"
+
 // allegedly an enum
-ProfileMode = {
+const ProfileMode = {
     get MODE_OVERVIEW() {
         return 0;
     },
@@ -165,7 +172,7 @@ async function render_profile(target_user, mode) {
 
 $(document).ready(async function() {
     const search_params = new URLSearchParams(window.location.search)
-    target_user = search_params.get("user")
+    const target_user = search_params.get("user")
 
     $("#profile-overview-button").click(async function() {
         await render_profile(target_user, ProfileMode.MODE_OVERVIEW)

@@ -1,3 +1,5 @@
+import userManager from "./model/user-manager.js"
+
 const modal = document.querySelector(".edit-profile-modal");
 const exitModalBtn = document.querySelector(".exit-button");
 const editProfileBtns = document.querySelectorAll(".edit-profile-button");
