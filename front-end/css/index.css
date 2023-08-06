@@ -721,6 +721,10 @@ body {
   
 .post-options-button:hover .options-dropdown {
     display: block;
+}
+
+.post-options-button:active .options-dropdown {
+    display: block;
   }
 
 .post-content, .post-comment-section {
