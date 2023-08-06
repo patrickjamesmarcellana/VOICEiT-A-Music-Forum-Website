@@ -143,6 +143,9 @@ $(document).ready(async function() {
         if(window.visualViewport.width <= 1080) {
             $(".side-panel-b").css("display", "none")
             $("#search-input").css('-webkit-appearance', 'textfield')
+            if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
+                $(".title-panel").attr('href', 'about.html')
+            }
         }
         if(window.innerWidth <= 958) {
             $(".post-panel").css("width", "100vw");
