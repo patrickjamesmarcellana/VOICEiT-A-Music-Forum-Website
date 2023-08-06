@@ -100,7 +100,6 @@ const commentViewManager = {
             // set listeners
             editor_container.querySelector(".comment-text-editor-submit-button").addEventListener("click", commentViewManager.onMiniSubmitButtonPressed)
             editor_container.querySelector("textarea").addEventListener("keyup", (event) => {
-                const container = event.currentTarget.closest(".comment-container")
                 validateInput(editor_container)
             })
 

@@ -92,5 +92,24 @@ $(document).ready(async function() {
         } else {
             await commentPanel.loadAllComment(post.top_level_comments_list)
         }
+
+        // input validator
+        const editor_container = $(".post-container").find(".post-text-editor")
+        const validateInput = (editor_container) => {
+            const text_editor = editor_container.find("textarea")
+            const submit_button = editor_container.find(".post-text-editor-submit-button")
+
+            if(text_editor.val().trim() !== "") {
+                submit_button.attr("disabled", false)
+            } else {
+                submit_button.attr("disabled", true)
+            }
+        }
+        editor_container.find("textarea").on("keyup", (event) => {
+            validateInput(editor_container)
+        })
+
+        // run at start
+        validateInput(editor_container)
     } 
 })
