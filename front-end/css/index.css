@@ -229,12 +229,6 @@ body {
     -webkit-transform: rotate(45deg);
 }
 
-@media screen and (max-width: 1080px) {
-    .side-panel-b {
-        display: none;
-    }
-}
-
 @media screen and (max-width: 1247px) {
     .topics-button {
         display: inline-block;
