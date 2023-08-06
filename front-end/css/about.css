@@ -81,7 +81,7 @@ h1{
     font-size: 1.1 rem;
 }
 
-#content-line{
+.content-line{
     width: 80%;
     margin-top: 0px;
 }
@@ -146,5 +146,33 @@ a:hover {
 th:not(:last-child),
 td:not(:last-child) {
     border-right: 1px solid black;
+}
+
+/* Back Button */
+.back-button {
+    font-weight: bold;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: solid 1px black;
+    background-color: transparent;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    width: 160px;
+    text-align: center;
+    display: block;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin: 15px auto 0px auto;
+}
+
+.back-button:hover {
+    background-image: linear-gradient(#31294c, #5756bb);
+    color: white;
+    cursor: pointer;
+}
+
+.back-button a {
+    text-decoration: none;
+    color: inherit
 }
 
