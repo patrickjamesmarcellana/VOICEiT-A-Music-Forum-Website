@@ -1,8 +1,7 @@
 const router = require("express").Router()
-const Comment = require("../models/Comment")
 const Post = require("../models/Post")
 const User = require("../models/User")
-const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
+const {parse_pagination_params} = require("../utils/pagination")
 const asyncHandler = require('express-async-handler')
 
 router.get("/:user", asyncHandler(async (req, res) => {

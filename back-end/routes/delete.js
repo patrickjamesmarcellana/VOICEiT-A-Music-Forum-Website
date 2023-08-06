@@ -2,7 +2,6 @@ const router = require("express").Router()
 
 const Comment = require("../models/Comment")
 const Post = require("../models/Post")
-const User = require("../models/User")
 
 const asyncHandler = require('express-async-handler')
 

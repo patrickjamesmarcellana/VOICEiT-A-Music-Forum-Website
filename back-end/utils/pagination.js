@@ -77,7 +77,7 @@ const cursor_paginate = asyncHandler(async (collection, filter_query, metric_nam
             return []
         }
 
-        sort_query = {}
+        const sort_query = {}
         sort_query[metric_name] = -1 // sort by scores first in descending order,
         sort_query["_id"] = -1 // if they have equal scores, sort by the object ID in descending order
 

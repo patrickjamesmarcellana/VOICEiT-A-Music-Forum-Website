@@ -1,14 +1,9 @@
 const Comment = require("../models/Comment")
 require('dotenv').config()
 
-mongoose = require("mongoose")
-mongoose.connect(process.env.MONGO_URI).then(async () => {
-    console.log(`Mongoose connected to DB`)
-    await setCommentParent()
-    process.exit(0)
-})
+const mongoose = require("mongoose")
 
-setCommentParent = async () => {
+const setCommentParent = async () => {
     const comments = await Comment.find({}).exec()
     for(let i = 0;  i < comments.length; i++) {
         const parent_comment = await Comment.findOne({
@@ -22,4 +17,11 @@ setCommentParent = async () => {
         }
     }
 }
+
+mongoose.connect(process.env.MONGO_URI).then(async () => {
+    console.log(`Mongoose connected to DB`)
+    await setCommentParent()
+    process.exit(0)
+})
+
 

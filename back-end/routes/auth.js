@@ -7,6 +7,7 @@ const User = require("../models/User");
 const Constants = require("../constants");
 
 const asyncHandler = require('express-async-handler')
+const mongoose = require("mongoose")
 
 router.post("/register", asyncHandler(async (req, res) => {
     try {
@@ -20,7 +21,7 @@ router.post("/register", asyncHandler(async (req, res) => {
             username: req.body["username"],
         }).save();
 
-        const newPassword = await new Password({
+        await new Password({
             user: newUser._id,
             password: req.body["password"],
         }).save();
@@ -49,7 +50,7 @@ router.post("/login", passport.authenticate("local", {}), asyncHandler(async (re
 
     // set login date
     const new_date = Date.now();
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
         { username: req.body["username"] },
         { lastLogin: new_date }
     );

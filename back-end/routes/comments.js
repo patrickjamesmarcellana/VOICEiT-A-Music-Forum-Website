@@ -3,6 +3,7 @@ const router = require("express").Router()
 const Constants = require("../constants")
 const Comment = require("../models/Comment")
 const Utils = require("../utils/utils")
+const User = require("../models/User")
 
 const {parse_pagination_params, cursor_paginate} = require("../utils/pagination")
 const asyncHandler = require('express-async-handler')

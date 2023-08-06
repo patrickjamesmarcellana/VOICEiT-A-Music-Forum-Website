@@ -2,14 +2,13 @@ const Constants = require("./constants")
 const express = require("express")
 const session = require("express-session")
 const passport = require('passport')
-const passport_loader = require("./passport_loader")
+require("./passport_loader")
 const MongoStore = require('connect-mongo')
 require('dotenv').config()
 
 const app = express()
 
-mongoose = require("mongoose")
-User = require("./models/User")
+const mongoose = require("mongoose")
 
 // body parser is needed to decode POST requests (such as login)
 const bodyparser = require('body-parser');
@@ -96,6 +95,7 @@ app.use("/api/vote", vote_router)
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.sendStatus(400)
+    next()
 })
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
