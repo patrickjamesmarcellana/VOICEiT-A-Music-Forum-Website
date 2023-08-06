@@ -74,17 +74,6 @@ $(document).ready(async function() {
         $(".post-container").find(".post-upvote-button").click(voteLogic.onPostVoteButtonPressed)
         $(".post-container").find(".post-downvote-button").click(voteLogic.onPostVoteButtonPressed)
 
-        $(".post-text-editor-submit-button").click(async () => {
-            const post_id = $(".post-container").attr("post-id")
-            const [status, new_comment_id] = await commentManager.createComment(post_id, null, $(".post-text-editor > textarea").val())
-            if(status == 200) {
-                commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), document.querySelector("#comments-panel"))
-                $(".comment-count").text(parseInt($(".comment-count").text()) + 1)
-            }
-
-            // reset text editor
-            $(".post-text-editor > textarea").val("")
-        })
         // render comments
         const specific_comment_id = search_params.get("comment_id")
         if(specific_comment_id) {
@@ -93,23 +82,47 @@ $(document).ready(async function() {
             await commentPanel.loadAllComment(post.top_level_comments_list)
         }
 
-        // input validator
-        const editor_container = $(".post-container").find(".post-text-editor")
-        const validateInput = (editor_container) => {
+
+
+        // hide when logged out
+        if(!is_logged_in()) {
             const text_editor = editor_container.find("textarea")
-            const submit_button = editor_container.find(".post-text-editor-submit-button")
+            text_editor.attr("disabled", "true")
+            text_editor.val("Want to comment? Login to your VOICEiT account")
+            text_editor.css("background", "white")
+            text_editor.css("color", "black")
+            editor_container.find(".post-text-editor-submit-button").attr("disabled", true)
+        } else {
+            $(".post-text-editor-submit-button").click(async () => {
+                const post_id = $(".post-container").attr("post-id")
+                const [status, new_comment_id] = await commentManager.createComment(post_id, null, $(".post-text-editor > textarea").val())
+                if(status == 200) {
+                    commentViewManager.insert_comment(await commentManager.getComment(new_comment_id), document.querySelector("#comments-panel"))
+                    $(".comment-count").text(parseInt($(".comment-count").text()) + 1)
+                }
+    
+                // reset text editor
+                $(".post-text-editor > textarea").val("")
+            })
 
-            if(text_editor.val().trim() !== "") {
-                submit_button.attr("disabled", false)
-            } else {
-                submit_button.attr("disabled", true)
+            // input validator
+            const editor_container = $(".post-container").find(".post-text-editor")
+            const validateInput = (editor_container) => {
+                const text_editor = editor_container.find("textarea")
+                const submit_button = editor_container.find(".post-text-editor-submit-button")
+
+                if(text_editor.val().trim() !== "") {
+                    submit_button.attr("disabled", false)
+                } else {
+                    submit_button.attr("disabled", true)
+                }
             }
-        }
-        editor_container.find("textarea").on("keyup", (event) => {
-            validateInput(editor_container)
-        })
+            editor_container.find("textarea").on("keyup", (event) => {
+                validateInput(editor_container)
+            })
 
-        // run at start
-        validateInput(editor_container)
+            // run at start
+            validateInput(editor_container)
+        }
     } 
 })
