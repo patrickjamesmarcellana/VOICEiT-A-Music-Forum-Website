@@ -6,7 +6,7 @@ VoiceIt is a web forum application designed for people interested in music. It a
 ## Dependencies
 The web application was written in and requires [Node.js](https://nodejs.org), and uses [MongoDB](https://www.mongodb.com/) for the database. It also uses [jQuery](https://jquery.com) for DOM manipulation and rich text, which is bundled with the project and requires no further installation.
 
-The following is a list of libraries and packages that the project uses and depends on.
+The following is a list of libraries and packages that the project utilizes for its operation.
 | Dependency                                                       | Remark                                                              |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [mongoose](https://www.npmjs.com/package/mongoose)               | Object data modeling library for MongoDB.                           |
@@ -37,8 +37,8 @@ Make sure to install [Node.js](https://nodejs.org) and [MongoDB](https://www.mon
 Alternatively, an instance of the web application is hosted at [insert link here](about:blank) and may be immediately used.
 
 ## Sample Accounts
-The default database comes with some sample accounts that may be
-used in the web application.
+The default database comes with mock accounts that may be
+used in the web application. Here are their respective details.
 
 | Username              | Password         |
 | --------------------- | ---------------- |
@@ -57,8 +57,8 @@ used in the web application.
 | Brett Harley Mider       | [ChorusMortis](https://github.com/ChorusMortis)                     |
 
 ## Acknowledgments
-The development team would like to acknowledge the following people and organizations for their amazing work that we used in developing the project.
+The development team would also like to take a moment to acknowledge and credit the contributors/collaborators of the amazing, external libraries that were used in the development of this project.
 
-| Individual/Organization                           | Libraries                                                                  | Remark                                         |
+| Contributors/Organization                         | Libraries                                                                  | Remark                                         |
 | ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
 | [webfashionist](https://github.com/webfashionist) | [WYSIWYG editor jQuery plugin](https://github.com/webfashionist/RichText/) | Used in the web application's RichText editor. |
